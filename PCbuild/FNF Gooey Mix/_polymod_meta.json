@@ -1,0 +1,65 @@
+{
+  "title": "FNF: GOOEY MIX",
+  "description": "Goober Alert!",
+  "contributors": [
+    {
+      "name": "LeGooey",
+	  "role": "Director, Artist, Composer, VA, Charter, Coder",
+	  "url": "https://www.youtube.com/@LeGooey"
+    },
+      {
+      "name": "Mythical Sam",
+	  "role": "Artist",
+	  "url": "https://www.youtube.com/@Mythicalsam"
+    },
+      {
+      "name": "Official_NO",
+	  "role": "Artist",
+	  "url": "https://x.com/official_no6"
+    },
+      {
+      "name": "swagsalt",
+	  "role": "Concept Artist",
+	  "url": "https://www.youtube.com/@swagsalt"
+    },
+      {
+      "name": "ChessBrabo",
+	  "role": "Composer",
+	  "url": "https://x.com/ChessBrabo"
+    },
+      {
+      "name": "FuryGRTX",
+	  "role": "Composer",
+	  "url": "https://www.youtube.com/@FuryGRTX"
+    },
+      {
+      "name": "HEV",
+	  "role": "Composer",
+	  "url": "https://www.youtube.com/@Art4Henry"
+    },
+    {
+      "name": "RixFX",
+	  "role": "Composer",
+	  "url": "https://www.youtube.com/@rixfx_"
+    },
+          {
+      "name": "SillyRetto",
+	  "role": "Composer",
+	  "url": "https://x.com/SillyRetto"
+    },
+    {
+    "name": "7oltan",
+	  "role": "Coder",
+	  "url": "https://www.youtube.com/@7oltan"
+    },
+    {
+    "name": "Denoohay",
+	  "role": "Coder",
+	  "url": "https://x.com/Denoohay"
+    }
+    
+  ],
+  "api_version": "0.6.3",
+  "mod_version": "2.0.0",
+  "license": "Apache-2.0"
+}

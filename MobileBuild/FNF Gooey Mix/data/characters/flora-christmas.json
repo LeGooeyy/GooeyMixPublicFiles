@@ -1,0 +1,43 @@
+{
+  "version": "1.0.0",
+  "name": "Flora (Christmas)",
+  "assetPath": "characters/flora/FloraChristmas",
+  "startingAnimation": "danceRight",
+  "renderType": "multisparrow",
+  "singTime": 8.0,
+  "cameraOffsets": [-200, -230],
+  "healthIcon": {
+    "offsets": [0, 0],
+    "id": "flora",
+    "flipX": false,
+    "isPixel": false,
+    "scale": 1
+  },
+  "animations": [
+    {
+      "name": "danceLeft",
+      "prefix": "idleLeft",
+      "offsets": [-20, 210]
+    },
+    {
+      "name": "danceRight",
+      "prefix": "idleRight",
+      "offsets": [-20, 210]
+    },
+    {
+      "name": "combo50",
+      "prefix": "combo50",
+      "offsets": [-20, 210]
+    },
+        {
+      "name": "combo200",
+      "prefix": "combo200",
+      "offsets": [-20, 210]
+    },
+    {
+      "name": "drop70",
+      "prefix": "comboBreak",
+      "offsets": [-20, 210]
+    }
+  ]
+}

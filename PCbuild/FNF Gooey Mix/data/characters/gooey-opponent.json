@@ -1,0 +1,107 @@
+{
+  "version": "1.0.0",
+  "name": "Gooey (Opponent)",
+  "renderType": "multisparrow",
+  "assetPath": "characters/gooey/Gooey",
+  "flipX": true,
+  "singTime": 8.0,
+  "frameRate": 12,
+      "cameraOffsets": [20, 70],
+  "death": {
+    "cameraOffsets": [-40, 40]
+  },
+   "healthIcon": {
+    "offsets": [0, 0],
+    "id": "gooey",
+    "flipX": false,
+    "isPixel": false,
+    "scale": 1
+  },
+  "animations": [
+    {
+      "name": "idle",
+      "prefix": "idle",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "singLEFT",
+      "prefix": "right",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "singDOWN",
+      "prefix": "down",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "singUP",
+      "prefix": "up",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "singRIGHT",
+      "prefix": "left",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "singLEFTmiss",
+      "prefix": "missLeft",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "singDOWNmiss",
+      "prefix": "missDown",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "singUPmiss",
+      "prefix": "missUp",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "singRIGHTmiss",
+      "prefix": "missRight",
+      "offsets": [12,-110]
+    },
+        {
+      "name": "singLEFT-alt",
+      "prefix": "right",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "singDOWN-alt",
+      "prefix": "altDown",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "singUP-alt",
+      "prefix": "up",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "singRIGHT-alt",
+      "prefix": "altLeft",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "dodge",
+      "prefix": "dodge",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "hey",
+      "prefix": "hey",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "cheer",
+      "prefix": "yeah",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "hit",
+      "prefix": "owie",
+      "offsets": [12,-110]
+    }
+  ]
+}

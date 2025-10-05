@@ -1,0 +1,97 @@
+{
+  "version": "1.0.0",
+  "name": "Gooey (Drippypop)",
+  "renderType": "multisparrow",
+  "assetPath": "characters/extra/DrippyGooey",
+  "flipX": true,
+  "singTime": 8.0,
+  "frameRate": 12,
+  "healthIcon": {
+    "offsets": [0, 0],
+    "id": "gooey",
+    "flipX": false,
+    "isPixel": false,
+    "scale": 1
+  },
+  "death": {
+    "cameraOffsets": [-40, 40]
+  },
+  "animations": [
+    {
+      "name": "idle",
+      "prefix": "idle",
+      "offsets": [15, -40],
+      "frameRate": 12
+    },
+    {
+      "name": "singLEFT",
+      "prefix": "left",
+      "offsets": [15, -40],
+      "frameRate": 12
+    },
+    {
+      "name": "singDOWN",
+      "prefix": "down",
+      "offsets": [15, -40],
+      "frameRate": 12
+    },
+    {
+      "name": "singUP",
+      "prefix": "up",
+      "offsets": [15, -40],
+      "frameRate": 12
+    },
+    {
+      "name": "singRIGHT",
+      "prefix": "right",
+      "offsets": [15, -40],
+      "frameRate": 12
+    },
+    {
+      "name": "singLEFTmiss",
+      "prefix": "missLeft",
+      "offsets": [15, -40],
+      "frameRate": 12
+    },
+    {
+      "name": "singDOWNmiss",
+      "prefix": "missDown",
+      "offsets": [15, -40],
+      "frameRate": 12
+    },
+    {
+      "name": "singUPmiss",
+      "prefix": "missUp",
+      "offsets": [15, -40],
+      "frameRate": 12
+    },
+    {
+      "name": "singRIGHTmiss",
+      "prefix": "missRight",
+      "offsets": [15, -40],
+      "frameRate": 12
+    },
+    {
+      "name": "firstDeath",
+      "prefix": "dies",
+      "offsets": [15, -40],
+      "frameRate": 12,
+      "assetPath": "characters/extra/DrippyGooey-dead"
+    },
+    {
+      "name": "deathLoop",
+      "prefix": "dead",
+      "looped": true,
+      "offsets": [15, -40],
+      "frameRate": 12,
+      "assetPath": "characters/extra/DrippyGooey-dead"
+    },
+    {
+      "name": "deathConfirm",
+      "prefix": "revive",
+      "offsets": [15, -40],
+      "frameRate": 12,
+      "assetPath": "characters/extra/DrippyGooey-dead"
+    }
+  ]
+}

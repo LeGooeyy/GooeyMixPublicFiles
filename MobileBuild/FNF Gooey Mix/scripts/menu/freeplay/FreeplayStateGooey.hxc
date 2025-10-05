@@ -1,0 +1,43 @@
+import funkin.ui.freeplay.FreeplayState;
+import flixel.FlxCamera;
+import funkin.modding.module.Module;
+import funkin.util.ReflectUtil;
+import flixel.FlxG;
+import funkin.util.Constants;
+
+class FreeplayStateGooey extends Module {
+	public function new() {
+		super('FreeplayStateGooey');
+	}
+
+	override function onCreate(event:SubStateScriptEvent) {
+		super.onCreate(event);
+
+		Constants.DEFAULT_DIFFICULTY_LIST_FULL.push("extra");
+	}
+
+	override function onUpdate(event:UpdateScriptEvent) {
+		super.onUpdate(event);
+
+		if (ReflectUtil.getClassNameOf(FlxG.state) == "funkin.ui.mainmenu.MainMenuState") {
+			FlxG.mouse.visible = false;
+
+			FlxG.state.rightWatermarkText.text = "GOOEY MIX v2.0.0";
+		}
+
+		var sub = FlxG.state.subState;
+		if (sub == null || ReflectUtil.getClassNameOf(sub) != "funkin.ui.freeplay.FreeplayState") // Code from QT ill change it if asked :D
+			return;
+
+		var capsule = sub.grpCapsules.members[sub.curSelected];
+		var data = capsule.freeplayData;
+		var id = (data != null) ? data.levelId : null;
+
+		if (FlxG.state.subState.currentCharacterId == 'bf'
+			|| FlxG.state.subState.currentCharacterId == 'pico'
+			|| FlxG.state.subState.currentCharacterId == 'gooey')
+			if (sub.ostName != null)
+				sub.ostName.text = (id == "week60037")
+					|| FlxG.state.subState.currentCharacterId == 'gooey' ? "GOOEY MIX OST" : "OFFICIAL OST";
+	}
+}

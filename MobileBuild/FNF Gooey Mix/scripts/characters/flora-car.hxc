@@ -1,0 +1,251 @@
+import funkin.play.character.MultiSparrowCharacter;
+import funkin.play.PlayState;
+import flixel.FlxG;
+import funkin.graphics.FunkinSprite;
+import flixel.util.FlxSpriteUtil;
+import funkin.vis.dsp.SpectralAnalyzer;
+import funkin.Highscore;
+import funkin.play.character.CharacterDataParser;
+import funkin.play.notes.Strumline;
+
+class FloraCarCharacter extends MultiSparrowCharacter {
+	function new() {
+		super('flora-car');
+	}
+
+	var floraEyes:BaseCharacter;
+	var refershedLol:Bool = false;
+	var floraSpeaker;
+
+	var scarf;
+	var speakerLights;
+	var visualizerFlora;
+
+	// viz stuff
+	var defaultPoints = [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5];
+	var points = defaultPoints;
+	var lineStyle:LineStyle;
+	var curve = 0;
+	var analyzer:SpectralAnalyzer;
+
+	var comboFloraCheck:Bool = true;
+
+	function onCreate(event:ScriptEvent) {
+		super.onCreate(event);
+
+		floraEyes = CharacterDataParser.fetchCharacter('flora-eyes');
+		PlayState.instance.currentStage.add(floraEyes);
+
+		scarf = new FunkinSprite(0, 0).loadSparrow('characters/flora/WindScarf');
+		scarf.animation.addByPrefix('idle', 'blowjob', 24, true);
+		PlayState.instance.currentStage.add(scarf);
+		scarf.animation.play('idle', true);
+
+		floraSpeaker = new FunkinSprite(0, 0).loadSparrow('characters/flora/FloraSpeaker');
+		floraSpeaker.animation.addByPrefix('idle', 'floraBop', 12, false);
+		floraSpeaker.animation.play('idle');
+		PlayState.instance.currentStage.add(floraSpeaker);
+
+		speakerLights = new FunkinSprite(0, 0).loadSparrow('characters/flora/FloraLights');
+		speakerLights.animation.addByPrefix('idle', 'lightBop', 12, false);
+		speakerLights.animation.addByPrefix('frozenLight', 'frozenLight', 12, false);
+		speakerLights.animation.addByPrefix('50combo', '50combo', 24, false);
+		speakerLights.animation.addByPrefix('200combo', '200combo', 24, false);
+		speakerLights.animation.addByPrefix('lossCombo', 'lossCombo', 24, false);
+		speakerLights.animation.play('idle');
+		PlayState.instance.currentStage.add(speakerLights);
+
+		visualizerFlora = new FunkinSprite().makeGraphic(115, 70);
+		PlayState.instance.currentStage.add(visualizerFlora);
+
+		speakerLights.animation.onFinish.add(function(animName:String) {
+			if (animName == "50combo" || animName == "200combo" || animName == "lossCombo") {
+				comboFloraCheck == true;
+				visualizerFlora.visible = true;
+				speakerLights.animation.play('frozenLight', true);
+			}
+		});
+	}
+
+	function onUpdate(event:UpdateScriptEvent) {
+		super.onUpdate(event);
+
+		synchronizeShader();
+		if (!refershedLol) {
+			floraSpeaker.x = this.x + 20;
+			floraSpeaker.y = this.y + 110;
+			floraSpeaker.zIndex = this.zIndex - 2;
+
+			speakerLights.x = floraSpeaker.x;
+			speakerLights.y = floraSpeaker.y;
+			speakerLights.zIndex = floraSpeaker.zIndex + 1;
+			speakerLights.blend = 0;
+
+			scarf.x = floraSpeaker.x + 370;
+			scarf.y = floraSpeaker.y - 80;
+			scarf.zIndex = floraSpeaker.zIndex + 1;
+
+			visualizerFlora.x = floraSpeaker.x + 332;
+			visualizerFlora.y = floraSpeaker.y + 162;
+			visualizerFlora.zIndex = speakerLights.zIndex + 1;
+
+			floraEyes.setPosition(this.x, this.y);
+			floraEyes.zIndex = this.zIndex + 1;
+			floraEyes.blend = 0;
+
+			PlayState.instance.currentStage.refresh();
+			refershedLol = true;
+		}
+		lineStyle = FlxSpriteUtil.getDefaultLineStyle({
+			thickness: 4,
+			color: 0xFF6cfffa
+		});
+	}
+
+	var currentShader = null;
+
+	function synchronizeShader():Void {
+		if (FlxG.save.data.gooeyShaders != false) {
+			if (currentShader == this.shader)
+				return;
+
+			currentShader = this.shader;
+
+			scarf.shader = currentShader;
+			floraSpeaker.shader = currentShader;
+
+			trace("Synchronized shader between children!");
+		}
+	}
+
+	override function playAnimation(name:String, restart:Bool, ignoreOther:Bool) {
+		super.playAnimation(name, restart, ignoreOther);
+		if (floraEyes != null) {
+			floraEyes.playAnimation(name, restart, false);
+			floraEyes.setPosition(this.x, this.y);
+		}
+	}
+
+	var comboAnims = ["50combo", "200combo", "lossCombo"];
+
+	override function dance(force) {
+		super.dance(force);
+		if (floraSpeaker != null)
+			floraSpeaker.animation.play('idle', true);
+		if (speakerLights != null) {
+			if (!comboAnims.contains(speakerLights.animation?.curAnim?.name)
+				|| (comboAnims.contains(speakerLights.animation?.curAnim?.name) && speakerLights.animation?.finished)) {
+				speakerLights.animation.play('idle', true);
+			}
+		}
+	}
+
+	function onSongStart(scriptEvent) {
+		super.onSongStart(scriptEvent);
+		analyzer = new SpectralAnalyzer(FlxG.sound.music._channel.__audioSource, 7, 0.1, 40);
+		analyzer.fftN = 256;
+	}
+
+	function onCountdownStart(scriptEvent) {
+		super.onCountdownStart(scriptEvent);
+		analyzer = null;
+	}
+
+	override public function draw() {
+		// viz shit
+
+		if (analyzer != null) {
+			points = [];
+			var levels = analyzer.getLevels();
+			for (i in 0...levels.length) {
+				points.push(levels[i].value / 2);
+				points[points.length - 1] += 0.5;
+			}
+			points.push(0.5);
+		} else
+			points = defaultPoints;
+
+		// actually drawing shit that i want to forget about, i was cooking back then now its gibbirsh to me
+
+		lineStyle.color = 0x00000000;
+		FlxSpriteUtil.fill(visualizerFlora, 0);
+		FlxSpriteUtil.beginDraw(0xFF6cfffa, lineStyle);
+
+		for (b in [0, 1]) {
+			var oldPointX = 0;
+			var oldPointY = visualizerFlora.height * 0.6;
+			var oldI = 0.5;
+			for (i in 0...points.length) {
+				var x = (visualizerFlora.width / points.length) * (i + 1);
+				var y = visualizerFlora.height * (1 - points[i] + 0.1);
+				FlxSpriteUtil.flashGfx.moveTo(oldPointX, oldPointY);
+
+				var stupidCurveAxes = curve;
+
+				if (oldI >= points[i])
+					stupidCurveAxes = 0;
+
+				FlxSpriteUtil.flashGfx.curveTo(((oldPointX + x) / 2) + stupidCurveAxes, ((oldPointY + y) / 2), x, y);
+
+				if (b == 0) {
+					FlxSpriteUtil.flashGfx.lineTo(x, visualizerFlora.height);
+					FlxSpriteUtil.flashGfx.lineTo(oldPointX, visualizerFlora.height);
+				}
+				oldPointX = x;
+				oldPointY = y;
+				oldI = points[i];
+			}
+
+			FlxSpriteUtil.flashGfx.moveTo(0, 0);
+
+			lineStyle.color = 0xFF6cfffa;
+			FlxSpriteUtil.setLineStyle(lineStyle);
+			FlxSpriteUtil.flashGfx.beginFill(0x00000000, 0);
+		}
+
+		FlxSpriteUtil.endDraw(visualizerFlora, null);
+		super.draw();
+	}
+
+	function onNoteHit(event:HitNoteScriptEvent) {
+		if (!event.note.noteData.getMustHitNote(Strumline.KEY_COUNT))
+			return;
+		if (Highscore.tallies.combo == 49 && comboFloraCheck == true && !event.isComboBreak) {
+			comboFloraCheck == false;
+			visualizerFlora.visible = false;
+			speakerLights.animation.play('50combo', true);
+		}
+		if (Highscore.tallies.combo == 199 && comboFloraCheck == true && !event.isComboBreak) {
+			comboFloraCheck == false;
+			visualizerFlora.visible = false;
+			speakerLights.animation.play('200combo', true);
+		}
+		if (Highscore.tallies.combo >= 70 && event.isComboBreak) {
+			if (comboFloraCheck == true) {
+				comboFloraCheck == false;
+				visualizerFlora.visible = false;
+				speakerLights.animation.play('lossCombo', true);
+			}
+		}
+		super.onNoteHit(event);
+	}
+
+	function onNoteMiss(event:NoteScriptEvent) {
+		if (Highscore.tallies.combo >= 70) {
+			if (comboFloraCheck == true) {
+				comboFloraCheck == false;
+				visualizerFlora.visible = false;
+				speakerLights.animation.play('lossCombo', true);
+			}
+		}
+		super.onNoteMiss(event);
+	}
+
+	function onSongRetry(event:ScriptEvent) {
+		super.onSongRetry(event);
+
+		floraEyes.playAnimation('danceRight', false, false, false);
+		animation.curAnim.finish();
+		playAnimation('danceRight', false);
+	}
+}

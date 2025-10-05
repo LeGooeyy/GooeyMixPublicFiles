@@ -1,0 +1,114 @@
+{
+  "version": "1.0.0",
+  "name": "Gooey (Dark)",
+  "renderType": "multisparrow",
+  "assetPath": "characters/gooey/Gooey_dark",
+  "flipX": true,
+  "singTime": 8.0,
+  "healthIcon": {
+    "offsets": [0, 0],
+    "id": "gooey",
+    "flipX": false,
+    "isPixel": false,
+    "scale": 1
+  },
+  "cameraOffsets": [20, 70],
+  "death": {
+    "cameraOffsets": [-40, 40]
+  },
+  "animations": [
+    {
+      "name": "idle",
+      "prefix": "idle",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "singLEFT",
+      "prefix": "left",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "singDOWN",
+      "prefix": "down",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "singUP",
+      "prefix": "up",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "singRIGHT",
+      "prefix": "right",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "singLEFTmiss",
+      "prefix": "missLeft",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "singDOWNmiss",
+      "prefix": "missDown",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "singUPmiss",
+      "prefix": "missUp",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "singRIGHTmiss",
+      "prefix": "missRight",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "dodge",
+      "prefix": "dodge",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "hey",
+      "prefix": "hey",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "cheer",
+      "prefix": "yeah",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "scared",
+      "prefix": "scared",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "burp",
+      "prefix": "burp",
+      "offsets": [12,-110],
+      "flipX": false
+    },
+    {
+      "name": "firstDeath",
+      "prefix": "gooeyDies",
+      "offsets": [12,-110],
+      "assetPath": "characters/gooey/GooeyDead",
+      "flipX": false
+    },
+    {
+      "name": "deathLoop",
+      "prefix": "gameOverLoop",
+      "looped": true,
+      "offsets": [12,-110],
+      "assetPath": "characters/gooey/GooeyDead",
+      "flipX": false
+    },
+    {
+      "name": "deathConfirm",
+      "prefix": "jesusChrist",
+      "offsets": [12,-110],
+      "assetPath": "characters/gooey/GooeyDead",
+      "flipX": false
+    }
+  ]
+}

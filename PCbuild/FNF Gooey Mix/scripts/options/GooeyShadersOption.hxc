@@ -1,0 +1,33 @@
+import funkin.modding.module.Module;
+import funkin.modding.events.ScriptEvent;
+import funkin.util.ReflectUtil;
+import flixel.FlxG;
+import funkin.save.Save;
+import funkin.ui.options.OptionsState;
+
+class GooeyShadersOption extends Module {
+	public function new() {
+		super('GooeyShadersOption');
+	}
+
+	override function onUpdate(event:UpdateScriptEvent) {
+		super.onUpdate(event);
+
+		if (FlxG.save.data.gooeyShaders != false && FlxG.save.data.gooeyShaders != true)
+			FlxG.save.data.gooeyShaders = true;
+	}
+
+	public function onStateChangeEnd(event:StateChangeScriptEvent) {
+		if (Std.isOfType(event.targetState, OptionsState)) {
+			if (event.targetState.optionsCodex.pages.get("preferences") != null) {
+				event.targetState.optionsCodex.pages.get("preferences")
+					.createPrefItemCheckbox('Gooey Shaders',
+						"If disabled, some stages and characters from the mod will have shaders dissabled (BUT IT WILL LOOK LIKE SHIT)",
+						function(value:Bool):Void {
+							FlxG.save.data.gooeyShaders = value;
+							FlxG.save.data.flush;
+						}, FlxG.save.data.gooeyShaders);
+			}
+		}
+	}
+}

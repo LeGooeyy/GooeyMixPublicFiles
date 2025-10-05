@@ -1,0 +1,134 @@
+{
+  "version": "1.0.0",
+  "name": "Gooey",
+  "renderType": "multisparrow",
+  "assetPath": "characters/gooey/Gooey",
+  "flipX": true,
+  "singTime": 8.0,
+    "cameraOffsets": [20, 70],
+  "death": {
+    "cameraOffsets": [-40, 40]
+  },
+  "animations": [
+    {
+      "name": "idle",
+      "prefix": "idle",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "singLEFT",
+      "prefix": "left",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "singDOWN",
+      "prefix": "down",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "singUP",
+      "prefix": "up",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "singRIGHT",
+      "prefix": "right",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "singLEFTmiss",
+      "prefix": "missLeft",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "singDOWNmiss",
+      "prefix": "missDown",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "singUPmiss",
+      "prefix": "missUp",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "singRIGHTmiss",
+      "prefix": "missRight",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "dodge",
+      "prefix": "dodge",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "hey",
+      "prefix": "hey",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "cheer",
+      "prefix": "yeah",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "hit",
+      "prefix": "owie",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "firstDeath",
+      "prefix": "gooeyDies",
+      "offsets": [12,-110],
+      "assetPath": "characters/gooey/GooeyDead",
+      "flipX": false
+    },
+    {
+      "name": "deathLoop",
+      "prefix": "gameOverLoop",
+      "looped": true,
+      "offsets": [12,-110],
+      "assetPath": "characters/gooey/GooeyDead",
+      "flipX": false
+    },
+    {
+      "name": "deathConfirm",
+      "prefix": "jesusChrist",
+      "offsets": [12,-110],
+      "assetPath": "characters/gooey/GooeyDead",
+      "flipX": false
+    },
+    {
+      "name": "scared",
+      "prefix": "scared",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "cock",
+      "prefix": "preAttack",
+      "offsets": [	12,-110]
+    },
+    {
+      "name": "shoot",
+      "prefix": "attack",
+      "offsets": [324, 37]
+    },
+    {
+      "name": "pre-attack",
+      "prefix": "preAttack",
+      "offsets": [	12,-110],
+      "frameRate": 12
+    },
+    {
+      "name": "attack",
+      "prefix": "attack",
+      "offsets": [324, 37]
+    },
+    {
+      "name": "burp",
+      "prefix": "burp",
+      "offsets": [12,-110],
+      "assetPath": "characters/gooey/GooeyBurp",
+      "flipX": false
+    }
+  ]
+}

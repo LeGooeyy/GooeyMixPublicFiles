@@ -1,0 +1,88 @@
+import funkin.modding.module.Module;
+import flixel.FlxG;
+import funkin.Paths;
+import funkin.ui.freeplay.FreeplayState;
+import funkin.util.ReflectUtil;
+import funkin.ui.freeplay.SongMenuItem;
+import funkin.audio.FunkinSound;
+import funkin.modding.base.ScriptedMusicBeatSubState;
+import StringTools;
+import flixel.util.FlxTimer;
+import funkin.PlayerSettings;
+import funkin.util.TouchUtil;
+import funkin.util.SwipeUtil;
+import funkin.ui.freeplay.CapsuleNumber;
+
+class FreeplayCapsuleWeekTitlesGooey extends Module {
+	public function new() {
+		super('FreeplayCapsuleWeekTitlesGooey');
+	}
+
+	var gooeySongs:Array<String> = ['gooey', 'slimeball', 'starcraft'];
+	var expSongs:Array<String> = [''];
+
+	override function onSubStateOpenEnd(event) {
+		super.onSubStateOpenEnd(event);
+		if (Std.isOfType(event.targetState, FreeplayState)) {
+			var state = event.targetState;
+			for (capsule in event.targetState.grpCapsules.members) {
+				if (capsule?.freeplayData != null && gooeySongs.contains(capsule.freeplayData.data.id)) {
+					customDisplay(capsule);
+				}
+				if (capsule?.freeplayData != null && expSongs.contains(capsule.freeplayData.data.id)) {
+					expDisplay(capsule);
+				}
+			}
+		}
+	}
+
+	function customDisplay(cap:SongMenuItem) {
+		if (cap?.freeplayData == null)
+			return;
+		cap.weekType.visible = true;
+		cap.weekType.animation.play('WEEK', true);
+
+		cap.weekNumbers[0].frames = Paths.getSparrowAtlas('freeplay/freeplayCapsule/gooeySmallnumbers');
+		cap.weekNumbers[0].visible = true;
+		cap.weekNumbers[0].animation.addByPrefix('GOOEY', 'GOOEY', 24, true);
+		cap.weekNumbers[0].animation.play('GOOEY', true);
+		cap.weekNumbers[0].offset.x = -34;
+		cap.weekNumbers[0].offset.y = 1.2;
+	}
+
+	function expDisplay(cap:SongMenuItem) {
+		if (cap?.freeplayData == null)
+			return;
+		cap.weekType.frames = Paths.getSparrowAtlas('freeplay/freeplayCapsule/experimentWeekType');
+		cap.weekType.animation.addByPrefix('experiment', 'Experiment text', 24, false);
+		cap.weekType.animation.play('experiment', true);
+		cap.weekType.visible = true;
+	}
+
+	override function onUpdate(event:UpdateScriptEvent) {
+		super.onUpdate(event);
+		if (Std.isOfType(FlxG.state.subState, FreeplayState)) {
+			var switched = PlayerSettings.player1.controls.UI_LEFT_P
+				|| PlayerSettings.player1.controls.UI_RIGHT_P
+				|| FlxG.keys.justPressed.Q
+				|| FlxG.keys.justPressed.E;
+			if (!FlxG.state.subState.busy
+				&& (switched
+					|| TouchUtil.pressAction(FlxG.state.subState.diffSelLeft, FlxG.state.subState.funnyCam, false)
+					|| TouchUtil.pressAction(FlxG.state.subState.diffSelRight, FlxG.state.subState.funnyCam, false)
+					|| SwipeUtil.swipeLeft
+					|| SwipeUtil.swipeRight)) {
+				new FlxTimer().start(0.1, _ -> {
+					for (capsule in FlxG.state.subState.grpCapsules.members) {
+						if (capsule?.freeplayData != null && gooeySongs.contains(capsule.freeplayData.data.id)) {
+							customDisplay(capsule);
+						}
+						if (capsule?.freeplayData != null && expSongs.contains(capsule.freeplayData.data.id)) {
+							expDisplay(capsule);
+						}
+					}
+				});
+			}
+		}
+	}
+}

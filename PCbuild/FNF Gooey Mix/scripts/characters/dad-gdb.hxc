@@ -1,0 +1,22 @@
+import funkin.play.character.MultiSparrowCharacter;
+import funkin.play.character.CharacterType;
+
+class DadGDBCharacter extends MultiSparrowCharacter {
+	function new() {
+		super('dad-gdb');
+	}
+
+	function onNoteHit(event:HitNoteScriptEvent) {
+		super.onNoteHit(event);
+
+		if (!event.note.noteData.getMustHitNote() && characterType == CharacterType.DAD) {
+			// Override the hit note animation.
+			switch (event.note.kind) {
+				case "hurt":
+					holdTimer = 0;
+					this.playAnimation('hurt', true, true);
+					return;
+			}
+		}
+	}
+}

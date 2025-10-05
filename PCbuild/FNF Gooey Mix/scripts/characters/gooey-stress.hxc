@@ -1,0 +1,70 @@
+import funkin.play.character.MultiSparrowCharacter;
+import flixel.FlxG;
+import flixel.util.FlxTimer;
+import funkin.play.PauseSubState;
+import funkin.play.character.CharacterType;
+import funkin.play.GameOverSubState;
+import funkin.audio.FunkinSound;
+
+class GooeyStressPlayableCharacter extends MultiSparrowCharacter {
+	function new() {
+		super('gooey-stress');
+		ignoreExclusionPref.push("shoot");
+	}
+
+	function onCreate(event:ScriptEvent) {
+		super.onCreate(event);
+
+		GameOverSubState.musicSuffix = '-gooey';
+		GameOverSubState.blueBallSuffix = '-gooey';
+		PauseSubState.musicSuffix = '-gooey';
+		var tankDeathLine = null;
+	}
+
+	function onNoteHit(event:HitNoteScriptEvent) {
+		if (event.note.noteData.getMustHitNote() && characterType == CharacterType.BF) {
+			switch (event.note.kind) {
+				case "hey":
+					holdTimer = 0;
+					this.playAnimation('hey', false);
+				case "cheer":
+					holdTimer = 0;
+					this.playAnimation('cheer', false);
+				default:
+					holdTimer = 0;
+					this.playSingAnimation(event.note.noteData.getDirection(), false);
+			}
+		}
+	}
+
+	function stressDeathQuote():Void {
+		tankDeathLine = FunkinSound.load(Paths.sound('jeffGameover-gooey/jeffGameover-' + FlxG.random.int(1, 8)), 1.0, false);
+		if (tankDeathLine != null){
+		tankDeathLine.play(false);
+		}
+	}
+
+	function playAnimation(name:String, restart:Bool, ignoreOther:Bool) {
+		if (name == "firstDeath") {
+			new FlxTimer().start(2.5, stressDeathQuote);
+		}
+		if (name == "deathConfirm") {
+			tankDeathLine.stop();
+			gooeyRetry = FunkinSound.load(Paths.music('gameplay/gameover/gameOverEnd-gooeyReal'), true);
+			gooeyRetry.volume = 1;
+			gooeyRetry.play(false);
+		} else {
+			super.playAnimation(name, restart, ignoreOther);
+		}
+		super.playAnimation(name, restart, ignoreOther);
+	}
+
+	override function onSongRetry(event:ScriptEvent):Void {
+		super.onSongRetry(event);
+
+		GameOverSubState.musicSuffix = '-gooey';
+		GameOverSubState.blueBallSuffix = '-gooey';
+		PauseSubState.musicSuffix = '-gooey';
+		this.visible = true;
+	}
+}

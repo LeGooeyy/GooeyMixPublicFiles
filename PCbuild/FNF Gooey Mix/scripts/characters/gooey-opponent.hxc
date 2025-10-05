@@ -1,0 +1,21 @@
+import funkin.play.character.MultiSparrowCharacter;
+import funkin.play.character.CharacterType;
+
+class GooeyOpponentCharacter extends MultiSparrowCharacter {
+	function new() {
+		super('gooey-opponent');
+	}
+
+	function onNoteHit(event:HitNoteScriptEvent) {
+		if (!event.note.noteData.getMustHitNote() && characterType == CharacterType.DAD) {
+			// Override the hit note animation. Totally not just the parents christmas script slightly edited
+			switch (event.note.kind) {
+				case "alt":
+					holdTimer = 0;
+					this.playSingAnimation(event.note.noteData.getDirection(), false, 'alt');
+					return;
+			}
+		}
+		super.onNoteHit(event);
+	}
+}

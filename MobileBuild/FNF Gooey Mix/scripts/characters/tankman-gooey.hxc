@@ -1,0 +1,54 @@
+import funkin.play.character.MultiSparrowCharacter;
+import funkin.play.character.CharacterType;
+import funkin.play.PlayState;
+
+class TankmanGooeyCharacter extends MultiSparrowCharacter {
+	function new() {
+		super('tankman-gooey');
+	}
+
+  var isGooey:Bool = false;
+
+  override function playAnimation(name:String, restart:Bool, ignoreOther:Bool) {
+    if(isGooey){
+		  super.playAnimation(name + '-gooey', restart, ignoreOther);
+    }else{
+		  super.playAnimation(name, restart, ignoreOther);
+    }
+
+    if(name == 'isGooey') isGooey = true;
+	}
+
+	override function onSongRetry(event:ScriptEvent):Void {
+		super.onSongRetry(event);
+
+		isGooey = false;
+	}
+
+	   override function onCountdownStart(event) {
+        super.onCountdownStart(event);
+		if (PlayState.instance.currentSong.id.toLowerCase() == "ugh" || PlayState.instance.currentSong.id.toLowerCase() == "stress")
+		{
+		PlayState.instance.comboPopUps.offsets = [-450, 350]; 
+		}
+	   }
+
+	function onNoteHit(event:HitNoteScriptEvent)
+	{
+		super.onNoteHit(event);
+
+		if (!event.note.noteData.getMustHitNote() && characterType == CharacterType.DAD) {
+			// Override the hit note animation.
+			switch(event.note.kind) {
+				case "ugh":
+					holdTimer = 0;
+					this.playAnimation('ugh', true, true);
+					return;
+				case "hehPrettyGood":
+					holdTimer = 0;
+					this.playAnimation('hehPrettyGood', true, true);
+					return;
+			}
+		}
+	}
+}
