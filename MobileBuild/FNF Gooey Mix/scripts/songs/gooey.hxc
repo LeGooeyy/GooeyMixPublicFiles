@@ -12,6 +12,7 @@ import funkin.audio.FunkinSound;
 import flixel.text.FlxText;
 import flixel.text.FlxTextBorderStyle;
 import funkin.play.PlayStatePlaylist;
+import funkin.util.TouchUtil;
 import Date;
 
 class GooeySong extends Song {

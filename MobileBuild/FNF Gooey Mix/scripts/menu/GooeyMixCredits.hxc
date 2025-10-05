@@ -147,6 +147,9 @@ class GooeyMixCredits extends Module {
 			header: "Featuring",
 			body: [
 				{
+					line: "BlueWolf",
+				},
+				{
 					line: "Bowl0fCereal",
 				},
 				{
