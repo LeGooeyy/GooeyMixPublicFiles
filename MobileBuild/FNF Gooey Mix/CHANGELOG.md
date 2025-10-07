@@ -13,6 +13,7 @@ Destination 2 Patch 1
 - Fixed a missing import on Gooey when in story mode
 - Fixed sprite clipping on Gooey's story mode menu sprite
 - Fixed BlueWolf being missing from the credits
+- Fixed a bug with the camera getting offset after you respawn with stages with Flora
 
 ## [2.0.0] - 2025-10-5
 Destination 2 [Gooey Week Update]
