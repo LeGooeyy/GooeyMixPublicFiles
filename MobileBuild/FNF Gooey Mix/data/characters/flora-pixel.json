@@ -3,7 +3,6 @@
   "name": "Flora (Pixel)",
   "assetPath": "characters/flora/FloraPixel",
   "startingAnimation": "idle",
-  "renderType": "multisparrow",
   "singTime": 8.0,
     "cameraOffsets": [-80, -60],
   "isPixel": true,

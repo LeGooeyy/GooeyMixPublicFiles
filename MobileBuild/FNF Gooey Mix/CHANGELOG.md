@@ -3,6 +3,17 @@ All notable changes will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [2.0.0] - 2025-10-7
+Destination 2 Patch 1
+
+### Changed
+- Changed Pixel Gooey and Flora to Sparrow characters to try to fix a mobile bug on certain devices
+
+### Fixed
+- Fixed a missing import on Gooey when in story mode
+- Fixed sprite clipping on Gooey's story mode menu sprite
+- Fixed BlueWolf being missing from the credits
+
 ## [2.0.0] - 2025-10-5
 Destination 2 [Gooey Week Update]
 ### Added

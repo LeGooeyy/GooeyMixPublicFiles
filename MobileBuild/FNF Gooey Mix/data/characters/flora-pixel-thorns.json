@@ -3,7 +3,6 @@
   "name": "Flora (Pixel Thorns)",
   "assetPath": "characters/flora/FloraPixelThorns",
   "startingAnimation": "idle",
-  "renderType": "multisparrow",
   "singTime": 8.0,
     "cameraOffsets": [-80, -60],
   "isPixel": true,

@@ -3,7 +3,6 @@
   "name": "Gooey (Pixel)",
   "assetPath": "characters/gooey/gooeyPixel",
   "flipX": true,
-  "renderType": "multisparrow",
   "singTime": 8.0,
   "offsets": [-6,12],
   

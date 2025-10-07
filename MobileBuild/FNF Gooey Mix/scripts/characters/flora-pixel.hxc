@@ -1,4 +1,4 @@
-import funkin.play.character.MultiSparrowCharacter;
+import funkin.play.character.SparrowCharacter;
 import funkin.play.PlayState;
 import flixel.FlxG;
 import funkin.graphics.FunkinSprite;
@@ -7,7 +7,7 @@ import funkin.modding.base.ScriptedFlxRuntimeShader;
 import funkin.vis.dsp.SpectralAnalyzer;
 import funkin.Highscore;
 
-class FloraPixelCharacter extends MultiSparrowCharacter {
+class FloraPixelCharacter extends SparrowCharacter {
 	function new() {
 		super('flora-pixel');
 	}

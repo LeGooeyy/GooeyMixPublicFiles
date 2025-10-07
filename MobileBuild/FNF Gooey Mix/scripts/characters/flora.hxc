@@ -33,6 +33,7 @@ class FloraCharacter extends MultiSparrowCharacter {
 	var refershedLol:Bool = false;
 
 	override function onAdd() {
+		if (PlayState.instance.currentSong.id.toLowerCase() == "tutorial") {
 		if (!debug && this.characterType == CharacterType.DAD) {
 			var pos:FlxPoint = PlayState.instance.currentStage.getGirlfriendPosition();
 
@@ -41,7 +42,8 @@ class FloraCharacter extends MultiSparrowCharacter {
 
 			this.resetPosition();
 			comboFloraCheck == false;
-		}
+		} 
+	}
 	}
 
 	function onCreate(event:ScriptEvent) {
