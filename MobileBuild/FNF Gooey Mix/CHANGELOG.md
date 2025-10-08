@@ -3,6 +3,13 @@ All notable changes will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+
+## [2.0.0] - 2025-10-8
+Destination 2 Balled (Patch 2)
+
+### Fixed
+- Fixed Balled
+
 ## [2.0.0] - 2025-10-7
 Destination 2 Patch 1
 

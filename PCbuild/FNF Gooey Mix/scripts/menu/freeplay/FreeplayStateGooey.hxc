@@ -22,7 +22,7 @@ class FreeplayStateGooey extends Module {
 		if (ReflectUtil.getClassNameOf(FlxG.state) == "funkin.ui.mainmenu.MainMenuState") {
 			FlxG.mouse.visible = false;
 
-			FlxG.state.rightWatermarkText.text = "GOOEY MIX v2.0.1";
+			FlxG.state.rightWatermarkText.text = "GOOEY MIX v2.0.2";
 		}
 
 		var sub = FlxG.state.subState;
