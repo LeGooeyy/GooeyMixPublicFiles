@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "name": "DriPico",
-  "assetPath": "characters/Extra/drippico",
+  "assetPath": "characters/extra/drippico",
   "singTime": 8.0,
   "animations": [
     {
