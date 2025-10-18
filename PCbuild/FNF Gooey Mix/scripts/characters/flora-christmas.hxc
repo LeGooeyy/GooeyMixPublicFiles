@@ -117,6 +117,9 @@ class FloraChristmasCharacter extends MultiSparrowCharacter {
 
 			floraSpeaker.shader = currentShader;
 			christmas.shader = currentShader;
+			floraEyes.shader = currentShader;
+			visualizerFlora.shader = currentShader;
+			speakerLights.shader = currentShader;
 
 			trace("Synchronized shader between children!");
 		}

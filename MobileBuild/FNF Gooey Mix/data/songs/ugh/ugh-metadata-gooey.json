@@ -13,7 +13,7 @@
     "difficulties": ["easy", "normal", "hard"],
     "characters": {
       "player": "gooey","girlfriend": "flora-tankmen","opponent": "tankman-gooey",
-      "instrumental": "gooey","playerVocals": ["gooey"],"opponentVocals": ["tankmen"], "altInstrumentals": ["pico",""]
+      "instrumental": "gooey","playerVocals": ["gooey"],"opponentVocals": ["tankman"], "altInstrumentals": ["pico",""]
     },
     "stage": "tankmanBattlefieldErect",
     "noteStyle": "funkin",

@@ -3,7 +3,15 @@ All notable changes will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [2.1.1] - 2025-10-18
+Destination 2 patch 3
 
+### Added
+- Added the shader on Flora's Lights in week 5
+
+### Fixed
+- Fixed another missing note in section 44 in Pico (Gooey Mix)
+- Fixed Ugh (Gooey Mix) not loading on specific devices
 
 ## [2.1.0] - 2025-10-18
 Mini Update 3
