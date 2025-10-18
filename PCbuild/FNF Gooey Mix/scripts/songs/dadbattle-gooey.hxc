@@ -1,0 +1,45 @@
+import funkin.play.song.Song;
+import funkin.save.Save;
+import flixel.FlxG;
+import funkin.play.PlayState;
+import Date;
+
+class DadbattleGooeyMixSong extends Song
+{
+  function new()
+  {
+    super('dadbattle',
+      {
+        variation: 'gooey'
+      });
+  }
+
+
+	override function onSongLoaded(event) {
+		super.onSongLoaded(event);
+		if (PlayState.instance.currentInstrumental != "gooey" && PlayState.instance.currentInstrumental != "truegooey") {
+			PlayState.instance.currentVariation = "gooeyalt";
+			PlayState.currentChart = PlayState.instance.currentSong.getDifficulty(PlayState.instance.currentDifficulty + "-gooeyalt", "gooeyalt");
+			PlayState.instance.vocals = PlayState.instance.currentChart.buildVocals("gooeyalt");
+			event.notes = PlayState.instance.currentChart.notes.copy();
+			event.events = PlayState.instance.currentChart.getEvents();
+		}
+		if (PlayState.instance.currentInstrumental == "gooey" || PlayState.instance.currentInstrumental == "truegooey") {
+			PlayState.instance.currentInstrumental = "truegooey";
+		}
+	}
+
+  function onCreate(event:ScriptEvent):Void {
+		super.onCreate(event);
+
+		if (!FlxG.onMobile) {
+			PlayState.instance.discordRPCAlbum = "https://raw.githubusercontent.com/LeGooeyy/GooeyMixDiscordIcons/refs/heads/main/assets/album-covers/"
+				+ PlayState.instance.currentChart.album
+				+ ".png?raw=true";
+			PlayState.instance.discordRPCIcon = "https://raw.githubusercontent.com/LeGooeyy/GooeyMixDiscordIcons/refs/heads/main/assets/icons/"
+				+ PlayState.instance.currentChart.characters.opponent
+				+ ".png?raw=true?t="
+				+ Date.now().getTime();
+		}
+	}
+}

@@ -1,0 +1,71 @@
+import funkin.play.character.MultiSparrowCharacter;
+import funkin.play.PauseSubState;
+import funkin.play.character.CharacterType;
+import funkin.play.GameOverSubState;
+import funkin.audio.FunkinSound;
+import flixel.util.FlxTimer;
+import funkin.play.PlayState;
+import flixel.FlxG;
+
+class GooeyCharacter extends MultiSparrowCharacter {
+	function new() {
+		super('gooey');
+	}
+
+	function onCreate(event:ScriptEvent) {
+		super.onCreate(event);
+		GameOverSubState.musicSuffix = '-gooey';
+		GameOverSubState.blueBallSuffix = '-gooey';
+		PauseSubState.musicSuffix = '-gooey';
+		var tankDeathLine = null;
+	}
+
+	function onNoteHit(event:HitNoteScriptEvent) {
+		if (event.note.noteData.getMustHitNote() && characterType == CharacterType.BF) {
+			switch (event.note.kind) {
+				case "hey":
+					holdTimer = 0;
+					this.playAnimation('hey', false);
+				case "cheer":
+					holdTimer = 0;
+					this.playAnimation('cheer', false);
+				default:
+					holdTimer = 0;
+					this.playSingAnimation(event.note.noteData.getDirection(), false);
+			}
+		}
+	}
+
+	function stressDeathQuote():Void {
+		tankDeathLine = FunkinSound.load(Paths.sound('jeffGameover-gooey/jeffGameover-' + FlxG.random.int(1, 8)), 1.0, false);
+		if (tankDeathLine != null){
+		tankDeathLine.play(false);
+		}
+	}
+
+	override function onSongRetry(event:ScriptEvent):Void {
+		super.onSongRetry(event);
+		GameOverSubState.musicSuffix = '-gooey';
+		GameOverSubState.blueBallSuffix = '-gooey';
+		PauseSubState.musicSuffix = '-gooey';
+	}
+
+	function playAnimation(name:String, restart:Bool, ignoreOther:Bool) {
+		super.playAnimation(name, restart, ignoreOther);
+		if (name == "deathConfirm") {
+			if (PlayState.instance.currentSong.id.toLowerCase() == "ugh" || PlayState.instance.currentSong.id.toLowerCase() == "guns")
+			{
+				tankDeathLine.stop();
+			}
+			gooeyRetry = FunkinSound.load(Paths.music('gameplay/gameover/gameOverEnd-gooeyReal'), true);
+			gooeyRetry.volume = 1;
+			gooeyRetry.play(false);
+		}
+		if (name == "firstDeath") {
+			if (PlayState.instance.currentSong.id.toLowerCase() == "ugh" || PlayState.instance.currentSong.id.toLowerCase() == "guns")
+			{
+			new FlxTimer().start(2.5, stressDeathQuote);
+			}
+		}
+	}
+}

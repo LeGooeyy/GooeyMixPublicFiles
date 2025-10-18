@@ -1,0 +1,70 @@
+{
+  "props": [
+    {
+      "danceEvery": 0,
+      "zIndex": 50,
+      "position": [-260, -650],
+      "scale": [1, 1],
+      "animType": "sparrow",
+      "name": "Alley",
+      "isPixel": false,
+      "assetPath": "gooeyMix/extra/drip/ngErect",
+      "scroll": [1, 1],
+      "animations": []
+    },
+    {
+      "danceEvery": 2,
+      "zIndex": 60,
+      "position": [-50, -430],
+      "scale": [1, 1],
+      "animType": "sparrow",
+      "name": "Drippers",
+      "isPixel": false,
+      "assetPath": "gooeyMix/extra/drip/drippersErect",
+      "scroll": [1, 1],
+      "startingAnimation": "idle",
+      "animations": [
+        {
+          "name": "idle",
+          "prefix": "drippers",
+          "frameRate": 12,
+          "flipX": false,
+          "flipY": false
+        }
+      ]
+    },
+    {
+      "danceEvery": 0,
+      "zIndex": 100,
+      "position": [-260, -650],
+      "scale": [1, 1],
+      "animType": "sparrow",
+      "name": "Shading",
+      "isPixel": false,
+      "assetPath": "gooeyMix/extra/drip/erectShade",
+      "scroll": [1, 1],
+      "animations": []
+    }
+  ],
+  "cameraZoom": 0.9,
+  "version": "1.0.0",
+  "characters": {
+    "bf": {
+      "zIndex": 80,
+      "position": [1350, 320],
+      "cameraOffsets": [-200, -100]
+    },
+    "dad": {
+      "zIndex": 70,
+      "position": [700, 250],
+      "cameraOffsets": [200, -20]
+    },
+    "gf": {
+      "zIndex": 60,
+      "cameraOffsets": [0, 0],
+      "position": [1030, 363]
+    }
+  },
+  "name": "Drippypop Stage",
+  "directory": ""
+}

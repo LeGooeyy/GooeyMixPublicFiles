@@ -1,0 +1,37 @@
+{
+  "version": "1.0.0",
+  "name": "Drippypop",
+  "assetPath": "characters/extra/drippy",
+  "singTime": 8.0,
+  "animations": [
+    {
+      "name": "idle",
+      "prefix": "DripIdle",
+      "offsets": [-30,-90]
+    },
+    {
+      "name": "singLEFT",
+      "prefix": "DripLeft",
+      "offsets": [	146,
+      -84]
+    },
+    {
+      "name": "singDOWN",
+      "prefix": "DripDown",
+      "offsets": [				-34,
+      -111]
+    },
+    {
+      "name": "singUP",
+      "prefix": "DripUp",
+      "offsets": [		27,
+      13]
+    },
+    {
+      "name": "singRIGHT",
+      "prefix": "DripRight",
+      "offsets": [			-34,
+      -84]
+    }
+  ]
+}

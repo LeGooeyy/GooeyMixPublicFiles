@@ -1,0 +1,52 @@
+{
+  "version": "1.0.0",
+  "name": "DriPico",
+  "assetPath": "characters/Extra/drippico",
+  "singTime": 8.0,
+  "animations": [
+    {
+      "name": "idle",
+      "prefix": "idleshit",
+      "offsets": [	-3,
+      172],
+      "looped": true
+    },
+    {
+      "name": "idle-alt",
+      "prefix": "mongo",
+      "offsets": [	-1,
+      -111],
+      "looped": true
+    },
+    {
+      "name": "kill",
+      "prefix": "picomongo",
+      "offsets": [	291,
+      415]
+    },
+    {
+      "name": "singLEFT",
+      "prefix": "singLEFT",
+      "offsets": [	-2,
+      181]
+    },
+    {
+      "name": "singDOWN",
+      "prefix": "singDOWN",
+      "offsets": [	-2,
+      71]
+    },
+    {
+      "name": "singUP",
+      "prefix": "singUP",
+      "offsets": [	-2,
+      115]
+    },
+    {
+      "name": "singRIGHT",
+      "prefix": "singRIGHT",
+      "offsets": [	-2,
+      186]
+    }
+  ]
+}

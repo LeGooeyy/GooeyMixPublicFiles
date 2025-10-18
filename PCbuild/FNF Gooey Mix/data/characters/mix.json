@@ -1,0 +1,65 @@
+{
+ 
+  "version": "1.0.0",
+  "name": "Mix",
+  "renderType": "multisparrow",
+  "assetPath": "characters/extra/Mix",
+  "flipX": true,
+  "singTime": 8.0,
+  "frameRate": 12,
+  "cameraOffsets": [
+    0,
+    90],
+  "animations": [
+    {
+      "name": "idle",
+      "prefix": "idle",
+      "offsets": [		90,
+      -60],
+      "frameRate": 12
+    },
+    {
+      "name": "singLEFT",
+      "prefix": "right",
+      "offsets": [		90,
+      -60],
+      "frameRate": 12
+    },
+    {
+      "name": "singDOWN",
+      "prefix": "down",
+      "offsets": [		90,
+      -60],
+      "frameRate": 12
+    },
+    {
+      "name": "singUP",
+      "prefix": "up",
+      "offsets": [		90,
+      -60],
+      "frameRate": 12
+    },
+    {
+      "name": "singRIGHT",
+      "prefix": "left",
+      "offsets": [		90,
+      -60],
+      "frameRate": 12
+    },
+    {
+      "name": "hey",
+      "prefix": "hey",
+      "offsets": [		90,
+      -60],
+      "frameRate": 12
+    },
+     {
+      "name": "showOffassBITCH",
+      "prefix": "intro",
+      "offsets": [290,-60],
+      "frameRate": 12,
+      "assetPath": "characters/extra/mixIntro",
+      "flipX": true
+    }
+  ]
+}

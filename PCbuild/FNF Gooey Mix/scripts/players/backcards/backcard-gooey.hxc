@@ -1,0 +1,251 @@
+import funkin.ui.freeplay.backcards.BackingCard;
+import flixel.math.FlxMath;
+import flixel.FlxSprite;
+import funkin.ui.freeplay.FreeplayState;
+import funkin.util.BitmapUtil;
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
+import flixel.util.FlxTimer;
+import funkin.graphics.adobeanimate.FlxAtlasSprite;
+import flixel.addons.display.FlxBackdrop;
+import funkin.ui.FullScreenScaleMode;
+import funkin.Conductor;
+import flixel.FlxG;
+import funkin.Preferences;
+
+class GooeyCard extends BackingCard {
+	public function new() {
+		super("gooey");
+	}
+
+	public override function enterCharSel():Void {
+		FlxTween.tween(crystal.velocity, {x: 0}, 0.8, {ease: FlxEase.sineIn});
+		FlxTween.tween(crystal2.velocity, {x: 0}, 0.8, {ease: FlxEase.sineIn});
+		FlxTween.tween(crystal0.velocity, {x: 0}, 0.8, {ease: FlxEase.sineIn});
+	}
+
+	public override function applyExitMovers(?exitMovers:FreeplayState.ExitMoverData, ?exitMoversCharSel:FreeplayState.ExitMoverData):Void {
+		super.applyExitMovers(exitMovers, exitMoversCharSel);
+		if (exitMovers == null || exitMoversCharSel == null)
+			return;
+
+		exitMoversCharSel.set([crystal], {
+			y: -50,
+			speed: 0.8,
+			wait: 0.1
+		});
+		exitMoversCharSel.set([crystal2], {
+			y: -50,
+			speed: 0.8,
+			wait: 0.1
+		});
+		exitMoversCharSel.set([crystal0], {
+			y: -50,
+			speed: 0.8,
+			wait: 0.1
+		});
+		exitMoversCharSel.set([crystal], {
+			y: -50,
+			speed: 0.8,
+			wait: 0.1
+		});
+		exitMoversCharSel.set([crystal], {
+			y: -50,
+			speed: 0.8,
+			wait: 0.1
+		});
+	}
+
+	public override function onCreate(event:ScriptEvent):Void {
+		crystal0 = new FlxSprite().loadGraphic(Paths.image('freeplay/backingCards/gooey/ourpleBack'));
+		FlxG.state.subState.insert(FlxG.state.subState.members.indexOf(FlxG.state.subState.dj), crystal0);
+		crystal0.cameras = [FlxG.state.subState.funnyCam];
+		add(crystal0);
+
+		natCrystal = new FlxSprite(FreeplayState.CUTOUT_WIDTH * FreeplayState.DJ_POS_MULTI - 175)
+			.loadGraphic(Paths.image('freeplay/backingCards/gooey/natCrystal'));
+		FlxG.state.subState.insert(FlxG.state.subState.members.indexOf(FlxG.state.subState.dj), natCrystal);
+		natCrystal.cameras = [FlxG.state.subState.funnyCam];
+		add(natCrystal);
+		natCrystal.alpha = 0;
+
+		natCrystalGlow = new FlxSprite(FreeplayState.CUTOUT_WIDTH * FreeplayState.DJ_POS_MULTI - 175)
+			.loadGraphic(Paths.image('freeplay/backingCards/gooey/natCrystalGlow'));
+		FlxG.state.subState.insert(FlxG.state.subState.members.indexOf(FlxG.state.subState.dj), natCrystalGlow);
+		natCrystalGlow.cameras = [FlxG.state.subState.funnyCam];
+		natCrystalGlow.blend = 0;
+		natCrystalGlow.alpha = 0;
+		add(natCrystalGlow);
+
+		natCrystalGlow2 = new FlxSprite(FreeplayState.CUTOUT_WIDTH * FreeplayState.DJ_POS_MULTI - 175)
+			.loadGraphic(Paths.image('freeplay/backingCards/gooey/natCrystalGlow'));
+		FlxG.state.subState.insert(FlxG.state.subState.members.indexOf(FlxG.state.subState.dj), natCrystalGlow2);
+		natCrystalGlow2.cameras = [FlxG.state.subState.funnyCam];
+		natCrystalGlow2.blend = 0;
+		natCrystalGlow2.alpha = 0;
+		add(natCrystalGlow2);
+
+		selectShade = new FlxSprite(FreeplayState.CUTOUT_WIDTH * FreeplayState.DJ_POS_MULTI - 175)
+			.loadGraphic(Paths.image('freeplay/backingCards/gooey/selectShade'));
+		FlxG.state.subState.insert(FlxG.state.subState.members.indexOf(FlxG.state.subState.dj), selectShade);
+		selectShade.cameras = [FlxG.state.subState.funnyCam];
+		selectShade.blend = 9;
+		selectShade.alpha = 0;
+		add(selectShade);
+
+		crystal = new FlxBackdrop(Paths.image('freeplay/backingCards/gooey/crystalBack'), 0x01, 0);
+		FlxG.state.subState.insert(FlxG.state.subState.members.indexOf(FlxG.state.subState.dj), crystal);
+		crystal.cameras = [FlxG.state.subState.funnyCam];
+		crystal.velocity.x = -10;
+		crystal.blend = 0;
+		crystal.alpha = 0.1;
+		add(crystal);
+
+		crystal2 = new FlxBackdrop(Paths.image('freeplay/backingCards/gooey/crystalBack'), 0x01, 0);
+		FlxG.state.subState.insert(FlxG.state.subState.members.indexOf(FlxG.state.subState.dj), crystal2);
+		crystal2.cameras = [FlxG.state.subState.funnyCam];
+		crystal2.velocity.x = 10;
+		crystal2.blend = 0;
+		crystal2.alpha = 0.25;
+		crystal2.flipY = true;
+		crystal2.flipX = true;
+		add(crystal2);
+
+		gooLines = new FlxBackdrop(Paths.image('freeplay/backingCards/gooey/gooWave'), 0x01, 0);
+		gooLines.setPosition(0, 120);
+		gooLines.velocity.x = 100;
+		FlxG.state.subState.insert(FlxG.state.subState.members.indexOf(FlxG.state.subState.dj), gooLines);
+		gooLines.cameras = [FlxG.state.subState.funnyCam];
+		gooLines.alpha = 0.9;
+		add(gooLines);
+
+		gooLines2 = new FlxBackdrop(Paths.image('freeplay/backingCards/gooey/gooWave'), 0x01, 0);
+		gooLines2.setPosition(0, 400);
+		gooLines2.flipY = true;
+		gooLines2.velocity.x = 100;
+		FlxG.state.subState.insert(FlxG.state.subState.members.indexOf(FlxG.state.subState.dj), gooLines2);
+		gooLines2.cameras = [FlxG.state.subState.funnyCam];
+		gooLines2.alpha = 0.9;
+		add(gooLines2);
+
+		gooberAlert3 = new FlxBackdrop(Paths.image('freeplay/backingCards/gooey/gooAlert3'), 0x01, 20);
+		gooberAlert3.setPosition(0, 345);
+		gooberAlert3.velocity.x = -250;
+		gooberAlert3.blend = 0;
+		gooberAlert3.alpha = 0.6;
+		FlxG.state.subState.insert(FlxG.state.subState.members.indexOf(FlxG.state.subState.dj), gooberAlert3);
+		gooberAlert3.cameras = [FlxG.state.subState.funnyCam];
+		add(gooberAlert3);
+
+		gooLines3 = new FlxBackdrop(Paths.image('freeplay/backingCards/gooey/gooWave'), 0x01, 0);
+		gooLines3.setPosition(0, 680);
+		gooLines3.velocity.x = 100;
+		FlxG.state.subState.insert(FlxG.state.subState.members.indexOf(FlxG.state.subState.dj), gooLines3);
+		gooLines3.cameras = [FlxG.state.subState.funnyCam];
+		gooLines3.alpha = 0.9;
+		add(gooLines3);
+
+		gooberAlert4 = new FlxBackdrop(Paths.image('freeplay/backingCards/gooey/gooAlert4'), 0x01, 20);
+		gooberAlert4.setPosition(0, 625);
+		gooberAlert4.velocity.x = -250;
+		gooberAlert4.blend = 0;
+		gooberAlert4.alpha = 0.45;
+		FlxG.state.subState.insert(FlxG.state.subState.members.indexOf(FlxG.state.subState.dj), gooberAlert4);
+		gooberAlert4.cameras = [FlxG.state.subState.funnyCam];
+		add(gooberAlert4);
+
+		glow = new FlxSprite(0, 0).loadGraphic(Paths.image('freeplay/backingCards/gooey/gooGrad'));
+		FlxG.state.subState.insert(FlxG.state.subState.members.indexOf(FlxG.state.subState.dj), glow);
+		glow.cameras = [FlxG.state.subState.funnyCam];
+		glow.blend = 0;
+		glow.alpha = 0.3;
+		add(glow);
+
+		gooberAlert1 = new FlxBackdrop(Paths.image('freeplay/backingCards/gooey/gooAlert1'), 0x01, 20);
+		gooberAlert1.setPosition(0, 165);
+		gooberAlert1.velocity.x = 200;
+		gooberAlert1.blend = 0;
+		gooberAlert1.alpha = 0.3;
+		FlxG.state.subState.insert(FlxG.state.subState.members.indexOf(FlxG.state.subState.dj), gooberAlert1);
+		gooberAlert1.cameras = [FlxG.state.subState.funnyCam];
+		add(gooberAlert1);
+
+		gooberAlert2 = new FlxBackdrop(Paths.image('freeplay/backingCards/gooey/gooAlert2'), 0x01, 15);
+		gooberAlert2.setPosition(0, 445);
+		FlxG.state.subState.insert(FlxG.state.subState.members.indexOf(FlxG.state.subState.dj), gooberAlert2);
+		gooberAlert2.velocity.x = 200;
+		gooberAlert2.blend = 0;
+		gooberAlert2.alpha = 0.6;
+		gooberAlert2.cameras = [FlxG.state.subState.funnyCam];
+		add(gooberAlert2);
+
+		natFlash = new FlxSprite().loadGraphic(Paths.image('freeplay/backingCards/gooey/natFlash'));
+		FlxG.state.subState.insert(FlxG.state.subState.members.indexOf(FlxG.state.subState.dj), natFlash);
+		natFlash.cameras = [FlxG.state.subState.funnyCam];
+		natFlash.blend = 0;
+		natFlash.alpha = 0;
+		add(natFlash);
+	}
+
+	override public function confirm():Void {
+		crystal2.velocity.x = 0;
+		crystal.velocity.x = 0;
+		FlxTween.tween(crystal, {alpha: 0}, 2.3, {ease: FlxEase.expoOut});
+		FlxTween.tween(crystal2, {alpha: 0}, 2.3, {ease: FlxEase.expoOut});
+		FlxTween.tween(natCrystal, {alpha: 1}, 2, {ease: FlxEase.linear});
+		FlxTween.tween(natCrystalGlow, {alpha: 1}, 2, {ease: FlxEase.linear});
+		FlxTween.tween(natCrystalGlow2, {alpha: 1}, 2, {ease: FlxEase.linear});
+		FlxTween.tween(selectShade, {alpha: 1}, 2, {ease: FlxEase.linear});
+		FlxTween.tween(natFlash, {alpha: 1}, 0.05, {ease: FlxEase.linear});
+
+		FlxTween.tween(crystal, {angle: 180}, 2, {ease: FlxEase.expoOut});
+		FlxTween.tween(crystal2, {angle: -180}, 2, {ease: FlxEase.expoOut});
+
+		FlxTween.tween(crystal.scale, {x: 1.5, y: 1.5}, 1, {ease: FlxEase.expoOut});
+		FlxTween.tween(crystal2.scale, {x: 2, y: 2}, 1, {ease: FlxEase.expoOut});
+
+		FlxTween.tween(natCrystal.scale, {x: 1.015, y: 1.015}, 5, {ease: FlxEase.expoOut});
+
+		FlxTween.color(crystal0, 0.05, 0x240435, 0x240435, {ease: FlxEase.quadOut});
+
+		new FlxTimer().start(0.25, function(_) {
+			FlxTween.tween(natFlash, {alpha: 0}, 1, {ease: FlxEase.linear});
+			gooberAlert1.visible = false;
+			gooberAlert2.visible = false;
+			gooberAlert3.visible = false;
+			gooberAlert4.visible = false;
+			gooLines.visible = false;
+			gooLines2.visible = false;
+			gooLines3.visible = false;
+			glow.visible = false;
+		});
+	}
+
+	public override function introDone():Void {
+		crystal0.visible = true;
+		crystal.visible = true;
+		crystal2.visible = true;
+		gooberAlert1.visible = true;
+		gooberAlert2.visible = true;
+		gooberAlert3.visible = true;
+		gooberAlert4.visible = true;
+		gooLines.visible = true;
+		gooLines2.visible = true;
+		gooLines3.visible = true;
+		glow.visible = true;
+	}
+
+	public override function disappear():Void {
+		crystal0.visible = false;
+		crystal.visible = false;
+		crystal2.visible = false;
+		gooberAlert1.visible = false;
+		gooberAlert2.visible = false;
+		gooberAlert3.visible = false;
+		gooberAlert4.visible = false;
+		gooLines.visible = false;
+		gooLines2.visible = false;
+		gooLines3.visible = false;
+		glow.visible = false;
+	}
+}

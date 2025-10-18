@@ -1,0 +1,112 @@
+import funkin.play.stage.Stage;
+import funkin.graphics.shaders.DropShadowShader;
+import funkin.play.character.CharacterType;
+import flixel.FlxG;
+
+class hotelCastleStage extends Stage
+{
+	function new()
+	{
+		super('hotelCastle');
+	}
+
+	function buildStage()
+	{
+		super.buildStage();
+
+		var lighting = getNamedProp('lighting');
+		lighting.blend = 0;
+
+		var lighting2 = getNamedProp('lighting2');
+		lighting2.blend = 9;
+
+		var stageLighting = getNamedProp('stageLighting');
+		stageLighting.blend = 9;
+
+
+		var spotlight1 = getNamedProp('spotlight1');
+		spotlight1.blend = 9;
+		spotlight1.alpha = 1;
+
+		var spotlight2 = getNamedProp('spotlight2');
+		spotlight2.blend = 0;
+		spotlight2.alpha = 0.05;
+
+		var spotlight3 = getNamedProp('spotlight3');
+		spotlight3.blend = 0;
+		spotlight3.alpha = 0.5;
+
+		var extraSpotlight = getNamedProp('extraSpotlight');
+		extraSpotlight.blend = 9;
+		extraSpotlight.alpha = 0;
+
+		var extraSpotlight2 = getNamedProp('extraSpotlight2');
+		extraSpotlight2.blend = 9;
+		extraSpotlight2.alpha = 0;
+
+		var topLantern1Light = getNamedProp('topLantern1Light');
+		topLantern1Light.blend = 0;
+		var topLantern2Light = getNamedProp('topLantern2Light');
+		topLantern2Light.blend = 0;
+		var candleFrontLight = getNamedProp('candleFrontLight');
+		candleFrontLight.blend = 0;
+		var candleBackLight = getNamedProp('candleBackLight');
+		candleBackLight.blend = 0;
+		var bottomLantern1Light = getNamedProp('bottomLantern1Light');
+		bottomLantern1Light.blend = 0;
+		var bottomLantern2Light = getNamedProp('bottomLantern2Light');
+		bottomLantern2Light.blend = 0;
+	}
+
+
+	override function addCharacter(character:BaseCharacter, charType:CharacterType):Void {
+		// Apply the shader automatically to each character as it gets added.
+		super.addCharacter(character, charType);
+		trace('Applied stage shader to ' + character.characterName);
+if (FlxG.save.data.gooeyShaders != false)
+	{
+		var rim = new DropShadowShader();
+		rim.setAdjustColor(0, 0, 0, 0);
+   		rim.color = 0xFF423427;
+		character.shader = rim;
+		rim.attachedSprite = character;
+		rim.threshold = -1;
+
+		switch(charType){
+			case CharacterType.BF:
+
+				rim.angle = 67.5;
+
+				character.animation.onFrameChange.add(function() {
+					if (getBoyfriend() != null)
+					{
+      			rim.updateFrameInfo(getBoyfriend().frame);
+					}
+    		});
+
+			case CharacterType.GF:
+
+				rim.angle = 90;
+				rim.color = 0xFF000000;
+
+				character.animation.onFrameChange.add(function() {
+      		rim.updateFrameInfo(getGirlfriend().frame);
+    		});
+
+
+			case CharacterType.DAD:
+
+				rim.angle = 67.5;
+				character.animation.onFrameChange.add(function() {
+      		rim.updateFrameInfo(getDad().frame);
+    		});
+
+			default:
+
+		}
+		}
+
+	}
+
+
+}

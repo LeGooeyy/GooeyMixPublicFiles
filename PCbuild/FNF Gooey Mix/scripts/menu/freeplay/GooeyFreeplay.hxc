@@ -1,0 +1,23 @@
+import funkin.ui.freeplay.FreeplayState;
+import funkin.modding.module.Module;
+import flixel.FlxG;
+import StringTools;
+
+class GooeyFreeplay extends Module {
+	public function new() {
+		super('GooeyFreeplay', 1, {
+			state: FreeplayState
+		});
+	}
+
+
+	override function onUpdate(event:UpdateScriptEvent) {
+		super.onUpdate(event);
+
+		if (FlxG.state.subState.capsuleOptionsMenu != null) {
+			if (StringTools.startsWith(FlxG.state.subState.capsuleOptionsMenu.currentInstrumental.text, "Truegooey"))
+				FlxG.state.subState.capsuleOptionsMenu.currentInstrumental.text = "Gooey";
+		}
+
+	}
+}

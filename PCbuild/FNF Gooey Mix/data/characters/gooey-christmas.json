@@ -1,0 +1,101 @@
+{
+  "version": "1.0.0",
+  "name": "Gooey (Christmas)",
+  "renderType": "multisparrow",
+  "assetPath": "characters/gooey/GooeyChristmas",
+  "flipX": true,
+  "singTime": 8.0,
+  "frameRate": 12,
+  "healthIcon": {
+    "offsets": [0, 0],
+    "id": "gooey",
+    "flipX": false,
+    "isPixel": false,
+    "scale": 1
+  },
+    "cameraOffsets": [20, 70],
+  "death": {
+    "cameraOffsets": [-40, 40]
+  },
+  "animations": [
+    {
+      "name": "idle",
+      "prefix": "idle",
+      "offsets": [12,-110],
+      "frameRate": 12
+    },
+    {
+      "name": "singLEFT",
+      "prefix": "left",
+      "offsets": [12,-110],
+      "frameRate": 12
+    },
+    {
+      "name": "singDOWN",
+      "prefix": "down",
+      "offsets": [12,-110],
+      "frameRate": 12
+    },
+    {
+      "name": "singUP",
+      "prefix": "up",
+      "offsets": [12,-110],
+      "frameRate": 12
+    },
+    {
+      "name": "singRIGHT",
+      "prefix": "right",
+      "offsets": [12,-110],
+      "frameRate": 12
+    },
+    {
+      "name": "singLEFTmiss",
+      "prefix": "missLeft",
+      "offsets": [12,-110],
+      "frameRate": 12
+    },
+    {
+      "name": "singDOWNmiss",
+      "prefix": "missDown",
+      "offsets": [12,-110],
+      "frameRate": 12
+    },
+    {
+      "name": "singUPmiss",
+      "prefix": "missUp",
+      "offsets": [12,-110],
+      "frameRate": 12
+    },
+    {
+      "name": "singRIGHTmiss",
+      "prefix": "missRight",
+      "offsets": [12,-110],
+      "frameRate": 12
+    },
+    {
+      "name": "firstDeath",
+      "prefix": "gooeyDies",
+      "offsets": [12,-110],
+      "frameRate": 24,
+      "assetPath": "characters/gooey/GooeyDeadChristmas",
+      "flipX": false
+    },
+    {
+      "name": "deathLoop",
+      "prefix": "gameOverLoop",
+      "looped": true,
+      "offsets": [12,-110],
+      "frameRate": 24,
+      "assetPath": "characters/gooey/GooeyDeadChristmas",
+      "flipX": false
+    },
+    {
+      "name": "deathConfirm",
+      "prefix": "jesusChrist",
+      "offsets": [12,-110],
+      "frameRate": 24,
+      "assetPath": "characters/gooey/GooeyDeadChristmas",
+      "flipX": false
+    }
+  ]
+}

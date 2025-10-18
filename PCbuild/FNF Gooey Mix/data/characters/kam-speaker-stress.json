@@ -1,0 +1,70 @@
+{
+  "version": "1.0.0",
+  "name": "Kam (Speaker Shooter)",
+  "assetPath": "characters/kam/KamStress",
+  "startingAnimation": "",
+  "renderType": "multisparrow",
+  "singTime": 10,
+  "offsets": [0,25],
+  "healthIcon": {
+    "offsets": [0, 0],
+    "id": "kam",
+    "flipX": false,
+    "isPixel": false,
+    "scale": 1
+  },
+  "animations": [
+    {
+      "name": "shoot1",
+      "prefix": "rightHigh",
+      "offsets": [0, 0]
+    },
+    {
+      "name": "shoot2",
+      "prefix": "rightLow",
+      "offsets": [0, 0]
+    },
+    {
+      "name": "shoot3",
+      "prefix": "leftHigh",
+      "offsets": [0, 0]
+    },
+    {
+      "name": "shoot4",
+      "prefix": "leftLow",
+      "offsets": [0, 0]
+    },
+    {
+      "name": "idle",
+      "prefix": "idle",
+      "offsets": [0, 0]
+    },
+       {
+      "name": "fakeIdle",
+      "prefix": "idle",
+      "offsets": [0, 0],
+       "looped": true
+    },
+    {
+      "name": "kamMurder",
+      "prefix": "kamMurder",
+      "offsets": [0, 0],
+      "assetPath": "characters/kam/KamStressCutscene",
+      "frameRate": 12
+    },
+       {
+      "name": "grab",
+      "prefix": "grab",
+      "offsets": [0, 0],
+      "assetPath": "characters/kam/KamStressCutscene",
+      "frameRate": 12
+    },
+    {
+      "name": "iDontKnow",
+      "prefix": "iDontKnow",
+      "assetPath": "characters/kam/KamStressCutscene",
+      "offsets": [0, 0],
+      "frameRate": 12
+    }
+  ]
+}
