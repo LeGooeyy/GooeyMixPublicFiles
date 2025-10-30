@@ -75,7 +75,7 @@ class FreeplayCapsuleWeekTitlesGooey extends Module {
 			if (ReflectUtil.getClassNameOf(FlxG.state) == "funkin.ui.mainmenu.MainMenuState") {
 			FlxG.mouse.visible = false;
 
-			FlxG.state.rightWatermarkText.text = "GOOEY MIX v2.2.0";
+			FlxG.state.rightWatermarkText.text = "GOOEY MIX v2.2.1";
 		}
 
 		var sub = FlxG.state.subState;

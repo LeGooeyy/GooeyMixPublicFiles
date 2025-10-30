@@ -342,7 +342,7 @@ class MorphoModeOption extends Module {
 					morphoModeDancer.scale.set(0.7, 0.7);
 					morphoModeDancer.x = 150;
 					morphoModeDancer.y = -30;
-					morphoModeDancer.zIndex = -101;
+					morphoModeDancer.zIndex = PlayState.instance.currentStage.getNamedProp('bgLight').zIndex - 1;
 					morphoModeDancer.alpha = 0;
 					morphoModeDancer.color = 0xFF000000;
 				}
