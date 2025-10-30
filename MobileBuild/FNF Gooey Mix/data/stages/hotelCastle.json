@@ -132,13 +132,73 @@
         }
       ]
     },
+     {
+      "name": "morphoBop",
+      "assetPath": "gooeyMix/week60037/hotelCastle/morphoBop",
+      "position": [-1000, -1000],
+      "scale": [1, 1],
+      "scroll": [1, 1],
+      "danceEvery": 1,
+      "zIndex": 21,
+      "startingAnimation": "idle",
+      "animations": [
+        {
+          "name": "idle",
+          "prefix": "morphoIdle",
+          "frameRate": 12,
+          "flipX": false,
+          "flipY": false
+        },
+        {
+          "name": "morphoHittingIt",
+          "prefix": "morphoHittingIt",
+          "frameRate": 12,
+          "looped": true,
+          "flipX": false,
+          "flipY": false
+        },
+        {
+          "name": "hitIt1",
+          "prefix": "morphoHittingIt",
+          "frameRate": 12,
+          "frameIndices": [3,4,5,6,7,8],
+          "flipX": false,
+          "flipY": false
+        },
+        {
+          "name": "hitIt2",
+          "prefix": "morphoHittingIt",
+          "frameRate": 12,
+          "frameIndices": [9,10,11,12,13],
+          "flipX": false,
+          "flipY": false
+        },
+        {
+          "name": "hitIt3",
+          "prefix": "morphoHittingIt",
+          "frameRate": 12,
+          "frameIndices": [14,15,16,17,18,19],
+          "flipX": false,
+          "flipY": false
+        },
+        {
+          "name": "hitIt4",
+          "prefix": "morphoHittingIt",
+          "frameIndices": [20,21,0,1,2],
+          "frameRate": 12,
+          "flipX": false,
+          "flipY": false
+        }
+        
+      ]
+    },
     {
       "name": "candleFront",
       "assetPath": "gooeyMix/week60037/hotelCastle/candle",
       "position": [860, 940],
       "scale": [1, 1],
       "scroll": [1, 1],
-      "zIndex": 22
+      "zIndex": 23
     },
               {
       "name": "spotlight1",

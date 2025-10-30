@@ -47,6 +47,8 @@ class DrippyPopErectStage extends Stage
     colorShaderDad.contrast = -0;
 	colorShaderDad.saturation = -12;
 
+  var shading = getNamedProp('shading');
+  shading.blend = 9; 
 
 	 mist0 = new FlxBackdrop(Paths.image('gooeyMix/extra/drip/mistBack'), 0x01);
     mist0.setPosition(-650, -700);

@@ -1,0 +1,533 @@
+import funkin.modding.module.Module;
+import funkin.modding.events.ScriptEvent;
+import funkin.util.ReflectUtil;
+import flixel.FlxG;
+import funkin.save.Save;
+import funkin.ui.options.OptionsState;
+import funkin.play.PlayState;
+import flixel.FlxG;
+import funkin.graphics.FunkinSprite;
+import funkin.graphics.shaders.AdjustColorShader;
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
+import funkin.util.FlxTweenUtil;
+import flixel.util.FlxTimer;
+import funkin.graphics.shaders.DropShadowShader;
+
+class MorphoModeOption extends Module {
+	public function new() {
+		super('MorphoModeOption');
+	}
+
+	override function onUpdate(event:UpdateScriptEvent) {
+		super.onUpdate(event);
+
+		if (FlxG.save.data.morphoMode != false && FlxG.save.data.morphoMode != true)
+			FlxG.save.data.morphoMode = false;
+	}
+
+	public function onStateChangeEnd(event:StateChangeScriptEvent) {
+		if (Std.isOfType(event.targetState, OptionsState)) {
+			if (event.targetState.optionsCodex.pages.get("preferences") != null) {
+				event.targetState.optionsCodex.pages.get("preferences").createPrefItemCheckbox('Morpho Mode', "HEY GORDAN!", function(value:Bool):Void {
+					FlxG.save.data.morphoMode = value;
+					FlxG.save.data.flush;
+				}, FlxG.save.data.morphoMode);
+			}
+		}
+	}
+
+	var morphoDanceNumber:Int = 1;
+
+	var morphoModeDancer:FunkinSprite;
+	var colorShader:AdjustColorShader;
+
+	function onSongLoaded() {
+		super.onSongLoaded();
+
+		if (FlxG.save.data.morphoMode == true) {
+			if (morphoModeDancer != null) {
+				morphoModeDancer.kill();
+			}
+
+			// im to lazy to get Spooky Week 2 and Spooky Blazin to work lol
+
+			PlayState.instance.currentChart.stickerPack = "bonus-morpho";
+
+			if (PlayState.instance.currentStageId != "hotelCastle") {
+				if (PlayState.instance.currentStageId != "phillyBlazin"
+					&& PlayState.instance.currentStageId != "phillyBlazinErect"
+					&& PlayState.instance.currentStageId != "phillyStreetsErect"
+					&& PlayState.instance.currentStageId != "phillyStreetsSpooky"
+					&& PlayState.instance.currentStageId != "schoolSpooky"
+					&& PlayState.instance.currentStageId != "phillyCity") {
+					morphoModeDancer = new FunkinSprite(900, 130).loadSparrow('characters/morpho/morphoMode');
+				}
+				if (PlayState.instance.currentStageId == "phillyCity") {
+					morphoModeDancer = new FunkinSprite(900, 130).loadSparrow('characters/morpho/morphoModeMix');
+				}
+				if (PlayState.instance.currentStageId == "schoolSpooky") {
+					morphoModeDancer = new FunkinSprite(900, 130).loadSparrow('characters/morpho/morphoModePurple');
+				}
+				if (PlayState.instance.currentStageId == "phillyBlazin"
+					|| PlayState.instance.currentStageId == "phillyBlazinErect"
+					|| PlayState.instance.currentStageId == "phillyStreetsErect"
+					|| PlayState.instance.currentStageId == "phillyStreetsSpooky") {
+					morphoModeDancer = new FunkinSprite(900, 130).loadSparrow('characters/morpho/morphoModeBlur');
+				}
+
+				morphoModeDancer.animation.addByPrefix('morphoHittingIt', 'morphoHittingIt', 12, true);
+				morphoModeDancer.animation.addByPrefix('hitIt1', 'hitIt1', 12, false);
+				morphoModeDancer.animation.addByPrefix('hitIt2', 'hitIt2', 12, false);
+				morphoModeDancer.animation.addByPrefix('hitIt3', 'hitIt3', 12, false);
+				morphoModeDancer.animation.addByPrefix('hitIt4', 'hitIt4', 12, false);
+				morphoModeDancer.animation.play('morphoHittingIt', true);
+				PlayState.instance.currentStage.add(morphoModeDancer);
+				morphoModeDancer.zIndex = -500;
+				PlayState.instance.currentStage.refresh();
+				morphoDanceNumber = 1;
+
+				if (PlayState.instance.currentStageId == "mainStage") {
+					morphoModeDancer.x = 900;
+					morphoModeDancer.y = 130;
+					morphoModeDancer.zIndex = 29;
+				}
+				if (PlayState.instance.currentStageId == "spookyMansion") {
+					morphoModeDancer.x = -300;
+					morphoModeDancer.y = 150;
+					morphoModeDancer.zIndex = 50;
+				}
+				if (PlayState.instance.currentStageId == "phillyTrain" || PlayState.instance.currentStageId == "phillyTrainErect") {
+					morphoModeDancer.x = 900;
+					morphoModeDancer.y = 130;
+					morphoModeDancer.zIndex = 80;
+
+					if (PlayState.instance.currentStageId == "phillyTrainErect") {
+						if (FlxG.save.data.gooeyShaders != false) {
+							morphoColorShade = new AdjustColorShader();
+							morphoColorShade.hue = -26;
+							morphoColorShade.saturation = 1 - 16;
+							morphoColorShade.contrast = 0;
+							morphoColorShade.brightness = -5;
+
+							morphoModeDancer.shader = morphoColorShade;
+						}
+					}
+				}
+				if (PlayState.instance.currentStageId == "limoRide"
+					|| PlayState.instance.currentStageId == "limoRideErect"
+					|| PlayState.instance.currentStageId == "limoRideSpooky"
+					|| PlayState.instance.currentStageId == "limoRideErectGooey") {
+					PlayState.instance.currentStage.getNamedProp('limoDancer1').alpha = 0;
+					PlayState.instance.currentStage.getNamedProp('limoDancer2').alpha = 0;
+					morphoModeDancer.x = 200;
+					morphoModeDancer.y = -60;
+					morphoModeDancer.zIndex = 30;
+					morphoModeDancer.scale.set(0.75, 0.75);
+					morphoModeDancer.scrollFactor.set(0.4, 0.4);
+
+					if (FlxG.save.data.gooeyShaders != false) {
+						morphoColorShade = new AdjustColorShader();
+						morphoColorShade.hue = -10;
+						morphoColorShade.saturation = 10;
+						morphoColorShade.contrast = -10;
+						morphoColorShade.brightness = 22;
+					}
+
+					if (PlayState.instance.currentStageId == "limoRideSpooky") {
+						if (FlxG.save.data.gooeyShaders != false) {
+							morphoColorShade.brightness = -10;
+							morphoColorShade.saturation = -20;
+							morphoColorShade.contrast = -20;
+						}
+					}
+
+					if (PlayState.instance.currentStageId == "limoRideErectGooey"
+						|| PlayState.instance.currentStageId == "limoRideErect") {
+						if (FlxG.save.data.gooeyShaders != false) {
+							morphoColorShade.hue = -30;
+							morphoColorShade.saturation = -10;
+							morphoColorShade.contrast = -10;
+							morphoColorShade.brightness = -12;
+						}
+					}
+
+					if (FlxG.save.data.gooeyShaders != false) {
+						morphoModeDancer.shader = morphoColorShade;
+					}
+				}
+				if (PlayState.instance.currentStageId == "mallXmas"
+					|| PlayState.instance.currentStageId == "mallEvil"
+					|| PlayState.instance.currentStageId == "mallEvilHuggy"
+					|| PlayState.instance.currentStageId == "mallEvilSpooky"
+					|| PlayState.instance.currentStageId == "mallXmasSpooky"
+					|| PlayState.instance.currentStageId == "mallXmasHuggy"
+					|| PlayState.instance.currentStageId == "mallXmasErect") {
+					morphoModeDancer.x = 1200;
+					morphoModeDancer.y = 130;
+					morphoModeDancer.zIndex = 90;
+					if (FlxG.save.data.gooeyShaders != false) {
+						if (PlayState.instance.currentStageId == "mallXmasSpooky") {
+							morphoColorShade = new AdjustColorShader();
+							morphoColorShade.brightness = 3;
+							morphoColorShade.contrast = 9;
+							morphoColorShade.saturation = -15;
+							morphoColorShade.hue = -8;
+
+							morphoModeDancer.shader = morphoColorShade;
+						}
+						if (PlayState.instance.currentStageId == "mallEvilSpooky") {
+							morphoColorShade = new AdjustColorShader();
+
+							morphoColorShade.brightness = -28;
+							morphoColorShade.contrast = -14;
+							morphoColorShade.saturation = -21;
+							morphoColorShade.hue = -22;
+
+							morphoModeDancer.shader = morphoColorShade;
+						}
+						if (PlayState.instance.currentStageId == "mallXmasErect" || PlayState.instance.currentStageId == "mallXmasHuggy") {
+							morphoColorShade = new AdjustColorShader();
+							morphoColorShade.hue = 5;
+							morphoColorShade.saturation = 20;
+
+							morphoModeDancer.shader = morphoColorShade;
+						}
+					}
+				}
+
+				if (PlayState.instance.currentStageId == "school"
+					|| PlayState.instance.currentStageId == "schoolEvil"
+					|| PlayState.instance.currentStageId == "schoolEvilGooey"
+					|| PlayState.instance.currentStageId == "schoolEvilSpooky"
+					|| PlayState.instance.currentStageId == "schoolEvilErect"
+					|| PlayState.instance.currentStageId == "schoolErect"
+					|| PlayState.instance.currentStageId == "schoolHuggy"
+					|| PlayState.instance.currentStageId == "schoolSpooky"
+					|| PlayState.instance.currentStageId == "schoolPico"
+					|| PlayState.instance.currentStageId == "schoolGooey") {
+					morphoModeDancer.scale.set(0.75, 0.75);
+					morphoModeDancer.x = 1100;
+					morphoModeDancer.y = 260;
+					morphoModeDancer.zIndex = 95;
+
+					if (PlayState.instance.currentStageId == "schoolSpooky" || PlayState.instance.currentStageId == "schoolEvilSpooky") {
+						morphoModeDancer.x = 1000;
+					}
+
+					if (FlxG.save.data.gooeyShaders != false) {
+						if (PlayState.instance.currentStageId == "schoolErect"
+							|| PlayState.instance.currentStageId == "schoolPico"
+							|| PlayState.instance.currentStageId == "schoolGooey"
+							|| PlayState.instance.currentStageId == "schoolHuggy"
+							|| PlayState.instance.currentStageId == "schoolEvilSpooky"
+							|| PlayState.instance.currentStageId == "schoolEvilGooey") {
+							var rim = new DropShadowShader();
+							rim.setAdjustColor(-25, -15, 18, -24);
+							rim.color = 0xFF52351d;
+							rim.threshold = -1;
+							rim.attachedSprite = morphoModeDancer;
+							rim.distance = 20;
+							rim.angle = 90;
+
+							if (PlayState.instance.currentStageId == "schoolEvilGooey") {
+								rim.setAdjustColor(-40, -20, 19, 5);
+								rim.color = 0xFF690832;
+								rim.angle = 180;
+							}
+
+							if (PlayState.instance.currentStageId == "schoolEvilSpooky") {
+								rim.color = 0xFF2B0F5E;
+								rim.angle = 180;
+								rim.setAdjustColor(-100, -30, 10, -30); // b, h, c, s
+							}
+
+							morphoModeDancer.shader = rim;
+
+							morphoModeDancer.animation.onFrameChange.add(function() {
+								if (morphoModeDancer != null) {
+									rim.updateFrameInfo(morphoModeDancer.frame);
+								}
+							});
+						}
+					}
+				}
+				if (PlayState.instance.currentStageId == "tankmanBattlefield") {
+					morphoModeDancer.x = 950;
+					morphoModeDancer.y = 130;
+					morphoModeDancer.zIndex = 101;
+				}
+				if (PlayState.instance.currentStageId == "tankmanBattlefieldSpooky") {
+					morphoModeDancer.x = -250;
+					morphoModeDancer.y = 60;
+					morphoModeDancer.zIndex = 40;
+					morphoModeDancer.scale.set(0.75, 0.75);
+
+					if (FlxG.save.data.spookyShaders != false) {
+						morphoColorShade = new AdjustColorShader();
+						morphoColorShade.brightness = -5;
+						morphoColorShade.saturation = -15;
+						morphoModeDancer.shader = morphoColorShade;
+					}
+				}
+				if (PlayState.instance.currentStageId == "tankmanBattlefieldErect") {
+					morphoModeDancer.x = 1400;
+					morphoModeDancer.y = 170;
+					morphoModeDancer.zIndex = 150;
+					if (FlxG.save.data.gooeyShaders != false) {
+						var rim = new DropShadowShader();
+						rim.setAdjustColor(-46, -38, -25, -20);
+						rim.color = 0xFFDFEF3C;
+						morphoModeDancer.shader = rim;
+						rim.attachedSprite = morphoModeDancer;
+						rim.angle = 110;
+
+						morphoModeDancer.animation.onFrameChange.add(function() {
+							if (morphoModeDancer != null) {
+								rim.updateFrameInfo(morphoModeDancer.frame);
+							}
+						});
+					}
+				}
+				if (PlayState.instance.currentStageId == "phillyStreets"
+					|| PlayState.instance.currentStageId == "phillyBlazin"
+					|| PlayState.instance.currentStageId == "phillyStreetsSpooky"
+					|| PlayState.instance.currentStageId == "phillyStreetsErect") {
+					morphoModeDancer.scale.set(0.4, 0.4);
+					morphoModeDancer.scrollFactor.set(0.7, 1);
+					morphoModeDancer.x = 1400;
+					morphoModeDancer.y = 530;
+					morphoModeDancer.zIndex = 39;
+					if (FlxG.save.data.gooeyShaders != false) {
+						morphoColorShade = new AdjustColorShader();
+						morphoColorShade.hue = -10;
+						morphoColorShade.saturation = -40;
+						morphoColorShade.contrast = -50;
+						morphoColorShade.brightness = -20;
+
+						if (PlayState.instance.currentStageId == "phillyStreetsSpooky") {
+							morphoColorShade.brightness = -100;
+							morphoColorShade.saturation = -70;
+							morphoColorShade.contrast = -60;
+							morphoColorShade.hue = -20;
+						}
+
+						if (PlayState.instance.currentStageId == "phillyBlazin"
+							|| PlayState.instance.currentStageId == "phillyBlazinErect") {
+							morphoModeDancer.x = 1430;
+							morphoModeDancer.y = 540;
+							morphoColorShade.brightness = -120;
+							morphoColorShade.contrast = -70;
+						}
+						morphoModeDancer.shader = morphoColorShade;
+					}
+				}
+				if (PlayState.instance.currentStageId == "mainStageErect"
+					|| PlayState.instance.currentStageId == "mainStageErectGooey"
+					|| PlayState.instance.currentStageId == "mainStageSpooky"
+					|| PlayState.instance.currentStageId == "mainStageParappa") {
+					morphoModeDancer.x = 1050;
+					morphoModeDancer.y = 130;
+					morphoModeDancer.zIndex = 99;
+					if (FlxG.save.data.gooeyShaders != false) {
+						morphoColorShade = new AdjustColorShader();
+						morphoColorShade.brightness = -13;
+						morphoColorShade.hue = 4;
+						morphoColorShade.contrast = 7;
+						morphoColorShade.saturation = 0;
+						morphoModeDancer.shader = morphoColorShade;
+					}
+				}
+				if (PlayState.instance.currentStageId == "spookyMansionErect") {
+					morphoModeDancer.scale.set(0.7, 0.7);
+					morphoModeDancer.x = 150;
+					morphoModeDancer.y = -30;
+					morphoModeDancer.zIndex = -101;
+					morphoModeDancer.alpha = 0;
+					morphoModeDancer.color = 0xFF000000;
+				}
+				if (PlayState.instance.currentStageId == "drippypopErect") {
+					morphoModeDancer.x = 1300;
+					morphoModeDancer.y = -450;
+					morphoModeDancer.zIndex = 55;
+					if (FlxG.save.data.gooeyShaders != false) {
+						morphoColorShade = new AdjustColorShader();
+						morphoColorShade.brightness = -5;
+						morphoColorShade.hue = -26;
+						morphoColorShade.contrast = 0;
+						morphoColorShade.saturation = -12;
+						morphoModeDancer.shader = morphoColorShade;
+					}
+				}
+				if (PlayState.instance.currentStageId == "phillyCity") {
+					morphoModeDancer.scale.set(0.55, 0.55);
+					morphoModeDancer.scrollFactor.set(0.85, 1);
+					morphoModeDancer.x = 1300;
+					morphoModeDancer.y = 435;
+					morphoModeDancer.zIndex = 41;
+				}
+				if (PlayState.instance.currentStageId == "cartersroom") {
+					morphoModeDancer.x = 920;
+					morphoModeDancer.y = 170;
+					morphoModeDancer.zIndex = 230;
+				}
+				if (PlayState.instance.currentStageId == "skidsAtticTutorial") {
+					morphoModeDancer.x = 1700;
+					morphoModeDancer.y = 600;
+					morphoModeDancer.zIndex = 110;
+
+					if (FlxG.save.data.gooeyShaders != false) {
+						var rim = new DropShadowShader();
+						morphoModeDancer.shader = rim;
+						rim.attachedSprite = morphoModeDancer;
+						rim.setAdjustColor(-53, -16, -14, -20); // b, h, c, s
+						rim.angle = 135;
+						rim.color = 0xFF747DCE;
+
+						morphoModeDancer.animation.onFrameChange.add(function() {
+							if (morphoModeDancer != null) {
+								rim.updateFrameInfo(morphoModeDancer.frame);
+							}
+						});
+					}
+				}
+				if (PlayState.instance.currentStageId == "phillyTrainSpooky") {
+					morphoModeDancer.scale.set(0.2, 0.2);
+					morphoModeDancer.scrollFactor.set(0.6, 0.6);
+					morphoModeDancer.x = 1820;
+					morphoModeDancer.y = 190;
+					morphoModeDancer.zIndex = 19;
+
+					morphoModeDancer.alpha = 0.2;
+					morphoModeDancer.color = 0xFF000000;
+				}
+				if (PlayState.instance.currentStageId == "oogasHouse") {
+					morphoModeDancer.x = 400;
+					morphoModeDancer.y = 110;
+					morphoModeDancer.zIndex = 98;
+				}
+				if (PlayState.instance.currentStageId == "happy" || PlayState.instance.currentStageId == "cafe") {
+					morphoModeDancer.x = -830;
+					morphoModeDancer.y = -667; // haha! he said 67! AHAH! HE SAID 67 AGAIN! AAAAAAA
+					morphoModeDancer.zIndex = 98;
+				}
+				if (PlayState.instance.currentStageId == "pizzaPlace") {
+					morphoModeDancer.x = 290;
+					morphoModeDancer.y = 120;
+					morphoModeDancer.zIndex = 1;
+
+					if (FlxG.save.data.gooeyShaders != false) {
+						morphoColorShade = new AdjustColorShader();
+						morphoColorShade.brightness = -8;
+						morphoColorShade.hue = -6;
+						morphoColorShade.contrast = -20;
+						morphoColorShade.saturation = -33;
+						morphoModeDancer.shader = morphoColorShade;
+					}
+				}
+				if (PlayState.instance.currentStageId == "parappaTown" || PlayState.instance.currentStageId == "parappaTownErect") {
+					morphoModeDancer.x = -500;
+					morphoModeDancer.y = 140;
+					morphoModeDancer.zIndex = 98;
+				}
+				if (PlayState.instance.currentStageId == "qtStage") {
+					morphoModeDancer.x = 1200;
+					morphoModeDancer.y = 350;
+					morphoModeDancer.zIndex = 299;
+				}
+				if (PlayState.instance.currentStageId == "fuegoStreets") {
+					morphoModeDancer.x = 300;
+					morphoModeDancer.y = 200;
+					morphoModeDancer.zIndex = 140;
+				}
+				if (PlayState.instance.currentStageId == "fuegoLoudStage") {
+					morphoModeDancer.x = 1800;
+					morphoModeDancer.y = 450;
+					morphoModeDancer.zIndex = 8;
+				}
+				if (PlayState.instance.currentStageId == "fuegoBusStop" || PlayState.instance.currentStageId == "fuegoBusStop-grey") {
+					morphoModeDancer.x = -1000;
+					morphoModeDancer.y = -450;
+					morphoModeDancer.zIndex = 10;
+
+					if (FlxG.save.data.gooeyShaders != false) {
+						var rim = new DropShadowShader();
+						rim.setAdjustColor(-50, 20, -20, -20); // b, h, c, s
+						rim.color = 0xffbd2e;
+						rim.antialiasAmt = 8;
+						rim.attachedSprite = morphoModeDancer;
+						rim.distance = 15;
+						rim.angle = 50;
+						morphoModeDancer.shader = rim;
+
+						morphoModeDancer.animation.onFrameChange.add(function() {
+							if (morphoModeDancer != null) {
+								rim.updateFrameInfo(morphoModeDancer.frame);
+							}
+						});
+					}
+				}
+				if (PlayState.instance.currentStageId == "natCrystal") {
+					morphoModeDancer.x = 2400;
+					morphoModeDancer.y = -150;
+					morphoModeDancer.zIndex = 16;
+
+					if (FlxG.save.data.gooeyShaders != false) {
+						var rim = new DropShadowShader();
+						rim.setAdjustColor(-60, -24, -5, -10);
+						// brightness  hue  contrast  saturation
+						rim.color = 0xFFEF72F9;
+						rim.attachedSprite = morphoModeDancer;
+						rim.angle = 112.5;
+						morphoModeDancer.shader = rim;
+
+						morphoModeDancer.animation.onFrameChange.add(function() {
+							if (morphoModeDancer != null) {
+								rim.updateFrameInfo(morphoModeDancer.frame);
+							}
+						});
+					}
+				}
+
+				PlayState.instance.currentStage.refresh();
+			}
+		}
+	}
+
+	function onBeatHit(event:SongTimeScriptEvent) {
+		super.onBeatHit(event);
+		if (FlxG.save.data.morphoMode == true) {
+			if (PlayState.instance != null && morphoModeDancer != null && !PlayState.instance.isChartingMode) {
+				if (PlayState.instance.currentStageId != "hotelCastle") {
+					morphoDanceNumber = morphoDanceNumber + 1;
+					if (morphoDanceNumber >= 5) {
+						morphoDanceNumber = 1;
+					}
+
+					morphoModeDancer.animation.play("hitIt" + morphoDanceNumber);
+
+					if (PlayState.instance.currentStageId == "spookyMansionErect") {
+						new FlxTimer().start(0.01, function(_) {
+							if (PlayState.instance.currentStage.getNamedProp('bgLight').alpha == 1) {
+								morphoModeDancer.alpha = 1;
+
+								new FlxTimer().start(0.05, function(_) {
+									morphoModeDancer.alpha = 0;
+								});
+								new FlxTimer().start(0.11, function(_) {
+									morphoModeDancer.alpha = 1;
+									FlxTween.tween(morphoModeDancer, {alpha: 0}, 1.5);
+								});
+							}
+						});
+					}
+					if (PlayState.instance.currentStageId == "tankmanBattlefieldSpooky") {
+						if (PlayState.instance.currentStage.getNamedProp('tankRolling').alpha != 1 && morphoModeDancer.alpha != 0) {
+							morphoModeDancer.alpha = 0;
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -191,13 +191,13 @@ class GooeyMenuOption extends Module {
 
 	function addTitleScreenObjects():Void {
 		FlxG.state.gfDance.frames = Paths.getSparrowAtlas('floraDanceTitle');
-		FlxG.state.gfDance.animation.addByPrefix('danceLeft', 'eepy', 24, true);
-		FlxG.state.gfDance.animation.addByPrefix('danceRight', 'eepy', 24, true);
+		FlxG.state.gfDance.animation.addByPrefix('danceLeft', 'leftFloraDance', 24, true);
+		FlxG.state.gfDance.animation.addByPrefix('danceRight', 'rightFloraDance', 24, true);
 		FlxG.state.gfDance.animation.play('dance');
 		FlxG.state.gfDance.shader = FlxG.state.swagShader.shader;
 		FlxG.state.gfDance.visible = false;
-		FlxG.state.gfDance.x = 550;
-		FlxG.state.gfDance.y = 40;
+		FlxG.state.gfDance.x = 560;
+		FlxG.state.gfDance.y = 10;
 
 		FlxG.state.logoBl.frames = Paths.getSparrowAtlas('logoBumpin-gooey');
 		FlxG.state.logoBl.scale.x = 0.85;

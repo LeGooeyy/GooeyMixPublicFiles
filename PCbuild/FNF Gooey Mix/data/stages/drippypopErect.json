@@ -15,7 +15,7 @@
     {
       "danceEvery": 2,
       "zIndex": 60,
-      "position": [-50, -430],
+      "position": [140, -280],
       "scale": [1, 1],
       "animType": "sparrow",
       "name": "Drippers",
@@ -39,7 +39,7 @@
       "position": [-260, -650],
       "scale": [1, 1],
       "animType": "sparrow",
-      "name": "Shading",
+      "name": "shading",
       "isPixel": false,
       "assetPath": "gooeyMix/extra/drip/erectShade",
       "scroll": [1, 1],

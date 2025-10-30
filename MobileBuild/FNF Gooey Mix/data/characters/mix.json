@@ -55,11 +55,10 @@
     },
      {
       "name": "showOffassBITCH",
-      "prefix": "intro",
-      "offsets": [290,-60],
+      "prefix": "showOffassBITCH",
+      "offsets": [90,140],
       "frameRate": 12,
-      "assetPath": "characters/extra/mixIntro",
-      "flipX": true
+      "assetPath": "characters/extra/mixIntro"
     }
   ]
 }

@@ -83,7 +83,7 @@ if (FlxG.save.data.gooeyShaders != false)
    		rim.color = 0xFFEF72F9;
 		character.shader = rim;
 		rim.attachedSprite = character;
-		rim.threshold = -1;
+		//rim.threshold = -1;
 
 		switch(charType){
 			case CharacterType.BF:
@@ -119,6 +119,31 @@ if (FlxG.save.data.gooeyShaders != false)
 		}
 		}
 
+	}
+
+	function onSongRetry(event:ScriptEvent) {
+		super.onSongRetry(event);
+		if (PlayState.instance.currentSong.id.toLowerCase() == "starcraft") {
+			PlayState.instance.currentStage.getNamedProp('bottomCrystalLight').alpha = 0.3;
+			PlayState.instance.currentStage.getNamedProp('natCrystalLight2').alpha = 0;
+			PlayState.instance.currentStage.getNamedProp('overlay3').alpha = 0;
+		}
+	}
+
+	function onStepHit(event:SongTimeScriptEvent):Void {
+		super.onStepHit(event);
+		if (PlayState.instance.currentSong.id.toLowerCase() == "starcraft") {
+			if (event.step == 885) {
+				FlxTween.tween(PlayState.instance.currentStage.getNamedProp('bottomCrystalLight'), {alpha: 1}, 2.8, {ease: FlxEase.quartin});
+				FlxTween.tween(PlayState.instance.currentStage.getNamedProp('natCrystalLight2'), {alpha: 1}, 2.8, {ease: FlxEase.quartin});
+				FlxTween.tween(PlayState.instance.currentStage.getNamedProp('overlay3'), {alpha: 1}, 2.8, {ease: FlxEase.quartin});
+			}
+			if (event.step == 1182) {
+				FlxTween.tween(PlayState.instance.currentStage.getNamedProp('bottomCrystalLight'), {alpha: 0.3}, 1.2, {ease: FlxEase.quartin});
+				FlxTween.tween(PlayState.instance.currentStage.getNamedProp('natCrystalLight2'), {alpha: 0}, 1.2, {ease: FlxEase.quartin});
+				FlxTween.tween(PlayState.instance.currentStage.getNamedProp('overlay3'), {alpha: 0}, 1.2, {ease: FlxEase.quartin});
+			}
+		}
 	}
 
 

@@ -3,6 +3,21 @@ All notable changes will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [2.2.0] - 2025-10-29
+Mini Update 4
+
+### Added
+- Added Morpho Mode. You can turn it on in the settings :D
+- Added a intro cutscene to Mix'd Up
+- Added cheer animations to Flora on Tutorial (Gooey Mix)
+- Added a rare chance for a thing to happen in the Hotel Castle stage
+
+### Changed
+- Changed the blend mode of the lighting in Drippypop (Gooey Mix)
+- Changed the character on the title screen to be Flora when Gooey Menus are enabled
+- Reanimated the background dancers in Drippypop (Gooey Mix)
+- Remade Kam's icon
+
 ## [2.1.1] - 2025-10-18
 Destination 2 patch 3
 
