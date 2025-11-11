@@ -98,9 +98,9 @@ class MorphoModeOption extends Module {
 					morphoModeDancer.zIndex = 50;
 				}
 				if (PlayState.instance.currentStageId == "phillyTrain" || PlayState.instance.currentStageId == "phillyTrainErect") {
-					morphoModeDancer.x = 900;
+					morphoModeDancer.x = 1000;
 					morphoModeDancer.y = 130;
-					morphoModeDancer.zIndex = 80;
+					morphoModeDancer.zIndex = 150;
 
 					if (PlayState.instance.currentStageId == "phillyTrainErect") {
 						if (FlxG.save.data.gooeyShaders != false) {
@@ -338,7 +338,7 @@ class MorphoModeOption extends Module {
 						morphoModeDancer.shader = morphoColorShade;
 					}
 				}
-				if (PlayState.instance.currentStageId == "spookyMansionErect") {
+				if (PlayState.instance.currentStageId == "spookyMansionErect" || PlayState.instance.currentStageId == "spookyMansionMonsterPico") {
 					morphoModeDancer.scale.set(0.7, 0.7);
 					morphoModeDancer.x = 150;
 					morphoModeDancer.y = -30;
@@ -434,6 +434,11 @@ class MorphoModeOption extends Module {
 					morphoModeDancer.x = 1200;
 					morphoModeDancer.y = 350;
 					morphoModeDancer.zIndex = 299;
+						if (PlayState.instance.currentStage.getBoyfriend() != null){
+					if (PlayState.instance.currentStageId == "qtStage" && morphoModeDancer.shader != PlayState.instance.currentStage.getBoyfriend().shader) {
+					morphoModeDancer.shader = PlayState.instance.currentStage.getBoyfriend().shader;
+					}
+				}
 				}
 				if (PlayState.instance.currentStageId == "fuegoStreets") {
 					morphoModeDancer.x = 300;
@@ -506,7 +511,7 @@ class MorphoModeOption extends Module {
 
 					morphoModeDancer.animation.play("hitIt" + morphoDanceNumber);
 
-					if (PlayState.instance.currentStageId == "spookyMansionErect") {
+					if (PlayState.instance.currentStageId == "spookyMansionErect" || PlayState.instance.currentStageId == "spookyMansionMonsterPico") {
 						new FlxTimer().start(0.01, function(_) {
 							if (PlayState.instance.currentStage.getNamedProp('bgLight').alpha == 1) {
 								morphoModeDancer.alpha = 1;
@@ -526,6 +531,11 @@ class MorphoModeOption extends Module {
 							morphoModeDancer.alpha = 0;
 						}
 					}
+					if (PlayState.instance.currentStage.getBoyfriend() != null){
+					if (PlayState.instance.currentStageId == "qtStage" && morphoModeDancer.shader != PlayState.instance.currentStage.getBoyfriend().shader) {
+					morphoModeDancer.shader = PlayState.instance.currentStage.getBoyfriend().shader;
+					}
+				}
 				}
 			}
 		}

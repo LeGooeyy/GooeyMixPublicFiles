@@ -58,41 +58,52 @@ class hotelCastleStage extends Stage {
 		bottomLantern1Light.blend = 0;
 		var bottomLantern2Light = getNamedProp('bottomLantern2Light');
 		bottomLantern2Light.blend = 0;
-
-		morphoChance = FlxG.random.int(1, 100);
-
-		if (morphoChance == 1) {
-			morphoDance = true;
-			PlayState.instance.currentStage.getNamedProp('morphoBop').danceEvery = 0;
-			PlayState.instance.currentStage.getNamedProp('morphoBop').playAnimation('morphoHittingIt', true);
-		}
-		if (morphoChance != 1) {
-			morphoDance = false;
-			PlayState.instance.currentStage.getNamedProp('morphoBop').danceEvery = 1;
-		}
-		if (FlxG.save.data.morphoMode == true) {
-			morphoDance = true;
-			PlayState.instance.currentStage.getNamedProp('morphoBop').danceEvery = 0;
-			PlayState.instance.currentStage.getNamedProp('morphoBop').playAnimation('morphoHittingIt', true);
-		}
 	}
 
 	var hotelMorphoDanceNumber:Int = 1;
 
 	function onBeatHit(event:SongTimeScriptEvent) {
 		super.onBeatHit(event);
-		if (morphoDance == true) {
-			hotelMorphoDanceNumber = hotelMorphoDanceNumber + 1;
-			if (hotelMorphoDanceNumber >= 5) {
-				hotelMorphoDanceNumber = 1;
+		if (PlayState.instance != null
+			&& PlayState.instance.currentStage.getNamedProp('morphoBop') != null
+			&& !PlayState.instance.isChartingMode) {
+			if (morphoDance == true) {
+				hotelMorphoDanceNumber = hotelMorphoDanceNumber + 1;
+				if (hotelMorphoDanceNumber >= 5) {
+					hotelMorphoDanceNumber = 1;
+				}
+				PlayState.instance.currentStage.getNamedProp('morphoBop').playAnimation('hitIt' + hotelMorphoDanceNumber, true);
 			}
-			PlayState.instance.currentStage.getNamedProp('morphoBop').playAnimation('hitIt'+hotelMorphoDanceNumber, true);
 		}
 	}
 
 	function onSongLoaded() {
 		super.onSongLoaded();
 		hotelMorphoDanceNumber = 1;
+	}
+
+	override function onCountdownStart(event) {
+		super.onCountdownStart(event);
+		morphoChance = FlxG.random.int(1, 100);
+
+		if (PlayState.instance != null
+			&& PlayState.instance.currentStage.getNamedProp('morphoBop') != null
+			&& !PlayState.instance.isChartingMode) {
+			if (morphoChance == 1) {
+				morphoDance = true;
+				PlayState.instance.currentStage.getNamedProp('morphoBop').danceEvery = 0;
+				PlayState.instance.currentStage.getNamedProp('morphoBop').playAnimation('morphoHittingIt', true);
+			}
+			if (morphoChance != 1) {
+				morphoDance = false;
+				PlayState.instance.currentStage.getNamedProp('morphoBop').danceEvery = 1;
+			}
+			if (FlxG.save.data.morphoMode == true) {
+				morphoDance = true;
+				PlayState.instance.currentStage.getNamedProp('morphoBop').danceEvery = 0;
+				PlayState.instance.currentStage.getNamedProp('morphoBop').playAnimation('morphoHittingIt', true);
+			}
+		}
 	}
 
 	override function addCharacter(character:BaseCharacter, charType:CharacterType):Void {
@@ -138,10 +149,14 @@ class hotelCastleStage extends Stage {
 
 	function onCreate(event:ScriptEvent):Void {
 		super.onCreate(event);
-		if (PlayState.instance.currentSong.id.toLowerCase() == "starcraft") {
-			PlayState.instance.currentStage.getNamedProp('boppers').danceEvery = 2;
-			PlayState.instance.currentStage.getNamedProp('morphoBop').danceEvery = 2;
-			PlayState.instance.currentStage.getNamedProp('rad').danceEvery = 4;
+		if (PlayState.instance != null
+			&& PlayState.instance.currentStage.getNamedProp('morphoBop') != null
+			&& !PlayState.instance.isChartingMode) {
+			if (PlayState.instance.currentSong.id.toLowerCase() == "starcraft") {
+				PlayState.instance.currentStage.getNamedProp('boppers').danceEvery = 2;
+				PlayState.instance.currentStage.getNamedProp('morphoBop').danceEvery = 2;
+				PlayState.instance.currentStage.getNamedProp('rad').danceEvery = 4;
+			}
 		}
 	}
 

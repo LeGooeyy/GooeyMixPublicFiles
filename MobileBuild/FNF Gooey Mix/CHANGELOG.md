@@ -4,7 +4,15 @@ All notable changes will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 
-## [2.1.1] - 2025-10-30
+
+## [2.2.2] - 2025-11-10
+Destination 2 patch 5
+
+### Fixed
+- Made the shaders for Morpho Mode sync during Obliterated
+- [MOBILE] Fixed how Morpho Mode loads on the Hotel Castle stage to prevent errors
+
+## [2.2.1] - 2025-10-30
 Destination 2 patch 4
 
 ### Fixed
