@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "name": "Flora (Pixel)",
+  "assetPath": "characters/flora/FloraPixel",
+  "startingAnimation": "idle",
+  "singTime": 8.0,
+    "cameraOffsets": [-80, -60],
+  "isPixel": true,
+  "scale": 6,
+  "offsets": [0, 10],
+  "healthIcon": {
+    "id": "flora-pixel",
+    "isPixel": true
+  },
+  "animations": [
+    {
+      "name": "idle",
+      "prefix": "speaker",
+      "offsets": [0, 0],
+      "frameRate": 12
+    }
+  ]
+}

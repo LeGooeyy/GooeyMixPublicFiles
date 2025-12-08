@@ -1,0 +1,33 @@
+import funkin.play.character.MultiSparrowCharacter;
+import funkin.play.character.CharacterType;
+
+class MixCharacter extends MultiSparrowCharacter {
+	function new() {
+		super('mix');
+	}
+
+	function onNoteHit(event:HitNoteScriptEvent)
+	{
+		// Override the hit note animation.
+		if (event.eventCanceled) {
+			// onNoteHit event was cancelled by the gameplay module.
+			return;
+		}
+
+
+		if (!event.note.noteData.getMustHitNote() && characterType == CharacterType.DAD) {
+		{
+			switch (event.note.kind)
+			{
+				case "hey":
+					holdTimer = 0;
+					this.playAnimation('hey', false);
+				default:
+					holdTimer = 0;
+					this.playSingAnimation(event.note.noteData.getDirection(), false);
+			}
+		}
+	}
+
+	}
+}

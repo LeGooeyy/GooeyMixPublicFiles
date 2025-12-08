@@ -1,0 +1,81 @@
+{
+  "version": "1.0.0",
+  "name": "Gooey (Christmas)",
+  "renderType": "multisparrow",
+  "assetPath": "characters/gooey/GooeyChristmas",
+  "flipX": true,
+  "singTime": 8.0,
+  "healthIcon": {
+    "id": "gooey"
+  },
+    "cameraOffsets": [0, 94],
+  "death": {
+    "cameraOffsets": [-40, 40]
+  },
+  "animations": [
+    {
+      "name": "idle",
+      "prefix": "idle",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "singLEFT",
+      "prefix": "left",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "singDOWN",
+      "prefix": "down",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "singUP",
+      "prefix": "up",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "singRIGHT",
+      "prefix": "right",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "singLEFTmiss",
+      "prefix": "missLeft",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "singDOWNmiss",
+      "prefix": "missDown",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "singUPmiss",
+      "prefix": "missUp",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "singRIGHTmiss",
+      "prefix": "missRight",
+      "offsets": [12,-110]
+    },
+    {
+      "name": "firstDeath",
+      "prefix": "gooeyDies",
+      "offsets": [12,-110],
+      "assetPath": "characters/gooey/GooeyDeadChristmas"
+    },
+    {
+      "name": "deathLoop",
+      "prefix": "gameOverLoop",
+      "looped": true,
+      "offsets": [12,-110],
+      "assetPath": "characters/gooey/GooeyDeadChristmas"
+    },
+    {
+      "name": "deathConfirm",
+      "prefix": "jesusChrist",
+      "offsets": [12,-110],
+      "assetPath": "characters/gooey/GooeyDeadChristmas"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+import flixel.addons.display.FlxRuntimeShader;
+import funkin.Paths;
+import openfl.utils.Assets;
+
+class pixelShader extends FlxRuntimeShader {
+	function new() {
+		super(Assets.getText(Paths.frag('pixelShader')));
+	}
+}

@@ -1,0 +1,31 @@
+{
+  "version": "1.0.0",
+  "name": "Gooey Week BF Stickers",
+  "artist": "LeGooey",
+  "stickers": [
+    "transitionSwag/stickers-set-gooey/gooeySticker1",
+    "transitionSwag/stickers-set-gooey/gooeySticker2",
+    "transitionSwag/stickers-set-gooey/gooeySticker3",
+    "transitionSwag/stickers-set-gooey/morphoSticker1",
+    "transitionSwag/stickers-set-gooey/morphoSticker2",
+    "transitionSwag/stickers-set-gooey/morphoSticker3",
+    "transitionSwag/stickers-set-gooey/cerealSticker1",
+    "transitionSwag/stickers-set-gooey/cerealSticker2",
+    "transitionSwag/stickers-set-gooey/cerealSticker3",
+    "transitionSwag/stickers-set-gooey/noodleSticker1",
+    "transitionSwag/stickers-set-gooey/noodleSticker2",
+    "transitionSwag/stickers-set-gooey/noodleSticker3",
+    "transitionSwag/stickers-set-gooey/radSticker1",
+    "transitionSwag/stickers-set-gooey/radSticker2",
+    "transitionSwag/stickers-set-gooey/radSticker3",
+    "transitionSwag/stickers-set-gooey/blueSticker1",
+    "transitionSwag/stickers-set-gooey/blueSticker2",
+    "transitionSwag/stickers-set-gooey/blueSticker3",
+    "transitionSwag/stickers-set-1/bfSticker1",
+    "transitionSwag/stickers-set-1/bfSticker2",
+    "transitionSwag/stickers-set-1/bfSticker3",
+    "transitionSwag/stickers-set-1/gfSticker1",
+    "transitionSwag/stickers-set-1/gfSticker2",
+    "transitionSwag/stickers-set-1/gfSticker3"
+  ]
+}
