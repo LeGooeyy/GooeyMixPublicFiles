@@ -23,6 +23,13 @@ class SchoolGooeyStage extends Stage
 		}
 	}
 
+	public function onGameOver(event:ScriptEvent) {
+		super.onGameOver(event);
+		if (FlxG.save.data.gooeyShaders != false) {
+			getBoyfriend().shader = null;
+		}
+	}
+
 	override function addCharacter(character:BaseCharacter, charType:CharacterType):Void {
 		// Apply the shader automatically to each character as it gets added.
 		super.addCharacter(character, charType);

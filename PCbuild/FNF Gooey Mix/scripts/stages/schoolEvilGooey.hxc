@@ -20,6 +20,13 @@ class SchoolEvilGooeyStage extends Stage
   var wiggleGround:FlxRuntimeShader = null;
   var wiggleSpike:FlxRuntimeShader = null;
 
+  public function onGameOver(event:ScriptEvent) {
+		super.onGameOver(event);
+		if (FlxG.save.data.gooeyShaders != false) {
+			getBoyfriend().shader = null;
+		}
+	}
+
   override function buildStage()
   {
     super.buildStage();
