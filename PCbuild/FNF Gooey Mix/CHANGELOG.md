@@ -38,6 +38,8 @@ Detour 1 [Blissful Gooey Mix]
 - Fixed Not Matt being in Cocoa Erect
 - Fixed sprite clipping on the right Flora tankman
 - Fixed the game over quotes not playing for week 7 Gooey Mixes
+- Fixed the shaders breaking during game overs on specific stages
+- [MOBILE] Fixed Drippico breaking on IOS devices
 
 
 ## [3.2.3] - 2025-12-07
