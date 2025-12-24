@@ -1,0 +1,31 @@
+import funkin.play.character.MultiSparrowCharacter;
+
+
+class kamCharacter extends MultiSparrowCharacter
+{
+  function new()
+  {
+    super('kam');
+  }
+
+ 
+  function onNoteHit(event:HitNoteScriptEvent)
+  {
+    if (event.eventCanceled)
+    {
+      // onNoteHit event was cancelled by the gameplay module.
+      return;
+    }
+
+    // Override the hit note animation.
+    switch (event.note.kind)
+    {
+      case "hey":
+        holdTimer = 0;
+        this.playAnimation('hey', true, true);
+        return;
+      default:
+        super.onNoteHit(event);
+    }
+  }
+}

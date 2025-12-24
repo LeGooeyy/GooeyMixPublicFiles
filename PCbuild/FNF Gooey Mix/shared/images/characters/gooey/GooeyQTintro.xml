@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="GooeyQTintro.png">
+<SubTexture name="gooeyQTintro0000" x="0" y="0" width="298" height="320" frameX="-191" frameY="-157" frameWidth="600" frameHeight="600" />
+<SubTexture name="gooeyQTintro0001" x="298" y="0" width="298" height="318" frameX="-192" frameY="-159" frameWidth="600" frameHeight="600" />
+<SubTexture name="gooeyQTintro0002" x="596" y="0" width="296" height="314" frameX="-201" frameY="-163" frameWidth="600" frameHeight="600" />
+<SubTexture name="gooeyQTintro0003" x="892" y="0" width="295" height="315" frameX="-200" frameY="-162" frameWidth="600" frameHeight="600" />
+<SubTexture name="gooeyQTintro0004" x="0" y="320" width="294" height="315" frameX="-200" frameY="-162" frameWidth="600" frameHeight="600" />
+<SubTexture name="gooeyQTintro0005" x="0" y="320" width="294" height="315" frameX="-200" frameY="-162" frameWidth="600" frameHeight="600" />
+<SubTexture name="gooeyQTintro0006" x="0" y="320" width="294" height="315" frameX="-200" frameY="-162" frameWidth="600" frameHeight="600" />
+<SubTexture name="gooeyQTintro0007" x="0" y="320" width="294" height="315" frameX="-200" frameY="-162" frameWidth="600" frameHeight="600" />
+<SubTexture name="gooeyQTintro0008" x="0" y="320" width="294" height="315" frameX="-200" frameY="-162" frameWidth="600" frameHeight="600" />
+<SubTexture name="gooeyQTintro0009" x="0" y="320" width="294" height="315" frameX="-200" frameY="-162" frameWidth="600" frameHeight="600" />
+<SubTexture name="gooeyQTintro0010" x="0" y="320" width="294" height="315" frameX="-200" frameY="-162" frameWidth="600" frameHeight="600" />
+<SubTexture name="gooeyQTintro0011" x="294" y="320" width="295" height="316" frameX="-200" frameY="-161" frameWidth="600" frameHeight="600" />
+<SubTexture name="gooeyQTintro0012" x="589" y="320" width="308" height="317" frameX="-189" frameY="-160" frameWidth="600" frameHeight="600" />
+<SubTexture name="gooeyQTintro0013" x="897" y="320" width="298" height="316" frameX="-198" frameY="-161" frameWidth="600" frameHeight="600" />
+<SubTexture name="gooeyQTintro0014" x="0" y="637" width="297" height="315" frameX="-199" frameY="-162" frameWidth="600" frameHeight="600" />
+<SubTexture name="gooeyQTintro0015" x="297" y="637" width="296" height="315" frameX="-200" frameY="-162" frameWidth="600" frameHeight="600" />
+<SubTexture name="gooeyQTintro0016" x="593" y="637" width="295" height="315" frameX="-201" frameY="-162" frameWidth="600" frameHeight="600" />
+<SubTexture name="gooeyQTintro0017" x="593" y="637" width="295" height="315" frameX="-201" frameY="-162" frameWidth="600" frameHeight="600" />
+<SubTexture name="gooeyQTintro0018" x="593" y="637" width="295" height="315" frameX="-201" frameY="-162" frameWidth="600" frameHeight="600" />
+<SubTexture name="gooeyQTintro0019" x="888" y="637" width="296" height="315" frameX="-200" frameY="-162" frameWidth="600" frameHeight="600" />
+<SubTexture name="gooeyQTintro0020" x="0" y="952" width="298" height="315" frameX="-198" frameY="-162" frameWidth="600" frameHeight="600" />
+<SubTexture name="gooeyQTintro0021" x="298" y="952" width="304" height="314" frameX="-193" frameY="-163" frameWidth="600" frameHeight="600" />
+<SubTexture name="gooeyQTintro0022" x="602" y="952" width="309" height="310" frameX="-190" frameY="-167" frameWidth="600" frameHeight="600" />
+<SubTexture name="gooeyQTintro0023" x="911" y="952" width="307" height="311" frameX="-191" frameY="-166" frameWidth="600" frameHeight="600" />
+<SubTexture name="gooeyQTintro0024" x="0" y="1267" width="307" height="311" frameX="-191" frameY="-166" frameWidth="600" frameHeight="600" />
+<SubTexture name="gooeyQTintro0025" x="0" y="1267" width="307" height="311" frameX="-191" frameY="-166" frameWidth="600" frameHeight="600" />
+<SubTexture name="gooeyQTintro0026" x="0" y="1267" width="307" height="311" frameX="-191" frameY="-166" frameWidth="600" frameHeight="600" />
+<SubTexture name="gooeyQTintro0027" x="0" y="1267" width="307" height="311" frameX="-191" frameY="-166" frameWidth="600" frameHeight="600" />
+<SubTexture name="gooeyQTintro0028" x="0" y="1267" width="307" height="311" frameX="-191" frameY="-166" frameWidth="600" frameHeight="600" />
+<SubTexture name="gooeyQTintro0029" x="0" y="1267" width="307" height="311" frameX="-191" frameY="-166" frameWidth="600" frameHeight="600" />
+<SubTexture name="gooeyQTintro0030" x="0" y="1267" width="307" height="311" frameX="-191" frameY="-166" frameWidth="600" frameHeight="600" />
+<SubTexture name="gooeyQTintro0031" x="0" y="1267" width="307" height="311" frameX="-191" frameY="-166" frameWidth="600" frameHeight="600" />
+<SubTexture name="gooeyQTintro0032" x="0" y="1267" width="307" height="311" frameX="-191" frameY="-166" frameWidth="600" frameHeight="600" />
+<SubTexture name="gooeyQTintro0033" x="0" y="1267" width="307" height="311" frameX="-191" frameY="-166" frameWidth="600" frameHeight="600" />
+<SubTexture name="gooeyQTintro0034" x="0" y="1267" width="307" height="311" frameX="-191" frameY="-166" frameWidth="600" frameHeight="600" />
+<SubTexture name="gooeyQTintro0035" x="0" y="1267" width="307" height="311" frameX="-191" frameY="-166" frameWidth="600" frameHeight="600" />
+<SubTexture name="gooeyQTintro0036" x="307" y="1267" width="307" height="312" frameX="-190" frameY="-165" frameWidth="600" frameHeight="600" />
+<SubTexture name="gooeyQTintro0037" x="614" y="1267" width="310" height="314" frameX="-185" frameY="-163" frameWidth="600" frameHeight="600" />
+<SubTexture name="gooeyQTintro0038" x="924" y="1267" width="299" height="319" frameX="-192" frameY="-158" frameWidth="600" frameHeight="600" />
+<SubTexture name="gooeyQTintro0039" x="0" y="0" width="298" height="320" frameX="-191" frameY="-157" frameWidth="600" frameHeight="600" />
+</TextureAtlas>

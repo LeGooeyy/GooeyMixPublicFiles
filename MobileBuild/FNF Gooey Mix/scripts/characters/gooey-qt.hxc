@@ -1,0 +1,125 @@
+import funkin.play.character.MultiSparrowCharacter;
+import funkin.play.PauseSubState;
+import funkin.play.character.CharacterType;
+import funkin.play.GameOverSubState;
+import funkin.audio.FunkinSound;
+import funkin.graphics.adobeanimate.FlxAtlasSprite;
+import funkin.modding.base.ScriptedFlxAtlasSprite;
+import funkin.play.PlayState;
+import flixel.FlxG;
+
+class GooeyQTCharacter extends MultiSparrowCharacter {
+	function new() {
+		super('gooey-qt');
+	}
+
+	var gooeyDance:FlxAtlasSprite;
+		var refershedLol:Bool = false;
+
+	function onCreate(event:ScriptEvent) {
+		super.onCreate(event);
+		GameOverSubState.musicSuffix = '-gooey';
+		GameOverSubState.blueBallSuffix = '-gooey';
+		PauseSubState.musicSuffix = '-gooey';
+
+		gooeyDance = new FlxAtlasSprite(0, 0, Paths.animateAtlas("characters/gooey/gooeyQTDance", "shared"));
+    	gooeyDance.x = this.x;
+    	gooeyDance.y = this.y;
+    	gooeyDance.zIndex = this.zIndex + 1;
+		PlayState.instance.currentStage.add(gooeyDance);
+		gooeyDance.scale.set(1.2, 1.2);
+	}
+
+	override function getDeathQuote():Null<String> {
+		if (PlayState.instance.currentStage.getDad().characterId == "QT") 
+			return Paths.sound('qtgameover/bf/qtGameover-' + FlxG.random.int(1, 7));
+	}
+
+
+	function onUpdate(event:UpdateScriptEvent) {
+		synchronizeShader();
+		super.onUpdate(event);
+		if (!refershedLol) {
+			gooeyDance.x = this.x - 11;
+    		gooeyDance.y = this.y + 110;
+    		gooeyDance.zIndex = this.zIndex + 1;
+			PlayState.instance.currentStage.refresh();
+			//gooeyDance.alpha = 0.5;
+			gooeyDance.visible = false;
+			refershedLol = true;
+		}
+		
+	}
+
+	var currentShader = null;
+
+	function synchronizeShader():Void {
+		if (FlxG.save.data.gooeyShaders != false) {
+			if (currentShader == this.shader)
+				return;
+
+			currentShader = this.shader;
+
+			gooeyDance.shader = currentShader;
+
+			trace("Synchronized shader between children!");
+		}
+	}
+
+
+	function onStepHit(event:SongTimeScriptEvent):Void {
+		super.onStepHit(event);
+		if (PlayState.instance.currentSong.id.toLowerCase() == "blissful") {
+			if (event.step == 1289) {
+
+				gooeyDance.playAnimation('');
+				gooeyDance.visible = true;
+				this.visible = false;
+
+			}
+			if (event.step == 1408) {
+
+				gooeyDance.visible = false;
+				this.visible = true;
+
+			}
+		}
+	}
+
+
+	function onNoteHit(event:HitNoteScriptEvent) {
+		if (event.note.noteData.getMustHitNote() && characterType == CharacterType.BF) {
+			switch (event.note.kind) {
+				case "hey":
+					holdTimer = 0;
+					this.playAnimation('hey', false);
+					return;
+				case "cheer":
+					holdTimer = 0;
+					this.playAnimation('cheer', false);
+					return;
+			}
+		}
+		super.onNoteHit(event);
+	}
+
+	function playAnimation(name:String, restart:Bool, ignoreOther:Bool) {
+		super.playAnimation(name, restart, ignoreOther);
+		if (name == "deathConfirm") {
+			gooeyRetry = FunkinSound.load(Paths.music('gameplay/gameover/gameOverEnd-gooeyReal'), true);
+			gooeyRetry.volume = 1;
+			gooeyRetry.play(false);
+		}
+	}
+
+
+	override function onSongRetry(event:ScriptEvent):Void {
+		super.onSongRetry(event);
+		GameOverSubState.musicSuffix = '-gooey';
+		GameOverSubState.blueBallSuffix = '-gooey';
+		PauseSubState.musicSuffix = '-gooey';
+		gooeyDance.visible = false;
+		this.visible = true;
+		gooeyDance.anim.stop();
+	}
+}

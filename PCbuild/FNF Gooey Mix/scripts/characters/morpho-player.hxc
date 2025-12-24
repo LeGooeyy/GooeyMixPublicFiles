@@ -1,0 +1,69 @@
+import funkin.play.character.MultiSparrowCharacter;
+import funkin.play.PauseSubState;
+import funkin.play.character.CharacterType;
+import funkin.play.GameOverSubState;
+import funkin.audio.FunkinSound;
+import flixel.util.FlxTimer;
+import funkin.play.PlayState;
+import flixel.FlxG;
+import funkin.graphics.video.FunkinVideoSprite;
+import funkin.play.Countdown;
+
+class MorphoPlayerCharacter extends MultiSparrowCharacter {
+	function new() {
+		super('morpho-player');
+	}
+
+	function onCreate(event:ScriptEvent) {
+		super.onCreate(event);
+		GameOverSubState.musicSuffix = '-blank';
+		GameOverSubState.blueBallSuffix = '-blank';
+	}
+	override function onSongRetry(event:ScriptEvent):Void {
+		super.onSongRetry(event);
+			GameOverSubState.musicSuffix = '-blank';
+			GameOverSubState.blueBallSuffix = '-blank';
+			this.visible = true;
+	}
+
+	function playAnimation(name:String, restart:Bool, ignoreOther:Bool)
+  	{
+		super.playAnimation(name, restart, ignoreOther);
+		if (name == "morphoGoogly") {
+			new FlxTimer().start(2 / 24, function(tmr:FlxTimer)
+			{
+			FunkinSound.playOnce(Paths.sound('extra/morphoHit'), 1.0);
+			});
+		}
+	}
+
+	function onGameOver(e) {
+		super.onGameOver(e);
+		GameOverSubState.blueballed;
+		video1 = new FunkinVideoSprite(0, 0);
+		video1.zIndex = 1500;
+		video1.load(Paths.videos('MorphoComedianGameOver'));
+		video1.scrollFactor.set(0, 0);
+		// video1.scale.set(1, 1);
+		video1.play();
+		FlxTimer.wait(0.001, () -> {
+			video1.bitmap.onFormatSetup.add(function():Void {
+				if (video1.bitmap != null && video1.bitmap.bitmapData != null) {
+					video1.setGraphicSize(FlxG.width, FlxG.height);
+					video1.updateHitbox();
+				}
+			});
+			FlxG.state.subState.add(video1);
+			GameOverSubState.instance.boyfriend.visible = false;
+		});
+
+		video1.bitmap.onEndReached.removeAll();
+		video1.bitmap.onEndReached.add(function() {
+			if (video1 != null && video1.bitmap != null) {
+				video1.visible = false;
+				video1.bitmap.stop();
+				GameOverSubState.instance.confirmDeath();
+			}
+		});
+	}
+}
