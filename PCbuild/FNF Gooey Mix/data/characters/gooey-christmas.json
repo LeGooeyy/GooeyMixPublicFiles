@@ -60,22 +60,22 @@
     },
     {
       "name": "firstDeath",
-      "prefix": "gooeyDies",
+      "prefix": "christmasGooeyDies",
       "offsets": [12,-110],
-      "assetPath": "characters/gooey/GooeyDeadChristmas"
+      "assetPath": "characters/gooey/GooeyDead"
     },
     {
       "name": "deathLoop",
       "prefix": "gameOverLoop",
       "looped": true,
       "offsets": [12,-110],
-      "assetPath": "characters/gooey/GooeyDeadChristmas"
+      "assetPath": "characters/gooey/GooeyDead"
     },
     {
       "name": "deathConfirm",
       "prefix": "jesusChrist",
       "offsets": [12,-110],
-      "assetPath": "characters/gooey/GooeyDeadChristmas"
+      "assetPath": "characters/gooey/GooeyDead"
     }
   ]
 }

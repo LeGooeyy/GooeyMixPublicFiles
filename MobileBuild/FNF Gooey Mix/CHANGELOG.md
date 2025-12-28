@@ -4,6 +4,17 @@ All notable changes will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 
+## [4.0.1] - 2025-12-27
+Detour 1 hotfix
+
+### Changed
+- Combined the 3 Gooey Game over spritesheets into 1 for optimization
+
+### Fixed
+- Fixed Tankman's Stess (Gooey Mix) stickers not rendering properly
+- Fixed a bug where you get stuck in the Blissful (Gooey Mix) cutscene state
+- Removed Mix'd Up's cutscene code from Blissful (Gooey Mix)'s script file
+
 ## [4.0.0] - 2025-12-23
 Detour 1 [Blissful Gooey Mix]
 

@@ -164,6 +164,7 @@ class BlissfulGooeyMixSong extends Song {
 							PlayState.instance.camHUD.alpha = 0;
 							PlayState.instance.camHUD.visible = true;
 							FlxTween.tween(PlayState.instance.camHUD, {alpha: 1}, 1, {ease: FlxEase.smoothStepInOut});
+							PlayState.instance.isInCutscene = false;
 						}
 					});
 				}
@@ -196,35 +197,5 @@ class BlissfulGooeyMixSong extends Song {
 		gooCheck4 = false;
 		gooCheck5 = false;
 		gooCheck6 = false;
-	}
-
-	function mixCut() {
-		var mixPos:Array<Float> = [
-			PlayState.instance.currentStage.getBoyfriend().cameraFocusPoint.x,
-			PlayState.instance.currentStage.getBoyfriend().cameraFocusPoint.y
-		];
-
-		cutsceneTimerManager = new FlxTimerManager();
-		new FlxTimer(cutsceneTimerManager).start(1, _ -> {
-			PlayState.instance.currentStage.getBoyfriend().playAnimation('hey', true);
-			mixCutAudio = FunkinSound.load(Paths.sound('extra/mixCutAudio'), 1, false, true, true);
-			PlayState.instance.tweenCameraToPosition(mixPos[0] - 10, mixPos[1] + 30, 3, FlxEase.quadInOut);
-			PlayState.instance.tweenCameraZoom(0.8, 3, true, FlxEase.quadOut);
-		});
-
-		new FlxTimer(cutsceneTimerManager).start(8, _ -> {
-			PlayState.instance.tweenCameraZoom(0.65, 6, true, FlxEase.expoOut);
-			PlayState.instance.tweenCameraToPosition(mixPos[0], mixPos[1], 2, FlxEase.expoOut);
-
-			hasPlayedCutscene = true;
-			finishedGooeyPart = true;
-			PlayState.instance.isInCutscene = false;
-
-			cutsceneMusic.fadeOut(1, 0);
-
-			PlayState.instance.startCountdown();
-
-			FlxTween.tween(PlayState.instance.camHUD, {alpha: 1}, 1);
-		});
 	}
 }

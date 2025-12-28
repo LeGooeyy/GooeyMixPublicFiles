@@ -61,22 +61,22 @@
     },
     {
       "name": "firstDeath",
-      "prefix": "gooeyDies",
+      "prefix": "stressGooeyDies",
       "offsets": [12,-110],
-      "assetPath": "characters/gooey/GooeyDeadStress"
+      "assetPath": "characters/gooey/GooeyDead"
     },
     {
       "name": "deathLoop",
       "prefix": "gameOverLoop",
       "looped": true,
       "offsets": [12,-110],
-      "assetPath": "characters/gooey/GooeyDeadStress"
+      "assetPath": "characters/gooey/GooeyDead"
     },
     {
       "name": "deathConfirm",
       "prefix": "jesusChrist",
       "offsets": [12,-110],
-      "assetPath": "characters/gooey/GooeyDeadStress"
+      "assetPath": "characters/gooey/GooeyDead"
     },
     {
       "name": "cock",
