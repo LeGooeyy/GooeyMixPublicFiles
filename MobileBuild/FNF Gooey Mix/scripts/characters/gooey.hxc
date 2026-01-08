@@ -29,7 +29,7 @@ class GooeyCharacter extends MultiAnimateAtlasCharacter {
 						return;
 					case "cheer":
 						holdTimer = 0;
-						this.playAnimation('hey', true, true);
+						this.playAnimation('cheer', true, true);
 						return;
 				}
 			}

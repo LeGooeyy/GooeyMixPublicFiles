@@ -7,7 +7,6 @@ class GooeyOpponentCharacter extends MultiAnimateAtlasCharacter {
 	}
 
 	function onNoteHit(event:HitNoteScriptEvent) {
-		if (PlayState.instance?.currentStage != null) {
 		if (!event.note.noteData.getMustHitNote() && characterType == CharacterType.DAD) {
 			// Override the hit note animation. Totally not just the parents christmas script slightly edited
 			switch (event.note.kind) {
@@ -18,6 +17,6 @@ class GooeyOpponentCharacter extends MultiAnimateAtlasCharacter {
 			}
 		}
 		super.onNoteHit(event);
-	}
+	
 	}
 }
