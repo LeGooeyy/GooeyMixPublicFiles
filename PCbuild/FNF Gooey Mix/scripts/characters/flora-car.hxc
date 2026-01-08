@@ -32,7 +32,7 @@ class FloraCarCharacter extends MultiSparrowCharacter {
 
 	function onCreate(event:ScriptEvent) {
 		super.onCreate(event);
-
+		if (PlayState.instance?.currentStage != null) {
 		floraEyes = CharacterDataParser.fetchCharacter('flora-eyes');
 		PlayState.instance.currentStage.add(floraEyes);
 
@@ -66,12 +66,13 @@ class FloraCarCharacter extends MultiSparrowCharacter {
 			}
 		});
 	}
+	}
 
 	function onUpdate(event:UpdateScriptEvent) {
 		super.onUpdate(event);
 
 		synchronizeShader();
-		if (!refershedLol) {
+		if (!refershedLol && PlayState.instance?.currentStage != null) {
 			floraSpeaker.x = this.x + 20;
 			floraSpeaker.y = this.y + 110;
 			floraSpeaker.zIndex = this.zIndex - 2;
@@ -105,6 +106,7 @@ class FloraCarCharacter extends MultiSparrowCharacter {
 	var currentShader = null;
 
 	function synchronizeShader():Void {
+		if (PlayState.instance?.currentStage != null) {
 		if (FlxG.save.data.gooeyShaders != false) {
 			if (currentShader == this.shader)
 				return;
@@ -117,19 +119,23 @@ class FloraCarCharacter extends MultiSparrowCharacter {
 			trace("Synchronized shader between children!");
 		}
 	}
+	}
 
 	override function playAnimation(name:String, restart:Bool, ignoreOther:Bool) {
+		if (PlayState.instance?.currentStage != null) {
 		super.playAnimation(name, restart, ignoreOther);
 		if (floraEyes != null) {
 			floraEyes.playAnimation(name, restart, false);
 			floraEyes.setPosition(this.x, this.y);
 		}
 	}
+	}
 
 	var comboAnims = ["50combo", "200combo", "lossCombo"];
 
 	override function dance(force) {
 		super.dance(force);
+		if (PlayState.instance?.currentStage != null) {
 		if (floraSpeaker != null)
 			floraSpeaker.animation.play('idle', true);
 		if (speakerLights != null) {
@@ -139,11 +145,14 @@ class FloraCarCharacter extends MultiSparrowCharacter {
 			}
 		}
 	}
+	}
 
 	function onSongStart(scriptEvent) {
+		if (PlayState.instance?.currentStage != null) {
 		super.onSongStart(scriptEvent);
 		analyzer = new SpectralAnalyzer(FlxG.sound.music._channel.__audioSource, 7, 0.1, 40);
 		analyzer.fftN = 256;
+		}
 	}
 
 	function onCountdownStart(scriptEvent) {
@@ -208,6 +217,7 @@ class FloraCarCharacter extends MultiSparrowCharacter {
 	}
 
 	function onNoteHit(event:HitNoteScriptEvent) {
+		if (PlayState.instance?.currentStage != null) {
 		if (!event.note.noteData.getMustHitNote(Strumline.KEY_COUNT))
 			return;
 		if (Highscore.tallies.combo == 49 && comboFloraCheck == true && !event.isComboBreak) {
@@ -229,8 +239,10 @@ class FloraCarCharacter extends MultiSparrowCharacter {
 		}
 		super.onNoteHit(event);
 	}
+	}
 
 	function onNoteMiss(event:NoteScriptEvent) {
+		if (PlayState.instance?.currentStage != null) {
 		if (Highscore.tallies.combo >= 70) {
 			if (comboFloraCheck == true) {
 				comboFloraCheck == false;
@@ -240,12 +252,15 @@ class FloraCarCharacter extends MultiSparrowCharacter {
 		}
 		super.onNoteMiss(event);
 	}
+	}
 
 	function onSongRetry(event:ScriptEvent) {
+		if (PlayState.instance?.currentStage != null) {
 		super.onSongRetry(event);
 
 		floraEyes.playAnimation('danceRight', false, false, false);
 		animation.curAnim.finish();
 		playAnimation('danceRight', false);
+		}
 	}
 }

@@ -3,5 +3,6 @@
   "name": "Gooey Mix Detour 1",
   "artists": ["LeGooey","SillyRetto"],
   "albumArtAsset": "freeplay/albumRoll/gooeydetour1",
-  "albumTitleAsset": "freeplay/albumRoll/gooeydetour1-text"
+  "albumTitleAsset": "freeplay/albumRoll/gooeydetour1-text",
+  "albumTitleOffsets": [-11, 0]
 }

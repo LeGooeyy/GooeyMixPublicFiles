@@ -17,14 +17,11 @@ import funkin.graphics.shaders.DropShadowShader;
 class MorphoModeOption extends Module {
 	public function new() {
 		super('MorphoModeOption');
-	}
-
-	override function onUpdate(event:UpdateScriptEvent) {
-		super.onUpdate(event);
 
 		if (FlxG.save.data.morphoMode != 'Off' && FlxG.save.data.morphoMode != 'On' && FlxG.save.data.morphoMode != 'No Stickers')
 			FlxG.save.data.morphoMode = 'Off';
 	}
+
 
 	public function onStateChangeEnd(event:StateChangeScriptEvent) {
 		if (Std.isOfType(event.targetState, OptionsState)) {
@@ -161,6 +158,10 @@ class MorphoModeOption extends Module {
 					morphoModeDancer.zIndex = PlayState.instance.currentStage.getNamedProp('bgLight').zIndex - 1;
 					morphoModeDancer.alpha = 0;
 					morphoModeDancer.color = 0xFF000000;
+				case 'sserafim':
+					morphoModeDancer.x = -1500;
+					morphoModeDancer.y = 250;
+					morphoModeDancer.zIndex = 400;
 				case 'drippypopErectGooey':
 					morphoModeDancer.x = 1300;
 					morphoModeDancer.y = -450;

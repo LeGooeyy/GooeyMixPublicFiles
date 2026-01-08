@@ -43,38 +43,38 @@
     "animations": [
       {
         "name": "intro",
-        "prefix": "pico dj intro",
-        "offsets": [-8.3, 2.6]
+        "prefix": "gooeyIntro",
+        "offsets": [-317, -32.5]
       },
       {
         "name": "idle",
-        "prefix": "Pico DJ",
-        "offsets": [-15, 0]
+        "prefix": "gooeyIdle",
+        "offsets": [-317, -32.5]
       },
           {
         "name": "idleEasterEgg",
-        "prefix": "Pico DJ Gooey AFK",
-        "offsets": [-15, 0]
+        "prefix": "gooeyMorpho",
+        "offsets": [-317, -32.5]
       },
       {
         "name": "confirm",
-        "prefix": "Pico DJ confirm",
-        "offsets": [-15, 0]
+        "prefix": "gooeyConfirm",
+        "offsets": [-317, -32.5]
       },
       {
         "name": "fistPump",
-        "prefix": "pico cheer",
-        "offsets": [330, -90]
+        "prefix": "gooeyCheer",
+       "offsets": [-317, -32.5]
       },
       {
         "name": "loss",
-        "prefix": "pico gooey fail",
-        "offsets": [330, -90]
+        "prefix": "gooeyFail",
+      "offsets": [-317, -32.5]
       },
       {
         "name": "charSelect",
-        "prefix": "Pico DJ to CS",
-        "offsets": [-15, 0]
+        "prefix": "gooeyCS",
+        "offsets": [-317, -32.5]
       }
     ]
   },
@@ -101,7 +101,7 @@
         "renderType": "animateatlas",
         "assetPath": "shared:resultScreen/results-gooey/resultsPERFECT",
         "zIndex": 500,
-        "offsets": [-1260, -1100],
+        "offsets": [-1470, -1465],
         "scale": 0.9,
         "loopFrame": 53
       }
@@ -111,7 +111,7 @@
         "renderType": "animateatlas",
         "assetPath": "shared:resultScreen/results-gooey/resultsPERFECT",
         "zIndex": 500,
-        "offsets": [-1260, -1100],
+        "offsets": [-1470, -1465],
         "scale": 0.9,
         "loopFrame": 53
       }
@@ -121,7 +121,8 @@
         "renderType": "animateatlas",
         "assetPath": "shared:resultScreen/results-gooey/resultsGOOD",
         "zIndex": 500,
-        "offsets": [1240, 285],
+        "offsets": [550,-436],
+
 
         "loopFrame": 36
       }
@@ -131,17 +132,17 @@
         "renderType": "animateatlas",
         "assetPath": "shared:resultScreen/results-gooey/resultsGOOD",
         "zIndex": 500,
-        "offsets": [1240, 285],
+        "offsets": [550,-436],
 
         "loopFrame": 36
       }
     ],
     "good": [
-      {
+       {
         "renderType": "animateatlas",
         "assetPath": "shared:resultScreen/results-gooey/resultsGOOD",
         "zIndex": 500,
-        "offsets": [1240, 285],
+        "offsets": [550,-436],
 
         "loopFrame": 36
       }
@@ -151,7 +152,7 @@
         "renderType": "animateatlas",
         "assetPath": "shared:resultScreen/results-gooey/resultsSHIT",
         "zIndex": 500,
-        "offsets": [1240, 285],
+        "offsets": [790, 280],
 
         "loopFrame": 68
       }

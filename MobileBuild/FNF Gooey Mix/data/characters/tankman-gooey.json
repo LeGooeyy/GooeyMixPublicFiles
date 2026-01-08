@@ -1,165 +1,125 @@
 {
   "version": "1.0.0",
-  "renderType": "multisparrow",
-  "offsets": [0, -50],
-  "danceEvery": 1,
-  "scale": 1,
-  "name": "Tankman",
-  "flipX": true,
-  "cameraOffsets": [0, 0],
-  "singTime": 8,
-  "startingAnimation": "idle",
-  "isPixel": false,
-  "assetPath": "characters/tankmanCaptain",
+  "name": "Tankman (Gooey)",
+  "renderType": "multianimateatlas",
+  "assetPath": "shared:characters/tankman/basic",
+  "offsets": [3, -44],
+  "cameraOffsets": [-3, 32],
   "healthIcon": {
-    "offsets": [0, 0],
-    "id": "tankman",
-    "flipX": false,
-    "isPixel": false,
-    "scale": 1
+    "id": "tankman"
   },
   "animations": [
     {
-      "flipY": false,
-      "offsets": [0, 0],
-      "frameRate": 24,
-      "prefix": "Tankman Idle Dance instance 1",
-      "flipX": false,
-      "name": "idle"
+      "name": "idle",
+      "prefix": "idle"
     },
     {
-      "flipY": false,
-      "offsets": [40, 10],
+      "name": "singLEFT",
+      "prefix": "left"
+    },
+    {
+      "name": "singDOWN",
+      "prefix": "down"
+    },
+    {
+      "name": "singUP",
+      "prefix": "up"
+    },
+    {
+      "name": "singRIGHT",
+      "prefix": "right"
+    },
+    {
+      "assetPath": "shared:characters/tankman/extra-animations",
+      "name": "ugh",
+      "prefix": "ugh",
+      "offsets": [5, -40]
+    },
+    {
+      "assetPath": "shared:characters/tankman/extra-animations",
+      "name": "augh",
+      "prefix": "argh",
+      "offsets": [5, -40]
+    },
+    {
       "frameRate": 24,
       "loop": true,
-      "assetPath": "characters/tankman/dankman",
-      "prefix": "dank",
-      "flipX": true,
-      "name": "dankman"
+      "assetPath": "shared:characters/tankman/tankmanGooey",
+      "prefix": "tankDance",
+      "offsets": [-4,-1],
+      "name": "tankDance"
     },
-     {
-      "flipY": false,
-      "offsets": [0, 10],
+    {
       "frameRate": 24,
-      "assetPath": "characters/tankman/tankman_done",
+      "assetPath": "shared:characters/tankman/tankmanGooey",
+      "offsets": [-4,-1],
       "prefix": "done",
-      "flipX": true,
       "name": "done"
     },
     {
-      "flipY": false,
-      "offsets": [90, -13],
-      "frameRate": 24,
-      "prefix": "Tankman Right Note instance 1",
-      "flipX": false,
-      "name": "singLEFT"
-    },
-    {
-      "flipY": false,
-      "offsets": [63, -105],
-      "frameRate": 24,
-      "prefix": "Tankman DOWN note instance 1",
-      "flipX": false,
-      "name": "singDOWN"
-    },
-    {
-      "flipY": false,
-      "offsets": [48, 54],
-      "frameRate": 24,
-      "prefix": "Tankman UP note instance 1",
-      "flipX": false,
-      "name": "singUP"
-    },
-    {
-      "flipY": false,
-      "offsets": [-22, -28],
-      "frameRate": 24,
-      "prefix": "Tankman Note Left instance 1",
-      "flipX": false,
-      "name": "singRIGHT"
-    },
-     {
-      "flipY": false,
-      "offsets": [52, -6],
-      "frameRate": 24,
-      "prefix": "tankman ARGH",
-      "assetPath": "characters/tankmanPico",
-      "flipX": true,
-      "name": "augh"
-    },
-        {
-      "flipY": false,
-      "offsets": [-16, -9],
-      "frameRate": 24,
-      "prefix": "TANKMAN UGH instance 1",
-      "flipX": false,
-      "name": "ugh"
-    },
-    {
-      "flipY": false,
-      "offsets": [-2, 15],
+
+      "offsets": [-3, -2],
       "frameRate": 24,
       "prefix": "prettyFUCK",
-      "assetPath": "characters/tankman/tankman_FUCK",
-      "flipX": true,
+      "assetPath": "shared:characters/tankman/tankmanGooey",
       "name": "fuck"
     },
     {
-      "flipY": false,
-      "offsets": [-2, 15],
+
+      "offsets": [-3, -2],
       "frameRate": 48,
-      "prefix": "gooeyTankman Idle Dance",
+      "prefix": "prettyFUCK",
       "frameIndices": [
-        62
+        68
       ],
-      "flipX": true,
-      "assetPath": "characters/tankman/tankman_FUCK",
+      "assetPath": "shared:characters/tankman/tankmanGooey",
       "name": "isGooey"
     },
     {
-      "flipY": false,
-      "offsets": [0, 0],
+
+      "offsets": [-4,-1],
       "frameRate": 24,
-      "prefix": "gooeyTankman Idle Dance",
-      "flipX": false,
-      "assetPath": "characters/tankman/Tankman_Gooey",
+      "prefix": "gooIdle",
+      "assetPath": "shared:characters/tankman/tankmanGooey",
       "name": "idle-gooey"
     },
     {
-      "flipY": false,
-      "offsets": [90, -13],
+
       "frameRate": 24,
-      "prefix": "gooeyTankman Right Note",
-      "flipX": false,
-      "assetPath": "characters/tankman/Tankman_Gooey",
+      "offsets": [-4,-1],
+      "prefix": "gooLeft",
+      "assetPath": "shared:characters/tankman/tankmanGooey",
       "name": "singLEFT-gooey"
     },
     {
-      "flipY": false,
-      "offsets": [63, -105],
+
       "frameRate": 24,
-      "prefix": "gooeyTankman DOWN note",
-      "flipX": false,
-      "assetPath": "characters/tankman/Tankman_Gooey",
+      "offsets": [-4,-1],
+      "prefix": "gooDown",
+      "assetPath": "shared:characters/tankman/tankmanGooey",
       "name": "singDOWN-gooey"
     },
     {
-      "flipY": false,
-      "offsets": [48, 54],
       "frameRate": 24,
-      "prefix": "gooeyTankman UP note",
-      "flipX": false,
-      "assetPath": "characters/tankman/Tankman_Gooey",
+      "offsets": [-4,-1],
+      "prefix": "gooUp",
+      "assetPath": "shared:characters/tankman/tankmanGooey",
       "name": "singUP-gooey"
     },
     {
-      "flipY": false,
-      "offsets": [-22, -28],
       "frameRate": 24,
-      "prefix": "gooeyTankman Note Left",
-      "flipX": false,
-      "assetPath": "characters/tankman/Tankman_Gooey",
+      "offsets": [-4,-1],
+      "prefix": "gooRight",
+      "assetPath": "shared:characters/tankman/tankmanGooey",
       "name": "singRIGHT-gooey"
+    },
+    {
+      "offsets": [7,-15],
+      "frameRate": 24,
+      "prefix": "GooeyStressTank",
+      "assetPath": "shared:characters/tankman/StressCutTankGooey",
+      "animType": "symbol",
+      "name": "tankmanGooeyCutscene"
     }
   ]
 }

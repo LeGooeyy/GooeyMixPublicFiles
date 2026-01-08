@@ -689,7 +689,7 @@
       "t": 81666.6666666667,
       "e": "PlayAnimation",
       "v": {
-	"anim": "pre-attack",
+	"anim": "preAttack",
 	"force": false,
 	"target": "boyfriend"
 }

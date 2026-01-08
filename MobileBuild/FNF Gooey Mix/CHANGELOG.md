@@ -3,14 +3,46 @@ All notable changes will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [4.1.0] - 2025-12-27
+Detour 1 Mini Update 1
+
+### Added
+
+- Added 2 New animations for Senpai in Senpai (Gooey Mix) and Roses (Gooey Mix)
+- Added new alt animations for Gooey and Gooey (Stress)
+- Added Morpho Mode support for Spaghetti
+- Added subtitles to Tutorial (Gooey Mix), Ugh (Gooey Mix), and Stress (Gooey Mix)
+- [MOBILE] Added medal support to mobile
+
+### Changed
+
+- Remade all of Gooey's sprites to be Texture atlases for optimization
+- Changed the expression of Gooey's Idle
+- Remade all of Tankman (Gooey)'s sprites
+- Remade the Dad hit animation for Dadbattle
+- Updated the mod API to 0.8.0
+
+### Fixed
+
+- Fixed a bug where the game would check for QT: Rewired every tick, causing immense lag
+- Fixed bugs when playing on 0.8.0
+- Fixed the Stress Game Over offsets
+
+### Removed
+
+- Removed unused duplicate instrumental files
+- Removed unused Monster sprites
+
 
 ## [4.0.1] - 2025-12-27
 Detour 1 hotfix
 
 ### Changed
+
 - Combined the 3 Gooey Game over spritesheets into 1 for optimization
 
 ### Fixed
+
 - Fixed Tankman's Stess (Gooey Mix) stickers not rendering properly
 - Fixed a bug where you get stuck in the Blissful (Gooey Mix) cutscene state
 - Removed Mix'd Up's cutscene code from Blissful (Gooey Mix)'s script file
@@ -35,6 +67,7 @@ Detour 1 [Blissful Gooey Mix]
 - Added 14 new stickers and 2 new sticker packs
 
 ### Changed
+
 - Remade the Good and Shit results screens for Gooey
 - Improved Alt Instrumental compatibility with Senpai (Gooey Mix)
 - Increased the visibility of the poster in the Week 60037 cutscene
@@ -44,6 +77,7 @@ Detour 1 [Blissful Gooey Mix]
 - Changed some of the freeplay difficulty rankings
 
 ### Fixed
+
 - Fixed the Freeplay OST Title when QT: Rewired is installed
 - Fixed being able to press notes during cutscenes
 - Fixed Not Matt being in Cocoa Erect
@@ -103,7 +137,6 @@ Destination 2 patch 6
 - [MOBILE] Fixed a gamebreaking crash on IOS
 
 ### Removed
-
 - Removed the new text in freeplay from songs added in Destination 2
 
 

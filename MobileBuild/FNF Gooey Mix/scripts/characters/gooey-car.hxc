@@ -1,10 +1,10 @@
-import funkin.play.character.MultiSparrowCharacter;
+import funkin.play.character.MultiAnimateAtlasCharacter;
 import funkin.play.PauseSubState;
 import funkin.play.character.CharacterType;
 import funkin.play.GameOverSubState;
 import funkin.audio.FunkinSound;
 
-class GooeyCarPlayableCharacter extends MultiSparrowCharacter {
+class GooeyCarPlayableCharacter extends MultiAnimateAtlasCharacter {
 	function new() {
 		super('gooey-car');
 	}

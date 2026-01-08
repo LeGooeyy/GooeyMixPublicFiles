@@ -3,5 +3,6 @@
   "name": "Gooey Mix Volume 2",
   "artists": ["ChessBrabo","FuryGTRX","HEV","LeGooey","SillyRetto"],
   "albumArtAsset": "freeplay/albumRoll/gooeymix2",
-  "albumTitleAsset": "freeplay/albumRoll/gooeymix2-text"
+  "albumTitleAsset": "freeplay/albumRoll/gooeymix2-text",
+  "albumTitleOffsets": [-10, 0]
 }

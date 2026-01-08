@@ -1,114 +1,102 @@
 {
   "version": "1.0.0",
-  "name": "Gooey (Dark)",
-  "renderType": "multisparrow",
-  "assetPath": "characters/gooey/Gooey_dark",
+  "name": "Gooey",
+  "renderType": "multianimateatlas",
+  "assetPath": "shared:characters/gooey/GooeyDark",
   "flipX": true,
+  "atlasSettings": {"useRenderTexture": true},
   "singTime": 8.0,
-  "healthIcon": {
-    "offsets": [0, 0],
-    "id": "gooey",
-    "flipX": false,
-    "isPixel": false,
-    "scale": 1
-  },
-  "cameraOffsets": [0, 94],
+  "cameraOffsets": [-1, -32],
   "death": {
     "cameraOffsets": [-40, 40]
+  },
+  "healthIcon": {
+    "id": "gooey"
   },
   "animations": [
     {
       "name": "idle",
-      "prefix": "idle",
-      "offsets": [12,-110]
+      "prefix": "GooeyIdle",
+      "offsets": [-7, 1]
     },
     {
       "name": "singLEFT",
-      "prefix": "left",
-      "offsets": [12,-110]
+      "prefix": "GooeyLeft",
+      "offsets": [-7, 1]
     },
     {
       "name": "singDOWN",
-      "prefix": "down",
-      "offsets": [12,-110]
+      "prefix": "GooeyDown",
+      "offsets": [-7, 1]
     },
     {
       "name": "singUP",
-      "prefix": "up",
-      "offsets": [12,-110]
+      "prefix": "GooeyUp",
+      "offsets": [-7, 1]
     },
     {
       "name": "singRIGHT",
-      "prefix": "right",
-      "offsets": [12,-110]
-    },
-    {
-      "name": "singLEFTmiss",
-      "prefix": "missLeft",
-      "offsets": [12,-110]
-    },
-    {
-      "name": "singDOWNmiss",
-      "prefix": "missDown",
-      "offsets": [12,-110]
-    },
-    {
-      "name": "singUPmiss",
-      "prefix": "missUp",
-      "offsets": [12,-110]
-    },
-    {
-      "name": "singRIGHTmiss",
-      "prefix": "missRight",
-      "offsets": [12,-110]
-    },
-    {
-      "name": "dodge",
-      "prefix": "dodge",
-      "offsets": [12,-110]
+      "prefix": "GooeyRight",
+      "offsets": [-7, 1]
     },
     {
       "name": "hey",
-      "prefix": "hey",
-      "offsets": [12,-110]
+      "prefix": "GooeyHey",
+      "offsets": [-7, 1]
     },
     {
       "name": "cheer",
-      "prefix": "yeah",
-      "offsets": [12,-110]
+      "prefix": "GooeyCheer",
+      "offsets": [-7, 1]
+    },
+        {
+      "name": "singLEFTmiss",
+      "prefix": "GooeyMissLeft",
+      "offsets": [-7, 1]
+    },
+    {
+      "name": "singDOWNmiss",
+      "prefix": "GooeyMissDown",
+      "offsets": [-7, 1]
+    },
+    {
+      "name": "singUPmiss",
+      "prefix": "GooeyMissUp",
+      "offsets": [-7, 1]
+    },
+    {
+      "name": "singRIGHTmiss",
+      "prefix": "GooeyMissRight",
+      "offsets": [-7, 1]
     },
     {
       "name": "scared",
-      "prefix": "scared",
-      "offsets": [12,-110]
+      "prefix": "GooeyScared",
+      "offsets": [-7, 1]
     },
     {
       "name": "burp",
-      "prefix": "burp",
-      "offsets": [12,-110],
-      "flipX": false
+      "prefix": "GooeyBurp",
+      "offsets": [-7, 1]
     },
     {
       "name": "firstDeath",
-      "prefix": "gooeyDies",
-      "offsets": [12,-110],
-      "assetPath": "characters/gooey/GooeyDead",
-      "flipX": false
+      "prefix": "GooeyDies",
+      "assetPath": "shared:characters/gooey/GooeyGameOver",
+      "offsets": [19, -21]
     },
     {
       "name": "deathLoop",
-      "prefix": "gameOverLoop",
-      "looped": true,
-      "offsets": [12,-110],
-      "assetPath": "characters/gooey/GooeyDead",
-      "flipX": false
+      "prefix": "GooeyDeadIdle",
+      "assetPath": "shared:characters/gooey/GooeyGameOver",
+      "offsets": [19, -21],
+      "looped": true
     },
     {
       "name": "deathConfirm",
-      "prefix": "jesusChrist",
-      "offsets": [12,-110],
-      "assetPath": "characters/gooey/GooeyDead",
-      "flipX": false
+      "prefix": "GooeyConfirm",
+      "assetPath": "shared:characters/gooey/GooeyGameOver",
+      "offsets": [19, -21]
     }
   ]
 }

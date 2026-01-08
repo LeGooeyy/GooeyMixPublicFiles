@@ -10,6 +10,8 @@ import flixel.tweens.FlxTween;
 import funkin.save.Save;
 import flixel.tweens.FlxEase;
 import funkin.ui.options.PreferencesMenu;
+import flixel.util.FlxTimer;
+import flixel.util.FlxTimerManager;
 
 import Date;
 
@@ -41,14 +43,22 @@ class RosesGooeySong extends Song
       event.cancel(); // CANCEL THE COUNTDOWN!
 
       // Play a SFX
-      FunkinSound.playOnce(Paths.sound('ANGRY_TEXT_BOX'), 1.0);
+       new FlxTimer().start(0.01, _ -> {
+      	PlayState.instance.currentStage.getDad().playAnimation('youMadBro', true);
+      });
+      new FlxTimer().start(0.4, _ -> {
+        FunkinSound.playOnce(Paths.sound('ANGRY_TEXT_BOX'), 1.0);
+      });
+            
 
       // ERIC: There's a known bug where, on the School stage, pausing the stage animations then trying
       // to restart them causes the animations to freeze.
       // TODO: Commenting out this line causes the animations to work but they play even during the dialogue, which is supposed to pause everything.
       // PlayState.instance.currentStage.pause();
 
+      new FlxTimer().start(1, _ -> {
       startDialogue();
+      });
     }
   }
 

@@ -23,6 +23,7 @@ class SenpaiGooeyMixSong extends Song {
 
 	override function onSongLoaded(event) {
 		super.onSongLoaded(event);
+		if (!PlayState.instance.isChartingMode){
 		if (PlayState.instance.currentInstrumental != "gooey" && PlayState.instance.currentInstrumental != "truegooey") {
 			PlayState.instance.currentVariation = "gooeyalt";
 			PlayState.currentChart = PlayState.instance.currentSong.getDifficulty(PlayState.instance.currentDifficulty + "-gooeyalt", "gooeyalt");
@@ -33,6 +34,7 @@ class SenpaiGooeyMixSong extends Song {
 		if (PlayState.instance.currentInstrumental == "gooey" || PlayState.instance.currentInstrumental == "truegooey") {
 			PlayState.instance.currentInstrumental = "truegooey";
 		}
+	}
 	}
 
 	public override function listAltInstrumentals(difficultyId:String, variationId:String):Array<String> {

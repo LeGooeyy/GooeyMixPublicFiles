@@ -1,29 +1,21 @@
-import funkin.graphics.adobeanimate.FlxAtlasSprite;
 import flixel.math.FlxPoint;
-import funkin.audio.FunkinSound;
+import flixel.FlxSprite;
+import funkin.graphics.FunkinSprite;
+import funkin.play.PlayState;
+import flixel.FlxG;
 
-class TankmanGooeyStress extends FlxAtlasSprite
+// a unique object for santa getting KILLED
+class TankmanGooeyStress extends FunkinSprite
 {
-
   public function new(x:Float, y:Float)
   {
-    super(x, y, Paths.animateAtlas("erect/cutscene/StressCutTankGooey", "week7"), {
-      FrameRate: 24.0,
-      Reversed: false,
-      // ?OnComplete:Void -> Void,
-      ShowPivot: false,
-      Antialiasing: true,
-      ScrollFactor: new FlxPoint(1, 1),
-    });
+    super(x, y);
+
+    loadTextureAtlas("erect/cutscene/StressCutTankGooey", "week7");
   }
-
-  var cutsceneSounds:FunkinSound = null;
-
-  public function cancelSounds(){
-    if(cutsceneSounds != null) cutsceneSounds.destroy();
-  }
-
-  function doAnim(){
-    playAnimation("StressGooeyTankman", true, false, false);
+  
+  public function playCutscene():Void
+  {
+    this.animation.play("StressGooeyTankman");
   }
 }

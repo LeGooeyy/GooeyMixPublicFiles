@@ -1,13 +1,13 @@
 import funkin.graphics.adobeanimate.FlxAtlasSprite;
 import flixel.FlxG;
 import funkin.audio.FunkinSound;
-import funkin.play.character.MultiSparrowCharacter;
+import funkin.play.character.MultiAnimateAtlasCharacter;
 import funkin.play.GameOverSubState;
 import funkin.play.PlayState;
 import funkin.Preferences;
 import funkin.play.character.CharacterType;
 
-class BoyfriendGooeyCharacter extends MultiSparrowCharacter {
+class BoyfriendGooeyCharacter extends MultiAnimateAtlasCharacter {
 	function new() {
 		super('bf-gooey');
 	}
@@ -25,10 +25,14 @@ class BoyfriendGooeyCharacter extends MultiSparrowCharacter {
 			switch (event.note.kind) {
 				case "hey":
 					holdTimer = 0;
-					this.playAnimation('hey', false);
+					this.playAnimation('hey', true, true);
+					return;
 				case "cheer":
 					holdTimer = 0;
-					this.playAnimation('cheer', false);
+					this.playAnimation('cheer', true, true);
+					return;
+				case "noanim":
+					holdTimer = 0;
 			}
 			super.onNoteHit(event);
 		}

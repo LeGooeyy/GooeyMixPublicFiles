@@ -94,7 +94,7 @@ class gooeyDevTestStageStage extends Stage {
 			}
 
 			PlayState.instance.currentStage.getGirlfriend().flipX = false;
-			PlayState.instance.currentStage.getGirlfriend().alpha = 0.5;
+			PlayState.instance.currentStage.getGirlfriend().alpha = 1;
 
 		}
 		if (PlayState.instance.currentStage.getBoyfriend() != null) {

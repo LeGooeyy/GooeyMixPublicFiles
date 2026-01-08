@@ -12,7 +12,7 @@
     "songVariations": [],
     "difficulties": ["easy", "normal", "hard"],
     "characters": {
-      "player": "gooey","girlfriend": "flora","opponent": "dad-gdb",
+      "player": "gooey","girlfriend": "flora","opponent": "dad",
       "instrumental": "truegooey","playerVocals": ["gooey"],"opponentVocals": ["dad"], "altInstrumentals": ["pico",""]
     },
     "stage": "mainStageErectGooey",

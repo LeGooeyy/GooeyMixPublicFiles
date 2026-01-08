@@ -1,4 +1,4 @@
-import funkin.play.character.MultiSparrowCharacter;
+import funkin.play.character.MultiAnimateAtlasCharacter;
 import funkin.play.PauseSubState;
 import funkin.play.character.CharacterType;
 import funkin.play.GameOverSubState;
@@ -6,7 +6,7 @@ import funkin.audio.FunkinSound;
 import funkin.play.PlayState;
 import flixel.FlxG;
 
-class GooeyCharacter extends MultiSparrowCharacter {
+class GooeyCharacter extends MultiAnimateAtlasCharacter {
 	function new() {
 		super('gooey');
 	}
@@ -20,19 +20,21 @@ class GooeyCharacter extends MultiSparrowCharacter {
 	}
 
 	function onNoteHit(event:HitNoteScriptEvent) {
-		if (event.note.noteData.getMustHitNote() && characterType == CharacterType.BF) {
-			switch (event.note.kind) {
-				case "hey":
-					holdTimer = 0;
-					this.playAnimation('hey', false);
-					return;
-				case "cheer":
-					holdTimer = 0;
-					this.playAnimation('cheer', false);
-					return;
+		if (PlayState.instance?.currentStage != null) {
+			if (event.note.noteData.getMustHitNote() && characterType == CharacterType.BF) {
+				switch (event.note.kind) {
+					case "hey":
+						holdTimer = 0;
+						this.playAnimation('hey', true, true);
+						return;
+					case "cheer":
+						holdTimer = 0;
+						this.playAnimation('hey', true, true);
+						return;
+				}
 			}
+			super.onNoteHit(event);
 		}
-		super.onNoteHit(event);
 	}
 
 	override function getDeathQuote():Null<String> {

@@ -45,55 +45,57 @@ class FloraDarkCharacter extends MultiSparrowCharacter {
 	function onCreate(event:ScriptEvent) {
 		super.onCreate(event);
 
-		normalChar = CharacterDataParser.fetchCharacter('flora-speakerless');
-		normalChar.zIndex = this.zIndex - 1;
-		normalChar.alpha = 1;
-		PlayState.instance.currentStage.add(normalChar);
+		if (PlayState.instance?.currentStage != null) {
+			normalChar = CharacterDataParser.fetchCharacter('flora-speakerless');
+			normalChar.zIndex = this.zIndex - 1;
+			normalChar.alpha = 1;
+			PlayState.instance.currentStage.add(normalChar);
 
-		fakeSpeaker = new FunkinSprite(0, 0).loadSparrow('characters/flora/FloraSpeaker_dark');
-		fakeSpeaker.animation.addByPrefix('idle', 'floraBop', 12, false);
-		fakeSpeaker.animation.play('idle');
-		fakeSpeaker.animation.curAnim.finish();
-		PlayState.instance.currentStage.add(fakeSpeaker);
+			fakeSpeaker = new FunkinSprite(0, 0).loadSparrow('characters/flora/FloraSpeaker_dark');
+			fakeSpeaker.animation.addByPrefix('idle', 'floraBop', 12, false);
+			fakeSpeaker.animation.play('idle');
+			fakeSpeaker.animation.curAnim.finish();
+			PlayState.instance.currentStage.add(fakeSpeaker);
 
-		floraEyes = CharacterDataParser.fetchCharacter('flora-eyes');
-		floraEyes.zIndex = 999;
-		floraEyes.flipX = false;
-		PlayState.instance.currentStage.add(floraEyes);
-		PlayState.instance.currentStage.refresh();
+			floraEyes = CharacterDataParser.fetchCharacter('flora-eyes');
+			floraEyes.zIndex = 999;
+			floraEyes.flipX = false;
+			PlayState.instance.currentStage.add(floraEyes);
+			PlayState.instance.currentStage.refresh();
 
-		floraSpeaker = new FunkinSprite(0, 0).loadSparrow('characters/flora/FloraSpeaker');
-		floraSpeaker.animation.addByPrefix('idle', 'floraBop', 12, false);
-		floraSpeaker.animation.play('idle');
-		floraSpeaker.animation.curAnim.finish();
-		PlayState.instance.currentStage.add(floraSpeaker);
+			floraSpeaker = new FunkinSprite(0, 0).loadSparrow('characters/flora/FloraSpeaker');
+			floraSpeaker.animation.addByPrefix('idle', 'floraBop', 12, false);
+			floraSpeaker.animation.play('idle');
+			floraSpeaker.animation.curAnim.finish();
+			PlayState.instance.currentStage.add(floraSpeaker);
 
-		speakerLights = new FunkinSprite(0, 0).loadSparrow('characters/flora/FloraLights');
-		speakerLights.animation.addByPrefix('idle', 'lightBop', 12, false);
-		speakerLights.animation.addByPrefix('frozenLight', 'frozenLight', 12, false);
-		speakerLights.animation.addByPrefix('50combo', '50combo', 24, false);
-		speakerLights.animation.addByPrefix('200combo', '200combo', 24, false);
-		speakerLights.animation.addByPrefix('lossCombo', 'lossCombo', 24, false);
-		speakerLights.animation.play('idle');
-		PlayState.instance.currentStage.add(speakerLights);
+			speakerLights = new FunkinSprite(0, 0).loadSparrow('characters/flora/FloraLights');
+			speakerLights.animation.addByPrefix('idle', 'lightBop', 12, false);
+			speakerLights.animation.addByPrefix('frozenLight', 'frozenLight', 12, false);
+			speakerLights.animation.addByPrefix('50combo', '50combo', 24, false);
+			speakerLights.animation.addByPrefix('200combo', '200combo', 24, false);
+			speakerLights.animation.addByPrefix('lossCombo', 'lossCombo', 24, false);
+			speakerLights.animation.play('idle');
+			PlayState.instance.currentStage.add(speakerLights);
 
-		visualizerFlora = new FunkinSprite().makeGraphic(115, 70); // makeGraphic so it will actually update the shader <3
-		PlayState.instance.currentStage.add(visualizerFlora);
+			visualizerFlora = new FunkinSprite().makeGraphic(115, 70); // makeGraphic so it will actually update the shader <3
+			PlayState.instance.currentStage.add(visualizerFlora);
 
-		speakerLights.animation.onFinish.add(function(animName:String) {
-			if (animName == "50combo" || animName == "200combo" || animName == "lossCombo") {
-				comboFloraCheck == true;
-				visualizerFlora.visible = true;
-				speakerLights.animation.play('frozenLight', true);
-			}
-		});
+			speakerLights.animation.onFinish.add(function(animName:String) {
+				if (animName == "50combo" || animName == "200combo" || animName == "lossCombo") {
+					comboFloraCheck == true;
+					visualizerFlora.visible = true;
+					speakerLights.animation.play('frozenLight', true);
+				}
+			});
+		}
 	}
 
 	function onUpdate(event:UpdateScriptEvent) {
 		super.onUpdate(event);
 
 		synchronizeShader();
-		if (!refershedLol) {
+		if (!refershedLol && PlayState.instance?.currentStage != null) {
 			fakeSpeaker.x = this.x + 20;
 			fakeSpeaker.y = this.y + 110;
 			fakeSpeaker.zIndex = this.zIndex - 2;
@@ -131,50 +133,58 @@ class FloraDarkCharacter extends MultiSparrowCharacter {
 	var currentShader = null;
 
 	function synchronizeShader():Void {
-		if (FlxG.save.data.gooeyShaders != false) {
-			if (currentShader == this.shader)
-				return;
+		if (PlayState.instance?.currentStage != null) {
+			if (FlxG.save.data.gooeyShaders != false) {
+				if (currentShader == this.shader)
+					return;
 
-			currentShader = this.shader;
+				currentShader = this.shader;
 
-			floraSpeaker.shader = currentShader;
+				floraSpeaker.shader = currentShader;
 
-			trace("Synchronized shader between children!");
+				trace("Synchronized shader between children!");
+			}
 		}
 	}
 
 	override function playAnimation(name:String, restart:Bool, ignoreOther:Bool) {
 		super.playAnimation(name, restart, ignoreOther);
-		if (floraEyes != null) {
-			floraEyes.playAnimation(name, restart, false);
-			floraEyes.setPosition(this.x, this.y);
-		}
-		if (normalChar != null) {
-			normalChar.playAnimation(name, restart, false);
-			normalChar.setPosition(this.x, this.y);
+		if (PlayState.instance?.currentStage != null) {
+			if (floraEyes != null) {
+				floraEyes.playAnimation(name, restart, false);
+				floraEyes.setPosition(this.x, this.y);
+			}
+			if (normalChar != null) {
+				normalChar.playAnimation(name, restart, false);
+				normalChar.setPosition(this.x, this.y);
+			}
 		}
 	}
 
 	var comboAnims = ["50combo", "200combo", "lossCombo"];
 
 	override function dance(force) {
-		super.dance(force);
-		if (fakeSpeaker != null)
-			fakeSpeaker.animation.play('idle', true);
-		if (floraSpeaker != null)
-			floraSpeaker.animation.play('idle', true);
-		if (speakerLights != null) {
-			if (!comboAnims.contains(speakerLights.animation?.curAnim?.name)
-				|| (comboAnims.contains(speakerLights.animation?.curAnim?.name) && speakerLights.animation?.finished)) {
-				speakerLights.animation.play('idle', true);
+		if (PlayState.instance?.currentStage != null) {
+			super.dance(force);
+			if (fakeSpeaker != null)
+				fakeSpeaker.animation.play('idle', true);
+			if (floraSpeaker != null)
+				floraSpeaker.animation.play('idle', true);
+			if (speakerLights != null) {
+				if (!comboAnims.contains(speakerLights.animation?.curAnim?.name)
+					|| (comboAnims.contains(speakerLights.animation?.curAnim?.name) && speakerLights.animation?.finished)) {
+					speakerLights.animation.play('idle', true);
+				}
 			}
 		}
 	}
 
 	function onSongStart(scriptEvent) {
-		super.onSongStart(scriptEvent);
-		analyzer = new SpectralAnalyzer(FlxG.sound.music._channel.__audioSource, 7, 0.1, 40);
-		analyzer.fftN = 256;
+		if (PlayState.instance?.currentStage != null) {
+			super.onSongStart(scriptEvent);
+			analyzer = new SpectralAnalyzer(FlxG.sound.music._channel.__audioSource, 7, 0.1, 40);
+			analyzer.fftN = 256;
+		}
 	}
 
 	function onCountdownStart(scriptEvent) {
@@ -238,45 +248,50 @@ class FloraDarkCharacter extends MultiSparrowCharacter {
 		super.draw();
 	}
 
-		function onNoteHit(event:HitNoteScriptEvent) {
-		if (!event.note.noteData.getMustHitNote(Strumline.KEY_COUNT))
-			return;
-		if (Highscore.tallies.combo == 49 && comboFloraCheck == true && !event.isComboBreak) {
-			comboFloraCheck == false;
-			visualizerFlora.visible = false;
-			speakerLights.animation.play('50combo', true);
-		}
-		if (Highscore.tallies.combo == 199 && comboFloraCheck == true && !event.isComboBreak) {
-			comboFloraCheck == false;
-			visualizerFlora.visible = false;
-			speakerLights.animation.play('200combo', true);
-		}
-		if (Highscore.tallies.combo >= 70 && event.isComboBreak) {
-			if (comboFloraCheck == true) {
+	function onNoteHit(event:HitNoteScriptEvent) {
+		if (PlayState.instance?.currentStage != null) {
+			if (!event.note.noteData.getMustHitNote(Strumline.KEY_COUNT))
+				return;
+			if (Highscore.tallies.combo == 49 && comboFloraCheck == true && !event.isComboBreak) {
 				comboFloraCheck == false;
 				visualizerFlora.visible = false;
-				speakerLights.animation.play('lossCombo', true);
+				speakerLights.animation.play('50combo', true);
 			}
+			if (Highscore.tallies.combo == 199 && comboFloraCheck == true && !event.isComboBreak) {
+				comboFloraCheck == false;
+				visualizerFlora.visible = false;
+				speakerLights.animation.play('200combo', true);
+			}
+			if (Highscore.tallies.combo >= 70 && event.isComboBreak) {
+				if (comboFloraCheck == true) {
+					comboFloraCheck == false;
+					visualizerFlora.visible = false;
+					speakerLights.animation.play('lossCombo', true);
+				}
+			}
+			super.onNoteHit(event);
 		}
-		super.onNoteHit(event);
 	}
 
 	function onNoteMiss(event:NoteScriptEvent) {
-		if (Highscore.tallies.combo >= 70) {
-			if (comboFloraCheck == true) {
-				comboFloraCheck == false;
-				visualizerFlora.visible = false;
-				speakerLights.animation.play('lossCombo', true);
+		if (PlayState.instance?.currentStage != null) {
+			if (Highscore.tallies.combo >= 70) {
+				if (comboFloraCheck == true) {
+					comboFloraCheck == false;
+					visualizerFlora.visible = false;
+					speakerLights.animation.play('lossCombo', true);
+				}
 			}
+			super.onNoteMiss(event);
 		}
-		super.onNoteMiss(event);
 	}
 
 	function onSongRetry(event:ScriptEvent) {
 		super.onSongRetry(event);
-
-		floraEyes.playAnimation('danceRight', false, false, false);
-		animation.curAnim.finish();
-		playAnimation('danceRight', false);
+		if (PlayState.instance?.currentStage != null) {
+			floraEyes.playAnimation('danceRight', false, false, false);
+			animation.curAnim.finish();
+			playAnimation('danceRight', false);
+		}
 	}
 }

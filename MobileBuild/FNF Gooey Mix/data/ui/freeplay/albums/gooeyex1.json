@@ -3,5 +3,6 @@
   "name": "Gooey Expansion Volume 1",
   "artists": ["FuryGTRX","HeV","LeGooey","RixFX"],
   "albumArtAsset": "freeplay/albumRoll/gooeyex1",
-  "albumTitleAsset": "freeplay/albumRoll/gooeyex1-text"
+  "albumTitleAsset": "freeplay/albumRoll/gooeyex1-text",
+  "albumTitleOffsets": [-10, 0]
 }

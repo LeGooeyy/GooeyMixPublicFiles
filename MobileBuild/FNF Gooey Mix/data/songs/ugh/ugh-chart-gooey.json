@@ -1132,7 +1132,7 @@
       "e": "PlayAnimation",
       "v": {
 	"target": "dad",
-	"anim": "dankman",
+	"anim": "tankDance",
 	"force": true
 }
     },

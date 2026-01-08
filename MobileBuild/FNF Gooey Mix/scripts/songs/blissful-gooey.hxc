@@ -73,6 +73,7 @@ class BlissfulGooeyMixSong extends Song {
 
 	public override function onCountdownStart(event:CountdownScriptEvent):Void {
 		super.onCountdownStart(event);
+		if (PlayState.instance?.currentStage != null) {
 
 		if (!hasPlayedCutscene) {
 			// trace('Pausing countdown to play a cutscene (`gooey`)');
@@ -124,7 +125,7 @@ class BlissfulGooeyMixSong extends Song {
 					new FlxTimer().start(4, _ -> {
 						if (!gooCheck3) {
 							gooCheck3 = true;
-							PlayState.instance.currentStage.getBoyfriend().playAnimation('gooeyQTintro', true);
+							PlayState.instance.currentStage.getBoyfriend().playAnimation('GooeyQTwave', true);
 							PlayState.instance.camHUD.visible = false;
 						}
 					});
@@ -171,6 +172,7 @@ class BlissfulGooeyMixSong extends Song {
 			}
 		}
 		PlayState.instance.comboPopUps.offsets = [-450, 350];
+		}
 	}
 
 	public function onStateChangeBegin(event) {
@@ -184,6 +186,13 @@ class BlissfulGooeyMixSong extends Song {
 		gooCheck4 = false;
 		gooCheck5 = false;
 		gooCheck6 = false;
+	}
+
+	function onStepHit(event:SongTimeScriptEvent):Void {
+		super.onStepHit(event);
+		if (event.step == 2) {
+			PlayState.instance.isInCutscene = false;
+		}
 	}
 
 	function onDestroy(event) {

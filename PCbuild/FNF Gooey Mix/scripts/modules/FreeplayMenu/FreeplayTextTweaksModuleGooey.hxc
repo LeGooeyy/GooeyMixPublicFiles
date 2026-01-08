@@ -8,9 +8,10 @@ class FreeplayTextTweaksModuleGooey extends Module {
 		super('FreeplayTextTweaksModuleGooey', 1099999);
 	}
 
-	override function onUpdate(event) {
-		super.onUpdate(event);
+	var qtInstalled:Bool = false;
 
+	public function onCreate(event:ScriptEvent) {
+		super.onCreate(event);
 		var modTitles:Array<String> = [];
 		for (id in PolymodHandler.loadedModIds) {
 			var modMeta:ModMetadata = PolymodHandler.modFileSystem.getMetadata(id);
@@ -19,6 +20,14 @@ class FreeplayTextTweaksModuleGooey extends Module {
 		}
 
 		if (modTitles.contains("QT: Rewired")) {
+			qtInstalled = true;
+		}
+	}
+
+	override function onUpdate(event) {
+		super.onUpdate(event);
+
+		if (qtInstalled == true) {
 			var sub = FlxG.state.subState;
 			if (sub == null || ReflectUtil.getClassNameOf(sub) != "funkin.ui.freeplay.FreeplayState")
 				return;
@@ -28,15 +37,14 @@ class FreeplayTextTweaksModuleGooey extends Module {
 			var id = (data != null) ? data.levelId : null;
 
 			if (sub.ostName != null) {
-				if (FlxG.state.subState.currentCharacterId == 'gooey')
-				{
+				if (FlxG.state.subState.currentCharacterId == 'gooey') {
 					switch (id) {
 						case "QTWeek":
 							sub.ostName.text = "GOOEY/QT:R OST";
 						default:
 							sub.ostName.text = "GOOEY MIX OST";
 					}
-				}	
+				}
 				if (FlxG.state.subState.currentCharacterId == 'bf' || FlxG.state.subState.currentCharacterId == 'pico') {
 					switch (id) {
 						case "QTWeek":

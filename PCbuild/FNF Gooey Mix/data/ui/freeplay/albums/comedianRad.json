@@ -3,5 +3,7 @@
   "name": "Comedian (Rad Mix)",
   "artists": ["LeGooey"],
   "albumArtAsset": "freeplay/albumRoll/comedianRad",
-  "albumTitleAsset": "freeplay/albumRoll/comedianRad-text"
+  "albumTitleAsset": "freeplay/albumRoll/comedianRad-text",
+  "albumTitleOffsets": [-10, 0]
+  
 }

@@ -1,12 +1,13 @@
-import funkin.play.character.MultiSparrowCharacter;
+import funkin.play.character.MultiAnimateAtlasCharacter;
 import funkin.play.character.CharacterType;
 
-class GooeyOpponentCharacter extends MultiSparrowCharacter {
+class GooeyOpponentCharacter extends MultiAnimateAtlasCharacter {
 	function new() {
 		super('gooey-opponent');
 	}
 
 	function onNoteHit(event:HitNoteScriptEvent) {
+		if (PlayState.instance?.currentStage != null) {
 		if (!event.note.noteData.getMustHitNote() && characterType == CharacterType.DAD) {
 			// Override the hit note animation. Totally not just the parents christmas script slightly edited
 			switch (event.note.kind) {
@@ -17,5 +18,6 @@ class GooeyOpponentCharacter extends MultiSparrowCharacter {
 			}
 		}
 		super.onNoteHit(event);
+	}
 	}
 }

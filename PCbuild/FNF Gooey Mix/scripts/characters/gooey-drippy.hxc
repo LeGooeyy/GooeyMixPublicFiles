@@ -13,12 +13,15 @@ class gooeyDrippyCharacter extends MultiSparrowCharacter {
 	function onCreate(event:ScriptEvent) {
 		super.onCreate(event);
 
+		if (PlayState.instance?.currentStage != null) {
 		GameOverSubState.musicSuffix = '-gooey';
 		GameOverSubState.blueBallSuffix = '-gooey-drip';
 		PauseSubState.musicSuffix = '-gooey';
+		}
 	}
 
 	function onNoteHit(event:HitNoteScriptEvent) {
+		if (PlayState.instance?.currentStage != null) {
 		if (event.note.noteData.getMustHitNote() && characterType == CharacterType.BF) {
 			switch (event.note.kind) {
 				case "gfsing":
@@ -30,6 +33,7 @@ class gooeyDrippyCharacter extends MultiSparrowCharacter {
 		}
 		super.onNoteHit(event);
 	}
+	}
 
 	override function onCountdownStart(event) {
 		super.onCountdownStart(event);
@@ -38,10 +42,12 @@ class gooeyDrippyCharacter extends MultiSparrowCharacter {
 
 	function playAnimation(name:String, restart:Bool, ignoreOther:Bool) {
 		super.playAnimation(name, restart, ignoreOther);
+		if (PlayState.instance?.currentStage != null) {
 		if (name == "deathConfirm") {
 			gooeyRetry = FunkinSound.load(Paths.music('gameplay/gameover/gameOverEnd-gooeyReal'), true);
 			gooeyRetry.volume = 1;
 			gooeyRetry.play(false);
 		}
+	}
 	}
 }

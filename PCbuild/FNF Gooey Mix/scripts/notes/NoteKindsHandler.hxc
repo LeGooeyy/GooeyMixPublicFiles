@@ -24,7 +24,7 @@ class NoteKindsHandler extends ScriptedModule {
         if (hitter == null) return;
 
         switch (event.note.kind) {
-            case "no-anim", "gf-sing":
+            case "gf-sing":
                 var oldExclPref = hitter.ignoreExclusionPref;
                 event.note.lowPriority = true;
                 hitter.ignoreExclusionPref = [];
@@ -42,7 +42,7 @@ class NoteKindsHandler extends ScriptedModule {
 
     function hasDoubles(strumline:Strumline, hitter:BaseCharacter, hitNote:NoteSprite) {
         for (note in strumline.notes) {
-            if (note == hitNote || note.kind == "no-anim" || note.kind == "gf-sing") continue;
+            if (note == hitNote || note.kind == "gf-sing") continue;
 
             if (Math.abs(note.strumTime - hitNote.strumTime) < 1) {
                 var singAnim = "sing" + DIRECTION_NAMES[note.direction];
