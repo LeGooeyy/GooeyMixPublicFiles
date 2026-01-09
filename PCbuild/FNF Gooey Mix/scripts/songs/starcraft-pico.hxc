@@ -35,6 +35,9 @@ class StarcraftPicoMixSong extends Song
 		blackScreen.alpha = 1;
 		// blackScreen.visible = false;
 
+		if (PlayState.instance.isChartingMode)
+			blackScreen.alpha = 0;
+
 		if (!FlxG.onMobile) {
 			PlayState.instance.discordRPCAlbum = "https://raw.githubusercontent.com/LeGooeyy/GooeyMixDiscordIcons/refs/heads/main/assets/album-covers/"
 				+ PlayState.instance.currentChart.album

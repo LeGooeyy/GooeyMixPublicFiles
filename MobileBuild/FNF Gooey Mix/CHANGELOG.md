@@ -3,7 +3,31 @@ All notable changes will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [4.1.0] - 2025-12-27
+## [4.1.2] - 2026-1-9
+Detour 1 Hotfix 3
+
+### Changed
+
+- Remade Gooey's freeplay pixel icon
+- [MOBILE] Increased the size of the overlay effects on the Nat Crystal (Hotel Castle Erect) so they cover the whole screen on mobile
+- [MOBILE] Added a lazy fix to the Philly City stage so the edges of the screen are less jarring on mobile
+
+### Fixed
+
+- Fixed the No Animation notes not working on Starcraft (Pico Mix)
+- Fixed the screen being black on Starcraft (Pico Mix) when in charting mode
+- Fixed the cutscene playing on Mix'd Up when in charting mode
+- [MOBILE] Fixed the Nat Crystal (Hotel Castle Erect) Stage crashing on IOS
+
+## [4.1.1] - 2026-1-8
+Detour 1 Hotfix 2
+
+### Fixed
+
+- [MOBILE] Fixed a gamebreaking crash on IOS
+
+
+## [4.1.0] - 2026-1-8
 Detour 1 Mini Update 1
 
 ### Added
@@ -35,7 +59,7 @@ Detour 1 Mini Update 1
 
 
 ## [4.0.1] - 2025-12-27
-Detour 1 hotfix
+Detour 1 Hotfix
 
 ### Changed
 

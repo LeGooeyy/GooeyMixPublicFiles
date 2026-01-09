@@ -69,16 +69,16 @@
     },
       {
       "name": "overlay1",
-      "assetPath": "gooeyMix/week60037/natCrystal/overlay1",
-      "position": [-100, -1300],
+      "assetPath": "gooeyMix/week60037/natCrystal/Overlay1",
+      "position": [-400, -1300],
       "scale": [1, 1],
       "scroll": [1, 1],
       "zIndex": 72
     },
     {
       "name": "overlay2",
-      "assetPath": "gooeyMix/week60037/natCrystal/overlay2",
-      "position": [-100, -1300],
+      "assetPath": "gooeyMix/week60037/natCrystal/Overlay2",
+      "position": [-400, -1300],
       "scale": [1, 1],
       "scroll": [1, 1],
       "zIndex": 73
@@ -93,8 +93,8 @@
     },
     {
       "name": "overlay3",
-      "assetPath": "gooeyMix/week60037/natCrystal/overlay3",
-      "position": [100, -1000],
+      "assetPath": "gooeyMix/week60037/natCrystal/Overlay3",
+      "position": [-155, -1000],
       "scale": [0.85, 0.85],
       "scroll": [1, 1],
       "zIndex": 75

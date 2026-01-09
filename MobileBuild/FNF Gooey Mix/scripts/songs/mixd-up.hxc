@@ -29,6 +29,9 @@ class MixdUpSong extends Song {
 
 		hasPlayedCutscene = false;
 
+		if (PlayState.instance.isChartingMode && !hasPlayedCutscene)
+			hasPlayedCutscene = true;
+
 		if (!FlxG.onMobile) {
 			PlayState.instance.discordRPCAlbum = "https://raw.githubusercontent.com/LeGooeyy/GooeyMixDiscordIcons/refs/heads/main/assets/album-covers/"
 				+ PlayState.instance.currentChart.album
