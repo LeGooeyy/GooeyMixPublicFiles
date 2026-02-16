@@ -1,8 +1,8 @@
 {
   "version": "1.0.0",
-  "name": "Mixd Up",
+  "name": "Mix'd Up",
   "artists": ["LeGooey"],
   "albumArtAsset": "freeplay/albumRoll/mixdUp",
-  "albumTitleAsset": "freeplay/albumRoll/mixdUp-text",
+  "albumTitleAsset": "freeplay/albumRoll/gooeymixExtra-text",
   "albumTitleOffsets": [-10, 0]
 }

@@ -3,13 +3,7 @@
   "name": "Radiation",
   "renderType": "multisparrow",
   "assetPath": "characters/rad/Radiation",
-  "flipX": false,
-  "singTime": 8.0,
-      "cameraOffsets": [0, 244],
-  "healthIcon": {
-    "offsets": [0, 0],
-    "id": "rad"
-  },
+  "cameraOffsets": [0, 244],
   "animations": [
     {
       "name": "idle",

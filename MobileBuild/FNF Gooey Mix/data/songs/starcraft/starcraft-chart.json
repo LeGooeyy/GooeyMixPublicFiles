@@ -1755,7 +1755,7 @@
       "v": {
 	"duration": 4,
 	"strumline": "both",
-	"scroll": 1.175,
+	"scroll": 1.155,
 	"ease": "smoothStepInOut",
 	"absolute": false
 }

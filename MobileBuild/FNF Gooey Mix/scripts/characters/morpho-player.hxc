@@ -19,20 +19,19 @@ class MorphoPlayerCharacter extends MultiSparrowCharacter {
 		GameOverSubState.musicSuffix = '-blank';
 		GameOverSubState.blueBallSuffix = '-blank';
 	}
+
 	override function onSongRetry(event:ScriptEvent):Void {
 		super.onSongRetry(event);
-			GameOverSubState.musicSuffix = '-blank';
-			GameOverSubState.blueBallSuffix = '-blank';
-			this.visible = true;
+		GameOverSubState.musicSuffix = '-blank';
+		GameOverSubState.blueBallSuffix = '-blank';
+		this.visible = true;
 	}
 
-	function playAnimation(name:String, restart:Bool, ignoreOther:Bool)
-  	{
+	function playAnimation(name:String, restart:Bool, ignoreOther:Bool) {
 		super.playAnimation(name, restart, ignoreOther);
 		if (name == "morphoGoogly") {
-			new FlxTimer().start(2 / 24, function(tmr:FlxTimer)
-			{
-			FunkinSound.playOnce(Paths.sound('extra/morphoHit'), 1.0);
+			new FlxTimer().start(2 / 24, function(tmr:FlxTimer) {
+				FunkinSound.playOnce(Paths.sound('extra/morphoHit'), 1.0);
 			});
 		}
 	}

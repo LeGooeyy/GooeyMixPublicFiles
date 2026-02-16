@@ -12,7 +12,7 @@
     "songVariations": [],
     "difficulties": ["extra"],
     "characters": {
-      "player": "gooey-car","girlfriend": "gooey","opponent": "bf",
+      "player": "gooey","girlfriend": "gooey","opponent": "bf",
       "instrumental": ""
     },
     "stage": "gooeyDevTestStage",

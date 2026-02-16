@@ -6,28 +6,21 @@ class MixCharacter extends MultiSparrowCharacter {
 		super('mix');
 	}
 
-	function onNoteHit(event:HitNoteScriptEvent)
-	{
-		// Override the hit note animation.
+	function onNoteHit(event:HitNoteScriptEvent) {
 		if (event.eventCanceled) {
 			// onNoteHit event was cancelled by the gameplay module.
 			return;
 		}
-
-
+		// Override the hit note animation.
 		if (!event.note.noteData.getMustHitNote() && characterType == CharacterType.DAD) {
-		{
-			switch (event.note.kind)
-			{
+			switch (event.note.kind) {
 				case "hey":
 					holdTimer = 0;
-					this.playAnimation('hey', false);
+					this.playAnimation('hey', true, true);
+					return;
 				default:
-					holdTimer = 0;
-					this.playSingAnimation(event.note.noteData.getDirection(), false);
+					super.onNoteHit(event);
 			}
 		}
-	}
-
 	}
 }

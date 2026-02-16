@@ -108,7 +108,7 @@
 "DU":1,
 "E":[
 {"SI":{
-"SN":"deathSplash1.png",
+"SN":"Bitmaps/deathSplash1.png",
 "ST":"MC",
 "TRP":{"x":104.5,"y":40},
 "MX":[1,0,0,1,-19,-103]
@@ -117,7 +117,7 @@
 "DU":1,
 "E":[
 {"SI":{
-"SN":"deathSplash2.png",
+"SN":"Bitmaps/deathSplash2.png",
 "ST":"MC",
 "TRP":{"x":98.5,"y":42.5},
 "MX":[1,0,0,1,-50,-112]
@@ -126,7 +126,7 @@
 "DU":1,
 "E":[
 {"SI":{
-"SN":"deathSplash3.png",
+"SN":"Bitmaps/deathSplash3.png",
 "ST":"MC",
 "TRP":{"x":108.5,"y":49},
 "MX":[1,0,0,1,-57,-113]
@@ -135,7 +135,7 @@
 "DU":1,
 "E":[
 {"SI":{
-"SN":"deathSplash4.png",
+"SN":"Bitmaps/deathSplash4.png",
 "ST":"MC",
 "TRP":{"x":109.5,"y":48},
 "MX":[1,0,0,1,-64,-115]
@@ -144,7 +144,7 @@
 "DU":1,
 "E":[
 {"SI":{
-"SN":"deathSplash5.png",
+"SN":"Bitmaps/deathSplash5.png",
 "ST":"MC",
 "TRP":{"x":112,"y":48.5},
 "MX":[1,0,0,1,-66,-115]
@@ -625,7 +625,7 @@
 "DU":2,
 "E":[
 {"SI":{
-"SN":"tailSnap.png",
+"SN":"Bitmaps/tailSnap.png",
 "ST":"MC",
 "TRP":{"x":203,"y":127.5},
 "MX":[1,0,0,1,120,77]
@@ -634,7 +634,7 @@
 "DU":1,
 "E":[
 {"SI":{
-"SN":"tailSnap2.png",
+"SN":"Bitmaps/tailSnap2.png",
 "ST":"MC",
 "TRP":{"x":213,"y":153},
 "MX":[1,0,0,1,136,125]
@@ -674,7 +674,7 @@
 "DU":2,
 "E":[
 {"SI":{
-"SN":"puddleSnap2.png",
+"SN":"Bitmaps/puddleSnap2.png",
 "ST":"MC",
 "TRP":{"x":104.5,"y":187.5},
 "MX":[1,0,0,1,-35,151]
@@ -734,7 +734,7 @@
 "DU":1,
 "E":[
 {"SI":{
-"SN":"deathSplash1.png",
+"SN":"Bitmaps/deathSplash1.png",
 "ST":"MC",
 "TRP":{"x":104.5,"y":40},
 "MX":[1,0,0,1,-19,-103]
@@ -743,7 +743,7 @@
 "DU":1,
 "E":[
 {"SI":{
-"SN":"deathSplash2.png",
+"SN":"Bitmaps/deathSplash2.png",
 "ST":"MC",
 "TRP":{"x":98.5,"y":42.5},
 "MX":[1,0,0,1,-50,-112]
@@ -752,7 +752,7 @@
 "DU":1,
 "E":[
 {"SI":{
-"SN":"deathSplash3.png",
+"SN":"Bitmaps/deathSplash3.png",
 "ST":"MC",
 "TRP":{"x":108.5,"y":49},
 "MX":[1,0,0,1,-57,-113]
@@ -761,7 +761,7 @@
 "DU":1,
 "E":[
 {"SI":{
-"SN":"deathSplash4.png",
+"SN":"Bitmaps/deathSplash4.png",
 "ST":"MC",
 "TRP":{"x":109.5,"y":48},
 "MX":[1,0,0,1,-64,-115]
@@ -770,7 +770,7 @@
 "DU":1,
 "E":[
 {"SI":{
-"SN":"deathSplash5.png",
+"SN":"Bitmaps/deathSplash5.png",
 "ST":"MC",
 "TRP":{"x":112,"y":48.5},
 "MX":[1,0,0,1,-66,-115]
@@ -1251,7 +1251,7 @@
 "DU":2,
 "E":[
 {"SI":{
-"SN":"tailSnap.png",
+"SN":"Bitmaps/tailSnap.png",
 "ST":"MC",
 "TRP":{"x":203,"y":127.5},
 "MX":[1,0,0,1,120,77]
@@ -1260,7 +1260,7 @@
 "DU":1,
 "E":[
 {"SI":{
-"SN":"tailSnap2.png",
+"SN":"Bitmaps/tailSnap2.png",
 "ST":"MC",
 "TRP":{"x":213,"y":153},
 "MX":[1,0,0,1,136,125]
@@ -1377,7 +1377,7 @@
 "DU":2,
 "E":[
 {"SI":{
-"SN":"puddleSnap2.png",
+"SN":"Bitmaps/puddleSnap2.png",
 "ST":"MC",
 "TRP":{"x":104.5,"y":187.5},
 "MX":[1,0,0,1,-35,151]
@@ -1437,7 +1437,7 @@
 "DU":1,
 "E":[
 {"SI":{
-"SN":"deathSplash1.png",
+"SN":"Bitmaps/deathSplash1.png",
 "ST":"MC",
 "TRP":{"x":104.5,"y":40},
 "MX":[1,0,0,1,-19,-103]
@@ -1446,7 +1446,7 @@
 "DU":1,
 "E":[
 {"SI":{
-"SN":"deathSplash2.png",
+"SN":"Bitmaps/deathSplash2.png",
 "ST":"MC",
 "TRP":{"x":98.5,"y":42.5},
 "MX":[1,0,0,1,-50,-112]
@@ -1455,7 +1455,7 @@
 "DU":1,
 "E":[
 {"SI":{
-"SN":"deathSplash3.png",
+"SN":"Bitmaps/deathSplash3.png",
 "ST":"MC",
 "TRP":{"x":108.5,"y":49},
 "MX":[1,0,0,1,-57,-113]
@@ -1464,7 +1464,7 @@
 "DU":1,
 "E":[
 {"SI":{
-"SN":"deathSplash4.png",
+"SN":"Bitmaps/deathSplash4.png",
 "ST":"MC",
 "TRP":{"x":109.5,"y":48},
 "MX":[1,0,0,1,-64,-115]
@@ -1473,7 +1473,7 @@
 "DU":1,
 "E":[
 {"SI":{
-"SN":"deathSplash5.png",
+"SN":"Bitmaps/deathSplash5.png",
 "ST":"MC",
 "TRP":{"x":112,"y":48.5},
 "MX":[1,0,0,1,-66,-115]
@@ -1954,7 +1954,7 @@
 "DU":2,
 "E":[
 {"SI":{
-"SN":"tailSnap.png",
+"SN":"Bitmaps/tailSnap.png",
 "ST":"MC",
 "TRP":{"x":203,"y":127.5},
 "MX":[1,0,0,1,120,77]
@@ -1963,7 +1963,7 @@
 "DU":1,
 "E":[
 {"SI":{
-"SN":"tailSnap2.png",
+"SN":"Bitmaps/tailSnap2.png",
 "ST":"MC",
 "TRP":{"x":213,"y":153},
 "MX":[1,0,0,1,136,125]
@@ -2003,7 +2003,7 @@
 "DU":2,
 "E":[
 {"SI":{
-"SN":"puddleSnap2.png",
+"SN":"Bitmaps/puddleSnap2.png",
 "ST":"MC",
 "TRP":{"x":104.5,"y":187.5},
 "MX":[1,0,0,1,-35,151]
@@ -2160,10 +2160,6 @@
 "SN":"glow",
 "ST":"MC",
 "TRP":{"x":67.15,"y":228.35},
-"C":{
-"M":"CA",
-"AM":1
-},
 "MX":[1,0,0,1,-91.35,157.85],
 "B":0
 }}]},{
@@ -2864,10 +2860,6 @@
 "SN":"glow",
 "ST":"MC",
 "TRP":{"x":67.15,"y":228.35},
-"C":{
-"M":"CA",
-"AM":1
-},
 "MX":[1,0,0,1,-91.35,157.85],
 "B":0
 }}]}
@@ -2882,10 +2874,6 @@
 "SN":"glow",
 "ST":"MC",
 "TRP":{"x":67.15,"y":228.35},
-"C":{
-"M":"CA",
-"AM":1
-},
 "MX":[1,0,0,1,-91.35,157.85],
 "B":0
 }}]}
@@ -2947,7 +2935,7 @@
 "DU":1,
 "E":[
 {"SI":{
-"SN":"deadEyes.png",
+"SN":"Bitmaps/deadEyes.png",
 "ST":"MC",
 "TRP":{"x":50,"y":21.5},
 "MX":[1,0,0,1,0,0]
@@ -2965,7 +2953,7 @@
 "DU":1,
 "E":[
 {"SI":{
-"SN":"deadEyes2.png",
+"SN":"Bitmaps/deadEyes2.png",
 "ST":"MC",
 "TRP":{"x":77,"y":14},
 "MX":[1,0,0,1,0,0]
@@ -2976,17 +2964,17 @@
 "TL":{
 "L":[
 {
-"LN":"Layer_2",
+"LN":"Layer_3",
 "FR":[
 {
 "I":0,
 "DU":1,
 "E":[
 {"SI":{
-"SN":"deadHead.png",
+"SN":"scaredHeadDead.png",
 "ST":"MC",
-"TRP":{"x":19.5,"y":-18},
-"MX":[1,0,0,1,-106,-103]
+"TRP":{"x":13.5,"y":-18},
+"MX":[1,0,0,1,-118,-103]
 }}]}
 ]}
 ]}},{
@@ -3001,7 +2989,7 @@
 "DU":1,
 "E":[
 {"SI":{
-"SN":"deadPuddle.png",
+"SN":"Bitmaps/deadPuddle.png",
 "ST":"MC",
 "TRP":{"x":213,"y":31},
 "MX":[1,0,0,1,0,0]
@@ -3019,7 +3007,7 @@
 "DU":1,
 "E":[
 {"SI":{
-"SN":"deadTorso.png",
+"SN":"Bitmaps/deadTorso.png",
 "ST":"MC",
 "TRP":{"x":11.5,"y":22},
 "MX":[1,0,0,1,-79,-57]
@@ -3037,7 +3025,7 @@
 "DU":1,
 "E":[
 {"SI":{
-"SN":"retryText.png",
+"SN":"Bitmaps/retryText.png",
 "ST":"MC",
 "TRP":{"x":150.5,"y":40.5},
 "MX":[1,0,0,1,0,0]
@@ -3055,7 +3043,7 @@
 "DU":1,
 "E":[
 {"SI":{
-"SN":"deadTail.png",
+"SN":"Bitmaps/deadTail.png",
 "ST":"MC",
 "TRP":{"x":-5,"y":-2},
 "MX":[1,0,0,1,-90,-87]
@@ -3073,7 +3061,7 @@
 "DU":1,
 "E":[
 {"SI":{
-"SN":"puddleSnap1.png",
+"SN":"Bitmaps/puddleSnap1.png",
 "ST":"MC",
 "TRP":{"x":90.5,"y":23.5},
 "MX":[1,0,0,1,0,0]
@@ -3084,17 +3072,17 @@
 "TL":{
 "L":[
 {
-"LN":"Layer_3",
+"LN":"Layer_2",
 "FR":[
 {
 "I":0,
 "DU":1,
 "E":[
 {"SI":{
-"SN":"ChristmasHead.png",
+"SN":"scaredHeadDeadChri.png",
 "ST":"MC",
-"TRP":{"x":19.5,"y":-22.5},
-"MX":[1,0,0,1,-106,-112]
+"TRP":{"x":13.5,"y":-22.5},
+"MX":[1,0,0,1,-118,-112]
 }}]}
 ]}
 ]}},{
@@ -3109,7 +3097,7 @@
 "DU":1,
 "E":[
 {"SI":{
-"SN":"ChristmasScarf.png",
+"SN":"Bitmaps/ChristmasScarf.png",
 "ST":"MC",
 "TRP":{"x":55,"y":22},
 "MX":[1,0,0,1,0,0]
@@ -3120,7 +3108,7 @@
 "TL":{
 "L":[
 {
-"LN":"Layer_3",
+"LN":"Layer_2",
 "FR":[
 {
 "I":0,
@@ -3145,7 +3133,7 @@
 "DU":1,
 "E":[
 {"SI":{
-"SN":"closedEyes.png",
+"SN":"Bitmaps/closedEyes.png",
 "ST":"MC",
 "TRP":{"x":82,"y":13},
 "MX":[1,0,0,1,0,0]
@@ -3163,14 +3151,14 @@
 "DU":1,
 "E":[
 {"SI":{
-"SN":"glow.png",
+"SN":"Bitmaps/glow.png",
 "ST":"MC",
 "TRP":{"x":158.5,"y":70.5},
 "MX":[1,0,0,1,0,0]
 }}]}
 ]}
 ]}},{
-"SN":"deathSplash1.png",
+"SN":"Bitmaps/deathSplash1.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -3182,7 +3170,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"0"
 }}]}]}]}},{
-"SN":"deathSplash2.png",
+"SN":"Bitmaps/deathSplash2.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -3194,7 +3182,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"1"
 }}]}]}]}},{
-"SN":"deathSplash3.png",
+"SN":"Bitmaps/deathSplash3.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -3206,7 +3194,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"2"
 }}]}]}]}},{
-"SN":"deathSplash4.png",
+"SN":"Bitmaps/deathSplash4.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -3218,7 +3206,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"3"
 }}]}]}]}},{
-"SN":"deathSplash5.png",
+"SN":"Bitmaps/deathSplash5.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -3230,7 +3218,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"4"
 }}]}]}]}},{
-"SN":"tailSnap.png",
+"SN":"Bitmaps/tailSnap.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -3242,7 +3230,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"5"
 }}]}]}]}},{
-"SN":"tailSnap2.png",
+"SN":"Bitmaps/tailSnap2.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -3254,7 +3242,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"6"
 }}]}]}]}},{
-"SN":"puddleSnap2.png",
+"SN":"Bitmaps/puddleSnap2.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -3266,7 +3254,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"7"
 }}]}]}]}},{
-"SN":"deadEyes.png",
+"SN":"Bitmaps/deadEyes.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -3278,7 +3266,7 @@
 "MX":[0.967,0,0,0.491,0,0],
 "N":"8"
 }}]}]}]}},{
-"SN":"deadEyes2.png",
+"SN":"Bitmaps/deadEyes2.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -3290,7 +3278,7 @@
 "MX":[1,0,0,0.886,0,0],
 "N":"9"
 }}]}]}]}},{
-"SN":"deadHead.png",
+"SN":"scaredHeadDead.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -3302,7 +3290,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"10"
 }}]}]}]}},{
-"SN":"deadPuddle.png",
+"SN":"Bitmaps/deadPuddle.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -3314,7 +3302,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"11"
 }}]}]}]}},{
-"SN":"deadTorso.png",
+"SN":"Bitmaps/deadTorso.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -3326,7 +3314,7 @@
 "MX":[0.969,0,0,0.984,0,0],
 "N":"12"
 }}]}]}]}},{
-"SN":"retryText.png",
+"SN":"Bitmaps/retryText.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -3338,7 +3326,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"13"
 }}]}]}]}},{
-"SN":"deadTail.png",
+"SN":"Bitmaps/deadTail.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -3350,7 +3338,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"14"
 }}]}]}]}},{
-"SN":"puddleSnap1.png",
+"SN":"Bitmaps/puddleSnap1.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -3362,7 +3350,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"15"
 }}]}]}]}},{
-"SN":"ChristmasHead.png",
+"SN":"scaredHeadDeadChri.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -3374,7 +3362,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"16"
 }}]}]}]}},{
-"SN":"ChristmasScarf.png",
+"SN":"Bitmaps/ChristmasScarf.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -3398,7 +3386,7 @@
 "MX":[0.886,0,0,1,0,0],
 "N":"18"
 }}]}]}]}},{
-"SN":"closedEyes.png",
+"SN":"Bitmaps/closedEyes.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -3410,7 +3398,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"19"
 }}]}]}]}},{
-"SN":"glow.png",
+"SN":"Bitmaps/glow.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",

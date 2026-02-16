@@ -5,7 +5,6 @@
   "assetPath": "shared:characters/gooey/GooeyDark",
   "flipX": true,
   "atlasSettings": {"useRenderTexture": true},
-  "singTime": 8.0,
   "cameraOffsets": [-1, -32],
   "death": {
     "cameraOffsets": [-40, 40]

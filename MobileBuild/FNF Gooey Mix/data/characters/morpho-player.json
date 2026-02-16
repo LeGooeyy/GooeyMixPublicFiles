@@ -4,8 +4,7 @@
   "renderType": "multisparrow",
   "assetPath": "characters/morpho/MorphoPlayer",
   "flipX": true,
-  "singTime": 8.0,
-    "cameraOffsets": [0, 144],
+  "cameraOffsets": [0, 144],
   "animations": [
     {
       "name": "idle",

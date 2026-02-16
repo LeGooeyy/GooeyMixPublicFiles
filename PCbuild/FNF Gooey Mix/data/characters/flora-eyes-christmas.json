@@ -1,48 +1,94 @@
 {
   "version": "1.0.0",
-  "name": "FloraEyes (christmas)",
-  "assetPath": "characters/flora/FloraEyes",
+  "name": "Flora (Christmas Eyes)",
+  "assetPath": "shared:characters/flora/FloraChristmas",
   "startingAnimation": "danceRight",
-  "renderType": "multisparrow",
-  "singTime": 8.0,
-  "cameraOffsets": [0, 120],
+  "renderType": "multianimateatlas",
+  "cameraOffsets": [-200, -230],
   "healthIcon": {
-    "offsets": [0, 0],
-    "id": "flora",
-    "flipX": false,
-    "isPixel": false,
-    "scale": 1
+    "id": "flora"
   },
   "animations": [
     {
       "name": "danceLeft",
-      "prefix": "idleLeft",
-      "offsets": [-20, 210]
+      "prefix": "FloraEyesIdleLeft",
+      "offsets": [5, 235]
     },
     {
       "name": "danceRight",
-      "prefix": "idleRight",
-      "offsets": [-20, 210]
+      "prefix": "FloraEyesIdleRight",
+      "offsets": [5, 235]
     },
     {
       "name": "combo50",
-      "prefix": "combo50",
-      "offsets": [-20, 210]
+      "prefix": "FloraEyes50Combo",
+      "offsets": [5, 235]
     },
-        {
+    {
       "name": "combo200",
-      "prefix": "combo200",
-      "offsets": [-20, 210]
+      "prefix": "FloraEyes200Combo",
+      "offsets": [5, 235]
+    },
+    {
+      "name": "danceLeft-alt",
+      "prefix": "FloraEyesAltIdleLeft",
+      "offsets": [5, 235]
+    },
+    {
+      "name": "danceRight-alt",
+      "prefix": "FloraEyesAltIdleRight",
+      "offsets": [5, 235]
+    },
+    {
+      "name": "danceLeft-trans",
+      "prefix": "FloraEyesAltIdleLeft",
+      "offsets": [5, 235],
+      "frameIndices": [
+        1,2,3,4,5,6,7,8,9,10
+      ]
+    },
+    {
+      "name": "danceRight-trans",
+      "prefix": "FloraEyesAltIdleRight",
+      "offsets": [5, 235],
+      "frameIndices": [
+        1,2,3,4,5,6,7,8,9,10
+      ]
     },
     {
       "name": "drop70",
-      "prefix": "comboBreak",
-      "offsets": [-20, 210]
+      "prefix": "FloraEyesBreakCombo",
+      "offsets": [5, 235]
+    },
+    {
+      "name": "scared",
+      "prefix": "FloraEyesScared",
+      "offsets": [5, 235]
     },
     {
       "name": "cheer",
-      "prefix": "combo50",
-      "offsets": [-20, 210]
+      "prefix": "FloraEyes50Combo",
+      "offsets": [5, 235]
+    },
+     {
+      "name": "singLEFT",
+      "prefix": "FloraEyesSingLeft",
+      "offsets": [5, 235]
+    },
+    {
+      "name": "singDOWN",
+      "prefix": "FloraEyesSingDown",
+      "offsets": [5, 235]
+    },
+    {
+      "name": "singUP",
+      "prefix": "FloraEyesSingUp",
+      "offsets": [5, 235]
+    },
+    {
+      "name": "singRIGHT",
+      "prefix": "FloraEyesSingRight",
+      "offsets": [5, 235]
     }
   ]
 }

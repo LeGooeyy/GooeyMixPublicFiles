@@ -8,7 +8,7 @@
     "gooey-dark",
     "gooey-stress",
     "gooey-pixel",
-    "gooey-drippy",
+    "gooey-updog",
     "gooey-qt",
     "bf-gooey",
     "kam-player",
@@ -103,7 +103,7 @@
         "zIndex": 500,
         "offsets": [-1470, -1465],
         "scale": 0.9,
-        "loopFrame": 53
+        "loopFrame": 55
       }
     ],
     "perfect": [
@@ -113,7 +113,7 @@
         "zIndex": 500,
         "offsets": [-1470, -1465],
         "scale": 0.9,
-        "loopFrame": 53
+        "loopFrame": 55
       }
     ],
     "excellent": [

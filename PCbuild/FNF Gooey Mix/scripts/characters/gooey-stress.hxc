@@ -23,25 +23,22 @@ class GooeyStressPlayableCharacter extends MultiAnimateAtlasCharacter {
 	}
 
 	function onNoteHit(event:HitNoteScriptEvent) {
-		if (PlayState.instance?.currentStage != null) {
-			if (event.note.noteData.getMustHitNote() && characterType == CharacterType.BF) {
-				switch (event.note.kind) {
-					case "hey":
-						holdTimer = 0;
-						this.playAnimation('hey', false);
-					case "cheer":
-						holdTimer = 0;
-						this.playAnimation('cheer', false);
-					case "alt":
-						holdTimer = 0;
-						this.playSingAnimation(event.note.noteData.getDirection(), false, 'alt');
-					case "noanim":
-						holdTimer = 0;
-					default:
-						holdTimer = 0;
-						this.playSingAnimation(event.note.noteData.getDirection(), false);
-				}
-			}
+		if (event.eventCanceled) {
+			// onNoteHit event was cancelled by the gameplay module.
+			return;
+		}
+		// Override the hit note animation.
+		switch (event.note.kind) {
+			case "hey":
+				holdTimer = 0;
+				this.playAnimation('hey', true, true);
+				return;
+			case "alt":
+				holdTimer = 0;
+				this.playSingAnimation(event.note.noteData.getDirection(), false, 'alt');
+				return;
+			default:
+				super.onNoteHit(event);
 		}
 	}
 

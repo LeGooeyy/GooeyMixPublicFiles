@@ -7,25 +7,21 @@ import flixel.FlxSprite;
 import flixel.tweens.FlxTween;
 import flixel.tweens.FlxEase;
 
-class StarcraftPicoMixSong extends Song
-{
-  function new()
-  {
-    super('starcraft',
-      {
-        variation: 'pico'
-      });
-  }
+class StarcraftPicoMixSong extends Song {
+	function new() {
+		super('starcraft', {
+			variation: 'pico'
+		});
+	}
 
-    public override function isSongNew(currentDifficulty:String, currentVariation:String):Bool {
+	public override function isSongNew(currentDifficulty:String, currentVariation:String):Bool {
 		if (currentVariation == 'pico')
 			return !Save.instance.hasBeatenSong(this.id, null, this.variation);
 
 		return false;
 	}
 
-  
-    function onCreate(event:ScriptEvent):Void {
+	function onCreate(event:ScriptEvent):Void {
 		super.onCreate(event);
 
 		blackScreen = new FlxSprite(-100, -100).makeGraphic(FlxG.width * 2, FlxG.height * 2, 0xFF000000);
@@ -49,12 +45,12 @@ class StarcraftPicoMixSong extends Song
 		}
 	}
 
-		function onSongRetry(event:ScriptEvent) {
+	function onSongRetry(event:ScriptEvent) {
 		super.onSongRetry(event);
-			blackScreen.alpha = 1;
-		}
+		blackScreen.alpha = 1;
+	}
 
-		function onStepHit(event:SongTimeScriptEvent):Void {
+	function onStepHit(event:SongTimeScriptEvent):Void {
 		super.onStepHit(event);
 
 		if (event.step == 4) {

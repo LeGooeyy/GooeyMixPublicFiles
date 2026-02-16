@@ -1,8 +1,8 @@
 {
   "version": "2.0.0",
   "scrollSpeed": {
-    "easy": 1,
-    "normal": 2,
+    "easy": 2,
+    "normal": 2.5,
     "hard": 3
   },
   "events": [
@@ -698,7 +698,7 @@
       "t": 81916.6666666667,
       "e": "PlayAnimation",
       "v": {
-	"anim": "attack",
+	"anim": "dadAttack",
 	"force": false,
 	"target": "boyfriend"
 }

@@ -3,17 +3,14 @@ import funkin.save.Save;
 import flixel.FlxG;
 import funkin.play.PlayState;
 import Date;
+import funkin.graphics.FunkinSprite;
 
-class DadbattleGooeyMixSong extends Song
-{
-  function new()
-  {
-    super('dadbattle',
-      {
-        variation: 'gooey'
-      });
-  }
-
+class DadbattleGooeyMixSong extends Song {
+	function new() {
+		super('dadbattle', {
+			variation: 'gooey'
+		});
+	}
 
 	override function onSongLoaded(event) {
 		super.onSongLoaded(event);
@@ -29,17 +26,44 @@ class DadbattleGooeyMixSong extends Song
 		}
 	}
 
-  function onCreate(event:ScriptEvent):Void {
+	var leGasp:FunkinSprite;
+
+	function onCreate(event:ScriptEvent):Void {
 		super.onCreate(event);
 
 		if (!FlxG.onMobile) {
 			PlayState.instance.discordRPCAlbum = "https://raw.githubusercontent.com/LeGooeyy/GooeyMixDiscordIcons/refs/heads/main/assets/album-covers/"
 				+ PlayState.instance.currentChart.album
 				+ ".png?raw=true";
-			PlayState.instance.discordRPCIcon = "https://raw.githubusercontent.com/LeGooeyy/GooeyMixDiscordIcons/refs/heads/main/assets/icons/"
-				+ PlayState.instance.currentChart.characters.opponent
-				+ ".png?raw=true?t="
-				+ Date.now().getTime();
 		}
+
+		leGasp = new FunkinSprite(682, 290).loadSparrow('erect/week1CrowdGasp', 'week1');
+		leGasp.animation.addByPrefix('gasp', 'gasp', 24, false);
+		leGasp.scrollFactor.set(0.8, 0.8);
+		PlayState.instance.currentStage.add(leGasp);
+		leGasp.zIndex = 6;
+		leGasp.alpha = 0;
+		PlayState.instance.currentStage.refresh();
+	}
+
+	function onStepHit(event:SongTimeScriptEvent):Void {
+		super.onStepHit(event);
+		if (PlayState.instance.currentInstrumental == "gooey" || PlayState.instance.currentInstrumental == "truegooey") {
+			if (event.step == 984) {
+				leGasp.alpha = 1;
+				PlayState.instance.currentStage.getNamedProp('crowd').alpha = 0;
+				leGasp.animation.play('gasp', true);
+			}
+			if (event.step == 1008) {
+				PlayState.instance.currentStage.getNamedProp('crowd').alpha = 1;
+				leGasp.alpha = 0;
+			}
+		}
+	}
+
+	function onSongRetry(event:ScriptEvent) {
+		super.onSongRetry(event);
+		PlayState.instance.currentStage.getNamedProp('crowd').alpha = 1;
+		leGasp.alpha = 0;
 	}
 }

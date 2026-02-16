@@ -4,7 +4,6 @@
   "renderType": "multianimateatlas",
   "assetPath": "shared:characters/gooey/Gooey",
   "flipX": true,
-  "singTime": 8.0,
   "cameraOffsets": [-1, -32],
   "death": {
     "cameraOffsets": [-40, 40]

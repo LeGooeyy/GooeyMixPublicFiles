@@ -8,27 +8,24 @@ import funkin.play.PlayState;
 import flixel.FlxG;
 import funkin.play.character.CharacterDataParser;
 
-
 class RadCharacter extends MultiSparrowCharacter {
 	function new() {
 		super('rad');
 	}
 
-		var radEye:BaseCharacter;
-		var refershedLol:Bool = false;
+	var radEye:BaseCharacter;
+	var refershedLol:Bool = false;
 
 	function onCreate(event:ScriptEvent) {
 		super.onCreate(event);
 
 		radEye = CharacterDataParser.fetchCharacter('rad-eye');
 		PlayState.instance.currentStage.add(radEye);
-
 	}
 
-		function onUpdate(event:UpdateScriptEvent) {
+	function onUpdate(event:UpdateScriptEvent) {
 		super.onUpdate(event);
-			if (!refershedLol) {
-		
+		if (!refershedLol) {
 			radEye.setPosition(this.x, this.y);
 			radEye.zIndex = this.zIndex + 1;
 			radEye.blend = 0;
@@ -52,7 +49,4 @@ class RadCharacter extends MultiSparrowCharacter {
 		animation.curAnim.finish();
 		playAnimation('idle', false);
 	}
-
-	
-
 }

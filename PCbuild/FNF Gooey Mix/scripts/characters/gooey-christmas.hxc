@@ -17,24 +17,6 @@ class GooeyChristmasPlayableCharacter extends MultiAnimateAtlasCharacter {
 		PauseSubState.musicSuffix = '-gooey';
 	}
 
-	function onNoteHit(event:HitNoteScriptEvent) {
-		if (PlayState.instance?.currentStage != null) {
-			if (event.note.noteData.getMustHitNote() && characterType == CharacterType.BF) {
-				switch (event.note.kind) {
-					case "hey":
-						holdTimer = 0;
-						this.playAnimation('hey', false);
-					case "cheer":
-						holdTimer = 0;
-						this.playAnimation('cheer', false);
-					default:
-						holdTimer = 0;
-						this.playSingAnimation(event.note.noteData.getDirection(), false);
-				}
-			}
-		}
-	}
-
 	override function onSongRetry(event:ScriptEvent):Void {
 		if (PlayState.instance?.currentStage != null) {
 			super.onSongRetry(event);

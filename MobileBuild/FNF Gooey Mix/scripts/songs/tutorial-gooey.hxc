@@ -4,17 +4,14 @@ import flixel.FlxG;
 import funkin.play.PlayState;
 import Date;
 
-class TutorialGooeyMixSong extends Song
-{
-  function new()
-  {
-    super('tutorial',
-      {
-        variation: 'gooey'
-      });
-  }
-  
-  	function onCreate(event:ScriptEvent):Void {
+class TutorialGooeyMixSong extends Song {
+	function new() {
+		super('tutorial', {
+			variation: 'gooey'
+		});
+	}
+
+	function onCreate(event:ScriptEvent):Void {
 		super.onCreate(event);
 
 		if (!FlxG.onMobile) {
@@ -26,5 +23,23 @@ class TutorialGooeyMixSong extends Song
 				+ ".png?raw=true?t="
 				+ Date.now().getTime();
 		}
+	}
+
+	public override function onCountdownStart(event:CountdownScriptEvent):Void {
+		super.onCountdownStart(event);
+		if (PlayState.instance?.currentStage != null)
+			synchronizeShader();
+	}
+
+	function synchronizeShader():Void {
+		if (PlayState.instance.currentStage.getDad().shader.brightness == -30)
+			return;
+		if (FlxG.save.data.gooeyShaders != true)
+			return;
+
+		PlayState.instance.currentStage.getDad().shader.brightness = -30;
+		PlayState.instance.currentStage.getDad().shader.hue = -9;
+		PlayState.instance.currentStage.getDad().shader.contrast = -4;
+		trace();
 	}
 }

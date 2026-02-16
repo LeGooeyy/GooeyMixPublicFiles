@@ -35,9 +35,9 @@ class GooeyMenuOption extends Module {
 			newIcon = 'Friday Night Funkin\'';
 			if (newIcon != curIcon) {
 				if (!FlxG.onMobile) {
-				WindowUtil.setWindowTitle('Friday Night Funkin\'');
-				CustomIcon.setIcon(Paths.image('boyfriendGameIcon'));
-				curIcon = newIcon;
+					WindowUtil.setWindowTitle('Friday Night Funkin\'');
+					CustomIcon.setIcon(Paths.image('boyfriendGameIcon'));
+					curIcon = newIcon;
 				}
 			}
 		}
@@ -47,9 +47,9 @@ class GooeyMenuOption extends Module {
 		newIcon = 'Gooey Mix';
 		if (newIcon != curIcon) {
 			if (!FlxG.onMobile) {
-			WindowUtil.setWindowTitle('Friday Night Funkin\': Gooey Mix');
-			CustomIcon.setIcon(Paths.image('gooeyGameIcon'));
-			curIcon = newIcon;
+				WindowUtil.setWindowTitle('Friday Night Funkin\': Gooey Mix');
+				CustomIcon.setIcon(Paths.image('gooeyGameIcon'));
+				curIcon = newIcon;
 			}
 		}
 	}
@@ -195,9 +195,8 @@ class GooeyMenuOption extends Module {
 		FlxG.state.gfDance.animation.addByPrefix('danceRight', 'rightFloraDance', 24, true);
 		FlxG.state.gfDance.animation.play('dance');
 		FlxG.state.gfDance.shader = FlxG.state.swagShader.shader;
-		FlxG.state.gfDance.visible = false;
 		FlxG.state.gfDance.x = 560;
-		FlxG.state.gfDance.y = 10;
+		FlxG.state.gfDance.y = 45;
 
 		FlxG.state.logoBl.frames = Paths.getSparrowAtlas('logoBumpin-gooey');
 		FlxG.state.logoBl.scale.x = 0.85;
@@ -206,7 +205,6 @@ class GooeyMenuOption extends Module {
 		FlxG.state.logoBl.y = -100;
 		FlxG.state.logoBl.animation.addByPrefix('bump', 'logo bumpin', 24, true);
 
-		FlxG.state.gfDance.visible = true;
 		gooeyWindow();
 	}
 }

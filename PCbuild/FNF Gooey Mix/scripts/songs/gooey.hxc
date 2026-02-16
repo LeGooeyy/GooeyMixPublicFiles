@@ -14,6 +14,9 @@ import flixel.text.FlxTextBorderStyle;
 import funkin.play.PlayStatePlaylist;
 import funkin.util.TouchUtil;
 import Date;
+import funkin.util.Sequence;
+import funkin.Conductor;
+import funkin.data.song.SongRegistry;
 
 class GooeySong extends Song {
 	function new() {
@@ -23,6 +26,8 @@ class GooeySong extends Song {
 	var hasPlayedCutscene:Bool = false;
 	var cutsceneSkipped:Bool = false;
 	var canSkipCutscene:Bool = false;
+
+	var gooeyCutSound:FunkinSound;
 
 	var isMobilePauseButtonPressed:Bool = false;
 
@@ -40,8 +45,6 @@ class GooeySong extends Song {
 			hasPlayedCutscene = true;
 
 			event.cancel(); // CANCEL THE COUNTDOWN!
-
-			preloadGooeyCut();
 			gooeyCut();
 		}
 	}
@@ -64,40 +67,22 @@ class GooeySong extends Song {
 		}
 	}
 
-	function onUpdate(event:UpdateScriptEvent):Void {
-		super.onUpdate(event);
+	var gooeyCutSequenceData:Array<SequenceData>;
 
-		if (cutsceneTimerManager != null)
-			cutsceneTimerManager.update(event.elapsed);
+	var cutsceneConductor:Conductor;
 
-		if (FlxG.onMobile) {
-			isMobilePauseButtonPressed = TouchUtil.overlapsComplex(PlayState.instance.pauseButton) && TouchUtil.justPressed;
-		}
-
-		if (PlayState.instance.controls.CUTSCENE_ADVANCE && cutsceneSkipped == false) {
-			if (canSkipCutscene == false) {
-				trace('cant skip yet!');
-				FlxTween.tween(skipText, {alpha: 1}, 0.5, {ease: FlxEase.quadOut});
-				new FlxTimer().start(0.5, _ -> {
-					canSkipCutscene = true;
-					trace('can skip!');
-				});
-			}
-		}
-		if (PlayState.instance.controls.CUTSCENE_ADVANCE
-			&& cutsceneSkipped == false
-			&& canSkipCutscene == true
-			|| isMobilePauseButtonPressed
-			&& cutsceneSkipped == false
-			&& canSkipCutscene == true) {
-			skipCutscene();
-			trace('skipped');
-		}
+	private inline function onCutsceneBeatHit():Void {
+		PlayState.instance.currentStage.getGirlfriend().dance(true);
+		PlayState.instance.currentStage.getBoyfriend().dance(true);
+		PlayState.instance.currentStage.getNamedProp('morphoBop').animation.play('idle');
+		PlayState.instance.currentStage.getNamedProp('cerealBop').animation.play('idle');
+		PlayState.instance.currentStage.getNamedProp('noodleBop').animation.play('idle');
+		PlayState.instance.currentStage.getNamedProp('blueBop').animation.play('idle');
+		PlayState.instance.currentStage.getNamedProp('radBop').animation.play('idle');
+		PlayState.instance.currentStage.getNamedProp('radEyeBop').animation.play('idle');
 	}
 
-	var cutsceneTimerManager:FlxTimerManager;
-
-	function preloadGooeyCut() {
+	function gooeyCut() {
 		skipText = new FlxText(936, 618, 0, 'Skip [ ' + PlayState.instance.controls.getDialogueNameFromToken("CUTSCENE_ADVANCE", true) + ' ]', 20);
 		skipText.setFormat(Paths.font('vcr.ttf'), 40, 0xFFFFFFFF, "right", FlxTextBorderStyle.OUTLINE, 0xFF000000);
 		skipText.scrollFactor.set();
@@ -111,7 +96,7 @@ class GooeySong extends Song {
 		PlayState.instance.camHUD.alpha = 0;
 		PlayState.instance.currentStage.getDad().visible = false;
 
-		fakeGooey = new FunkinSprite(0, 0).loadSparrow('gooeyMix/week60037/hotelCastle/GooeyCut');
+		fakeGooey = FunkinSprite.createTextureAtlas(0, 0, 'characters/gooey/GooeyCutscene', "shared");
 		fakeGooey.animation.addByPrefix('idle', 'balls', 12, false);
 		fakeGooey.animation.addByPrefix('walk', 'walk', 12, false);
 		fakeGooey.animation.addByPrefix('huh', 'huh', 12, false);
@@ -121,7 +106,7 @@ class GooeySong extends Song {
 		fakeGooey.animation.addByPrefix('hi', 'hi', 12, false);
 		fakeGooey.animation.play('idle');
 		PlayState.instance.currentStage.add(fakeGooey);
-		fakeGooey.setPosition(-447, 727); // moved down by 200
+		fakeGooey.setPosition(-1000, 800); // moved down by 200
 		fakeGooey.zIndex = 111;
 		fakeGooey.scrollFactor.set(1.1, 1.1);
 
@@ -162,146 +147,165 @@ class GooeySong extends Song {
 		theBois.zIndex = 302;
 		theBois.alpha = 0;
 
+		var gooeyPos:Array<Float> = [
+			PlayState.instance.currentStage.getDad().cameraFocusPoint.x,
+			PlayState.instance.currentStage.getDad().cameraFocusPoint.y
+		];
+
 		PlayState.instance.currentStage.refresh();
 		FlxG.camera.fade(0xFF000000, 1, true);
-		var gooeyPos:Array<Float> = [
-			PlayState.instance.currentStage.getDad().cameraFocusPoint.x,
-			PlayState.instance.currentStage.getDad().cameraFocusPoint.y
-		];
 		PlayState.instance.tweenCameraZoom(1.1, 0.5, true, FlxEase.expoOut);
 		PlayState.instance.tweenCameraToPosition(gooeyPos[0] - 700, gooeyPos[1] + 600, 3, FlxEase.expoOut);
-	}
 
-	function gooeyCut() {
-		var gooeyPos:Array<Float> = [
-			PlayState.instance.currentStage.getDad().cameraFocusPoint.x,
-			PlayState.instance.currentStage.getDad().cameraFocusPoint.y
-		];
+		songIntro = FunkinSound.load(Paths.music("cutscene/TheEpic", "shared"), true);
+		songIntro.play();
+		songIntro.volume = 0;
 
-		cutsceneTimerManager = new FlxTimerManager();
+		cutsceneConductor = new Conductor();
+
+		songIntro.fadeIn(1, 0, 1);
+
+		var songMusicData = SongRegistry.instance.parseMusicData("cutscene/TheEpic", "shared");
+		if (songMusicData != null)
+			cutsceneConductor.mapTimeChanges(songMusicData.timeChanges);
+
+		cutsceneConductor.onBeatHit.add(onCutsceneBeatHit);
+
 		PlayState.instance.isInCutscene = true;
 
-		new FlxTimer(cutsceneTimerManager).start(0.05, _ -> {
-			fakeGooey.animation.play('walk');
-		});
+		gooeyCutSequenceData = [
+			{time: 0.05, callback: () -> gooeyCutSound = fakeGooey.animation.play('walk')},
+			{
+				time: 0.365,
+				callback: () -> {
+					gooeyCutSound = FunkinSound.playOnce(Paths.sound('gooeyCutscene/GooeyCutSound1'), 1.0);
+				}
+			},
+			{
+				time: 3.5,
+				callback: () -> {
+					PlayState.instance.tweenCameraToPosition(gooeyPos[0] - 100, gooeyPos[1] + 300, 3, FlxEase.expoOut);
+					PlayState.instance.tweenCameraZoom(0.6, 3, true, FlxEase.expoOut);
+				}
+			},
+			{
+				time: 5.5,
+				callback: () -> {
+					fakeGooey.animation.play('huh');
+					PlayState.instance.tweenCameraToPosition(gooeyPos[0] - 1000, gooeyPos[1] + 500, 3, FlxEase.expoOut);
+					PlayState.instance.tweenCameraZoom(0.9, 3, true, FlxEase.expoOut);
+					gooeyCutSound = FunkinSound.playOnce(Paths.sound('gooeyCutscene/GooeyCutSound2'), 1.0);
+				}
+			},
+			{
+				time: 7.5,
+				callback: () -> {
+					PlayState.instance.tweenCameraToPosition(gooeyPos[0] - 850, gooeyPos[1] + 600, 2, FlxEase.quadInOut);
+					PlayState.instance.tweenCameraZoom(1, 2, true, FlxEase.quadInOut);
+					fakeGooey.animation.play('hmmm');
+					FlxTween.tween(bubble, {alpha: 1}, 2, {ease: FlxEase.quadInOut});
+					FlxTween.tween(bubble.scale, {x: 1, y: 1}, 2, {ease: FlxEase.quadInOut});
+				}
+			},
+			{
+				time: 9.5,
+				callback: () -> {
+					thoughts.animation.play('solike');
+					gooeyCutSound = FunkinSound.playOnce(Paths.sound('gooeyCutscene/GooeyCutSound3'), 1.0);
+				}
+			},
+			{time: 10, callback: () -> gooeyCutSound = thoughts.animation.play('imBrokeAF')},
+			{time: 10.5, callback: () -> gooeyCutSound = thoughts.animation.play('butWhatIf')},
+			{time: 11, callback: () -> gooeyCutSound = thoughts.animation.play('iRobMyFriends')},
+			{time: 11.5, callback: () -> gooeyCutSound = thoughts.animation.play('andUseTheMoney')},
+			{
+				time: 12,
+				callback: () -> {
+					thoughts.animation.play('toWin');
+					fakeGooey.animation.play('imSoSmart');
+				}
+			},
+			{time: 12.65, callback: () -> gooeyCutSound = thoughts.animation.play('andGetMOREmoney')},
+			{
+				time: 13.5,
+				callback: () -> gooeyCutSound = {
+					thoughts.animation.play('imSoFuckingSmart');
+					FlxTween.tween(bubble, {alpha: 0}, 1, {ease: FlxEase.quadInOut});
+				}
+			},
+			{time: 11.5, callback: () -> gooeyCutSound = thoughts.animation.play('andUseTheMoney')},
+			{
+				time: 14.5,
+				callback: () -> {
+					fakeGooey.animation.play('bye');
+					theBois.alpha = 1;
+					FlxTween.tween(theBois, {x: FlxG.width - theBois.width + 300}, 2, {ease: FlxEase.expoOut});
+					FlxTween.tween(theBois, {y: FlxG.height - theBois.height + 300}, 2, {ease: FlxEase.expoOut});
+					gooeyCutSound = FunkinSound.playOnce(Paths.sound('gooeyCutscene/GooeyCutSound4'), 1.0);
+				}
+			},
+			{time: 15.5, callback: () -> gooeyCutSound = theBois.animation.play('yoink')},
+			{
+				time: 16.5,
+				callback: () -> {
+					fakeGooey.setPosition(-1060, 716);
+					fakeGooey.scrollFactor.set(1, 1);
+					FlxTween.tween(theBois, {x: FlxG.width - theBois.width - 500}, 1, {ease: FlxEase.quadInOut});
+					FlxTween.tween(theBois, {y: FlxG.height - theBois.height - 500}, 1, {ease: FlxEase.quadInOut});
+				}
+			},
+			{
+				time: 17,
+				callback: () -> {
+					fakeGooey.animation.play('hi');
+					PlayState.instance.tweenCameraToPosition(gooeyPos[0], gooeyPos[1], 3, FlxEase.expoOut);
+					PlayState.instance.tweenCameraZoom(0.7, 3, true, FlxEase.expoOut);
+					theBois.alpha = 0;
+					gooeyCutSound = FunkinSound.playOnce(Paths.sound('gooeyCutscene/GooeyCutSound5'), 1.0);
+					fakeGooey.zIndex = 52;
+					PlayState.instance.currentStage.refresh();
+				}
+			},
+			{time: 18.85, callback: () -> gooeyCutSound = gooeyShaderApply()},
+			{
+				time: 19.5,
+				callback: () -> {
+					PlayState.instance.currentStage.getDad().visible = true;
+					fakeGooey.visible = false;
+					PlayState.instance.currentStage.getDad().playAnimation('hey', true);
+					PlayState.instance.currentStage.getBoyfriend().playAnimation('hey', true);
+					songIntro.fadeOut(1, 0);
 
-		new FlxTimer(cutsceneTimerManager).start(0.365, _ -> {
-			cutsceneMusic = FunkinSound.load(Paths.music("cutscene/TheEpic"), true);
-			cutsceneMusic.volume = 1;
-			cutsceneMusic.play(false);
+					new FlxTimer().start(1, _ -> {
+						songIntro.stop();
+					});
+				}
+			},
+			{
+				time: 20.5,
+				callback: () -> {
+					PlayState.instance.currentStage.getDad().playAnimation('idle', true);
+					PlayState.instance.currentStage.getBoyfriend().playAnimation('idle', true);
 
-			gooeyCutSound = FunkinSound.load(Paths.sound('gooeyCutscene/GooeyCutSound1'), 1.0, false);
-			gooeyCutSound.volume = 1;
-			gooeyCutSound.play(false);
-		});
+					fakeGooey.destroy();
+					theBois.destroy();
+					thoughts.destroy();
+					bubble.destroy();
 
-		new FlxTimer(cutsceneTimerManager).start(3.5, _ -> {
-			PlayState.instance.tweenCameraToPosition(gooeyPos[0] - 100, gooeyPos[1] + 300, 3, FlxEase.expoOut);
-			PlayState.instance.tweenCameraZoom(0.6, 3, true, FlxEase.expoOut);
-		});
-		new FlxTimer(cutsceneTimerManager).start(5.5, _ -> {
-			fakeGooey.animation.play('huh');
-			PlayState.instance.tweenCameraToPosition(gooeyPos[0] - 1000, gooeyPos[1] + 500, 3, FlxEase.expoOut);
-			PlayState.instance.tweenCameraZoom(0.9, 3, true, FlxEase.expoOut);
+					canSkipCutscene = false;
+					hasPlayedCutscene = true;
+					cutsceneSkipped = true;
+					PlayState.instance.isInCutscene = false;
+					skipText.visible = false;
 
-			gooeyCutSound = FunkinSound.load(Paths.sound('gooeyCutscene/GooeyCutSound2'), 1.0, false);
-			gooeyCutSound.volume = 1;
-			gooeyCutSound.play(false);
-		});
-		new FlxTimer(cutsceneTimerManager).start(7.5, _ -> {
-			PlayState.instance.tweenCameraToPosition(gooeyPos[0] - 850, gooeyPos[1] + 600, 2, FlxEase.quadInOut);
-			PlayState.instance.tweenCameraZoom(1, 2, true, FlxEase.quadInOut);
-			fakeGooey.animation.play('hmmm');
-			FlxTween.tween(bubble, {alpha: 1}, 2, {ease: FlxEase.quadInOut});
-			FlxTween.tween(bubble.scale, {x: 1, y: 1}, 2, {ease: FlxEase.quadInOut});
-		});
-		new FlxTimer(cutsceneTimerManager).start(9.5, _ -> {
-			thoughts.animation.play('solike');
-			gooeyCutSound = FunkinSound.load(Paths.sound('gooeyCutscene/GooeyCutSound3'), 1.0, false);
-			gooeyCutSound.volume = 1;
-			gooeyCutSound.play(false);
-		});
-		new FlxTimer(cutsceneTimerManager).start(10, _ -> {
-			thoughts.animation.play('imBrokeAF');
-		});
-		new FlxTimer(cutsceneTimerManager).start(10.5, _ -> {
-			thoughts.animation.play('butWhatIf');
-		});
-		new FlxTimer(cutsceneTimerManager).start(11, _ -> {
-			thoughts.animation.play('iRobMyFriends');
-		});
-		new FlxTimer(cutsceneTimerManager).start(11.5, _ -> {
-			thoughts.animation.play('andUseTheMoney');
-		});
-		new FlxTimer(cutsceneTimerManager).start(12, _ -> {
-			thoughts.animation.play('toWin');
-			fakeGooey.animation.play('imSoSmart');
-		});
-		new FlxTimer(cutsceneTimerManager).start(12.65, _ -> {
-			thoughts.animation.play('andGetMOREmoney');
-		});
-		new FlxTimer(cutsceneTimerManager).start(13.5, _ -> {
-			thoughts.animation.play('imSoFuckingSmart');
-			FlxTween.tween(bubble, {alpha: 0}, 1, {ease: FlxEase.quadInOut});
-		});
-		new FlxTimer(cutsceneTimerManager).start(14.5, _ -> {
-			fakeGooey.animation.play('bye');
-			theBois.alpha = 1;
-			FlxTween.tween(theBois, {x: FlxG.width - theBois.width + 300}, 2, {ease: FlxEase.expoOut});
-			FlxTween.tween(theBois, {y: FlxG.height - theBois.height + 300}, 2, {ease: FlxEase.expoOut});
-			gooeyCutSound = FunkinSound.load(Paths.sound('gooeyCutscene/GooeyCutSound4'), 1.0, false);
-			gooeyCutSound.volume = 1;
-			gooeyCutSound.play(false);
-		});
-		new FlxTimer(cutsceneTimerManager).start(15.5, _ -> {
-			theBois.animation.play('yoink');
-		});
-		new FlxTimer(cutsceneTimerManager).start(16.5, _ -> {
-			fakeGooey.setPosition(-447, 527);
-			fakeGooey.scrollFactor.set(1, 1);
-			FlxTween.tween(theBois, {x: FlxG.width - theBois.width - 500}, 1, {ease: FlxEase.quadInOut});
-			FlxTween.tween(theBois, {y: FlxG.height - theBois.height - 500}, 1, {ease: FlxEase.quadInOut});
-		});
-		new FlxTimer(cutsceneTimerManager).start(17, _ -> {
-			fakeGooey.animation.play('hi');
-			PlayState.instance.tweenCameraToPosition(gooeyPos[0], gooeyPos[1], 3, FlxEase.expoOut);
-			PlayState.instance.tweenCameraZoom(0.7, 3, true, FlxEase.expoOut);
-			theBois.alpha = 0;
-			gooeyCutSound = FunkinSound.load(Paths.sound('gooeyCutscene/GooeyCutSound5'), 1.0, false);
-			gooeyCutSound.volume = 1;
-			gooeyCutSound.play(false);
-		});
+					PlayState.instance.startCountdown();
 
-		new FlxTimer(cutsceneTimerManager).start(18.85, _ -> {
-			gooeyShaderApply();
-		});
+					FlxTween.tween(PlayState.instance.camHUD, {alpha: 1}, 1);
+				}
+			},
 
-		new FlxTimer(cutsceneTimerManager).start(19.5, _ -> {
-			PlayState.instance.currentStage.getDad().visible = true;
-			fakeGooey.visible = false;
-			PlayState.instance.currentStage.getDad().playAnimation('hey', true);
-			PlayState.instance.currentStage.getBoyfriend().playAnimation('hey', true);
-		});
-
-		new FlxTimer(cutsceneTimerManager).start(20.5, _ -> {
-			PlayState.instance.currentStage.getDad().playAnimation('idle', true);
-			PlayState.instance.currentStage.getBoyfriend().playAnimation('idle', true);
-
-			fakeGooey.destroy();
-			theBois.destroy();
-			thoughts.destroy();
-			bubble.destroy();
-
-			canSkipCutscene = false;
-			hasPlayedCutscene = true;
-			cutsceneSkipped = true;
-			PlayState.instance.isInCutscene = false;
-			skipText.visible = false;
-
-			PlayState.instance.startCountdown();
-
-			FlxTween.tween(PlayState.instance.camHUD, {alpha: 1}, 1);
-		});
+		];
+		gooeyCutSequence = new Sequence(gooeyCutSequenceData);
 	}
 
 	var currentShader = null;
@@ -313,7 +317,7 @@ class GooeySong extends Song {
 		fakeGooey.shader = rim;
 		rim.attachedSprite = fakeGooey;
 		rim.threshold = -1;
-		rim.angle = 67.5;
+		rim.angle = 101.25;
 		fakeGooey.animation.onFrameChange.add(function() {
 			rim.updateFrameInfo(fakeGooey.frame);
 		});
@@ -323,7 +327,7 @@ class GooeySong extends Song {
 		cutsceneSkipped = true;
 		hasPlayedCutscene = true;
 		PlayState.instance.camCutscene.fade(0xFF000000, 0.5, false, null, true);
-		cutsceneMusic.fadeOut(0.5, 0);
+		songIntro.fadeOut(0.5, 0);
 		if (gooeyCutSound != null) {
 			gooeyCutSound.fadeOut(0.5, 0);
 		}
@@ -331,8 +335,8 @@ class GooeySong extends Song {
 			PlayState.instance.justUnpaused = true;
 			PlayState.instance.camCutscene.fade(0xFF000000, 0.5, true, null, true);
 
-			cutsceneTimerManager.clear();
-			cutsceneMusic.stop();
+			gooeyCutSequence.destroy();
+			songIntro.stop();
 			if (gooeyCutSound != null) {
 				gooeyCutSound.stop();
 			}
@@ -358,5 +362,34 @@ class GooeySong extends Song {
 			PlayState.instance.tweenCameraZoom(0.8, 2, true, FlxEase.expoOut);
 			FlxTween.tween(PlayState.instance.camHUD, {alpha: 1}, 1);
 		});
+	}
+
+	function onUpdate(event:UpdateScriptEvent):Void {
+		super.onUpdate(event);
+
+		if (PlayState.instance.isInCutscene && cutsceneConductor != null) {
+			cutsceneConductor.update(songIntro.time);
+		}
+
+		if (FlxG.onMobile) {
+			isMobilePauseButtonPressed = TouchUtil.overlapsComplex(PlayState.instance.pauseButton) && TouchUtil.justPressed;
+		}
+
+		if ((PlayState.instance.controls.CUTSCENE_ADVANCE || isMobilePauseButtonPressed) && !cutsceneSkipped) {
+			if (!canSkipCutscene) {
+				trace('cant skip yet!');
+				if (skipText != null) {
+					FlxTween.tween(skipText, {alpha: 1}, 0.5, {ease: FlxEase.quadOut});
+					new FlxTimer().start(0.5, _ -> {
+						canSkipCutscene = true;
+						trace('can skip!');
+					});
+				}
+			}
+		}
+		if ((PlayState.instance.controls.CUTSCENE_ADVANCE || isMobilePauseButtonPressed) && !cutsceneSkipped && canSkipCutscene) {
+			skipCutscene();
+			trace('skipped');
+		}
 	}
 }

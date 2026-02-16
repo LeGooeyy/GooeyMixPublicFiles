@@ -4,7 +4,6 @@
   "renderType": "multianimateatlas",
   "assetPath": "shared:characters/gooey/Gooey",
   "flipX": true,
-  "singTime": 8.0,
   "cameraOffsets": [-1, -32],
   "death": {
     "cameraOffsets": [-280, -140]
@@ -72,50 +71,56 @@
       "name": "singLEFTmiss",
       "prefix": "GooeyMissLeft",
       "assetPath": "shared:characters/gooey/GooeyPlayerAnims",
-      "offsets": [417.5,267.5]
+      "offsets": [442.5, 264]
     },
     {
       "name": "singDOWNmiss",
       "prefix": "GooeyMissDown",
       "assetPath": "shared:characters/gooey/GooeyPlayerAnims",
-      "offsets": [417.5,267.5]
+      "offsets": [442.5, 264]
     },
     {
       "name": "singUPmiss",
       "prefix": "GooeyMissUp",
       "assetPath": "shared:characters/gooey/GooeyPlayerAnims",
-      "offsets": [417.5,267.5]
+      "offsets": [442.5, 264]
     },
     {
       "name": "singRIGHTmiss",
       "prefix": "GooeyMissRight",
       "assetPath": "shared:characters/gooey/GooeyPlayerAnims",
-      "offsets": [417.5,267.5]
+      "offsets": [442.5, 264]
     },
     {
       "name": "GooeyQTwave",
       "prefix": "GooeyQTwave",
-      "offsets": [-66.5,-11.25],
-      "assetPath": "shared:characters/gooey/GooeyQT"
+      "assetPath": "shared:characters/gooey/GooeyQTAnims",
+      "offsets": [-56.5,0]
+    },
+    {
+      "name": "GooeyBirdBrain",
+      "prefix": "GooeyBirdBrain",
+      "assetPath": "shared:characters/gooey/GooeyQTAnims",
+      "offsets": [-56.5,0]
     },
     {
       "name": "firstDeath",
       "prefix": "GooeyDies",
       "assetPath": "shared:characters/gooey/GooeyGameOver",
-      "offsets": [19, -21]
+      "offsets": [18, -19]
     },
     {
       "name": "deathLoop",
       "prefix": "GooeyDeadIdle",
       "assetPath": "shared:characters/gooey/GooeyGameOver",
-      "offsets": [19, -21],
+      "offsets": [18, -19],
       "looped": true
     },
     {
       "name": "deathConfirm",
       "prefix": "GooeyConfirm",
       "assetPath": "shared:characters/gooey/GooeyGameOver",
-      "offsets": [19, -21]
+      "offsets": [18, -19]
     }
   ]
 }

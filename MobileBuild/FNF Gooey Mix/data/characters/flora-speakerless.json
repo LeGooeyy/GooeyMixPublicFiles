@@ -1,53 +1,93 @@
 {
   "version": "1.0.0",
   "name": "Flora (Speakerless)",
-  "assetPath": "characters/flora/Flora",
+  "assetPath": "shared:characters/flora/Flora",
   "startingAnimation": "danceRight",
-  "renderType": "multisparrow",
-  "singTime": 8.0,
-  "cameraOffsets": [0, 0],
+  "renderType": "multianimateatlas",
   "healthIcon": {
-    "offsets": [0, 0],
-    "id": "flora",
-    "flipX": false,
-    "isPixel": false,
-    "scale": 1
+    "id": "flora"
   },
   "animations": [
     {
       "name": "danceLeft",
-      "prefix": "idleLeft",
-      "offsets": [-20, 180]
+      "prefix": "FloraIdleLeft",
+      "offsets": [5, 205]
     },
     {
       "name": "danceRight",
-      "prefix": "idleRight",
-      "offsets": [-20, 180]
+      "prefix": "FloraIdleRight",
+      "offsets": [5, 205]
     },
     {
       "name": "combo50",
-      "prefix": "combo50",
-      "offsets": [-20, 180]
+      "prefix": "Flora50Combo",
+      "offsets": [5, 205]
     },
-        {
+    {
       "name": "combo200",
-      "prefix": "combo200",
-      "offsets": [-20, 180]
+      "prefix": "Flora200Combo",
+      "offsets": [5, 205]
+    },
+    {
+      "name": "danceLeft-alt",
+      "prefix": "FloraAltIdleLeft",
+      "offsets": [5, 205]
+    },
+    {
+      "name": "danceRight-alt",
+      "prefix": "FloraAltIdleRight",
+      "offsets": [5, 205]
+    },
+    {
+      "name": "danceLeft-trans",
+      "prefix": "FloraAltIdleLeft",
+      "offsets": [5, 205],
+      "frameIndices": [
+        1,2,3,4,5,6,7,8,9,10
+      ]
+    },
+    {
+      "name": "danceRight-trans",
+      "prefix": "FloraAltIdleRight",
+      "offsets": [5, 205],
+      "frameIndices": [
+        1,2,3,4,5,6,7,8,9,10
+      ]
     },
     {
       "name": "drop70",
-      "prefix": "comboBreak",
-      "offsets": [-20, 180]
+      "prefix": "FloraBreakCombo",
+      "offsets": [5, 205]
     },
     {
       "name": "scared",
-      "prefix": "scared",
-      "offsets": [-20, 180]
+      "prefix": "FloraScared",
+      "offsets": [5, 205]
     },
     {
       "name": "cheer",
-      "prefix": "combo50",
-      "offsets": [-20, 180]
+      "prefix": "Flora50Combo",
+      "offsets": [5, 205]
+    },
+     {
+      "name": "singLEFT",
+      "prefix": "FloraSingLeft",
+      "offsets": [5, 205]
+    },
+    {
+      "name": "singDOWN",
+      "prefix": "FloraSingDown",
+      "offsets": [5, 205]
+    },
+    {
+      "name": "singUP",
+      "prefix": "FloraSingUp",
+      "offsets": [5, 205]
+    },
+    {
+      "name": "singRIGHT",
+      "prefix": "FloraSingRight",
+      "offsets": [5, 205]
     }
   ]
 }

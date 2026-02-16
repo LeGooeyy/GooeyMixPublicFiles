@@ -22,7 +22,6 @@ class MorphoModeOption extends Module {
 			FlxG.save.data.morphoMode = 'Off';
 	}
 
-
 	public function onStateChangeEnd(event:StateChangeScriptEvent) {
 		if (Std.isOfType(event.targetState, OptionsState)) {
 			if (event.targetState.optionsCodex.pages.get("preferences") != null) {
@@ -53,18 +52,20 @@ class MorphoModeOption extends Module {
 			}
 
 			// im to lazy to get Spooky Week 2 and Spooky Blazin to work lol
+			// also skipping some remnants stuff cuz im tired but got all the main ones just missing the bonus songs
 			if (PlayState.instance.currentStageId != "phillyBlazin"
 				&& PlayState.instance.currentStageId != "phillyBlazinErect"
 				&& PlayState.instance.currentStageId != "phillyStreetsErect"
 				&& PlayState.instance.currentStageId != "phillyStreetsSpooky"
 				&& PlayState.instance.currentStageId != "schoolSpooky"
+				&& PlayState.instance.currentStageId != "phillyStreetsGooey"
 				&& PlayState.instance.currentStageId != "hotelCastle"
 				&& PlayState.instance.currentStageId != "phillyCity") {
 				morphoModeDancer = new FunkinSprite(900, 130).loadSparrow('characters/morpho/morphoMode');
 			}
 
 			switch (PlayState.instance.currentStageId) {
-				case 'phillyBlazin', 'phillyBlazinErect', 'phillyStreetsErect', 'phillyStreetsSpooky':
+				case 'phillyBlazin', 'phillyBlazinErect', 'phillyStreetsErect', 'phillyStreetsSpooky', 'phillyStreetsGooey':
 					morphoModeDancer = new FunkinSprite(900, 130).loadSparrow('characters/morpho/morphoModeBlur');
 				case 'hotelCastle':
 					morphoModeDancer = new FunkinSprite(900, 130).loadSparrow('characters/morpho/morphoModeHotel');
@@ -95,11 +96,11 @@ class MorphoModeOption extends Module {
 					if (PlayState.instance.currentSong.id.toLowerCase() == "comedian-rad-mix") {
 						morphoModeDancer.alpha = 0;
 					}
-				case 'mainStage':
+				case 'mainStage', 'mainStageRemnants':
 					morphoModeDancer.x = 900;
 					morphoModeDancer.y = 130;
 					morphoModeDancer.zIndex = 29;
-				case 'spookyMansion':
+				case 'spookyMansion', 'spookyMansionRemnants', 'spookyMansionSonic':
 					morphoModeDancer.x = -300;
 					morphoModeDancer.y = 150;
 					morphoModeDancer.zIndex = 50;
@@ -107,7 +108,11 @@ class MorphoModeOption extends Module {
 					morphoModeDancer.x = 1000;
 					morphoModeDancer.y = 130;
 					morphoModeDancer.zIndex = 150;
-				case 'limoRide', 'limoRideErect', 'limoRideSpooky', 'limoRideErectGooey':
+				case 'phillyTrainRemnants':
+					morphoModeDancer.x = 1000;
+					morphoModeDancer.y = 180;
+					morphoModeDancer.zIndex = 150;
+				case 'limoRide', 'limoRideErect', 'limoRideSpooky', 'limoRideErectGooey', 'limoRideRemnants':
 					PlayState.instance.currentStage.getNamedProp('limoDancer1').alpha = 0;
 					PlayState.instance.currentStage.getNamedProp('limoDancer2').alpha = 0;
 					morphoModeDancer.x = 200;
@@ -119,8 +124,12 @@ class MorphoModeOption extends Module {
 					morphoModeDancer.x = 1200;
 					morphoModeDancer.y = 130;
 					morphoModeDancer.zIndex = 90;
+				case 'mallXmasRemnants':
+					morphoModeDancer.x = 1100;
+					morphoModeDancer.y = -1000;
+					morphoModeDancer.zIndex = 301;
 				case 'school', 'schoolEvil', 'schoolEvilGooey', 'schoolEvilSpooky', 'schoolEvilErect', 'schoolErect', 'schoolHuggy', 'schoolSpooky',
-					'schoolPico', 'schoolGooey':
+					'schoolPico', 'schoolGooey', 'schoolRemnants', 'schoolEvilRemnants':
 					morphoModeDancer.scale.set(0.75, 0.75);
 					morphoModeDancer.x = 1100;
 					morphoModeDancer.y = 260;
@@ -128,7 +137,7 @@ class MorphoModeOption extends Module {
 					if (PlayState.instance.currentStageId == "schoolSpooky" || PlayState.instance.currentStageId == "schoolEvilSpooky") {
 						morphoModeDancer.x = 1000;
 					}
-				case 'tankmanBattlefield':
+				case 'tankmanBattlefield', 'tankmanBattlefieldRemnants':
 					morphoModeDancer.x = 950;
 					morphoModeDancer.y = 130;
 					morphoModeDancer.zIndex = 101;
@@ -141,12 +150,17 @@ class MorphoModeOption extends Module {
 					morphoModeDancer.x = 1400;
 					morphoModeDancer.y = 170;
 					morphoModeDancer.zIndex = 150;
-				case 'phillyBlazin', 'phillyStreets', 'phillyStreetsSpooky', 'phillyStreetsErect':
+				case 'phillyBlazin', 'phillyStreets', 'phillyStreetsSpooky', 'phillyStreetsErect', 'phillyStreetsGooey', 'phillyBlazinRemnants':
 					morphoModeDancer.scale.set(0.4, 0.4);
 					morphoModeDancer.scrollFactor.set(0.7, 1);
 					morphoModeDancer.x = 1400;
 					morphoModeDancer.y = 530;
 					morphoModeDancer.zIndex = 39;
+				case 'phillyStreetsRemnants':
+					morphoModeDancer.x = 800;
+					morphoModeDancer.y = 600;
+					morphoModeDancer.zIndex = 70;
+					morphoModeDancer.scale.set(0.6, 0.6);
 				case 'mainStageErect', 'mainStageErectGooey', 'mainStageSpooky', 'mainStageParappa':
 					morphoModeDancer.x = 1050;
 					morphoModeDancer.y = 130;
@@ -163,9 +177,9 @@ class MorphoModeOption extends Module {
 					morphoModeDancer.y = 250;
 					morphoModeDancer.zIndex = 400;
 				case 'drippypopErectGooey':
-					morphoModeDancer.x = 1300;
-					morphoModeDancer.y = -450;
-					morphoModeDancer.zIndex = 55;
+					morphoModeDancer.x = 1100;
+					morphoModeDancer.y = -80;
+					morphoModeDancer.zIndex = 82;
 				case 'phillyCity':
 					morphoModeDancer.scale.set(0.55, 0.55);
 					morphoModeDancer.scrollFactor.set(0.85, 1);
@@ -208,6 +222,11 @@ class MorphoModeOption extends Module {
 					morphoModeDancer.x = 1200;
 					morphoModeDancer.y = 350;
 					morphoModeDancer.zIndex = 299;
+				case 'qtStagePico':
+					morphoModeDancer.x = 600;
+					morphoModeDancer.y = -250;
+					morphoModeDancer.zIndex = 13;
+					morphoModeDancer.scale.set(0.6, 0.6);
 				case 'fuegoStreets':
 					morphoModeDancer.x = 300;
 					morphoModeDancer.y = 200;
@@ -268,17 +287,27 @@ class MorphoModeOption extends Module {
 					morphoModeDancer.x = 1000;
 					morphoModeDancer.y = 500;
 					morphoModeDancer.zIndex = 600;
-					
-
-
+				case 'emeraldCoast', 'emeraldCoastSunset':
+					morphoModeDancer.x = 1000;
+					morphoModeDancer.y = 150;
+					morphoModeDancer.zIndex = 99;
+				case 'phillyTrainSonic':
+					morphoModeDancer.x = 1500;
+					morphoModeDancer.y = 150;
+					morphoModeDancer.zIndex = 99;
+				case 'phillyStreetsSonic':
+					morphoModeDancer.x = 1500;
+					morphoModeDancer.y = 400;
+					morphoModeDancer.zIndex = 3;
+					morphoModeDancer.scale.set(0.6, 0.6);
 			} // offsets
 
 			if (FlxG.save.data.gooeyShaders != false) {
 				switch (PlayState.instance.currentStageId) {
-					case 'phillyTrainErect', 'phillyTrainErectH', 'limoRide', 'limoRideSpooky', 'limoRideErectGooey', 'limoRideErect', 'mallXmasSpooky', 'mallEvilSpooky',
-						'mallXmasErect', 'mallXmasHuggy', 'tankmanBattlefieldSpooky', 'phillyStreets', 'phillyStreetsErect', 'phillyStreetsSpooky', 'phillyBlazin',
-						'phillyBlazinErect', 'mainStageErect', 'mainStageErectGooey', 'mainStageSpooky', 'mainStageParappa', 'drippypopErectGooey',
-						'pizzaPlace', 'gummibarVoid':
+					case 'phillyTrainErect', 'phillyTrainErectH', 'limoRide', 'limoRideSpooky', 'limoRideErectGooey', 'limoRideErect', 'mallXmasSpooky',
+						'mallEvilSpooky', 'mallXmasErect', 'mallXmasHuggy', 'tankmanBattlefieldSpooky', 'phillyStreets', 'phillyStreetsErect',
+						'phillyStreetsSpooky', 'phillyStreetsGooey', 'phillyBlazin', 'phillyBlazinErect', 'mainStageErect', 'mainStageErectGooey',
+						'mainStageSpooky', 'mainStageParappa', 'pizzaPlace', 'gummibarVoid', 'emeraldCoastSunset', 'spookyMansionSonic', 'phillyStreetsSonic':
 						morphoColorShade = new AdjustColorShader();
 
 						switch (PlayState.instance.currentStageId) {
@@ -318,7 +347,7 @@ class MorphoModeOption extends Module {
 							case 'tankmanBattlefieldSpooky':
 								morphoColorShade.brightness = -5;
 								morphoColorShade.saturation = -15;
-							case 'phillyStreets', 'phillyStreetsErect':
+							case 'phillyStreets', 'phillyStreetsErect', 'phillyStreetsGooey':
 								morphoColorShade.hue = -10;
 								morphoColorShade.saturation = -40;
 								morphoColorShade.contrast = -50;
@@ -338,11 +367,6 @@ class MorphoModeOption extends Module {
 								morphoColorShade.hue = 4;
 								morphoColorShade.contrast = 7;
 								morphoColorShade.saturation = 0;
-							case 'drippypopErectGooey':
-								morphoColorShade.brightness = -5;
-								morphoColorShade.hue = -26;
-								morphoColorShade.contrast = 0;
-								morphoColorShade.saturation = -12;
 							case 'pizzaPlace':
 								morphoColorShade.brightness = -8;
 								morphoColorShade.hue = -6;
@@ -353,6 +377,21 @@ class MorphoModeOption extends Module {
 								morphoColorShade.saturation = -5;
 								morphoColorShade.contrast = 5;
 								morphoColorShade.brightness = -5;
+							case 'emeraldCoastSunset':
+								morphoColorShade.brightness = -11;
+								morphoColorShade.contrast = -20;
+								morphoColorShade.saturation = 2;
+								morphoColorShade.hue = -6;
+							case 'spookyMansionSonic':
+								morphoColorShade.brightness = -30;
+								morphoColorShade.contrast = 12;
+								morphoColorShade.saturation = -18;
+								morphoColorShade.hue = -5;
+							case 'phillyStreetsSonic':
+								morphoColorShade.brightness = -20;
+								morphoColorShade.contrast = -25;
+								morphoColorShade.saturation = -40;
+								morphoColorShade.hue = -5;
 						}
 						morphoModeDancer.shader = morphoColorShade;
 					case 'schoolErect', 'schoolPico', 'schoolGooey', 'schoolHuggy', 'schoolEvilGooey', 'schoolEvilSpooky', 'tankmanBattlefieldErect',
@@ -404,7 +443,6 @@ class MorphoModeOption extends Module {
 								rim.setAdjustColor(-50, -17, 0, -40);
 								rim.color = 0xFFFFFFFF;
 								rim.angle = 180;
-								
 						}
 						rim.attachedSprite = morphoModeDancer;
 						morphoModeDancer.shader = rim;

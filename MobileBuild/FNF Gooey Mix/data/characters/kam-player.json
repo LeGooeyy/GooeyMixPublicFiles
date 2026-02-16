@@ -4,7 +4,6 @@
   "renderType": "multisparrow",
   "assetPath": "characters/kam/KamPlayer",
   "flipX": true,
-  "singTime": 8.0,
   "cameraOffsets": [0, 144],
   "healthIcon": {
     "id": "kam"

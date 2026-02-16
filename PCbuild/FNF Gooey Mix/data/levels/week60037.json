@@ -7,7 +7,7 @@
     {
       "assetPath": "storymenu/props/gooey-vs",
       "scale": 0.6,
-      "offsets": [-60, -50],
+      "offsets": [20, 10],
       "animations": [
         {
           "name": "idle",

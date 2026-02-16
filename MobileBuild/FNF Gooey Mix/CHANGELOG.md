@@ -3,6 +3,47 @@ All notable changes will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [4.2.0] - 2026-2-16
+Detour 1 Mini Update 2
+
+### Added
+
+- Added a new Idle animation to Flora when you reach a 200 Combo
+- Added new sing animations to Flora
+- Added new Original Art and Vocals to Drippypop (Gooey Mix)
+- Added new Album Art for Drippypop (Gooey Mix)
+- Added new vocals to Tutorial (Gooey Mix)
+- Added a new texture for Album Text for extra songs in freeplay
+- Added Morpho Mode support for 2 more mods:
+  - Friday Night Funkin': Remnants
+  - SONIC JAM
+- Added 3 more people to the Special Thanks in the credits
+- Added week name titles to the freeplay capsules for the Extra Songs, Tutorial, Spaghetti, and some other mods
+- Added the characters nodding during the Gooey cutscene
+
+### Changed
+
+- Improved the art on all of Gooey's sprites
+- Improved the art on all of Flora's sprites and turned them into Texture Atlases
+- Improved the visuals for the Starcraft cutscene
+- Remade all the in game cutscenes to be Sequences for optimization
+- Updated the background for the Nat Crystal (Hotel Castle Erect) to be more accurate
+- Changed it so Extra Songs are now hidden in freeplay until you beat them
+- Changed Blissful (Gooey Mix) to use the QT Pico stage (will use the Erect stage once it releases)
+- Changed Gooey in Blissful to play the dance animation instead of using a seperate sprite
+- Increased the volume of Morpho's vocals in Comedian (Gooey Mix)
+
+### Fixed
+
+- Fixed the Nat Crystal not showing up when selecting a song in Freeplay
+- Fixed Senpai and Roses (Pico Mix) not loading properly
+- Fixed Gooey's offsets breaking during the Gooey cutscene
+- Fixed a bunch of bugs that I forgot about
+- Fixed Flora's offsets on Blissful (Gooey Mix)
+- [MOBILE] Fixed not being able to skip cutscenes on Mobile
+
+
+
 ## [4.1.2] - 2026-1-9
 Detour 1 Hotfix 3
 

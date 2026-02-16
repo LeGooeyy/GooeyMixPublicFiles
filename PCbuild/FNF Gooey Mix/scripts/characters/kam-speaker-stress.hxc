@@ -43,61 +43,59 @@ class KamSpeakerStressCharacter extends MultiSparrowCharacter {
 		super.onCreate(event);
 
 		if (PlayState.instance?.currentStage != null) {
-		floraSpeaker = new FunkinSprite(0, 0).loadSparrow('characters/flora/FloraSpeaker');
-		floraSpeaker.animation.addByPrefix('idle', 'floraBop', 12, false);
-		floraSpeaker.animation.play('idle');
-		floraSpeaker.animation.curAnim.finish();
-		PlayState.instance.currentStage.add(floraSpeaker);
+			floraSpeaker = FunkinSprite.createTextureAtlas(0, 0, "characters/flora/FloraSpeaker", "shared");
+			floraSpeaker.animation.addByPrefix('FloraSpeakerBop', 'FloraSpeakerBop', 24, false);
+			floraSpeaker.animation.play('FloraSpeakerBop');
+			PlayState.instance.currentStage.add(floraSpeaker);
 
-		adjustColor = new AdjustColorShader();
+			if (FlxG.save.data.gooeyShaders != false) {
+				adjustColor = new AdjustColorShader();
 
-		adjustColor.hue = -10;
-		adjustColor.saturation = -20;
-		adjustColor.brightness = -30;
-		adjustColor.contrast = -25;
-
-		if (FlxG.save.data.gooeyShaders != false) {
-			floraSpeaker.shader = adjustColor;
-		}
-
-		this.playAnimation('idle', true, true);
-
-		initTimemap();
-
-		speakerLights = new FunkinSprite(0, 0).loadSparrow('characters/flora/FloraLights');
-		speakerLights.animation.addByPrefix('idle', 'lightBop', 12, false);
-		speakerLights.animation.addByPrefix('frozenLight', 'frozenLight', 12, false);
-		speakerLights.animation.addByPrefix('50combo', '50combo', 24, false);
-		speakerLights.animation.addByPrefix('200combo', '200combo', 24, false);
-		speakerLights.animation.addByPrefix('lossCombo', 'lossCombo', 24, false);
-		speakerLights.animation.play('idle');
-		PlayState.instance.currentStage.add(speakerLights);
-
-		visualizerFlora = new FunkinSprite().makeGraphic(115, 70); // makeGraphic so it will actually update the shader <3
-		PlayState.instance.currentStage.add(visualizerFlora);
-		visualizerFlora.visible = false;
-
-		muzzleFlash = new FlxSprite(0, 0);
-		muzzleFlash.frames = Paths.getSparrowAtlas("characters/kam/kam_flashes");
-		muzzleFlash.animation.addByPrefix('shoot1', 'shoot back0', 24, false);
-		muzzleFlash.animation.addByPrefix('shoot2', 'shoot back low0', 24, false);
-		muzzleFlash.animation.addByPrefix('shoot3', 'shoot forward0', 24, false);
-		muzzleFlash.animation.addByPrefix('shoot4', 'shoot forward low0', 24, false);
-		muzzleFlash.animation.addByPrefix('blank', 'blank', 24, false);
-		muzzleFlash.animation.play('blank', true);
-		PlayState.instance.currentStage.add(muzzleFlash);
-
-		muzzleFlash.animation.onFrameChange.add(function() {
-			updateMuzzle();
-		});
-
-		speakerLights.animation.onFinish.add(function(animName:String) {
-			if (animName == "50combo" || animName == "200combo" || animName == "lossCombo") {
-				comboFloraCheck == true;
-				visualizerFlora.visible = true;
-				speakerLights.animation.play('frozenLight', true);
+				adjustColor.hue = -10;
+				adjustColor.saturation = -20;
+				adjustColor.brightness = -30;
+				adjustColor.contrast = -25;
+				floraSpeaker.shader = adjustColor;
 			}
-		});
+
+			this.playAnimation('idle', true, true);
+
+			initTimemap();
+
+			speakerLights = new FunkinSprite(0, 0).loadSparrow('characters/flora/FloraLights');
+			speakerLights.animation.addByPrefix('idle', 'lightBop', 12, false);
+			speakerLights.animation.addByPrefix('frozenLight', 'frozenLight', 12, false);
+			speakerLights.animation.addByPrefix('50combo', '50combo', 24, false);
+			speakerLights.animation.addByPrefix('200combo', '200combo', 24, false);
+			speakerLights.animation.addByPrefix('lossCombo', 'lossCombo', 24, false);
+			speakerLights.animation.play('idle');
+			PlayState.instance.currentStage.add(speakerLights);
+
+			visualizerFlora = new FunkinSprite().makeGraphic(115, 70); // makeGraphic so it will actually update the shader <3
+			PlayState.instance.currentStage.add(visualizerFlora);
+			visualizerFlora.visible = false;
+
+			muzzleFlash = new FlxSprite(0, 0);
+			muzzleFlash.frames = Paths.getSparrowAtlas("characters/kam/kam_flashes");
+			muzzleFlash.animation.addByPrefix('shoot1', 'shoot back0', 24, false);
+			muzzleFlash.animation.addByPrefix('shoot2', 'shoot back low0', 24, false);
+			muzzleFlash.animation.addByPrefix('shoot3', 'shoot forward0', 24, false);
+			muzzleFlash.animation.addByPrefix('shoot4', 'shoot forward low0', 24, false);
+			muzzleFlash.animation.addByPrefix('blank', 'blank', 24, false);
+			muzzleFlash.animation.play('blank', true);
+			PlayState.instance.currentStage.add(muzzleFlash);
+
+			muzzleFlash.animation.onFrameChange.add(function() {
+				updateMuzzle();
+			});
+
+			speakerLights.animation.onFinish.add(function(animName:String) {
+				if (animName == "50combo" || animName == "200combo" || animName == "lossCombo") {
+					comboFloraCheck == true;
+					visualizerFlora.visible = true;
+					speakerLights.animation.play('frozenLight', true);
+				}
+			});
 		}
 	}
 
@@ -110,7 +108,7 @@ class KamSpeakerStressCharacter extends MultiSparrowCharacter {
 	override function dance(force) {
 		super.dance(force);
 		if (floraSpeaker != null)
-			floraSpeaker.animation.play('idle', true);
+			floraSpeaker.animation.play('FloraSpeakerBop', true);
 		if (speakerLights != null) {
 			if (!comboAnims.contains(speakerLights.animation?.curAnim?.name)
 				|| (comboAnims.contains(speakerLights.animation?.curAnim?.name) && speakerLights.animation?.finished)) {
@@ -195,29 +193,24 @@ class KamSpeakerStressCharacter extends MultiSparrowCharacter {
 		super.onUpdate(event);
 
 		if (!refershedLol && PlayState.instance?.currentStage != null) {
-			floraSpeaker.x = this.x + 600;
-			floraSpeaker.y = this.y + 670;
+			floraSpeaker.x = this.x + 590;
+			floraSpeaker.y = this.y + 675;
 			floraSpeaker.zIndex = this.zIndex - 2;
-			PlayState.instance.currentStage.add(floraSpeaker);
 
-			speakerLights.x = floraSpeaker.x - 30;
+			speakerLights.x = floraSpeaker.x - 5;
 			speakerLights.y = floraSpeaker.y - 10;
 			speakerLights.zIndex = floraSpeaker.zIndex + 1;
-
-			visualizerFlora.x = speakerLights.x + 332;
-			visualizerFlora.y = speakerLights.y + 162;
-			visualizerFlora.zIndex = speakerLights.zIndex + 1;
-			PlayState.instance.currentStage.add(speakerLights);
 			speakerLights.blend = 0;
+
+			visualizerFlora.x = floraSpeaker.x + 327;
+			visualizerFlora.y = floraSpeaker.y + 152;
+			visualizerFlora.zIndex = speakerLights.zIndex + 1;
 
 			muzzleFlash.zIndex = this.zIndex + 1;
 			muzzleFlash.blend = 0;
 
 			PlayState.instance.currentStage.refresh();
 			refershedLol = true;
-
-			floraSpeaker.x -= 30;
-			floraSpeaker.y -= 10;
 		}
 
 		lineStyle = FlxSpriteUtil.getDefaultLineStyle({

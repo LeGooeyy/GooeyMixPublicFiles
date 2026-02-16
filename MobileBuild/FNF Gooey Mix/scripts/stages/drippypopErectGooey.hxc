@@ -1,157 +1,77 @@
-import funkin.graphics.shaders.AdjustColorShader;
 import funkin.play.PlayState;
 import funkin.play.stage.Stage;
-import flixel.addons.display.FlxBackdrop;
-import flixel.util.FlxTimer;
+import flixel.tweens.FlxEase;
+import funkin.graphics.FunkinSprite;
+import flixel.tweens.FlxTween;
+import openfl.filters.ShaderFilter;
+import flixel.addons.display.FlxRuntimeShader;
 import flixel.FlxG;
 
-class DrippyPopErectGooeyStage extends Stage
-{
-	var singDir:Array<String> = ['LEFT', 'DOWN', 'UP', 'RIGHT'];
-	function new()
-	{
+class DrippyPopErectGooeyStage extends Stage {
+	function new() {
 		super('drippypopErectGooey');
 	}
 
-  var colorShaderBf:AdjustColorShader;
-  var colorShaderDad:AdjustColorShader;
-  var colorShaderGf:AdjustColorShader;
-
-  
-  var mist0:FlxBackdrop;
-  var mist1:FlxBackdrop;
-  var mist2:FlxBackdrop;
-
-
-	function buildStage()
-	{
+	function buildStage() {
 		super.buildStage();
 
-    
-    colorShaderBf = new AdjustColorShader();
-    colorShaderDad = new AdjustColorShader();
-    colorShaderGf = new AdjustColorShader();
+		if (FlxG.save.data.gooeyShaders != false) {
+			tvShader = new FlxRuntimeShader(Assets.getText(Paths.frag("ferzyShader")));
+			PlayState.instance.camGame.filters = [new ShaderFilter(tvShader)];
+			PlayState.instance.camHUD.filters = [new ShaderFilter(tvShader)];
+			tvShader.setFloat("force", 0.1);
+		}
 
-    colorShaderBf.brightness = -5;
-    colorShaderBf.hue = -26;
-    colorShaderBf.contrast = 0;
-	colorShaderBf.saturation = -12;
+		var starShines1 = getNamedProp('starShines1');
+		starShines1.blend = 0;
+		starShines1.alpha = 0;
 
-    colorShaderGf.brightness = -5;
-    colorShaderGf.hue = -26;
-    colorShaderGf.contrast = 0;
-	colorShaderGf.saturation = -12;
+		var starShines2 = getNamedProp('starShines2');
+		starShines2.blend = 0;
+		starShines2.alpha = 0;
 
-    colorShaderDad.brightness = -5;
-    colorShaderDad.hue = -26;
-    colorShaderDad.contrast = -0;
-	colorShaderDad.saturation = -12;
+		var floorGlow = getNamedProp('floorGlow');
+		floorGlow.blend = 0;
 
-  var shading = getNamedProp('shading');
-  shading.blend = 9; 
+		var purpleOverlay = getNamedProp('purpleOverlay');
+		purpleOverlay.blend = 0;
 
-	 mist0 = new FlxBackdrop(Paths.image('gooeyMix/extra/drip/mistBack'), 0x01);
-    mist0.setPosition(-650, -700);
-    mist0.scrollFactor.set(1.2, 1.2);
-    mist0.zIndex = 200;
-    mist0.blend = 0;
-    mist0.color = 0xFF5c5c5c;
-    mist0.alpha = 0.6;
-    mist0.velocity.x = 172;
-
-    PlayState.instance.currentStage.add(mist0);
-    PlayState.instance.currentStage.refresh(); // Apply z-index.
-
-    mist1 = new FlxBackdrop(Paths.image('gooeyMix/extra/drip/mistBack'), 0x01);
-    mist1.setPosition(-650, -700);
-    mist1.scrollFactor.set(1.1, 1.1);
-    mist1.zIndex = 51;
-    mist1.blend = 0;
-    mist1.color = 0xFF5c5c5c;
-    mist1.alpha = 0.6;
-    mist1.velocity.x = 150;
-
-    PlayState.instance.currentStage.add(mist1);
-    PlayState.instance.currentStage.refresh(); // Apply z-index.
-
-
-    mist2 = new FlxBackdrop(Paths.image('gooeyMix/extra/drip/mistMid'), 0x01);
-    mist2.setPosition(-650, -700);
-    mist2.scrollFactor.set(0.95, 0.95);
-    mist2.zIndex = 202;
-    mist2.blend = 0;
-    mist2.color = 0xFF5c5c5c;
-    mist2.alpha = 0.5;
-    mist2.velocity.x = -50;
-    mist2.scale.set(0.8, 0.8);
-
-    PlayState.instance.currentStage.add(mist2);
-    PlayState.instance.currentStage.refresh(); // Apply z-index.
-
+		tvTime = new FunkinSprite(0, 0).loadTexture('gooeyMix/extra/drippypopErect/tvbars');
+		PlayState.instance.add(tvTime);
+		tvTime.cameras = [PlayState.instance.camHUD];
+		tvTime.alpha = 0.5;
+		tvTime.scale.set(1.5, 1.5);
+		tvTime.zIndex = 1010;
 	}
 
-  var _timer:Float = 0;
-	function onUpdate(event:UpdateScriptEvent):Void
-	{
-		super.onUpdate(event);
-
-		
-    _timer += event.elapsed;
-    mist0.y = 60 + (Math.sin(_timer * 0.35) * 70);
-    mist1.y = -100 + (Math.sin(_timer * 0.3) * 80);
-    mist2.y = -430 + (Math.sin(_timer * 0.3) * 70);
-	
-    if (FlxG.save.data.gooeyShaders != false)
-	{
-    if(PlayState.instance.currentStage.getBoyfriend() != null && PlayState.instance.currentStage.getBoyfriend().shader == null){
-      PlayState.instance.currentStage.getBoyfriend().shader = colorShaderBf;
-			PlayState.instance.currentStage.getGirlfriend().shader = colorShaderGf;
-			PlayState.instance.currentStage.getDad().shader = colorShaderDad;
-    }
-  }
-
+	public override function onCountdownStart(event:CountdownScriptEvent):Void {
+		super.onCountdownStart(event);
+		{
+			PlayState.instance.currentStage.getGirlfriend().visible = false;
+		}
 	}
 
-	function onBeatHit(event:SongTimeScriptEvent):Void{
+	function onBeatHit(event:SongTimeScriptEvent):Void {
 		super.onBeatHit(event);
 		{
-		
-			if (event.beat <= 283)
-			{
-				getGirlfriend().playAnimation('idle-alt', false, false);
+			if (event.beat % 4 == 0) {
+				PlayState.instance.currentStage.getNamedProp('starShines1').alpha = 1;
+				PlayState.instance.currentStage.getNamedProp('starShines2').alpha = 1;
+				FlxTween.tween(PlayState.instance.currentStage.getNamedProp('starShines1'), {alpha: 0}, 1);
+				FlxTween.tween(PlayState.instance.currentStage.getNamedProp('starShines2'), {alpha: 0}, 1);
 			}
 		}
 	}
 
-  function onStepHit(event:SongTimeScriptEvent):Void
-	{
+	function onSongRetry(event:ScriptEvent) {
+		super.onSongRetry(event);
+		PlayState.instance.currentStage.getGirlfriend().visible = false;
+	}
+
+	function onStepHit(event:SongTimeScriptEvent):Void {
 		super.onStepHit(event);
-
-		
+		if (event.step == 1140) {
+			PlayState.instance.currentStage.getGirlfriend().visible = true;
+		}
 	}
-	public override function onCountdownStart(event:CountdownScriptEvent):Void {
-		super.onCountdownStart(event);
-                PlayState.instance.currentStage.refresh();
-				getGirlfriend().playAnimation('idle-alt', false, false);
-		
-	}
-  function onNoteHit(event:HitNoteScriptEvent):Void
-	{       
-	        if (event.note.noteData.getMustHitNote()){
-			switch(event.note.kind) 
-			{
-				case "gfsing":
-				 holdTimer = 0;
-			     Gfsing(event.note.noteData.getDirection(), false);
-				 return;
-            }
-            }		
-		super.onNoteHit(event);
-	}
-	public override function Gfsing(dir:Int, miss:Bool = false, ?suffix:String = ''):Void
-	{
-	  	var anim:String = 'sing' + singDir[dir];
-	  	getGirlfriend().playAnimation(anim, true, true);
-	}
-
 }

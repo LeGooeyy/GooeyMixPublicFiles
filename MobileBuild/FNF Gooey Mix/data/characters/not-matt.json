@@ -3,12 +3,7 @@
   "name": "Not Matt",
   "renderType": "multisparrow",
   "assetPath": "characters/matt/Not Matt",
-  "flipX": false,
-  "singTime": 8.0,
   "cameraOffsets": [0, 144],
-  "healthIcon": {
-    "id": "not-matt"
-  },
   "animations": [
     {
       "name": "idle",

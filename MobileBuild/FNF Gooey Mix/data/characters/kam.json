@@ -3,8 +3,6 @@
   "name": "Kam",
   "renderType": "multisparrow",
   "assetPath": "characters/kam/Kam",
-  "flipX": false,
-  "singTime": 8.0,
   "cameraOffsets": [0, 144],
   "healthIcon": {
     "id": "kam"

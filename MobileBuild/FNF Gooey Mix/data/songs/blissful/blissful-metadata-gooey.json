@@ -15,7 +15,7 @@
       "player": "gooey-qt","girlfriend": "flora-qt","opponent": "QT",
       "instrumental": "gooey","playerVocals": ["gooey"],"opponentVocals": ["QT"], "altInstrumentals": ["pico",""]
     },
-    "stage": "qtStage",
+    "stage": "qtStagePico",
     "noteStyle": "funkin",
     "ratings": { "easy": 4, "normal": 6, "hard": 7},
     "album": "gooeydetour1",

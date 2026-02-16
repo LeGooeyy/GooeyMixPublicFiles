@@ -22,6 +22,9 @@ class GooeyCredits extends Module {
 						line: "Evening Raine",
 					},
 					{
+						line: "Ferzy",
+					},
+					{
 						line: "Hundrec",
 					},
 					{
@@ -52,6 +55,9 @@ class GooeyCredits extends Module {
 						line: "Meatku",
 					},
 					{
+						line: "Mighty",
+					},
+					{
 						line: "MindOfThomas",
 					},
 					{
@@ -63,6 +69,9 @@ class GooeyCredits extends Module {
 					{
 						line: "PurSnake",
 					},
+					{
+						line: "Ratthew Von Cheese",
+					}
 				]
 			});
 		CreditsDataHandler.CREDITS_DATA.entries.unshift({
@@ -72,11 +81,11 @@ class GooeyCredits extends Module {
 					line: "EthanTheDoodler (Original Drippypop)",
 				},
 				{
-					line: "Impostorm (Drippypop Art)",
+					line: "Impostorm (Original Drippypop)",
 				},
 				{
 					line: "NeatoNG (Original Drippypop)",
-				},
+				}
 			]
 		});
 		CreditsDataHandler.CREDITS_DATA.entries.unshift({
@@ -163,7 +172,7 @@ class GooeyCredits extends Module {
 			body: [
 				{
 					line: "Coffee Kat",
-				},
+				}
 			]
 		});
 		CreditsDataHandler.CREDITS_DATA.entries.unshift({

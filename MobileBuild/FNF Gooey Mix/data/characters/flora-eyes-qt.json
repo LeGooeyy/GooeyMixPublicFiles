@@ -1,77 +1,111 @@
 {
   "version": "1.0.0",
-  "name": "FloraEyes (QT)",
-  "assetPath": "characters/flora/FloraEyes",
+  "name": "Flora (QT Eyes)",
+  "assetPath": "shared:characters/flora/Flora",
   "startingAnimation": "danceRight",
-  "renderType": "multisparrow",
-  "singTime": 8.0,
-  "cameraOffsets": [0, 120],
+  "renderType": "multianimateatlas",
   "healthIcon": {
-    "offsets": [0, 0],
-    "id": "flora",
-    "flipX": false,
-    "isPixel": false,
-    "scale": 1
+    "id": "flora"
   },
   "animations": [
     {
       "name": "danceLeft",
-      "prefix": "idleLeft",
-      "offsets": [-20, -50]
+      "prefix": "FloraEyesIdleLeft",
+      "offsets": [5, 205]
     },
     {
       "name": "danceRight",
-      "prefix": "idleRight",
-      "offsets": [-20, -50]
+      "prefix": "FloraEyesIdleRight",
+      "offsets": [5, 205]
     },
     {
       "name": "combo50",
-      "prefix": "combo50",
-      "offsets": [-20, -50]
+      "prefix": "FloraEyes50Combo",
+      "offsets": [5, 205]
+    },
+    {
+      "name": "combo200",
+      "prefix": "FloraEyes200Combo",
+      "offsets": [5, 205]
+    },
+    {
+      "name": "danceLeft-alt",
+      "prefix": "FloraEyesAltIdleLeft",
+      "offsets": [5, 205]
+    },
+    {
+      "name": "danceRight-alt",
+      "prefix": "FloraEyesAltIdleRight",
+      "offsets": [5, 205]
     },
         {
-      "name": "combo200",
-      "prefix": "combo200",
-      "offsets": [-20, -50]
+      "name": "danceLeft-trans",
+      "prefix": "FloraEyesAltIdleLeft",
+      "offsets": [5, 205],
+      "frameIndices": [
+        1,2,3,4,5,6,7,8,9,10
+      ]
+    },
+    {
+      "name": "danceRight-trans",
+      "prefix": "FloraEyesAltIdleRight",
+      "offsets": [5, 205],
+      "frameIndices": [
+        1,2,3,4,5,6,7,8,9,10
+      ]
     },
     {
       "name": "drop70",
-      "prefix": "comboBreak",
-      "offsets": [-20, -50]
+      "prefix": "FloraEyesBreakCombo",
+      "offsets": [5, 205]
     },
     {
       "name": "scared",
-      "prefix": "scared",
-      "offsets": [-20, -50]
+      "prefix": "FloraEyesScared",
+      "offsets": [5, 205]
     },
     {
       "name": "cheer",
-      "prefix": "combo50",
-      "offsets": [-20, -50]
+      "prefix": "FloraEyes50Combo",
+      "offsets": [5, 205]
+    },
+     {
+      "name": "singLEFT",
+      "prefix": "FloraEyesSingLeft",
+      "offsets": [5, 205]
     },
     {
-      "name": "floraQTnotice",
-      "prefix": "floraQTnotice",
-      "assetPath": "characters/flora/FloraQTEyes",
-      "offsets": [-20, -50]
+      "name": "singDOWN",
+      "prefix": "FloraEyesSingDown",
+      "offsets": [5, 205]
     },
     {
-      "name": "floraQTlaugh",
-      "prefix": "floraQTlaugh",
-      "assetPath": "characters/flora/FloraQTEyes",
-      "offsets": [-20, -50]
+      "name": "singUP",
+      "prefix": "FloraEyesSingUp",
+      "offsets": [5, 205]
+    },
+    {
+      "name": "singRIGHT",
+      "prefix": "FloraEyesSingRight",
+      "offsets": [5, 205]
+    },
+    {
+      "name": "FloraQtIntro",
+      "prefix": "FloraEyesQtIntro",
+      "assetPath": "shared:characters/flora/FloraQT",
+      "offsets": [21, 166]
     },
     {
       "name": "danceLeft-qt",
-      "prefix": "qtFloraLeftIdle",
-      "assetPath": "characters/flora/FloraQTEyes",
-      "offsets": [-20, -50]
+      "prefix": "FloraEyesQTIdleLeft",
+      "assetPath": "shared:characters/flora/FloraQT",
+      "offsets": [21, 166]
     },
     {
       "name": "danceRight-qt",
-      "prefix": "qtFloraRightIdle",
-      "assetPath": "characters/flora/FloraQTEyes",
-      "offsets": [-20, -50]
+      "prefix": "FloraEyesQTIdleRight",
+      "assetPath": "shared:characters/flora/FloraQT",
+      "offsets": [21, 166]
     }
   ]
 }

@@ -15,7 +15,7 @@
       "player": "gooey","opponent": "flora",
       "instrumental": "gooey", "altInstrumentals": [""]
     },
-    "stage": "mainStageErectGooey",
+    "stage": "mainStageErect",
     "noteStyle": "funkin",
     "ratings": { "easy": 3, "normal": 1, "hard": 2},
     "album": "gooeymix2",

@@ -1,9 +1,9 @@
 {
   "version": "2.0.0",
   "scrollSpeed": {
-    "easy": 2.1,
-    "hard": 3.3,
-    "normal": 2.9
+    "easy": 2,
+    "normal": 2.8,
+    "hard": 3.2
   },
   "events": [
     {
@@ -1725,7 +1725,7 @@
       "v": {
 	"duration": 4,
 	"strumline": "both",
-	"scroll": 1.12,
+	"scroll": 1.155,
 	"ease": "smoothStepInOut",
 	"absolute": false
 }

@@ -44,7 +44,7 @@ class TankmanGooeyCharacter extends MultiAnimateAtlasCharacter {
 		if (PlayState.instance?.currentStage != null) {
 		if (PlayState.instance.currentSong.id.toLowerCase() == "stress") {
 			if (event.step == 760) {
-				if (stressSplat!= null) {
+				if (stressSplat != null) {
 				stressSplat.animation.play('gooSplat');
 				}
 			}

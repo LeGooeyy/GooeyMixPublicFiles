@@ -58,6 +58,7 @@ class DefaultCharacterOption extends Module {
 		if (ReflectUtil.getClassNameOf(FlxG.state.subState) == "funkin.ui.freeplay.FreeplayState") {
 			openedFreeplay = true;
 			FlxG.save.data.rememberedStartupCharacter = FreeplayState.rememberedCharacterId;
+			madeCharacterList = false;
 		}
 
 		if (FlxG.keys.justPressed.F5) {

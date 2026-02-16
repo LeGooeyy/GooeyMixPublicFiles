@@ -3,9 +3,7 @@
   "name": "Morpho",
   "renderType": "multisparrow",
   "assetPath": "characters/morpho/Morpho",
-  "flipX": false,
-  "singTime": 8.0,
-    "cameraOffsets": [0, 144],
+  "cameraOffsets": [0, 144],
   "animations": [
     {
       "name": "idle",
