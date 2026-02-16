@@ -12,8 +12,8 @@
     "songVariations": [],
     "difficulties": ["easy", "normal", "hard"],
     "characters": {
-      "player": "gooey-qt","girlfriend": "flora-qt","opponent": "QT",
-      "instrumental": "gooey","playerVocals": ["gooey"],"opponentVocals": ["QT"], "altInstrumentals": ["pico",""]
+      "player": "gooey-qt","girlfriend": "flora-qt","opponent": "qt",
+      "instrumental": "gooey","playerVocals": ["gooey"],"opponentVocals": ["qt"], "altInstrumentals": ["pico",""]
     },
     "stage": "qtStagePico",
     "noteStyle": "funkin",

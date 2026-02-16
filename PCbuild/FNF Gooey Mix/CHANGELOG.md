@@ -30,8 +30,8 @@ Detour 1 Mini Update 2
 - Updated the background for the Nat Crystal (Hotel Castle Erect) to be more accurate
 - Changed it so Extra Songs are now hidden in freeplay until you beat them
 - Changed Blissful (Gooey Mix) to use the QT Pico stage (will use the Erect stage once it releases)
-- Changed Gooey in Blissful to play the dance animation instead of using a seperate sprite
-- Increased the volume of Morpho's vocals in Comedian (Gooey Mix)
+- Changed Gooey in Blissful to play the dance animation instead of using a separate sprite
+- Increased the volume of Morpho's vocals in Comedian (Rad Mix)
 
 ### Fixed
 
