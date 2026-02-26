@@ -3,6 +3,33 @@ All notable changes will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [4.2.2] - 2026-2-26
+Detour 1 Hotfix 5
+
+### Added
+
+- Added the train passing animation to Flora in week 3
+- Added more intro texts
+
+### Fixed
+
+- Fixed bugs when playing on 0.8.2
+- Fixed 3 missing notes in Stress (Gooey Mix)
+
+
+## [4.2.1] - 2026-2-17
+Detour 1 Hotfix 4
+
+### Added
+
+- Added new intro texts when the Gooey menu is enabled
+
+### Fixed
+
+- Fixed the idle animation in the Gooey cutscene overriding the hey animation
+- Fixed bugs when playing Blissful (Gooey Mix)
+- Fixed some typos in the changelog
+
 ## [4.2.0] - 2026-2-16
 Detour 1 Mini Update 2
 

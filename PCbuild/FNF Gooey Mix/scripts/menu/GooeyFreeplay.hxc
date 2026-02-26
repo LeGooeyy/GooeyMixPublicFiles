@@ -9,14 +9,10 @@ import StringTools;
 import funkin.PlayerSettings;
 import funkin.ui.freeplay.CapsuleNumber;
 import flixel.FlxCamera;
-import funkin.util.Constants;
 
 class GooeyFreeplay extends Module {
 	public function new() {
 		super('GooeyFreeplay');
-
-		FlxG.signals.postGameStart.addOnce(() -> if (!Constants.DEFAULT_DIFFICULTY_LIST_FULL.contains('extra'))
-			Constants.DEFAULT_DIFFICULTY_LIST_FULL.push("extra"));
 	}
 
 	var changeWeekNumbers:Array<String> = ['week60037', 'weeknh'];

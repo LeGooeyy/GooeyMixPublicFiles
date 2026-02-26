@@ -8,12 +8,16 @@ import funkin.graphics.shaders.AdjustColorShader;
 import flixel.addons.display.FlxBackdrop;
 import funkin.util.HapticUtil;
 import funkin.util.Sequence;
+import flixel.util.FlxSave;
 
 class LimoRideErectGooeyStage extends Stage
 {
 	function new()
 	{
 		super('limoRideErectGooey');
+
+    save = new FlxSave();
+		save.bind("GooeyMixOptions", "FunkinCrew");
 	}
 
 var colorShader:AdjustColorShader;
@@ -31,7 +35,7 @@ var colorShader:AdjustColorShader;
     super.buildStage();
 
     // Apply sky shader.
-	if (FlxG.save.data.gooeyShaders != false)
+	if (save.data.gooeyShaders != false)
 	{
     var skyOverlay:OverlayBlend = new OverlayBlend();
     var sunOverlay:FlxSprite = new FlxSprite().loadGraphic(Paths.image('limo/limoOverlay'));
@@ -245,7 +249,7 @@ var colorShader:AdjustColorShader;
   override function onCreate(event:ScriptEvent)
   {
     super.onCreate(event);
-if (FlxG.save.data.gooeyShaders != false)
+if (save.data.gooeyShaders != false)
 	{
     getNamedProp('limoDancer1').shader = colorShader;
     getNamedProp('limoDancer2').shader = colorShader;
@@ -268,7 +272,7 @@ if (FlxG.save.data.gooeyShaders != false)
   {
     // Apply the shader automatically to each character as it gets added.
     super.addCharacter(character, charType);
-	if (FlxG.save.data.gooeyShaders != false)
+	if (save.data.gooeyShaders != false)
 	{
     trace('Applied stage shader to ' + character.characterName);
     character.shader = colorShader;

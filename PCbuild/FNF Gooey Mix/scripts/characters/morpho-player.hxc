@@ -27,8 +27,8 @@ class MorphoPlayerCharacter extends MultiSparrowCharacter {
 		this.visible = true;
 	}
 
-	function playAnimation(name:String, restart:Bool, ignoreOther:Bool) {
-		super.playAnimation(name, restart, ignoreOther);
+	override function playAnimation(name:String, restart:Bool = false, ignoreOther:Bool = false, reversed:Bool = false) {
+		super.playAnimation(name, restart, ignoreOther, reversed);
 		if (name == "morphoGoogly") {
 			new FlxTimer().start(2 / 24, function(tmr:FlxTimer) {
 				FunkinSound.playOnce(Paths.sound('extra/morphoHit'), 1.0);

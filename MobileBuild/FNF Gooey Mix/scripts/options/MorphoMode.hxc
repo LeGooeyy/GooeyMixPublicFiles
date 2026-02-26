@@ -13,26 +13,16 @@ import flixel.tweens.FlxTween;
 import funkin.util.FlxTweenUtil;
 import flixel.util.FlxTimer;
 import funkin.graphics.shaders.DropShadowShader;
+import flixel.util.FlxSave;
 
 class MorphoModeOption extends Module {
+	var save:FlxSave;
+
 	public function new() {
 		super('MorphoModeOption');
 
-		if (FlxG.save.data.morphoMode != 'Off' && FlxG.save.data.morphoMode != 'On' && FlxG.save.data.morphoMode != 'No Stickers')
-			FlxG.save.data.morphoMode = 'Off';
-	}
-
-	public function onStateChangeEnd(event:StateChangeScriptEvent) {
-		if (Std.isOfType(event.targetState, OptionsState)) {
-			if (event.targetState.optionsCodex.pages.get("preferences") != null) {
-				event.targetState.optionsCodex.pages.get("preferences")
-					.createPrefItemEnum('Morpho Mode', "HEY GORDAN!", ['Off' => 'Off', 'On' => 'On', 'No Stickers' => 'No Stickers'],
-						function(value:String, oValue:String):Void {
-							FlxG.save.data.morphoMode = value;
-							FlxG.save.data.flush;
-						}, FlxG.save.data.morphoMode);
-			}
-		}
+		save = new FlxSave();
+		save.bind("GooeyMixOptions", "FunkinCrew");
 	}
 
 	var morphoDanceNumber:Int = 1;
@@ -43,10 +33,10 @@ class MorphoModeOption extends Module {
 	function onSongLoaded() {
 		super.onSongLoaded();
 
-		if (FlxG.save.data.morphoMode == 'On') {
+		if (save.data.morphoMode == 'On') {
 			PlayState.instance.currentChart.stickerPack = "bonus-morpho";
 		}
-		if (FlxG.save.data.morphoMode == 'On' || FlxG.save.data.morphoMode == 'No Stickers') {
+		if (save.data.morphoMode == 'On' || save.data.morphoMode == 'No Stickers') {
 			if (morphoModeDancer != null) {
 				morphoModeDancer.kill();
 			}
@@ -302,7 +292,7 @@ class MorphoModeOption extends Module {
 					morphoModeDancer.scale.set(0.6, 0.6);
 			} // offsets
 
-			if (FlxG.save.data.gooeyShaders != false) {
+			if (save.data.gooeyShaders != false) {
 				switch (PlayState.instance.currentStageId) {
 					case 'phillyTrainErect', 'phillyTrainErectH', 'limoRide', 'limoRideSpooky', 'limoRideErectGooey', 'limoRideErect', 'mallXmasSpooky',
 						'mallEvilSpooky', 'mallXmasErect', 'mallXmasHuggy', 'tankmanBattlefieldSpooky', 'phillyStreets', 'phillyStreetsErect',
@@ -467,7 +457,7 @@ class MorphoModeOption extends Module {
 
 	function onBeatHit(event:SongTimeScriptEvent) {
 		super.onBeatHit(event);
-		if (FlxG.save.data.morphoMode == 'On' || FlxG.save.data.morphoMode == 'No Stickers') {
+		if (save.data.morphoMode == 'On' || save.data.morphoMode == 'No Stickers') {
 			if (PlayState.instance != null && morphoModeDancer != null && !PlayState.instance.isChartingMode) {
 				morphoDanceNumber = morphoDanceNumber + 1;
 				if (morphoDanceNumber >= 5) {

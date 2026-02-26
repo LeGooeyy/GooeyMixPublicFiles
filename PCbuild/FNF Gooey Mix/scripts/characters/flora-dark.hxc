@@ -147,19 +147,19 @@ class FloraDarkCharacter extends MultiAnimateAtlasCharacter {
 		});
 	}
 
-	override function playAnimation(name:String, restart:Bool, ignoreOther:Bool) {
-		super.playAnimation(name, restart, ignoreOther);
+	override function playAnimation(name:String, restart:Bool = false, ignoreOther:Bool = false, reversed:Bool = false) {
+		super.playAnimation(name, restart, ignoreOther, reversed);
 		if (PlayState.instance?.currentStage != null) {
 			if (isLesbian && (name == 'danceLeft' || name == 'danceRight'))
-				super.playAnimation(name + '-alt', restart, ignoreOther);
+				super.playAnimation(name + '-alt', restart, ignoreOther, reversed);
 			else if (isBecomingLesbian && isLesbian == false && (name == 'danceLeft' || name == 'danceRight')) {
-				super.playAnimation(name + '-trans', restart, ignoreOther);
+				super.playAnimation(name + '-trans', restart, ignoreOther, reversed);
 				new FlxTimer().start(0.05, _ -> {
 					isLesbian = true;
 					isBecomingLesbian = false;
 				});
 			} else
-				super.playAnimation(name, restart, ignoreOther);
+				super.playAnimation(name, restart, ignoreOther, reversed);
 
 			if (name == 'combo200')
 				isBecomingLesbian = true;

@@ -10,10 +10,14 @@ import funkin.play.PlayState;
 import flixel.addons.display.FlxRuntimeShader;
 import openfl.filters.ShaderFilter;
 import openfl.utils.Assets;
+import flixel.util.FlxSave;
 
 class natCrystalStage extends Stage {
 	function new() {
 		super('natCrystal');
+
+		save = new FlxSave();
+		save.bind("GooeyMixOptions", "FunkinCrew");
 	}
 
 	function onCountdownStart(event:ScriptEvent) {
@@ -23,7 +27,7 @@ class natCrystalStage extends Stage {
 
 	public function onGameOver(event:ScriptEvent) {
 		super.onGameOver(event);
-		if (FlxG.save.data.gooeyShaders != false) {
+		if (save.data.gooeyShaders != false) {
 			getBoyfriend().shader = null;
 		}
 	}
@@ -82,7 +86,7 @@ class natCrystalStage extends Stage {
 		// Apply the shader automatically to each character as it gets added.
 		super.addCharacter(character, charType);
 		trace('Applied stage shader to ' + character.characterName);
-		if (FlxG.save.data.gooeyShaders != false) {
+		if (save.data.gooeyShaders != false) {
 			var rim = new DropShadowShader();
 			rim.setAdjustColor(-80, -24, -5, -10);
 			// brightness  hue  contrast  saturation

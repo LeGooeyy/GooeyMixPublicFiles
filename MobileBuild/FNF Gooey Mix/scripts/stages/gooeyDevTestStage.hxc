@@ -93,7 +93,7 @@ class gooeyDevTestStageStage extends Stage {
 					PlayState.instance.currentStage.getNamedProp('cerealBop').alpha = 0;
 			}
 
-			PlayState.instance.currentStage.getGirlfriend().flipX = false;
+			//PlayState.instance.currentStage.getGirlfriend().flipX = false;
 			PlayState.instance.currentStage.getGirlfriend().alpha = 1;
 
 		}
@@ -112,7 +112,7 @@ class gooeyDevTestStageStage extends Stage {
 					PlayState.instance.currentStage.getNamedProp('cerealBop').alpha = 0;
 			}
 			PlayState.instance.currentStage.getBoyfriend().alpha = 0.5;
-			PlayState.instance.currentStage.getBoyfriend().flipX = true;
+			PlayState.instance.currentStage.getBoyfriend().flipX = false;
 		}
 		PlayState.instance.comboPopUps.offsets = [-450, 350]; 
 		

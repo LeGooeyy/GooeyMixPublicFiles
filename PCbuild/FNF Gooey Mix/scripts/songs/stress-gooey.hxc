@@ -24,6 +24,7 @@ import funkin.graphics.shaders.DropShadowShader;
 import funkin.graphics.shaders.AdjustColorShader;
 import funkin.util.TouchUtil;
 import Date;
+import flixel.util.FlxSave;
 
 class StressGooeyMixSong extends Song {
 	var hasPlayedCutscene:Bool;
@@ -38,6 +39,9 @@ class StressGooeyMixSong extends Song {
 		super('stress', {
 			variation: 'gooey'
 		});
+
+		save = new FlxSave();
+		save.bind("GooeyMixOptions", "FunkinCrew");
 	}
 
 	public override function onCountdownStart(event:CountdownScriptEvent):Void {
@@ -58,22 +62,20 @@ class StressGooeyMixSong extends Song {
 		}
 
 		if (!PlayState.instance.isMinimalMode) {
-			if (tankmanGroup != null && !tankmanGroup.scriptCall('isValid')) {
+			if (tankmanGroup != null && !tankmanGroup.isValid()) {
 				// Destroy the tankman group if it's not valid.
-				tankmanGroup.destroy();
-				PlayState.instance.currentStage.remove(tankmanGroup);
-				tankmanGroup = null;
+				cleanupTankmanGroup();
 			}
 
 			if (tankmanGroup == null) {
 				// Initialize the tankman group if it's not available.
 				trace('Initializing tankman group... ' + PlayState.instance.currentVariation);
-				tankmanGroup = ScriptedFlxSpriteGroup.init('TankmanSpriteGroup', true);
+				tankmanGroup = new TankmanSpriteGroup(true);
 			}
 
 			if (tankmanGroup != null) {
 				// resets the tankmen!
-				tankmanGroup.scriptCall('reset');
+				tankmanGroup.reset(0, 0);
 
 				tankmanGroup.zIndex = 30;
 				PlayState.instance.currentStage.add(tankmanGroup);
@@ -154,7 +156,7 @@ class StressGooeyMixSong extends Song {
 		PlayState.instance.currentStage.add(tankBopRight);
 		tankBopRight.zIndex = PlayState.instance.currentStage.getGirlfriend().zIndex - 3;
 
-		if (FlxG.save.data.gooeyShaders != false) {
+		if (save.data.gooeyShaders != false) {
 			var rim = new DropShadowShader();
 			rim.setAdjustColor(-46, -38, -25, -20);
 			rim.color = 0xFFDFEF3C;
@@ -181,7 +183,7 @@ class StressGooeyMixSong extends Song {
 		PlayState.instance.camHUD.alpha = 0;
 
 		PlayState.instance.currentStage.getGirlfriend().visible = false;
-		PlayState.instance.currentStage.getBoyfriend().playAnimation('GooeyCutsceneIdle', true);
+		PlayState.instance.currentStage.getBoyfriend().playAnimation('GooeyCutsceneIdle', true, false);
 
 		PlayState.instance.camCutscene.fade(0xFF000000, 1, true, null, true);
 
@@ -192,11 +194,11 @@ class StressGooeyMixSong extends Song {
 					cutsceneMusic = FunkinSound.load(Paths.music("cutscene/cutscene", "week7"), true);
 					cutsceneMusic.play(false);
 
-					if (FlxG.save.data.gooeyShaders != false) {
+					if (save.data.gooeyShaders != false) {
 						PlayState.instance.currentStage.getBoyfriend().shader.threshold = 0.2;
 					}
 					PlayState.instance.tweenCameraToPosition(tankmanPos[0] + 0, tankmanPos[1] - 0, 2, FlxEase.smoothStepInOut);
-					PlayState.instance.currentStage.getDad().playAnimation('tankmanGooeyCutscene', true);
+					PlayState.instance.currentStage.getDad().playAnimation('tankmanGooeyCutscene', true, false);
 				}
 			},
 			{
@@ -233,11 +235,11 @@ class StressGooeyMixSong extends Song {
 					tankBopRight.animation.play('aim');
 					floraEyes.animation.play('FloraEyesRuhRoh');
 					fakeFlora.animation.play('FloraRuhRoh');
-					PlayState.instance.currentStage.getBoyfriend().playAnimation('GooeyCutUhOh', true);
+					PlayState.instance.currentStage.getBoyfriend().playAnimation('GooeyCutUhOh', true, false);
 					gooeyCutSound = FunkinSound.playOnce(Paths.sound('stressGooeyCutscene/gockCockStress'), 1.0);
 				}
 			},
-			{time: 350 / 24, callback: () -> PlayState.instance.currentStage.getBoyfriend().playAnimation('GooeyCutCrystalGlow', true)},
+			{time: 350 / 24, callback: () -> PlayState.instance.currentStage.getBoyfriend().playAnimation('GooeyCutCrystalGlow', true, false)},
 			{
 				time: 352 / 24,
 				callback: () -> {
@@ -257,18 +259,18 @@ class StressGooeyMixSong extends Song {
 				callback: () -> {
 					PlayState.instance.tweenCameraZoom(0.8, 0.5, true, FlxEase.expoOut);
 					PlayState.instance.tweenCameraToPosition(kamPos[0] + 80, kamPos[1] + 120, 1, FlxEase.expoOut);
-					PlayState.instance.currentStage.getGirlfriend().playAnimation('kamMurder', true);
+					PlayState.instance.currentStage.getGirlfriend().playAnimation('kamMurder', true, false);
 					tankBopLeft.animation.play('fuck');
 					tankBopRight.animation.play('shit');
 					PlayState.instance.currentStage.getGirlfriend().visible = true;
-					PlayState.instance.currentStage.getBoyfriend().playAnimation('GooeyCutsceneHappy', true);
+					PlayState.instance.currentStage.getBoyfriend().playAnimation('GooeyCutsceneHappy', true, false);
 				}
 			},
 			{time: 372 / 24, callback: () -> gooeyCutSound = FunkinSound.playOnce(Paths.sound('stressGooeyCutscene/kamMurder'), 1.0)},
 			{
 				time: 391 / 24,
 				callback: () -> {
-					PlayState.instance.currentStage.getGirlfriend().playAnimation('grab', true);
+					PlayState.instance.currentStage.getGirlfriend().playAnimation('grab', true, false);
 					tankBopRight.animation.play('grab');
 				}
 			},
@@ -283,7 +285,7 @@ class StressGooeyMixSong extends Song {
 			{
 				time: 446 / 24,
 				callback: () -> {
-					PlayState.instance.currentStage.getGirlfriend().playAnimation('helmetGrab', true);
+					PlayState.instance.currentStage.getGirlfriend().playAnimation('helmetGrab', true, false);
 					PlayState.instance.tweenCameraZoom(0.75, 0.5, true, FlxEase.expoOut);
 					PlayState.instance.tweenCameraToPosition(kamPos[0] + 200, kamPos[1] + 200, 1, FlxEase.expoOut);
 				}
@@ -291,7 +293,7 @@ class StressGooeyMixSong extends Song {
 			{
 				time: 456 / 24,
 				callback: () -> {
-					PlayState.instance.currentStage.getGirlfriend().playAnimation('iDontKnow', true);
+					PlayState.instance.currentStage.getGirlfriend().playAnimation('iDontKnow', true, false);
 					tankBopRight.animation.play('throw');
 				}
 			},
@@ -300,8 +302,8 @@ class StressGooeyMixSong extends Song {
 				callback: () -> {
 					PlayState.instance.tweenCameraToPosition(kamPos[0] + 375, kamPos[1] + 275, 1, FlxEase.expoOut);
 					PlayState.instance.tweenCameraZoom(0.9, 0.5, true, FlxEase.expoOut);
-					PlayState.instance.currentStage.getBoyfriend().playAnimation('GooeyCutHelmetOn', true);
-					if (FlxG.save.data.gooeyShaders != false) {
+					PlayState.instance.currentStage.getBoyfriend().playAnimation('GooeyCutHelmetOn', true, false);
+					if (save.data.gooeyShaders != false) {
 						PlayState.instance.currentStage.getBoyfriend().shader.threshold = 0.1;
 					}
 				}
@@ -318,8 +320,8 @@ class StressGooeyMixSong extends Song {
 			{
 				time: 495 / 24,
 				callback: () -> {
-					PlayState.instance.currentStage.getBoyfriend().playAnimation('fakeIdle', true);
-					PlayState.instance.currentStage.getGirlfriend().playAnimation('fakeIdle', true);
+					PlayState.instance.currentStage.getBoyfriend().playAnimation('fakeIdle', true, false);
+					PlayState.instance.currentStage.getGirlfriend().playAnimation('fakeIdle', true, false);
 				}
 			},
 			{time: 545 / 24, callback: () -> gooeyCutSound = FunkinSound.playOnce(Paths.sound('stressGooeyCutscene/lines/4'), 1.0)},
@@ -347,9 +349,9 @@ class StressGooeyMixSong extends Song {
 					tankBopRight.destroy();
 					fakeFlora.destroy();
 					floraEyes.destroy();
-					PlayState.instance.currentStage.getGirlfriend().playAnimation('idle', true);
-					PlayState.instance.currentStage.getDad().playAnimation('idle', true);
-					PlayState.instance.currentStage.getBoyfriend().playAnimation('idle', true);
+					PlayState.instance.currentStage.getGirlfriend().playAnimation('idle', true, false);
+					PlayState.instance.currentStage.getDad().playAnimation('idle', true, false);
+					PlayState.instance.currentStage.getBoyfriend().playAnimation('idle', true, false);
 					PlayState.instance.subtitles.offsets = [0, 139];
 
 					PlayState.instance.startCountdown();
@@ -395,7 +397,7 @@ class StressGooeyMixSong extends Song {
 			PlayState.instance.currentStage.getBoyfriend().playAnimation('idle', true);
 			subtitlesSound.stop();
 			PlayState.instance.subtitles.offsets = [0, 139];
-			if (FlxG.save.data.gooeyShaders != false) {
+			if (save.data.gooeyShaders != false) {
 				PlayState.instance.currentStage.getBoyfriend().shader.threshold = 0.1;
 			}
 		});

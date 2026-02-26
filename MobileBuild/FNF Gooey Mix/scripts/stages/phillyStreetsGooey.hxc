@@ -12,7 +12,6 @@ import funkin.graphics.framebuffer.BitmapDataUtil;
 import funkin.graphics.framebuffer.FixedBitmapData;
 import funkin.graphics.shaders.OverlayBlend;
 import funkin.graphics.shaders.RuntimeRainShader;
-import funkin.modding.base.ScriptedFlxRuntimeShader;
 import funkin.play.PlayState;
 import funkin.play.stage.Stage;
 import openfl.filters.BlurFilter;
@@ -22,6 +21,7 @@ import flixel.addons.display.FlxTiledSprite;
 import flixel.addons.display.FlxBackdrop;
 import funkin.graphics.shaders.AdjustColorShader;
 import StringTools;
+import funkin.FunkinMemory;
 
 class PhillyStreetsGooeyStage extends Stage {
 	var rainShader:RuntimeRainShader = new RuntimeRainShader();
@@ -108,6 +108,10 @@ class PhillyStreetsGooeyStage extends Stage {
 
 	override function onCreate(event:ScriptEvent):Void {
 		super.onCreate(event);
+
+		for (snd in ['Darnell_Lighter', 'Kick_Can_UP', 'Kick_Can_FORWARD']) {
+			FunkinMemory.cacheSound(Paths.sound(snd, "weekend1"));
+		}
 
 		// rainSndAmbience = FunkinSound.load(Paths.sound("rainAmbience", "weekend1"), true, false, true);
 		// rainSndAmbience.volume = 0;
@@ -426,7 +430,6 @@ class PhillyStreetsGooeyStage extends Stage {
 			FlxPoint.get(3102 - offset[0], 1127 - offset[1] + 60),
 			FlxPoint.get(2400 - offset[0], 980 - offset[1] - 30),
 			FlxPoint.get(1570 - offset[0], 1049 - offset[1] - 10)
-
 		];
 
 		FlxTween.angle(sprite, rotations[0], rotations[1], duration, null);
@@ -623,5 +626,57 @@ class PhillyStreetsGooeyStage extends Stage {
 		super.addCharacter(character, charType);
 		trace('Applied stage shader to ' + character.characterName);
 		character.shader = colorShader;
+	}
+
+	var kneeCanSound:FunkinSound;
+	var loadedKneeCanSound:Bool = false;
+	var kickCanSound:FunkinSound;
+	var loadedKickCanSound:Bool = false;
+	var lightCanSound:FunkinSound;
+	var loadedLightCanSound:Bool = false;
+
+	function onNoteIncoming(event:NoteScriptEvent) {
+		if (!event.note.noteData.getMustHitNote()) {
+			// Get how long until it's time to strum the note.
+			var msTilStrum = event.note.strumTime - Conductor.instance.songPosition;
+
+			switch (event.note.kind) {
+				case "weekend-1-lightcan":
+					scheduleLightCanSound(msTilStrum - 65);
+				case "weekend-1-kickcan":
+					scheduleKickCanSound(msTilStrum - 50);
+				case "weekend-1-kneecan":
+					scheduleKneeCanSound(msTilStrum - 22);
+				default:
+					super.onNoteIncoming(event);
+			}
+		}
+	}
+
+	function scheduleLightCanSound(timeToPlay:Float) {
+		if (!loadedLightCanSound) {
+			lightCanSound = FunkinSound.load(Paths.sound('Darnell_Lighter'), 1.0);
+			loadedLightCanSound = true;
+		}
+
+		lightCanSound.play(true, -timeToPlay);
+	}
+
+	function scheduleKickCanSound(timeToPlay:Float) {
+		if (!loadedKickCanSound) {
+			kickCanSound = FunkinSound.load(Paths.sound('Kick_Can_UP'), 1.0);
+			loadedKickCanSound = true;
+		}
+
+		kickCanSound.play(true, -timeToPlay);
+	}
+
+	function scheduleKneeCanSound(timeToPlay:Float) {
+		if (!loadedKneeCanSound) {
+			kneeCanSound = FunkinSound.load(Paths.sound('Kick_Can_FORWARD'), 1.0);
+			loadedKneeCanSound = true;
+		}
+
+		kneeCanSound.play(true, -timeToPlay);
 	}
 }

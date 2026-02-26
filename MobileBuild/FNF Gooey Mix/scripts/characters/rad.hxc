@@ -35,8 +35,8 @@ class RadCharacter extends MultiSparrowCharacter {
 		}
 	}
 
-	override function playAnimation(name:String, restart:Bool, ignoreOther:Bool) {
-		super.playAnimation(name, restart, ignoreOther);
+	override function playAnimation(name:String, restart:Bool = false, ignoreOther:Bool = false, reversed:Bool = false) {
+		super.playAnimation(name, restart, ignoreOther, reversed);
 		if (radEye != null) {
 			radEye.playAnimation(name, restart, false);
 			radEye.setPosition(this.x, this.y);

@@ -11,10 +11,14 @@ import funkin.play.character.CharacterType;
 import flixel.util.FlxTimer;
 import funkin.graphics.shaders.AdjustColorShader;
 import funkin.graphics.shaders.DropShadowShader;
+import flixel.util.FlxSave;
 
 class FloraTankmenCharacter extends MultiAnimateAtlasCharacter {
 	function new() {
 		super('flora-tankmen');
+
+		save = new FlxSave();
+		save.bind("GooeyMixOptions", "FunkinCrew");
 	}
 
 	var floraEyes:BaseCharacter;
@@ -91,7 +95,7 @@ class FloraTankmenCharacter extends MultiAnimateAtlasCharacter {
 				}
 			});
 
-			if (FlxG.save.data.gooeyShaders != false) {
+			if (save.data.gooeyShaders != false) {
 				adjustColor = new AdjustColorShader();
 				adjustColor.hue = -40;
 				adjustColor.saturation = -20;
@@ -170,7 +174,7 @@ class FloraTankmenCharacter extends MultiAnimateAtlasCharacter {
 	var adjustColor:AdjustColorShader;
 
 	function synchronizeShader():Void {
-		if (FlxG.save.data.gooeyShaders != false) {
+		if (save.data.gooeyShaders != false) {
 			if (currentShader == this.shader)
 				return;
 
@@ -191,19 +195,19 @@ class FloraTankmenCharacter extends MultiAnimateAtlasCharacter {
 		}
 	}
 
-	override function playAnimation(name:String, restart:Bool, ignoreOther:Bool) {
-		super.playAnimation(name, restart, ignoreOther);
+	override function playAnimation(name:String, restart:Bool = false, ignoreOther:Bool = false, reversed:Bool = false) {
+		super.playAnimation(name, restart, ignoreOther, reversed);
 		if (PlayState.instance?.currentStage != null) {
 			if (isLesbian && (name == 'danceLeft' || name == 'danceRight'))
-				super.playAnimation(name + '-alt', restart, ignoreOther);
+				super.playAnimation(name + '-alt', restart, ignoreOther, reversed);
 			else if (isBecomingLesbian && isLesbian == false && (name == 'danceLeft' || name == 'danceRight')) {
-				super.playAnimation(name + '-trans', restart, ignoreOther);
+				super.playAnimation(name + '-trans', restart, ignoreOther, reversed);
 				new FlxTimer().start(0.05, _ -> {
 					isLesbian = true;
 					isBecomingLesbian = false;
 				});
 			} else
-				super.playAnimation(name, restart, ignoreOther);
+				super.playAnimation(name, restart, ignoreOther, reversed);
 
 			if (name == 'combo200')
 				isBecomingLesbian = true;

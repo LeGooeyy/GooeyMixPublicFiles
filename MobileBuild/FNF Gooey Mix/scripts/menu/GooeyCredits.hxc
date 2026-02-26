@@ -140,7 +140,7 @@ class GooeyCredits extends Module {
 					line: "ContentLeaf (Voice of Pico)",
 				},
 				{
-					line: "LeGooey (Voice of Gooey and Mix)",
+					line: "LeGooey (Voice of Gooey, Flora, and Mix)",
 				}
 			]
 		});

@@ -15,7 +15,7 @@ class GooeyMainMenu extends Module {
 		if (ReflectUtil.getClassNameOf(FlxG.state) == "funkin.ui.mainmenu.MainMenuState") {
 			FlxG.mouse.visible = false;
 
-			FlxG.state.rightWatermarkText.text = "GOOEY MIX v4.2.0";
+			FlxG.state.rightWatermarkText.text = "GOOEY MIX v4.2.2";
 		}
 	}
 }

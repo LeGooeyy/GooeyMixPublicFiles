@@ -17,10 +17,14 @@ import Date;
 import funkin.util.Sequence;
 import funkin.Conductor;
 import funkin.data.song.SongRegistry;
+import flixel.util.FlxSave;
 
 class GooeySong extends Song {
 	function new() {
 		super('gooey');
+
+		save = new FlxSave();
+		save.bind("GooeyMixOptions", "FunkinCrew");
 	}
 
 	var hasPlayedCutscene:Bool = false;
@@ -72,8 +76,8 @@ class GooeySong extends Song {
 	var cutsceneConductor:Conductor;
 
 	private inline function onCutsceneBeatHit():Void {
-		PlayState.instance.currentStage.getGirlfriend().dance(true);
-		PlayState.instance.currentStage.getBoyfriend().dance(true);
+		PlayState.instance.currentStage.getGirlfriend().dance(false);
+		PlayState.instance.currentStage.getBoyfriend().dance(false);
 		PlayState.instance.currentStage.getNamedProp('morphoBop').animation.play('idle');
 		PlayState.instance.currentStage.getNamedProp('cerealBop').animation.play('idle');
 		PlayState.instance.currentStage.getNamedProp('noodleBop').animation.play('idle');
@@ -311,6 +315,7 @@ class GooeySong extends Song {
 	var currentShader = null;
 
 	function gooeyShaderApply():Void {
+		if (save.data.gooeyShaders != false) {
 		var rim = new DropShadowShader();
 		rim.setAdjustColor(0, 0, 0, 0);
 		rim.color = 0xFF423427;
@@ -321,6 +326,7 @@ class GooeySong extends Song {
 		fakeGooey.animation.onFrameChange.add(function() {
 			rim.updateFrameInfo(fakeGooey.frame);
 		});
+		}
 	}
 
 	function skipCutscene() {

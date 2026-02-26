@@ -52,11 +52,11 @@ class TankmanGooeyCharacter extends MultiAnimateAtlasCharacter {
 		}
 	}
 
-	override function playAnimation(name:String, restart:Bool, ignoreOther:Bool) {
+	override function playAnimation(name:String, restart:Bool = false, ignoreOther:Bool = false, reversed:Bool = false) {
 		if (isGooey) {
-			super.playAnimation(name + '-gooey', restart, ignoreOther);
+			super.playAnimation(name + '-gooey', restart, ignoreOther, reversed);
 		} else {
-			super.playAnimation(name, restart, ignoreOther);
+			super.playAnimation(name, restart, ignoreOther, reversed);
 		}
 
 		if (name == 'isGooey')

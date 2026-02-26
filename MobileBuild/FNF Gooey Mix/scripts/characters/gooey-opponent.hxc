@@ -2,10 +2,14 @@ import funkin.play.character.MultiAnimateAtlasCharacter;
 import funkin.play.character.CharacterType;
 import flixel.FlxG;
 import funkin.graphics.shaders.DropShadowShader;
+import flixel.util.FlxSave;
 
 class GooeyOpponentCharacter extends MultiAnimateAtlasCharacter {
 	function new() {
 		super('gooey-opponent');
+
+		save = new FlxSave();
+		save.bind("GooeyMixOptions", "FunkinCrew");
 	}
 
 	function onNoteHit(event:HitNoteScriptEvent) {
@@ -46,7 +50,7 @@ class GooeyOpponentCharacter extends MultiAnimateAtlasCharacter {
 		if (rimChecked == true)
 			return;
 		rimChecked = true;
-		if (FlxG.save.data.gooeyShaders != true)
+		if (save.data.gooeyShaders != true)
 			return;
 		if (!(this.shader is DropShadowShader))
 			return;

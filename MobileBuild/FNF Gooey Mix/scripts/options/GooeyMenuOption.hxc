@@ -16,29 +16,32 @@ import funkin.ui.story.StoryMenuState;
 import funkin.ui.mainmenu.MainMenuState;
 import funkin.ui.title.TitleState;
 import funkin.ui.charSelect.CharSelectSubState;
+import flixel.util.FlxSave;
 
 class GooeyMenuOption extends Module {
 	var addedTitle:Bool = false;
+	var save:FlxSave;
 
 	var optionNumber:Int = 0;
 
 	public function new() {
 		super('GooeyMenuOption');
+		save = new FlxSave();
+		save.bind("GooeyMixOptions", "FunkinCrew");
 	}
 
 	var gooeySongs:Array<String> = ['gooey', 'slimeball', 'starcraft'];
 	var newIcon = null;
 	var curIcon = Constants.TITLE;
+	var changedIntroText:Bool = false;
 
 	function bfWindow() {
-		if (FlxG.state.curChar != 'gooey') {
-			newIcon = 'Friday Night Funkin\'';
-			if (newIcon != curIcon) {
-				if (!FlxG.onMobile) {
-					WindowUtil.setWindowTitle('Friday Night Funkin\'');
-					CustomIcon.setIcon(Paths.image('boyfriendGameIcon'));
-					curIcon = newIcon;
-				}
+		newIcon = 'Friday Night Funkin\'';
+		if (newIcon != curIcon) {
+			if (!FlxG.onMobile) {
+				WindowUtil.setWindowTitle('Friday Night Funkin\'');
+				CustomIcon.setIcon(Paths.image('boyfriendGameIcon'));
+				curIcon = newIcon;
 			}
 		}
 	}
@@ -54,47 +57,43 @@ class GooeyMenuOption extends Module {
 		}
 	}
 
+	override function onCapsuleSelected(event) {
+		if (gooeySongs.contains(event.capsule?.freeplayData?.data?.id) || FreeplayState.rememberedCharacterId == 'gooey') gooeyWindow();
+		else bfWindow();
+	}
+
+	public function onCharacterSelect(event:CharacterSelectScriptEvent) {
+		if (event.characterId == 'gooey') gooeyWindow();
+		else bfWindow();
+	}
+
 	override function onUpdate(event:UpdateScriptEvent) {
 		super.onUpdate(event);
 
-		if (FlxG.state.subState is FreeplayState) {
-			if (gooeySongs.contains(FlxG.state?.subState?.grpCapsules?.members[FlxG.state.subState.curSelected]?.freeplayData?.data?.id)
-				|| FreeplayState.rememberedCharacterId == 'gooey') {
-				gooeyWindow();
-			} else {
-				bfWindow();
-			}
-		} else if (FlxG.state is CharSelectSubState) {
-			if (FlxG.state.curChar == 'gooey') {
-				gooeyWindow();
-			} else {
-				bfWindow();
-			}
-		} else if (FlxG.state is MainMenuState) {
-			if (FreeplayState.rememberedCharacterId == 'gooey') {
-				gooeyWindow();
-			} else {
-				bfWindow();
-			}
+		if (FlxG.state is MainMenuState) {
+			if (FreeplayState.rememberedCharacterId == 'gooey') gooeyWindow();
+			else bfWindow();
 		} else if (FlxG.state is StoryMenuState) {
-			if (FlxG.state?.currentLevelId == 'week60037') {
-				gooeyWindow();
-			} else {
-				bfWindow();
-			}
+			if (FlxG.state?.currentLevelId == 'week60037') gooeyWindow();
+			else bfWindow();
 		}
-
-		if (FlxG.save.data.GooeyMixMenu != 'Always On'
-			&& FlxG.save.data.GooeyMixMenu != 'Gooey Selected'
-			&& FlxG.save.data.GooeyMixMenu != 'Off')
-			FlxG.save.data.GooeyMixMenu = 'Always On';
 
 		// TITLE SCREEN
 		if (ReflectUtil.getClassNameOf(FlxG.state) == "funkin.ui.title.TitleState") {
 			FlxG.mouse.visible = false;
 
-			if (FlxG.save.data.GooeyMixMenu == 'Always On'
-				|| (FlxG.save.data.GooeyMixMenu == 'Gooey Selected' && FlxG.save.data.rememberedStartupCharacter == "gooey")) {
+			if (save.data.GooeyMixMenu == 'Always On' || (save.data.GooeyMixMenu == 'Gooey Selected' && save.data.rememberedStartupCharacter == "gooey")) {
+				if (!changedIntroText) {
+					changedIntroText = true;
+					var fullText:String = Assets.getText(Paths.txt('introTextGooey'));
+					var firstArray:Array<String> = fullText.split('\n').filter(function(s:String) return s != '');
+					var swagGoodArray:Array<Array<String>> = [];
+					for (i in firstArray) {
+						swagGoodArray.push(i.split('--'));
+					}
+					FlxG.state.curWacky = swagGoodArray[FlxG.random.int(0, swagGoodArray.length - 1)];
+				}
+
 				if (FlxG.state.logoBl != null && FlxG.state.gfDance != null && FlxG.state.titleText != null && FlxG.state.skippedIntro && !addedTitle) {
 					addedTitle = true;
 
@@ -106,8 +105,7 @@ class GooeyMenuOption extends Module {
 		// MENU BACKGROUND
 		if (ReflectUtil.getClassNameOf(FlxG.state) == "funkin.ui.mainmenu.MainMenuState") {
 			if (FlxG.state.magenta != null) {
-				if (FlxG.save.data.GooeyMixMenu == 'Always On'
-					|| (FlxG.save.data.GooeyMixMenu == 'Gooey Selected' && FlxG.save.data.rememberedStartupCharacter == "gooey")) {
+				if (save.data.GooeyMixMenu == 'Always On' || (save.data.GooeyMixMenu == 'Gooey Selected' && save.data.rememberedStartupCharacter == "gooey")) {
 					if (FlxG.state.magenta.graphic.key == 'assets/images/menuBGMagenta.png') {
 						FlxG.state.magenta.loadGraphic(Paths.image('menuBGMagentaGooey'));
 						FlxG.state.members[0].loadGraphic(Paths.image('menuBGgooey'));
@@ -123,23 +121,17 @@ class GooeyMenuOption extends Module {
 
 		if (ReflectUtil.getClassNameOf(FlxG.state) == "funkin.ui.options.OptionsState") {
 			if (FlxG.state.members[0] != null) {
-				if (FlxG.save.data.GooeyMixMenu == 'Always On'
-					|| (FlxG.save.data.GooeyMixMenu == 'Gooey Selected' && FlxG.save.data.rememberedStartupCharacter == "gooey")) {
-					if (FlxG.state?.members[0]?.graphic.key == 'assets/images/menuBG.png') {
-						FlxG.state.members[0].loadGraphic(Paths.image('menuBGgooey'));
-					}
+				if (save.data.GooeyMixMenu == 'Always On' || (save.data.GooeyMixMenu == 'Gooey Selected' && save.data.rememberedStartupCharacter == "gooey")) {
+					if (FlxG.state?.members[0]?.graphic.key == 'assets/images/menuBG.png') FlxG.state.members[0].loadGraphic(Paths.image('menuBGgooey'));
 				} else {
-					if (FlxG.state?.members[0]?.graphic.key == 'assets/images/menuBGgooey.png') {
-						FlxG.state.members[0].loadGraphic(Paths.image('menuBG'));
-					}
+					if (FlxG.state?.members[0]?.graphic.key == 'assets/images/menuBGgooey.png') FlxG.state.members[0].loadGraphic(Paths.image('menuBG'));
 				}
 			}
 		}
 
 		if (ReflectUtil.getClassNameOf(FlxG.state.subState) == "funkin.ui.debug.DebugMenuSubState") {
 			if (FlxG.state.subState.members[3] != null) {
-				if (FlxG.save.data.GooeyMixMenu == 'Always On'
-					|| (FlxG.save.data.GooeyMixMenu == 'Gooey Selected' && FlxG.save.data.rememberedStartupCharacter == "gooey")) {
+				if (save.data.GooeyMixMenu == 'Always On' || (save.data.GooeyMixMenu == 'Gooey Selected' && save.data.rememberedStartupCharacter == "gooey")) {
 					if (FlxG.state.subState.members[3].graphic.assetPath == 'assets/images/menuDesat.png') {
 						FlxG.state.subState.members[3].loadGraphic(Paths.image('menuDesatGooey'));
 					}
@@ -176,17 +168,6 @@ class GooeyMenuOption extends Module {
 
 	public function onStateChangeEnd(event:StateChangeScriptEvent) {
 		addedTitle = false;
-
-		if (Std.isOfType(event.targetState, OptionsState)) {
-			if (event.targetState.optionsCodex.pages.get("preferences") != null) {
-				event.targetState.optionsCodex.pages.get("preferences")
-					.createPrefItemEnum('Gooey Menu', "Switch between using Gooey Mix's or FNF's menu themes.",
-						['Always On' => 'Always On', 'Off' => 'Off', 'Gooey Selected' => 'Gooey Selected'], function(value:String, oValue:String):Void {
-							FlxG.save.data.GooeyMixMenu = value;
-							FlxG.save.data.flush;
-					}, FlxG.save.data.GooeyMixMenu);
-			}
-		}
 	}
 
 	function addTitleScreenObjects():Void {

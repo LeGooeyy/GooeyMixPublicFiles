@@ -22,8 +22,8 @@ class GooeyPixelPlayableCharacter extends SparrowCharacter {
 		PauseSubState.musicSuffix = '-pixel';
 	}
 
-	function playAnimation(name:String, restart:Bool, ignoreOther:Bool) {
-		super.playAnimation(name, restart, ignoreOther);
+	override function playAnimation(name:String, restart:Bool = false, ignoreOther:Bool = false, reversed:Bool = false) {
+		super.playAnimation(name, restart, ignoreOther, reversed);
 		if (name == "deathConfirm") {
 			gooeyRetry = FunkinSound.load(Paths.music('gameplay/gameover/gameOverEnd-pixel-gooeyReal'), true);
 			gooeyRetry.volume = 1;

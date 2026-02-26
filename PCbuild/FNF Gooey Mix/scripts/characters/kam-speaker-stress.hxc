@@ -11,6 +11,7 @@ import funkin.vis.dsp.SpectralAnalyzer;
 import funkin.Highscore;
 import funkin.play.notes.Strumline;
 import flixel.FlxSprite;
+import flixel.util.FlxSave;
 
 class KamSpeakerStressCharacter extends MultiSparrowCharacter {
 	var shootTimes:Array<Float> = [];
@@ -35,6 +36,9 @@ class KamSpeakerStressCharacter extends MultiSparrowCharacter {
 		ignoreExclusionPref.push("shoot2");
 		ignoreExclusionPref.push("shoot3");
 		ignoreExclusionPref.push("shoot4");
+
+		save = new FlxSave();
+		save.bind("GooeyMixOptions", "FunkinCrew");
 	}
 
 	var adjustColor:AdjustColorShader;
@@ -48,7 +52,7 @@ class KamSpeakerStressCharacter extends MultiSparrowCharacter {
 			floraSpeaker.animation.play('FloraSpeakerBop');
 			PlayState.instance.currentStage.add(floraSpeaker);
 
-			if (FlxG.save.data.gooeyShaders != false) {
+			if (save.data.gooeyShaders != false) {
 				adjustColor = new AdjustColorShader();
 
 				adjustColor.hue = -10;

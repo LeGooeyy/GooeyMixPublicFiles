@@ -111,7 +111,7 @@
       "offsets": [442.5, 264]
     },
     {
-      "name": "hurt",
+      "name": "attackMISS",
       "prefix": "GooeyHit",
       "assetPath": "shared:characters/gooey/GooeyPlayerAnims",
       "offsets": [442.5, 264]

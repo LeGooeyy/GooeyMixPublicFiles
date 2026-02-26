@@ -12,11 +12,11 @@ class BoyfriendGooeyCharacter extends MultiAnimateAtlasCharacter {
 		super('bf-gooey');
 	}
 
-	override function playAnimation(name:String, restart:Bool, ignoreOther:Bool) {
+	override function playAnimation(name:String, restart:Bool = false, ignoreOther:Bool = false, reversed:Bool = false) {
 		if (name == "fakeoutDeath" && !this.debug) {
 			doFakeoutDeath();
 		} else {
-			super.playAnimation(name, restart, ignoreOther);
+			super.playAnimation(name, restart, ignoreOther, reversed);
 		}
 	}
 

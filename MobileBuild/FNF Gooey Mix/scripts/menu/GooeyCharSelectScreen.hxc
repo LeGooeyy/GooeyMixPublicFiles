@@ -10,10 +10,10 @@ class GooeyCharSelectScreen extends Module {
 		});
 	}
 
-	override function onUpdate(event:UpdateScriptEvent) {
-		super.onUpdate(event);
+	override function onCharacterSelected(event:UpdateScriptEvent) {
+		super.onCharacterSelected(event);
 
-		if (!Save.instance.data.unlocks.charactersSeen.contains(FlxG.state.curChar) && FlxG.state.curChar != "locked")
-			Save.instance.data.unlocks.charactersSeen.push(FlxG.state.curChar);
+		if (FlxG.state.curChar != "locked")
+			Save.instance.addCharacterSeen(FlxG.state.curChar);
 	}
 }

@@ -11,37 +11,37 @@
     {
       "name": "danceLeft",
       "prefix": "FloraCarIdleLeft",
-      "offsets": [5, 205]
+      "offsets": [53, 205]
     },
     {
       "name": "danceRight",
       "prefix": "FloraCarIdleRight",
-      "offsets": [5, 205]
+      "offsets": [53, 205]
     },
     {
       "name": "combo50",
       "prefix": "FloraCar50Combo",
-      "offsets": [5, 205]
+      "offsets": [53, 205]
     },
     {
       "name": "combo200",
       "prefix": "FloraCar200Combo",
-      "offsets": [5, 205]
+      "offsets": [53, 205]
     },
     {
       "name": "danceLeft-alt",
       "prefix": "FloraCarAltIdleLeft",
-      "offsets": [5, 205]
+      "offsets": [53, 205]
     },
     {
       "name": "danceRight-alt",
       "prefix": "FloraCarAltIdleRight",
-      "offsets": [5, 205]
+      "offsets": [53, 205]
     },
     {
       "name": "danceLeft-trans",
       "prefix": "FloraAltIdleLeft",
-      "offsets": [5, 205],
+      "offsets": [53, 205],
       "frameIndices": [
         1,2,3,4,5,6,7,8,9,10
       ]
@@ -49,7 +49,7 @@
     {
       "name": "danceRight-trans",
       "prefix": "FloraAltIdleRight",
-      "offsets": [5, 205],
+      "offsets": [53, 205],
       "frameIndices": [
         1,2,3,4,5,6,7,8,9,10
       ]
@@ -57,37 +57,37 @@
     {
       "name": "drop70",
       "prefix": "FloraCarBreakCombo",
-      "offsets": [5, 205]
+      "offsets": [53, 205]
     },
     {
       "name": "scared",
       "prefix": "FloraCarScared",
-      "offsets": [5, 205]
+      "offsets": [53, 205]
     },
     {
       "name": "cheer",
       "prefix": "FloraCar50Combo",
-      "offsets": [5, 205]
+      "offsets": [53, 205]
     },
      {
       "name": "singLEFT",
       "prefix": "FloraCarSingLeft",
-      "offsets": [5, 205]
+      "offsets": [53, 205]
     },
     {
       "name": "singDOWN",
       "prefix": "FloraSCaringDown",
-      "offsets": [5, 205]
+      "offsets": [53, 205]
     },
     {
       "name": "singUP",
       "prefix": "FloraCarSingUp",
-      "offsets": [5, 205]
+      "offsets": [53, 205]
     },
     {
       "name": "singRIGHT",
       "prefix": "FloraCarSingRight",
-      "offsets": [5, 205]
+      "offsets": [53, 205]
     }
   ]
 }

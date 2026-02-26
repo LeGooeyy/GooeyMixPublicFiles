@@ -5,10 +5,14 @@ import flixel.FlxG;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import funkin.play.PlayState;
+import flixel.util.FlxSave;
 
 class hotelCastleStage extends Stage {
 	function new() {
 		super('hotelCastle');
+
+		save = new FlxSave();
+		save.bind("GooeyMixOptions", "FunkinCrew");
 	}
 
 	function buildStage() {
@@ -59,14 +63,14 @@ class hotelCastleStage extends Stage {
 		var radEyeBop = getNamedProp('radEyeBop');
 		radEyeBop.blend = 0;
 
-		if (FlxG.save.data.morphoMode == 'On' || FlxG.save.data.morphoMode == 'No Stickers') {
+		if (save.data.morphoMode == 'On' || save.data.morphoMode == 'No Stickers') {
 			PlayState.instance.currentStage.getNamedProp('morphoBop').alpha = 0;
 		}
 	}
 
 	public function onGameOver(event:ScriptEvent) {
 		super.onGameOver(event);
-		if (FlxG.save.data.gooeyShaders != false) {
+		if (save.data.gooeyShaders != false) {
 			getBoyfriend().shader = null;
 		}
 	}
@@ -125,7 +129,7 @@ class hotelCastleStage extends Stage {
 		// Apply the shader automatically to each character as it gets added.
 		super.addCharacter(character, charType);
 		trace('Applied stage shader to ' + character.characterName);
-		if (FlxG.save.data.gooeyShaders != false) {
+		if (save.data.gooeyShaders != false) {
 			var rim = new DropShadowShader();
 			rim.setAdjustColor(0, 0, 0, 0);
 			rim.color = 0xFF423427;

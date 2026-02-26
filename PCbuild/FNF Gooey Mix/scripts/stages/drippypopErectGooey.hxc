@@ -6,16 +6,20 @@ import flixel.tweens.FlxTween;
 import openfl.filters.ShaderFilter;
 import flixel.addons.display.FlxRuntimeShader;
 import flixel.FlxG;
+import flixel.util.FlxSave;
 
 class DrippyPopErectGooeyStage extends Stage {
 	function new() {
 		super('drippypopErectGooey');
+
+		save = new FlxSave();
+		save.bind("GooeyMixOptions", "FunkinCrew");
 	}
 
 	function buildStage() {
 		super.buildStage();
 
-		if (FlxG.save.data.gooeyShaders != false) {
+		if (save.data.gooeyShaders != false) {
 			tvShader = new FlxRuntimeShader(Assets.getText(Paths.frag("ferzyShader")));
 			PlayState.instance.camGame.filters = [new ShaderFilter(tvShader)];
 			PlayState.instance.camHUD.filters = [new ShaderFilter(tvShader)];
