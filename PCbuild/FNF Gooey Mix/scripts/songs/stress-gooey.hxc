@@ -403,6 +403,9 @@ class StressGooeyMixSong extends Song {
 		});
 	}
 
+	/**
+	 * Don't replay the cutscene between restarts.
+	 */
 	function onSongRetry(event:ScriptEvent) {
 		super.onSongRetry(event);
 
@@ -410,11 +413,11 @@ class StressGooeyMixSong extends Song {
 
 		// resets the tankmen!
 		if (tankmanGroup != null) {
-			tankmanGroup.scriptCall('reset');
+			tankmanGroup.reset(0, 0);
 		}
 		if (PlayState.instance.currentStage?.getGirlfriend() != null) {
-			PlayState.instance.currentStage?.getGirlfriend().scriptCall('reset');
-			trace('reset kam!');
+			PlayState.instance.currentStage?.getGirlfriend().reset();
+			trace('reset pico!');
 		}
 	}
 
@@ -463,14 +466,14 @@ class StressGooeyMixSong extends Song {
 		}
 	}
 
-	function kill():Void {
+	function onDestroy(event:ScriptEvent):Void {
+		super.onDestroy(event);
 		cleanupTankmanGroup();
 	}
 
 	function cleanupTankmanGroup():Void {
 		if (tankmanGroup != null) {
-			PlayState.instance.currentStage.remove(tankmanGroup);
-			tankmanGroup.destroy();
+			PlayState.instance.currentStage.remove(tankmanGroup, true);
 			tankmanGroup = null;
 		}
 	}

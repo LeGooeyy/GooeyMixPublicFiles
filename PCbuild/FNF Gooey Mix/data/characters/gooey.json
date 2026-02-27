@@ -7,7 +7,7 @@
   "flipX": true,
   "cameraOffsets": [-1, -32],
   "death": {
-    "cameraOffsets": [-280, -140]
+    "cameraOffsets": [-40, 0]
   },
   "healthIcon": {
     "id": "gooey"

@@ -10,7 +10,7 @@
     "isPixel": true
   },
   "death": {
-    "cameraOffsets": [-40, 40]
+    "cameraOffsets": [-40, 0]
   },
   "scale": 6,
   "animations": [

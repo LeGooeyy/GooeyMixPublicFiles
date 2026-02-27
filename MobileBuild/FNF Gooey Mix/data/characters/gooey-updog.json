@@ -9,7 +9,7 @@
     "id": "gooey"
   },
   "death": {
-    "cameraOffsets": [-40, 40]
+    "cameraOffsets": [-40, 0]
   },
   "animations": [
     {

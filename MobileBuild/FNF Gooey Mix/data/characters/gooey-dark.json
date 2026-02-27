@@ -7,7 +7,7 @@
   "atlasSettings": {"useRenderTexture": true},
   "cameraOffsets": [-1, -32],
   "death": {
-    "cameraOffsets": [-40, 40]
+    "cameraOffsets": [-40, 0]
   },
   "healthIcon": {
     "id": "gooey"

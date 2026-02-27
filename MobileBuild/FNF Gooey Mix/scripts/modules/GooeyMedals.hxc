@@ -50,7 +50,7 @@ class GooeyMedals extends Module {
 		}
 	}
 
-	public function hasBeatenLevel(levelId:String, difficultyList:Array<String>) {
+	public function hasBeatenLevel(levelId:String, ?difficultyList:Array<String>) {
 		if (difficultyList == null) {
 			difficultyList = ['easy', 'normal', 'hard'];
 		}
