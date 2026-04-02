@@ -4,59 +4,51 @@
   "assetPath": "characters/kam/KamStress",
   "renderType": "multisparrow",
   "singTime": 10,
-  "offsets": [0,25],
+  "offsets": [-6,32],
+  "cameraOffsets": [6, -7],
   "healthIcon": {
     "id": "kam"
   },
   "animations": [
     {
       "name": "shoot1",
-      "prefix": "rightHigh",
-      "offsets": [-10, 0]
+      "prefix": "rightHigh"
     },
     {
       "name": "shoot2",
-      "prefix": "rightLow",
-      "offsets": [-10, 0]
+      "prefix": "rightLow"
     },
     {
       "name": "shoot3",
-      "prefix": "leftHigh",
-      "offsets": [-10, 0]
+      "prefix": "leftHigh"
     },
     {
       "name": "shoot4",
-      "prefix": "leftLow",
-      "offsets": [-10, 0]
+      "prefix": "leftLow"
     },
     {
       "name": "idle",
-      "prefix": "idle",
-      "offsets": [-10, 0]
+      "prefix": "idle"
     },
        {
       "name": "fakeIdle",
       "prefix": "idle",
-      "offsets": [-10, 0],
        "looped": true
     },
     {
       "name": "kamMurder",
       "prefix": "kamMurder",
-      "offsets": [-10, 0],
       "assetPath": "characters/kam/KamStressCutscene"
     },
        {
       "name": "grab",
       "prefix": "grab",
-      "offsets": [-10, 0],
       "assetPath": "characters/kam/KamStressCutscene"
     },
     {
       "name": "iDontKnow",
       "prefix": "iDontKnow",
-      "assetPath": "characters/kam/KamStressCutscene",
-      "offsets": [-10, 0]
+      "assetPath": "characters/kam/KamStressCutscene"
     }
   ]
 }

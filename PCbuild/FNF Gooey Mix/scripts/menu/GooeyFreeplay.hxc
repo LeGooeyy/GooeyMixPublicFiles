@@ -1,162 +1,10 @@
 import funkin.modding.module.Module;
-import flixel.FlxG;
-import funkin.Paths;
 import funkin.ui.freeplay.FreeplayState;
-import funkin.util.ReflectUtil;
-import funkin.ui.freeplay.SongMenuItem;
-import funkin.audio.FunkinSound;
 import StringTools;
-import funkin.PlayerSettings;
-import funkin.ui.freeplay.CapsuleNumber;
-import flixel.FlxCamera;
 
 class GooeyFreeplay extends Module {
 	public function new() {
 		super('GooeyFreeplay');
-	}
-
-	var changeWeekNumbers:Array<String> = ['week60037', 'weeknh'];
-	var changeWeekTitles:Array<String> = ['extraGooeySongs', 'QTWeek', 'sserafim', 'skyweek1', 'skyweek2', 'tutorial'];
-	var changedCapsules:Array<SongMenuItem>;
-
-	override function onSubStateOpenBegin(event) {
-		super.onSubStateOpenBegin(event);
-		if ((event.targetState is FreeplayState) && (changedCapsules?.length ?? 1) > 0) {
-			changedCapsules = []; // Make sure to clear to not run into any issues
-		}
-	}
-
-	public function onDifficultySwitch(event:CapsuleScriptEvent):Void {
-		super.onDifficultySwitch(event);
-		while (changedCapsules?.length > 0) {
-			var capsule = changedCapsules.shift();
-			// if (capsule == null || !capsule.alive) continue;
-
-			if (StringTools.contains(capsule?.weekType?.graphic?.key, 'freeplay/freeplayCapsule/gooeyMixWeekTypes')) {
-				var resetSmallNumbers = StringTools.contains(capsule?.weekNumbers[0]?.graphic?.key, 'freeplay/freeplayCapsule/gooeySmallnumbers');
-				var value = (resetSmallNumbers) ? 'both' : 'capsule';
-				trace(value);
-				resetCapsules(capsule, value);
-			} else if (StringTools.contains(capsule?.weekNumbers[0]?.graphic?.key, 'freeplay/freeplayCapsule/gooeySmallnumbers'))
-				resetCapsules(capsule, 'numbers');
-		}
-		if ((changedCapsules?.length ?? 1) != 0)
-			changedCapsules = []; // Clear the array just in case
-		var filteredCapsules:Array<SongMenuItem> = FlxG.state.subState.grpCapsules.members.filter(function(cap:SongMenuItem) {
-			var allGooeySongs = changeWeekNumbers.concat(changeWeekTitles);
-			return cap != null && cap.alive && cap.freeplayData != null && allGooeySongs.contains(cap.freeplayData.levelId);
-		});
-		for (capsule in filteredCapsules) {
-			if (capsule == null || !capsule.alive)
-				continue;
-
-			changedCapsules.push(capsule); // Push these changed capsules
-			if (changeWeekNumbers.contains(capsule?.freeplayData?.levelId))
-				weekNumbers(capsule);
-			else if (changeWeekTitles.contains(capsule?.freeplayData?.levelId))
-				weekTitles(capsule);
-		}
-	}
-
-	public function onCapsuleSelected(event:CapsuleScriptEvent):Void {
-		super.onCapsuleSelected(event);
-		switch (FlxG.state.subState.currentCharacterId) {
-			case 'bf', 'pico', 'gooey':
-				var data = event.capsule?.freeplayData;
-				var id = (data != null) ? data.levelId : null;
-				var state = FlxG.state.subState;
-				if (state.ostName != null) {
-					if (id == 'week60037' || state.currentCharacterId == 'gooey') {
-						if (state.ostName.text != "GOOEY MIX OST")
-							state.ostName.text = "GOOEY MIX OST";
-					} else if (state.ostName.text == "GOOEY MIX OST")
-						state.ostName.text = "OFFICIAL OST";
-				}
-		}
-	}
-
-	function weekNumbers(cap:SongMenuItem) {
-		if (cap?.freeplayData == null)
-			return;
-		cap.weekType.visible = true;
-		cap.weekType.animation.play('WEEK', true);
-
-		cap.weekNumbers[0].frames = Paths.getSparrowAtlas('freeplay/freeplayCapsule/gooeySmallnumbers');
-		cap.weekNumbers[0].visible = true;
-		if (cap.freeplayData.levelId == 'week60037') {
-			cap.weekNumbers[0].animation.addByPrefix('GOOEY', 'GOOEY', 24, true);
-			cap.weekNumbers[0].animation.play('GOOEY', true);
-		}
-		if (cap.freeplayData.levelId == 'weeknh') {
-			cap.weekNumbers[0].animation.addByPrefix('NH', 'NH', 24, true);
-			cap.weekNumbers[0].animation.play('NH', true);
-		}
-		cap.weekNumbers[0].offset.x = 5;
-		cap.weekNumbers[0].offset.y = 1.3;
-	}
-
-	function weekTitles(cap:SongMenuItem) {
-		if (cap?.freeplayData == null)
-			return;
-		cap.weekType.frames = Paths.getSparrowAtlas('freeplay/freeplayCapsule/gooeyMixWeekTypes');
-		if (cap.freeplayData.levelId == 'extraGooeySongs') {
-			cap.weekType.animation.addByPrefix('EXTRA', 'EXTRA text', 24, false);
-			cap.weekType.animation.play('EXTRA', true);
-		}
-		if (cap.freeplayData.levelId == 'experiment1') {
-			cap.weekType.animation.addByPrefix('EXPT', 'EXPT text', 24, false);
-			cap.weekType.animation.play('EXPT', true);
-		}
-		if (cap.freeplayData.levelId == 'QTWeek') {
-			cap.weekType.animation.addByPrefix('QT WEEK', 'QT WEEK text', 24, false);
-			cap.weekType.animation.play('QT WEEK', true);
-		}
-		if (cap.freeplayData.levelId == 'tutorial') {
-			cap.weekType.animation.addByPrefix('TUTORIAL', 'TUTORIAL text', 24, false);
-			cap.weekType.animation.play('TUTORIAL', true);
-		}
-		if (cap.freeplayData.levelId == 'skyweek1') {
-			cap.weekType.animation.addByPrefix('SKY', 'SKY text', 24, false);
-			cap.weekType.animation.play('SKY', true);
-		}
-		if (cap.freeplayData.levelId == 'skyweek2') {
-			cap.weekType.animation.addByPrefix('SKY OG', 'SKY OG text', 24, false);
-			cap.weekType.animation.play('SKY OG', true);
-		}
-		if (cap.freeplayData.levelId == 'sserafim') {
-			cap.weekType.animation.addByPrefix('SP COLLAB', 'SP COLLAB text', 24, false);
-			cap.weekType.animation.play('SP COLLAB', true);
-			cap.weekNumbers[0].visible = true;
-			cap.weekNumbers[0].animation.addByPrefix('ONE', 'ONE', 24, false);
-			cap.weekNumbers[0].animation.play('ONE', true);
-			cap.weekNumbers[0].offset.x = -45;
-			cap.weekNumbers[0].offset.y = 1.3;
-		}
-
-		cap.weekType.visible = true;
-	}
-
-	function resetCapsules(cap:SongMenuItem, reset:String) {
-		if (cap?.freeplayData == null)
-			return;
-		if (reset == 'numbers' || reset == 'both') {
-			cap.weekNumbers[0].frames = Paths.getSparrowAtlas('freeplay/freeplayCapsule/smallnumbers');
-			var numToString:Array<String> = ["ZERO", "ONE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE"];
-			for (i in 0...10) {
-				var stringNum:String = numToString[i];
-				cap.weekNumbers[0].animation.addByPrefix(stringNum, stringNum, 24, false);
-			}
-			if (reset == 'numbers') {
-				cap.checkWeek(cap.freeplayData.data.id);
-				return;
-			}
-		}
-		if (reset == 'capsule' || reset == 'both') {
-			cap.weekType.frames = Paths.getSparrowAtlas('freeplay/freeplayCapsule/weektypes');
-			cap.weekType.animation.addByPrefix('WEEK', 'WEEK text instance 1', 24, false);
-			cap.weekType.animation.addByPrefix('WEEKEND', 'WEEKEND text instance 1', 24, false);
-			cap.checkWeek(cap.freeplayData.data.id);
-		}
 	}
 
 	override function onUpdate(event:UpdateScriptEvent) {
@@ -168,6 +16,16 @@ class GooeyFreeplay extends Module {
 		if (FlxG.state.subState.instSelectMenu != null) {
 			if (StringTools.startsWith(FlxG.state.subState.instSelectMenu.currentInstrumental.text, "Truegooey"))
 				FlxG.state.subState.instSelectMenu.currentInstrumental.text = "Gooey";
+		}
+	}
+
+	override function onSubStateOpenEnd(event) {
+        super.onSubStateOpenEnd(event);
+		if (!Std.isOfType(event.targetState, FreeplayState)) return;
+		for (dot in event.targetState.difficultyDots.members) {
+			// switch normalColors to nightColors if difficulty is an erect variation
+			// deselected, selected, deselected pulse, selected pulse
+			if (dot.difficultyId == 'extra') dot.normalColors = [0xFF1A525E, 0xFF6EFCC1, 0xFF375252, 0xFF143E47];
 		}
 	}
 }

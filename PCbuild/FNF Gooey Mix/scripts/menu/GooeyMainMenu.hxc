@@ -1,6 +1,5 @@
 import funkin.ui.mainmenu.MainMenuState;
 import funkin.modding.module.Module;
-import flixel.FlxG;
 import funkin.util.ReflectUtil;
 
 class GooeyMainMenu extends Module {
@@ -15,7 +14,7 @@ class GooeyMainMenu extends Module {
 		if (ReflectUtil.getClassNameOf(FlxG.state) == "funkin.ui.mainmenu.MainMenuState") {
 			FlxG.mouse.visible = false;
 
-			FlxG.state.rightWatermarkText.text = "GOOEY MIX v4.2.3";
+			FlxG.state.rightWatermarkText.text = "GOOEY MIX v4.3.0";
 		}
 	}
 }

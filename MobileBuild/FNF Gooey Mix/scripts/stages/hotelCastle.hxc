@@ -1,7 +1,6 @@
 import funkin.play.stage.Stage;
 import funkin.graphics.shaders.DropShadowShader;
 import funkin.play.character.CharacterType;
-import flixel.FlxG;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import funkin.play.PlayState;
@@ -41,11 +40,11 @@ class hotelCastleStage extends Stage {
 
 		var extraSpotlight = getNamedProp('extraSpotlight');
 		extraSpotlight.blend = 9;
-		extraSpotlight.alpha = 0;
+		extraSpotlight.alpha = 0.0001;
 
 		var extraSpotlight2 = getNamedProp('extraSpotlight2');
 		extraSpotlight2.blend = 9;
-		extraSpotlight2.alpha = 0;
+		extraSpotlight2.alpha = 0.0001;
 
 		var topLantern1Light = getNamedProp('topLantern1Light');
 		topLantern1Light.blend = 0;

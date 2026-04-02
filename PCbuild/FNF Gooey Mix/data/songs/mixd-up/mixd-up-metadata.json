@@ -13,7 +13,7 @@
     "difficulties": ["extra"],
     "characters": {
       "player": "bf-gooey","girlfriend": "gf","opponent": "mix",
-      "instrumental": "","playerVocals": ["bf"],"opponentVocals": ["mix"], "altInstrumentals": []
+      "instrumental": "","opponentVocals": ["both"], "altInstrumentals": []
     },
     "stage": "phillyCity",
     "noteStyle": "funkin",

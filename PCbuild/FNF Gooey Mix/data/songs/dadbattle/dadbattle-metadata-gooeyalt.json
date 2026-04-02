@@ -13,7 +13,7 @@
     "difficulties": ["easy", "normal", "hard"],
     "characters": {
       "player": "gooey","girlfriend": "flora","opponent": "dad",
-      "instrumental": "truegooey","playerVocals": ["gooey"],"opponentVocals": ["dad"], "altInstrumentals": ["pico",""]
+      "instrumental": "gooey","playerVocals": ["gooey"],"opponentVocals": ["dad"], "altInstrumentals": ["pico",""]
     },
     "stage": "mainStageErect",
     "noteStyle": "funkin",

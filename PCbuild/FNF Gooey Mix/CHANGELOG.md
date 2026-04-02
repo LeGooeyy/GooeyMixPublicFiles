@@ -3,6 +3,55 @@ All notable changes will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [4.3.0] - 2026-4-1
+Detour 1 Mini Update 3 (The Lore Update)
+
+### Added
+
+- Added a new extra song all about Gooey's lore
+- Added a new medal
+- Added a new stage for the week 5 Gooey Mixes
+- Added a new logo for the mod
+- Added new effects and blend modes to the Week 60037 erect stage
+- Added a new pause theme when playing as Morpho
+- Added more intro texts
+
+### Changed
+
+- Overhauled Gooey's sprites once more (we made him fatter)
+- Overhauled the Gooey Freeplay and Character Select menus
+- Changed the shape of Gooey's fur in the pixel dialogue sprites
+- Completly recoded Flora to be more optimized
+- Moved Flora's offsets to be the same as Nene's
+- Changed Flora's visualizer to run at 24 FPS instead of no cap
+- Changed Flora's lights to be effected by shaders
+- Ran Oxipng on every image file in the mod to decrease file size and optimize
+- Ran Handbrake on every video file in the mod to decrease file size and optimize
+- Added preloading to the Morpho game over video
+- Changed Pico in Mix'd up to be scaled down in the spritesheet rather than in game
+- Changed Gooey and Flora to be extending the base characters
+- Changed the camera in Tutorial (Gooey Mix) to be properly centered on Flora
+- Changed Gooey's attack projectiles to be seperate from the character sprite
+
+### Fixed
+
+- Fixed bugs when playing on 0.8.4
+- Fixed the window icon not changing properly when in Freeplay while playing as BF
+- Fixed tweens not being effected by pausing
+- Fixed Pico in Mix'd up stopping to early if pausing the game when he is walking
+- Fixed Flora's eyes desyncing with her body
+- Fixed the shader not applying properly to nene in Starcraft (Pico Mix)
+- Fixed some credits being wrong in the album files
+- Fixed a bug when opening the chart editor on specific songs crashing the game
+- Fixed the camera offsets on Stress (Gooey Mix)
+- Fixed some other bugs I forgot about
+
+### Removed
+
+- Removed some unused files
+- Removed Pumpco
+
+
 ## [4.2.3] - 2026-2-27
 Detour 1 Hotfix 6
 

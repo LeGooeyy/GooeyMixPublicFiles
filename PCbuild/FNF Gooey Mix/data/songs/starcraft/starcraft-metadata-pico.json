@@ -12,7 +12,7 @@
     "songVariations": [],
     "difficulties": ["easy", "normal", "hard"],
     "characters": {
-      "player": "pico-playable","girlfriend": "nene","opponent": "gooey-opponent",
+      "player": "pico-playable","girlfriend": "nene-gooey","opponent": "gooey-opponent",
       "instrumental": "pico","playerVocals": ["pico"],"opponentVocals": ["gooey"], "altInstrumentals": [""]
     },
     "stage": "natCrystal",

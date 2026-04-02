@@ -1596,9 +1596,9 @@
 "SN":"Parts/Tail",
 "FF":0,
 "ST":"G",
-"TRP":{"x":149.05,"y":126.3},
+"TRP":{"x":169.05,"y":126.3},
 "LP":"LP",
-"MX":[0.797,-0.603,0.603,0.797,172.1,67.05]
+"MX":[0.797,-0.603,0.603,0.797,192.1,67.05]
 }}]},{
 "I":2,
 "DU":2,
@@ -1607,9 +1607,9 @@
 "SN":"Parts/Tail",
 "FF":0,
 "ST":"G",
-"TRP":{"x":151.45,"y":118.4},
+"TRP":{"x":171.45,"y":118.4},
 "LP":"LP",
-"MX":[0.839,-0.544,0.544,0.839,179.75,65.45]
+"MX":[0.839,-0.544,0.544,0.839,199.75,65.45]
 }}]},{
 "I":4,
 "DU":11,
@@ -1618,9 +1618,9 @@
 "SN":"Parts/Tail",
 "FF":0,
 "ST":"G",
-"TRP":{"x":159.9,"y":71.25},
+"TRP":{"x":179.9,"y":71.25},
 "LP":"LP",
-"MX":[0.822,-0.569,0.569,0.822,178.15,64.6]
+"MX":[0.822,-0.569,0.569,0.822,198.15,64.6]
 }}]}
 ]}
 ]}},{
@@ -1991,7 +1991,7 @@
 "DU":1,
 "E":[
 {"SI":{
-"SN":"newLeftFaceSnap.png",
+"SN":"Bitmaps/newLeftFaceSnap.png",
 "ST":"MC",
 "TRP":{"x":194.5,"y":78.5},
 "MX":[1,0,0,1,160,54]
@@ -2009,7 +2009,7 @@
 "DU":1,
 "E":[
 {"SI":{
-"SN":"newLeftFace.png",
+"SN":"Bitmaps/newLeftFace.png",
 "ST":"MC",
 "TRP":{"x":246.5,"y":-19},
 "MX":[1,0,0,1,211,-43]
@@ -2027,7 +2027,7 @@
 "DU":1,
 "E":[
 {"SI":{
-"SN":"newRightFaceSnap.png",
+"SN":"Bitmaps/newRightFaceSnap.png",
 "ST":"MC",
 "TRP":{"x":231,"y":88.5},
 "MX":[1,0,0,1,179,50]
@@ -2045,7 +2045,7 @@
 "DU":1,
 "E":[
 {"SI":{
-"SN":"newRightFace.png",
+"SN":"Bitmaps/newRightFace.png",
 "ST":"MC",
 "TRP":{"x":354,"y":117.5},
 "MX":[1,0,0,1,301,80]
@@ -2081,7 +2081,7 @@
 "DU":1,
 "E":[
 {"SI":{
-"SN":"newDownFaceSnap.png",
+"SN":"Bitmaps/newDownFaceSnap.png",
 "ST":"MC",
 "TRP":{"x":1437,"y":265},
 "MX":[1,0,0,1,1386,231]
@@ -2099,7 +2099,7 @@
 "DU":1,
 "E":[
 {"SI":{
-"SN":"newDownFace.png",
+"SN":"Bitmaps/newDownFace.png",
 "ST":"MC",
 "TRP":{"x":1296.5,"y":253},
 "MX":[1,0,0,1,1246,223]
@@ -2110,17 +2110,17 @@
 "TL":{
 "L":[
 {
-"LN":"Layer_1",
+"LN":"Layer_2",
 "FR":[
 {
 "I":0,
 "DU":1,
 "E":[
 {"SI":{
-"SN":"Bitmaps/downBody.png",
+"SN":"Bitmaps/newDown.png",
 "ST":"MC",
-"TRP":{"x":1501,"y":385.5},
-"MX":[1,0,0,1,1391,323]
+"TRP":{"x":1503,"y":390.5},
+"MX":[1,0,0,1,1388,323]
 }}]}
 ]}
 ]}},{
@@ -2416,17 +2416,17 @@
 "TL":{
 "L":[
 {
-"LN":"Layer_1",
+"LN":"Layer_2",
 "FR":[
 {
 "I":0,
 "DU":1,
 "E":[
 {"SI":{
-"SN":"Bitmaps/downAltBody.png",
+"SN":"Bitmaps/newAltdown.png",
 "ST":"MC",
-"TRP":{"x":360,"y":167.5},
-"MX":[1,0,0,1,270,113]
+"TRP":{"x":360.5,"y":169},
+"MX":[1,0,0,1,261,111]
 }}]}
 ]}
 ]}},{
@@ -2580,7 +2580,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"10"
 }}]}]}]}},{
-"SN":"newLeftFaceSnap.png",
+"SN":"Bitmaps/newLeftFaceSnap.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -2592,7 +2592,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"11"
 }}]}]}]}},{
-"SN":"newLeftFace.png",
+"SN":"Bitmaps/newLeftFace.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -2604,7 +2604,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"12"
 }}]}]}]}},{
-"SN":"newRightFaceSnap.png",
+"SN":"Bitmaps/newRightFaceSnap.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -2616,7 +2616,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"13"
 }}]}]}]}},{
-"SN":"newRightFace.png",
+"SN":"Bitmaps/newRightFace.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -2640,7 +2640,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"15"
 }}]}]}]}},{
-"SN":"newDownFaceSnap.png",
+"SN":"Bitmaps/newDownFaceSnap.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -2652,7 +2652,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"16"
 }}]}]}]}},{
-"SN":"newDownFace.png",
+"SN":"Bitmaps/newDownFace.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -2664,7 +2664,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"17"
 }}]}]}]}},{
-"SN":"Bitmaps/downBody.png",
+"SN":"Bitmaps/newDown.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -2868,7 +2868,7 @@
 "MX":[0.978,0,0,1,0,0],
 "N":"34"
 }}]}]}]}},{
-"SN":"Bitmaps/downAltBody.png",
+"SN":"Bitmaps/newAltdown.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",

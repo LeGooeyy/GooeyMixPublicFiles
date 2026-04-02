@@ -1,6 +1,5 @@
 import funkin.modding.module.Module;
 import funkin.util.ReflectUtil;
-import flixel.FlxG;
 import funkin.save.Save;
 import funkin.ui.options.OptionsState;
 import funkin.ui.freeplay.FreeplayState;

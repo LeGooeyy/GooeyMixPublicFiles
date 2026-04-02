@@ -3,9 +3,7 @@ import funkin.play.song.Song;
 import funkin.data.song.SongRegistry;
 import funkin.modding.module.Module;
 import funkin.save.Save;
-import flixel.FlxG;
 import haxe.Json;
-import funkin.util.Constants;
 
 using StringTools;
 

@@ -11,83 +11,121 @@
     {
       "name": "danceLeft",
       "prefix": "FloraCarIdleLeft",
-      "offsets": [53, 205]
+      "offsets": [-74, 235]
+    },
+    {
+      "name": "danceLeft-hold",
+      "prefix": "FloraCarIdleLeft",
+      "offsets": [-74, 235],
+      "looped": true,
+      "frameIndices": [11, 12, 13, 14]
     },
     {
       "name": "danceRight",
       "prefix": "FloraCarIdleRight",
-      "offsets": [53, 205]
+      "offsets": [-74, 235]
+    },
+    {
+      "name": "danceRight-hold",
+      "prefix": "FloraCarIdleRight",
+      "offsets": [-74, 235],
+      "looped": true,
+      "frameIndices": [11, 12, 13, 14]
     },
     {
       "name": "combo50",
       "prefix": "FloraCar50Combo",
-      "offsets": [53, 205]
+      "offsets": [-74, 235]
+    },
+    {
+      "name": "combo50-hold",
+      "prefix": "FloraCar50Combo",
+      "offsets": [-74, 235],
+      "looped": true,
+      "frameIndices": [4,5,6,7]
     },
     {
       "name": "combo200",
       "prefix": "FloraCar200Combo",
-      "offsets": [53, 205]
+      "offsets": [-74, 235]
     },
     {
       "name": "danceLeft-alt",
       "prefix": "FloraCarAltIdleLeft",
-      "offsets": [53, 205]
+      "offsets": [-74, 235]
+    },
+    {
+      "name": "danceLeft-alt-hold",
+      "prefix": "FloraCarAltIdleLeft",
+      "offsets": [-74, 235],
+      "looped": true,
+      "frameIndices": [9,10,11,12]
     },
     {
       "name": "danceRight-alt",
       "prefix": "FloraCarAltIdleRight",
-      "offsets": [53, 205]
+      "offsets": [-74, 235]
+    },
+    {
+      "name": "danceRight-alt-hold",
+      "prefix": "FloraCarAltIdleRight",
+      "offsets": [-74, 235],
+      "looped": true,
+      "frameIndices": [9,10,11,12]
     },
     {
       "name": "danceLeft-trans",
-      "prefix": "FloraAltIdleLeft",
-      "offsets": [53, 205],
+      "prefix": "FloraCarAltIdleLeft",
+      "offsets": [-74, 235],
       "frameIndices": [
         1,2,3,4,5,6,7,8,9,10
       ]
     },
     {
       "name": "danceRight-trans",
-      "prefix": "FloraAltIdleRight",
-      "offsets": [53, 205],
+      "prefix": "FloraCarAltIdleRight",
+      "offsets": [-74, 235],
       "frameIndices": [
         1,2,3,4,5,6,7,8,9,10
       ]
     },
     {
-      "name": "drop70",
-      "prefix": "FloraCarBreakCombo",
-      "offsets": [53, 205]
+      "name": "danceRight-trans-hold",
+      "prefix": "FloraCarAltIdleRight",
+      "offsets": [-74, 235],
+      "looped": true,
+      "frameIndices": [9,10,11,12]
     },
     {
-      "name": "scared",
-      "prefix": "FloraCarScared",
-      "offsets": [53, 205]
+      "name": "danceLeft-trans-hold",
+      "prefix": "FloraCarAltIdleLeft",
+      "offsets": [-74, 235],
+      "looped": true,
+       "frameIndices": [9,10,11,12]
+    },
+    {
+      "name": "drop70",
+      "prefix": "FloraCarBreakCombo",
+      "offsets": [-74, 235]
     },
     {
       "name": "cheer",
       "prefix": "FloraCar50Combo",
-      "offsets": [53, 205]
-    },
-     {
-      "name": "singLEFT",
-      "prefix": "FloraCarSingLeft",
-      "offsets": [53, 205]
+      "offsets": [-74, 235]
     },
     {
-      "name": "singDOWN",
-      "prefix": "FloraSCaringDown",
-      "offsets": [53, 205]
+      "name": "drop70-hold",
+      "prefix": "FloraCarBreakCombo",
+      "offsets": [-74, 235],
+      "looped": true,
+      "frameIndices": [4,5,6,7]
     },
     {
-      "name": "singUP",
-      "prefix": "FloraCarSingUp",
-      "offsets": [53, 205]
-    },
-    {
-      "name": "singRIGHT",
-      "prefix": "FloraCarSingRight",
-      "offsets": [53, 205]
+      "name": "cheer-hold",
+      "prefix": "FloraCar50Combo",
+      "offsets": [-74, 235],
+      "looped": true,
+      "frameIndices": [4,5,6,7]
     }
   ]
 }

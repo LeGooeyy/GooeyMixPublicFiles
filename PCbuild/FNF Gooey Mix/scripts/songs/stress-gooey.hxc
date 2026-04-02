@@ -5,18 +5,15 @@ import funkin.modding.base.ScriptedFlxSpriteGroup;
 import funkin.play.cutscene.VideoCutscene;
 import openfl.filters.ShaderFilter;
 import flixel.FlxCamera;
-import flixel.FlxG;
 import flixel.math.FlxPoint;
 import funkin.modding.base.ScriptedFunkinSprite;
 import funkin.audio.FunkinSound;
 import funkin.play.stage.Stage;
 import funkin.graphics.FunkinSprite;
-import funkin.util.Constants;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxTimer;
 import flixel.util.FlxTimerManager;
-import funkin.Preferences;
 import funkin.util.Sequence;
 import flixel.text.FlxText;
 import flixel.text.FlxTextBorderStyle;
@@ -118,22 +115,11 @@ class StressGooeyMixSong extends Song {
 		fakeFlora.anim.addByFrameLabel('FlorAdios', 'FlorAdios', 24, false);
 		fakeFlora.animation.play('FloraIdle');
 		PlayState.instance.currentStage.add(fakeFlora);
-		fakeFlora.setPosition(PlayState.instance.currentStage.getGirlfriend().x + 586, PlayState.instance.currentStage.getGirlfriend().y + 423);
+		fakeFlora.setPosition(PlayState.instance.currentStage.getGirlfriend().x + 569, PlayState.instance.currentStage.getGirlfriend().y + 429);
 		fakeFlora.zIndex = 199;
 
-		floraEyes = FunkinSprite.createTextureAtlas(0, 0, 'characters/flora/FloraStressCutscene', 'shared');
-		floraEyes.anim.addByFrameLabel('FloraEyesIdle', 'FloraEyesIdle', 24, true);
-		floraEyes.anim.addByFrameLabel('FloraEyesRuhRoh', 'FloraEyesRuhRoh', 24, false);
-		floraEyes.anim.addByFrameLabel('FloraEyesHuh', 'FloraEyesHuh', 24, false);
-		floraEyes.anim.addByFrameLabel('FlorEyesAdios', 'FlorEyesAdios', 24, false);
-		floraEyes.animation.play('FloraEyesIdle');
-		PlayState.instance.currentStage.add(floraEyes);
-		floraEyes.setPosition(PlayState.instance.currentStage.getGirlfriend().x + 586, PlayState.instance.currentStage.getGirlfriend().y + 423);
-		floraEyes.zIndex = 200;
-		floraEyes.blend = 0;
-
-		tankBopLeft = new FunkinSprite(PlayState.instance.currentStage.getGirlfriend().x - 7,
-			PlayState.instance.currentStage.getGirlfriend().y + 30).loadSparrow('characters/flora/LeftTanker');
+		tankBopLeft = new FunkinSprite(PlayState.instance.currentStage.getGirlfriend().x - 26,
+			PlayState.instance.currentStage.getGirlfriend().y + 50).loadSparrow('characters/flora/LeftTanker');
 		tankBopLeft.animation.addByPrefix('idle', 'idle', 24, true);
 		tankBopLeft.animation.addByPrefix('aim', 'aim', 24, false);
 		tankBopLeft.animation.addByPrefix('fuck', 'fuck', 12, false);
@@ -142,8 +128,8 @@ class StressGooeyMixSong extends Song {
 		PlayState.instance.currentStage.add(tankBopLeft);
 		tankBopLeft.zIndex = PlayState.instance.currentStage.getGirlfriend().zIndex - 3;
 
-		tankBopRight = new FunkinSprite(PlayState.instance.currentStage.getGirlfriend().x + 7,
-			PlayState.instance.currentStage.getGirlfriend().y + 30).loadSparrow('characters/flora/RightTanker');
+		tankBopRight = new FunkinSprite(PlayState.instance.currentStage.getGirlfriend().x,
+			PlayState.instance.currentStage.getGirlfriend().y + 50).loadSparrow('characters/flora/RightTanker');
 		tankBopRight.animation.addByPrefix('idle', 'idle', 24, true);
 		tankBopRight.animation.play('idle');
 		tankBopRight.animation.addByPrefix('aim', 'aim', 24, false);
@@ -233,7 +219,6 @@ class StressGooeyMixSong extends Song {
 				callback: () -> {
 					tankBopLeft.animation.play('aim');
 					tankBopRight.animation.play('aim');
-					floraEyes.animation.play('FloraEyesRuhRoh');
 					fakeFlora.animation.play('FloraRuhRoh');
 					PlayState.instance.currentStage.getBoyfriend().playAnimation('GooeyCutUhOh', true, false);
 					gooeyCutSound = FunkinSound.playOnce(Paths.sound('stressGooeyCutscene/gockCockStress'), 1.0);
@@ -243,14 +228,12 @@ class StressGooeyMixSong extends Song {
 			{
 				time: 352 / 24,
 				callback: () -> {
-					floraEyes.animation.play('FloraEyesHuh');
 					fakeFlora.animation.play('FloraHuh');
 				}
 			},
 			{
 				time: 366 / 24,
 				callback: () -> {
-					floraEyes.animation.play('FlorEyesAdios');
 					fakeFlora.animation.play('FlorAdios');
 				}
 			},
@@ -348,7 +331,6 @@ class StressGooeyMixSong extends Song {
 					tankBopLeft.destroy();
 					tankBopRight.destroy();
 					fakeFlora.destroy();
-					floraEyes.destroy();
 					PlayState.instance.currentStage.getGirlfriend().playAnimation('idle', true, false);
 					PlayState.instance.currentStage.getDad().playAnimation('idle', true, false);
 					PlayState.instance.currentStage.getBoyfriend().playAnimation('idle', true, false);
@@ -387,7 +369,6 @@ class StressGooeyMixSong extends Song {
 			tankBopLeft.destroy();
 			tankBopRight.destroy();
 			fakeFlora.destroy();
-			floraEyes.destroy();
 			FlxTween.tween(PlayState.instance.camHUD, {alpha: 1}, 1);
 
 			PlayState.instance.currentStage.getGirlfriend().visible = true;

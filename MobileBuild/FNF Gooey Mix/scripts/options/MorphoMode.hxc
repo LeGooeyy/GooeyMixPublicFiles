@@ -1,11 +1,9 @@
 import funkin.modding.module.Module;
 import funkin.modding.events.ScriptEvent;
 import funkin.util.ReflectUtil;
-import flixel.FlxG;
 import funkin.save.Save;
 import funkin.ui.options.OptionsState;
 import funkin.play.PlayState;
-import flixel.FlxG;
 import funkin.graphics.FunkinSprite;
 import funkin.graphics.shaders.AdjustColorShader;
 import flixel.tweens.FlxEase;
@@ -118,6 +116,11 @@ class MorphoModeOption extends Module {
 					morphoModeDancer.x = 1100;
 					morphoModeDancer.y = -1000;
 					morphoModeDancer.zIndex = 301;
+				case 'mallXmasGooey':
+					morphoModeDancer.x = 1200;
+					morphoModeDancer.y = 130;
+					morphoModeDancer.zIndex = 90;
+					PlayState.instance.currentStage.getNamedProp('bottomMorphoBop').alpha = 0;
 				case 'school', 'schoolEvil', 'schoolEvilGooey', 'schoolEvilSpooky', 'schoolEvilErect', 'schoolErect', 'schoolHuggy', 'schoolSpooky',
 					'schoolPico', 'schoolGooey', 'schoolRemnants', 'schoolEvilRemnants':
 					morphoModeDancer.scale.set(0.75, 0.75);
@@ -176,6 +179,11 @@ class MorphoModeOption extends Module {
 					morphoModeDancer.x = 1300;
 					morphoModeDancer.y = 435;
 					morphoModeDancer.zIndex = 41;
+				case 'spitbucket':
+					morphoModeDancer.x = 1700;
+					morphoModeDancer.y = 600;
+					morphoModeDancer.zIndex = 61;
+					morphoModeDancer.scale.set(0.8, 0.8);
 				case 'cartersroom':
 					morphoModeDancer.x = 920;
 					morphoModeDancer.y = 170;

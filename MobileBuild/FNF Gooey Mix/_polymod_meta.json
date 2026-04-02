@@ -28,6 +28,11 @@
 	  "url": "https://x.com/ChessBrabo"
     },
     {
+    "name": "DoubleM",
+	  "role": "Composer",
+	  "url": "https://x.com/DoubleM_FNF"
+    },
+    {
     "name": "FuryGRTX",
 	  "role": "Composer",
 	  "url": "https://www.youtube.com/@FuryGRTX"
@@ -58,13 +63,38 @@
 	  "url": "https://www.youtube.com/@7oltan"
     },
     {
+    "name": "ADA_Funni",
+	  "role": "Coder",
+	  "url": "https://www.youtube.com/@ada_funni"
+    },
+    {
+    "name": "Comedy Lost",
+	  "role": "Coder",
+	  "url": "https://x.com/C0MEDYLOST"
+    },
+    {
     "name": "Denoohay",
 	  "role": "Coder",
 	  "url": "https://x.com/Denoohay"
+    },
+    {
+    "name": "Srt",
+	  "role": "Coder",
+	  "url": "https://x.com/SrtPro278"
+    },
+    {
+    "name": "Coffee Kat",
+	  "role": "Guest Album Artist",
+	  "url": "https://www.youtube.com/@coffeekat-"
+    },
+    {
+    "name": "z_zmag8",
+	  "role": "Guest Album Artist",
+	  "url": "https://x.com/z_zmag8"
     }
     
   ],
   "api_version": "0.8.0",
-  "mod_version": "4.2.3",
+  "mod_version": "4.3.0",
   "license": "Apache-2.0"
 }

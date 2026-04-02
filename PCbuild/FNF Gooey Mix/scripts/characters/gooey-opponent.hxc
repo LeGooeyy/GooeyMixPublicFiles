@@ -1,6 +1,5 @@
 import funkin.play.character.MultiAnimateAtlasCharacter;
 import funkin.play.character.CharacterType;
-import flixel.FlxG;
 import funkin.graphics.shaders.DropShadowShader;
 import flixel.util.FlxSave;
 

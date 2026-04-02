@@ -6,7 +6,6 @@ import flixel.addons.effects.FlxTrail;
 import funkin.play.Countdown;
 import funkin.play.character.CharacterType;
 import funkin.graphics.shaders.DropShadowShader;
-import flixel.FlxG;
 import flixel.util.FlxSave;
 
 class SchoolEvilGooeyStage extends Stage

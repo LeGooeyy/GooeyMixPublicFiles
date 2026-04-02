@@ -1,8 +1,5 @@
 import funkin.modding.module.Module;
-import flixel.FlxG;
-import funkin.Paths;
 import flixel.util.FlxTimer;
-import funkin.util.Constants;
 import funkin.save.Save;
 import flixel.graphics.FlxGraphic;
 import openfl.display.BitmapData;
@@ -45,6 +42,11 @@ class GooeyMedals extends Module {
 				&& !Save.instance.hasBeatenSong('stress', null, 'gooey')) {
 				new FlxTimer().start(0.6, _ -> {
 					giveMedal(10, 'Cock Joke', Paths.image('gooeyMix/medals/stressGooey'));
+				});
+			} else if (PlayState.instance.currentSong.id == 'saloonatic' &&
+				!Save.instance.hasBeatenSong('saloonatic', ['extra'])) {
+				new FlxTimer().start(0.6, _ -> {
+					giveMedal(10, 'Fistfull of Stupid', Paths.image('gooeyMix/medals/saloonatic'));
 				});
 			}
 		}

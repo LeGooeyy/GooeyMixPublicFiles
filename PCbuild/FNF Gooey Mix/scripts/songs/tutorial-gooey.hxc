@@ -1,6 +1,5 @@
 import funkin.play.song.Song;
 import funkin.save.Save;
-import flixel.FlxG;
 import funkin.play.PlayState;
 import Date;
 import flixel.util.FlxSave;
@@ -31,11 +30,14 @@ class TutorialGooeyMixSong extends Song {
 
 	public override function onCountdownStart(event:CountdownScriptEvent):Void {
 		super.onCountdownStart(event);
+		PlayState.instance.comboPopUps.offsets = [-450, 350];
 		if (PlayState.instance?.currentStage != null)
 			synchronizeShader();
 	}
 
 	function synchronizeShader():Void {
+		if (PlayState.instance.currentStage.getDad().shader.brightness == null)
+			return;
 		if (PlayState.instance.currentStage.getDad().shader.brightness == -30)
 			return;
 		if (save.data.gooeyShaders != true)

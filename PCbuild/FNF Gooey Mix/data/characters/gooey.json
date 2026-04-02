@@ -72,67 +72,61 @@
       "name": "singLEFTmiss",
       "prefix": "GooeyMissLeft",
       "assetPath": "shared:characters/gooey/GooeyPlayerAnims",
-      "offsets": [442.5, 264]
+      "offsets": [-3.75, 57.5]
     },
     {
       "name": "singDOWNmiss",
       "prefix": "GooeyMissDown",
       "assetPath": "shared:characters/gooey/GooeyPlayerAnims",
-      "offsets": [442.5, 264]
+      "offsets": [-3.75, 57.5]
     },
     {
       "name": "singUPmiss",
       "prefix": "GooeyMissUp",
       "assetPath": "shared:characters/gooey/GooeyPlayerAnims",
-      "offsets": [442.5, 264]
+      "offsets": [-3.75, 57.5]
     },
     {
       "name": "singRIGHTmiss",
       "prefix": "GooeyMissRight",
       "assetPath": "shared:characters/gooey/GooeyPlayerAnims",
-      "offsets": [442.5, 264]
+      "offsets": [-3.75, 57.5]
     },
     {
       "name": "preAttack",
       "prefix": "GooeyPreAttack",
       "assetPath": "shared:characters/gooey/GooeyPlayerAnims",
-      "offsets": [442.5, 264]
+      "offsets": [-3.75, 57.5]
     },
     {
       "name": "attack",
       "prefix": "GooeyAttack",
       "assetPath": "shared:characters/gooey/GooeyPlayerAnims",
-      "offsets": [442.5, 264]
-    },
-    {
-      "name": "dadAttack",
-      "prefix": "GooeyDadAttack",
-      "assetPath": "shared:characters/gooey/GooeyPlayerAnims",
-      "offsets": [442.5, 264]
+      "offsets": [-3.75, 57.5]
     },
     {
       "name": "attackMISS",
       "prefix": "GooeyHit",
       "assetPath": "shared:characters/gooey/GooeyPlayerAnims",
-      "offsets": [442.5, 264]
+      "offsets": [-3.75, 57.5]
     },
     {
       "name": "dodge",
       "prefix": "GooeyDodge",
       "assetPath": "shared:characters/gooey/GooeyPlayerAnims",
-      "offsets": [442.5, 264]
+      "offsets": [-3.75, 57.5]
     },
     {
       "name": "scared",
       "prefix": "GooeyScared",
       "assetPath": "shared:characters/gooey/GooeyPlayerAnims",
-      "offsets": [442.5, 264]
+      "offsets": [-3.75, 57.5]
     },
     {
       "name": "burp",
       "prefix": "GooeyBurp",
       "assetPath": "shared:characters/gooey/GooeyPlayerAnims",
-      "offsets": [442.5, 264]
+      "offsets": [-3.75, 57.5]
     },
     {
       "name": "firstDeath",

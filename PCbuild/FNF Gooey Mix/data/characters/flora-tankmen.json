@@ -4,6 +4,8 @@
   "assetPath": "shared:characters/flora/Flora",
   "startingAnimation": "danceRight",
   "renderType": "multianimateatlas",
+  "offsets": [21, 7],
+  "cameraOffsets": [-21, -7],
   "healthIcon": {
     "id": "flora"
   },

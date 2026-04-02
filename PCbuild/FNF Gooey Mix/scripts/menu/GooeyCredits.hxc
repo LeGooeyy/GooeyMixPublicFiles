@@ -10,13 +10,19 @@ class GooeyCredits extends Module {
 
 		CreditsDataHandler.CREDITS_DATA.entries.unshift( // for example this one is on the bottom
 			{
+				header: "---------------------------------------",
+				body: [
+					{
+						line: "",
+					}
+				]
+			});
+		CreditsDataHandler.CREDITS_DATA.entries.unshift(
+			{
 				header: "Special Thanks",
 				body: [
 					{
 						line: "Abnormal",
-					},
-					{
-						line: "Comedy Lost",
 					},
 					{
 						line: "Evening Raine",
@@ -126,10 +132,19 @@ class GooeyCredits extends Module {
 					line: "7oltan",
 				},
 				{
+					line: "ADA_Funni",
+				},
+				{
+					line: "Comedy Lost",
+				},
+				{
 					line: "Denoohay",
 				},
 				{
 					line: "LeGooey",
+				},
+				{
+					line: "Srt",
 				}
 			]
 		});
@@ -172,6 +187,9 @@ class GooeyCredits extends Module {
 			body: [
 				{
 					line: "Coffee Kat",
+				},
+				{
+					line: "z_zmag8",
 				}
 			]
 		});
@@ -202,6 +220,12 @@ class GooeyCredits extends Module {
 					line: "Bowl0fCereal",
 				},
 				{
+					line: "Chiwawa Sandwich",
+				},
+				{
+					line: "Coffee Kat",
+				},
+				{
 					line: "JustANoodle",
 				},
 				{
@@ -209,6 +233,9 @@ class GooeyCredits extends Module {
 				},
 				{
 					line: "Morpho76",
+				},
+				{
+					line: "Mythical Sam",
 				},
 				{
 					line: "Not Matt",

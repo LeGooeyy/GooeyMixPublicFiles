@@ -1,11 +1,11 @@
 import funkin.play.song.Song;
 import funkin.save.Save;
-import flixel.FlxG;
 import funkin.play.PlayState;
 import Date;
 import flixel.FlxSprite;
 import flixel.tweens.FlxTween;
 import flixel.tweens.FlxEase;
+import funkin.util.FlxTweenUtil;
 
 class DrippypopGooeyMixSong extends Song {
 	function new() {
@@ -18,8 +18,10 @@ class DrippypopGooeyMixSong extends Song {
 		blackScreen = new FlxSprite(-2000, -1000).makeGraphic(FlxG.width * 3, FlxG.height * 3, 0xFF000000);
 		blackScreen.zIndex = 1100;
 		PlayState.instance.add(blackScreen);
-		blackScreen.alpha = 1;
 		PlayState.instance.camHUD.alpha = 0;
+
+		if (PlayState.instance.isChartingMode)
+			blackScreen.alpha = 0;
 
 		if (!FlxG.onMobile) {
 			PlayState.instance.discordRPCAlbum = "https://raw.githubusercontent.com/LeGooeyy/GooeyMixDiscordIcons/refs/heads/main/assets/album-covers/"
@@ -34,7 +36,10 @@ class DrippypopGooeyMixSong extends Song {
 
 	function onSongRetry(event:ScriptEvent) {
 		super.onSongRetry(event);
-		blackScreen.alpha = 1;
+		if (blackScreen != null)
+			FlxTween.cancelTweensOf(blackScreen);
+		if (!PlayState.instance.isChartingMode)
+			blackScreen.alpha = 1;
 		PlayState.instance.camHUD.alpha = 0;
 	}
 
@@ -47,5 +52,16 @@ class DrippypopGooeyMixSong extends Song {
 		if (event.step == 112) {
 			FlxTween.tween(PlayState.instance.camHUD, {alpha: 1}, 1);
 		}
+	}
+
+	function onPause(event:ScriptEvent) {
+		super.onPause(event);
+		if (blackScreen != null)
+			FlxTweenUtil.pauseTweensOf(blackScreen);
+	}
+	function onResume(event:ScriptEvent) {
+		super.onResume(event);
+		if (blackScreen != null)
+			FlxTweenUtil.resumeTweensOf(blackScreen);
 	}
 }

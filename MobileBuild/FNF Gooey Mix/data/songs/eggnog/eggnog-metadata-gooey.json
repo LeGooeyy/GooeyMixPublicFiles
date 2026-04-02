@@ -15,7 +15,7 @@
       "player": "gooey-christmas","girlfriend": "flora-christmas","opponent": "parents-christmas",
       "instrumental": "gooey","playerVocals": ["gooey"],"opponentVocals": ["parents"], "altInstrumentals": ["pico",""]
     },
-    "stage": "mallXmasErect",
+    "stage": "mallXmasGooey",
     "noteStyle": "funkin",
     "ratings": { "easy": 3, "normal": 4, "hard": 5 },
     "album": "gooeymix1",

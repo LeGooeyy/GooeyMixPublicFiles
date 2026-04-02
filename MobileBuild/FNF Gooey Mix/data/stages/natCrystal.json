@@ -11,13 +11,21 @@
       "scroll": [0.7, 0.7],
       "zIndex": 10
     },
+    {
+      "name": "crystalBackWall",
+      "assetPath": "gooeyMix/week60037/natCrystal/crystalBackWall",
+      "position": [-600, -900],
+      "scale": [1, 1],
+      "scroll": [0.7, 0.7],
+      "zIndex": 11
+    },
      {
       "name": "topCrystal",
       "assetPath": "gooeyMix/week60037/natCrystal/topCrystal",
       "position": [200, -800],
       "scale": [1, 1],
       "scroll": [1,1],
-      "zIndex": 11
+      "zIndex": 12
     },
     {
       "name": "bottomCrystal",
@@ -25,7 +33,7 @@
       "position": [0, 0],
       "scale": [1, 1],
       "scroll": [1,1],
-      "zIndex": 12
+      "zIndex": 13
     },
      {
       "name": "bottomCrystalLight",
@@ -33,7 +41,7 @@
       "position": [820, -160],
       "scale": [1, 1],
       "scroll": [1,1],
-      "zIndex": 13
+      "zIndex": 14
     },
     {
       "name": "natCrystal",
@@ -41,7 +49,7 @@
       "position": [1350, -1100],
       "scale": [1, 1],
       "scroll": [1,1],
-      "zIndex": 14
+      "zIndex": 15
     },
     {
       "name": "bottomCrystalLight2",
@@ -49,7 +57,7 @@
       "position": [820, -160],
       "scale": [1, 1],
       "scroll": [1,1],
-      "zIndex": 15
+      "zIndex": 16
     },
     {
       "name": "natCrystalLight",
@@ -97,7 +105,7 @@
       "position": [-155, -1000],
       "scale": [0.85, 0.85],
       "scroll": [1, 1],
-      "zIndex": 75
+      "zIndex": 90
     },
     {
       "name": "natCrystalLight2",
@@ -106,13 +114,39 @@
       "scale": [1, 1],
       "scroll": [1,1],
       "zIndex": 76
+    },
+    {
+      "name": "starcraftLight",
+      "zIndex": 80,
+      "assetPath": "#9E86AB",
+      "position": [-2000, -1000],
+      "scale": [6000, 4000],
+      "scroll": [0, 0]
+    },
+    {
+      "name": "crystalReflections1",
+      "assetPath": "gooeyMix/week60037/natCrystal/crystalReflections",
+      "position": [-150, -2300],
+      "scale": [1, 1],
+      "scroll": [1,1],
+      "zIndex": 81
+    },
+    {
+      "name": "crystalReflections2",
+      "assetPath": "gooeyMix/week60037/natCrystal/crystalReflections",
+      "position": [250, -1900],
+      "scale": [0.8, 0.8],
+      "scroll": [1,1],
+      "zIndex": 82,
+      "flipX": true,
+      "flipY": true
     }
   ],
   "characters": {
-    "bf": {"zIndex": 60,"position": [2350, 600],"cameraOffsets": [-200, -150]
+    "bf": {"zIndex": 60,"position": [2340, 560],"cameraOffsets": [-200, -150]
   },
-    "gf": { "zIndex": 40, "position": [1850, 470], "cameraOffsets": [0, -100] },
-    "dad": { "zIndex": 50,"position": [1430, 600],"cameraOffsets": [200, -150]
+    "gf": { "zIndex": 40, "position": [1795, 490], "cameraOffsets": [0, -100] },
+    "dad": { "zIndex": 50,"position": [1390, 560],"cameraOffsets": [200, -150]
     }
   },
   "directory": ""

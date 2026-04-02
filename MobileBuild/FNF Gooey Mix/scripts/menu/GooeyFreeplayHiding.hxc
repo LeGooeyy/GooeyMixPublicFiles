@@ -1,25 +1,24 @@
 import funkin.modding.module.Module;
-import flixel.FlxG;
 import funkin.ui.freeplay.FreeplayState;
 import funkin.save.Save;
 import flixel.util.FlxTimer;
 
 class GooeyFreeplayHiding extends Module {
-	var songs:Array<String> = ['drippypop-gooey-mix', 'mixd-up', 'comedian-rad-mix'];
+	var songs:Array<String> = ['drippypop-gooey-mix', 'mixd-up', 'comedian-rad-mix','saloonatic'];
 
-	var variations:Array<String> = ['default', 'default', 'default'];
+	var variations:Array<String> = ['default', 'default', 'default', 'default'];
 
-	var saveVariations:Array<String> = ['', '', ''];
+	var saveVariations:Array<String> = ['', '', '', ''];
 
-	var saveDiffs:Array<Array<String>> = [['extra'], ['extra'], ['extra']];
+	var saveDiffs:Array<Array<String>> = [['extra'], ['extra'], ['extra'], ['extra']];
 
-	var fakeAlbums:Array<String> = [null, null, null];
+	var fakeAlbums:Array<String> = [null, null, null, null];
 
-	var fakeTexts:Array<String> = ['???', '???', '???'];
+	var fakeTexts:Array<String> = ['???', '???', '???', '???' ];
 
-	var fakeIcons:Array<String> = ['', '', ''];
+	var fakeIcons:Array<String> = ['', '', '', ''];
 
-	var playMusic:Array<Bool> = [false, false, false];
+	var playMusic:Array<Bool> = [false, false, false, false];
 
 	public function new() {
 		super('FreeplayGooeyHiding');

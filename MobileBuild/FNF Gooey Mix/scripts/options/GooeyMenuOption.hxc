@@ -1,22 +1,22 @@
 import funkin.PlayerSettings;
 import funkin.modding.module.Module;
 import funkin.util.ReflectUtil;
-import flixel.FlxG;
 import funkin.ui.options.OptionsState;
 import funkin.audio.FunkinSound;
 import funkin.ui.FullScreenScaleMode;
 import flixel.FlxSprite;
-import funkin.Assets;
 import openfl.media.Sound;
 import funkin.util.WindowUtil;
 import CustomIcon;
-import funkin.util.Constants;
 import funkin.ui.freeplay.FreeplayState;
 import funkin.ui.story.StoryMenuState;
 import funkin.ui.mainmenu.MainMenuState;
 import funkin.ui.title.TitleState;
 import funkin.ui.charSelect.CharSelectSubState;
 import flixel.util.FlxSave;
+import funkin.ui.title.TitleState;
+#if FEATURE_DEBUG_MENU import funkin.ui.debug.DebugMenuSubState; #end
+#if FEATURE_CHART_EDITOR import funkin.ui.debug.charting.ChartEditorState; #end
 
 class GooeyMenuOption extends Module {
 	var addedTitle:Bool = false;
@@ -70,16 +70,14 @@ class GooeyMenuOption extends Module {
 	override function onUpdate(event:UpdateScriptEvent) {
 		super.onUpdate(event);
 
-		if (FlxG.state is MainMenuState) {
-			if (FreeplayState.rememberedCharacterId == 'gooey') gooeyWindow();
-			else bfWindow();
-		} else if (FlxG.state is StoryMenuState) {
+		if (FlxG.state is StoryMenuState) {
 			if (FlxG.state?.currentLevelId == 'week60037') gooeyWindow();
 			else bfWindow();
 		}
 
 		// TITLE SCREEN
-		if (ReflectUtil.getClassNameOf(FlxG.state) == "funkin.ui.title.TitleState") {
+		
+		if (FlxG.state is TitleState) {
 			FlxG.mouse.visible = false;
 
 			if (save.data.GooeyMixMenu == 'Always On' || (save.data.GooeyMixMenu == 'Gooey Selected' && save.data.rememberedStartupCharacter == "gooey")) {
@@ -103,23 +101,26 @@ class GooeyMenuOption extends Module {
 		}
 
 		// MENU BACKGROUND
-		if (ReflectUtil.getClassNameOf(FlxG.state) == "funkin.ui.mainmenu.MainMenuState") {
+		if (FlxG.state is MainMenuState) { 
 			if (FlxG.state.magenta != null) {
 				if (save.data.GooeyMixMenu == 'Always On' || (save.data.GooeyMixMenu == 'Gooey Selected' && save.data.rememberedStartupCharacter == "gooey")) {
+
 					if (FlxG.state.magenta.graphic.key == 'assets/images/menuBGMagenta.png') {
 						FlxG.state.magenta.loadGraphic(Paths.image('menuBGMagentaGooey'));
 						FlxG.state.members[0].loadGraphic(Paths.image('menuBGgooey'));
+						gooeyWindow();
 					}
 				} else {
 					if (FlxG.state.magenta.graphic.key == 'assets/images/menuBGMagentaGooey.png') {
 						FlxG.state.magenta.loadGraphic(Paths.image('menuBGMagenta'));
 						FlxG.state.members[0].loadGraphic(Paths.image('menuBG'));
+						bfWindow();
 					}
 				}
 			}
 		}
 
-		if (ReflectUtil.getClassNameOf(FlxG.state) == "funkin.ui.options.OptionsState") {
+		if (FlxG.state is OptionsState) {
 			if (FlxG.state.members[0] != null) {
 				if (save.data.GooeyMixMenu == 'Always On' || (save.data.GooeyMixMenu == 'Gooey Selected' && save.data.rememberedStartupCharacter == "gooey")) {
 					if (FlxG.state?.members[0]?.graphic.key == 'assets/images/menuBG.png') FlxG.state.members[0].loadGraphic(Paths.image('menuBGgooey'));
@@ -129,7 +130,7 @@ class GooeyMenuOption extends Module {
 			}
 		}
 
-		if (ReflectUtil.getClassNameOf(FlxG.state.subState) == "funkin.ui.debug.DebugMenuSubState") {
+		if (!FlxG.state.subState is DebugMenuSubState){
 			if (FlxG.state.subState.members[3] != null) {
 				if (save.data.GooeyMixMenu == 'Always On' || (save.data.GooeyMixMenu == 'Gooey Selected' && save.data.rememberedStartupCharacter == "gooey")) {
 					if (FlxG.state.subState.members[3].graphic.assetPath == 'assets/images/menuDesat.png') {
@@ -143,7 +144,7 @@ class GooeyMenuOption extends Module {
 			}
 		}
 
-		if (ReflectUtil.getClassNameOf(FlxG.state) == "funkin.ui.debug.charting.ChartEditorState") {
+		if (FlxG.state is ChartEditorState) {
 			if (FlxG.state.menuBG != null) {
 				if (FlxG.state.selectedVariation == 'gooey')
 					if (FlxG.state.menuBG.graphic.assetPath == 'assets/images/menuDesat.png') {
@@ -156,7 +157,7 @@ class GooeyMenuOption extends Module {
 			}
 		}
 
-		if (ReflectUtil.getClassNameOf(FlxG.state) == "funkin.ui.options.OptionsState") {
+		if (FlxG.state is OptionsState) {
 			if (optionNumber == 0) {
 				for (i in 0...FlxG.state.members[1].members[1].members[0].members.length) {
 					if (FlxG.state.members[1].members[1].members[0].members[i].label.text == "Default Player")

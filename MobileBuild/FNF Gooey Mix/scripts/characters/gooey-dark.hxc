@@ -1,81 +1,54 @@
-import funkin.play.character.MultiAnimateAtlasCharacter;
-import funkin.play.PlayState;
-import funkin.play.PauseSubState;
-import funkin.play.character.CharacterType;
-import funkin.play.character.CharacterDataParser;
-import funkin.play.GameOverSubState;
-import funkin.audio.FunkinSound;
+import funkin.data.character.CharacterDataParser;
+import gooeymix.characters.GooeyBaseCharacter;
 
-class GooeyDarkPlayableCharacter extends MultiAnimateAtlasCharacter {
-	function new() {
-		super('gooey-dark');
-	}
+class GooeyDarkDarkCharacter extends GooeyBaseCharacter
+{
+ 
+  public function new()
+  {
+    super('gooey-dark');
+  }
 
-	function onCreate(event:ScriptEvent) {
-		super.onCreate(event);
-		if (PlayState.instance?.currentStage != null) {
-			normalChar = CharacterDataParser.fetchCharacter('gooey');
-			normalChar.zIndex = 199;
-			normalChar.alpha = 0;
-			normalChar.flipX = false;
+  var normalChar:BaseCharacter;
 
-			PlayState.instance.currentStage.add(normalChar);
-			PlayState.instance.currentStage.refresh(); // Apply z-index.
-			GameOverSubState.musicSuffix = '-gooey';
-			GameOverSubState.blueBallSuffix = '-gooey';
-			PauseSubState.musicSuffix = '-gooey';
-		}
-	}
+  override function set_alpha(val:Float):Float
+  {
+    super.set_alpha(val);
 
-	function onNoteHit(event:HitNoteScriptEvent) {
-		if (PlayState.instance?.currentStage != null) {
-			if (event.note.noteData.getMustHitNote() && characterType == CharacterType.BF) {
-				switch (event.note.kind) {
-					case "cheer":
-						holdTimer = 0;
-						this.playAnimation('cheer', false);
-					default:
-						holdTimer = 0;
-						this.playSingAnimation(event.note.noteData.getDirection(), false);
-				}
-			}
-		}
-	}
+    if (normalChar != null)
+    {
+      if (val != 1) normalChar.alpha = 1;
+      else
+        normalChar.alpha = 0.0001;
+    }
 
-	override function onSongRetry(event:ScriptEvent):Void {
-		super.onSongRetry(event);
-		GameOverSubState.musicSuffix = '-gooey';
-		GameOverSubState.blueBallSuffix = '-gooey';
+    return val;
+  }
 
-		PauseSubState.musicSuffix = '-gooey';
+  public override function onCreate(event:ScriptEvent):Void
+  {
+    super.onCreate(event);
 
-		this.visible = true;
-	}
+    if (!this.debug)
+    {
+      normalChar = CharacterDataParser.fetchCharacter('gooey');
+      normalChar.zIndex = 199;
+      normalChar.alpha = 0.0001;
+      normalChar.flipX = false;
 
-	var normalChar:BaseCharacter;
+      currentStage.add(normalChar);
+      currentStage.refresh(); // Apply z-index.
+    }
+  }
 
-	override function set_alpha(val:Float):Float {
-		super.set_alpha(val);
-		if (val != 1)
-			normalChar.alpha = 1;
-		else
-			normalChar.alpha = 0;
+  public override function playAnimation(name:String, restart:Bool = false, ignoreOther:Bool = false, reversed:Bool = false):Void
+  {
+    super.playAnimation(name, restart, ignoreOther, reversed);
 
-		return val;
-	}
-
-	override function playAnimation(name:String, restart:Bool = false, ignoreOther:Bool = false, reversed:Bool = false) {
-		if (PlayState.instance?.currentStage != null) {
-			if (name == "deathConfirm") {
-				gooeyRetry = FunkinSound.load(Paths.music('gameplay/gameover/gameOverEnd-gooeyReal'), true);
-				gooeyRetry.volume = 1;
-				gooeyRetry.play(false);
-			}
-			super.playAnimation(name, restart, ignoreOther, reversed);
-			if (normalChar != null) {
-				normalChar.playAnimation(name, restart, ignoreOther, reversed);
-				normalChar.setPosition(this.x, this.y);
-			}
-		}
-	}
+    if (normalChar != null)
+    {
+      normalChar.playAnimation(name, restart, ignoreOther);
+      normalChar.setPosition(this.x, this.y);
+    }
+  }
 }

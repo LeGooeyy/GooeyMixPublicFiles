@@ -10,8 +10,6 @@ import funkin.graphics.adobeanimate.FlxAtlasSprite;
 import flixel.addons.display.FlxBackdrop;
 import funkin.ui.FullScreenScaleMode;
 import funkin.Conductor;
-import flixel.FlxG;
-import funkin.Preferences;
 
 class GooeyCard extends BackingCard {
 	final X_POSITION:Float = (FreeplayState.CUTOUT_WIDTH * FreeplayState.DJ_POS_MULTI) - 175;
@@ -89,15 +87,26 @@ class GooeyCard extends BackingCard {
 		crystal2.flipX = true;
 
 		add(gooLines = new FlxBackdrop(Paths.image('freeplay/backingCards/gooey/gooWave'), 0x01));
-		gooLines.setPosition(0, 120);
+		gooLines.setPosition(0, 90);
 		gooLines.velocity.x = 100;
 		gooLines.alpha = 0.9;
 
 		add(gooLines2 = new FlxBackdrop(Paths.image('freeplay/backingCards/gooey/gooWave'), 0x01));
-		gooLines2.setPosition(0, 400);
+		gooLines2.setPosition(0, 370);
 		gooLines2.flipY = true;
-		gooLines2.velocity.x = 100;
+		gooLines2.velocity.x = -100;
 		gooLines2.alpha = 0.9;
+
+		add(gooLines3 = new FlxBackdrop(Paths.image('freeplay/backingCards/gooey/gooWave'), 0x01));
+		gooLines3.setPosition(0, 650);
+		gooLines3.velocity.x = 100;
+		gooLines3.alpha = 0.9;
+
+		var bleeehnd = 8;
+
+		gooLines.blend = bleeehnd;
+		gooLines2.blend = bleeehnd;
+		gooLines3.blend = bleeehnd;
 
 		add(gooberAlert3 = new FlxBackdrop(Paths.image('freeplay/backingCards/gooey/gooAlert3'), 0x01, 20));
 		gooberAlert3.setPosition(0, 345);
@@ -105,14 +114,10 @@ class GooeyCard extends BackingCard {
 		gooberAlert3.blend = 0;
 		gooberAlert3.alpha = 0.6;
 
-		add(gooLines3 = new FlxBackdrop(Paths.image('freeplay/backingCards/gooey/gooWave'), 0x01));
-		gooLines3.setPosition(0, 680);
-		gooLines3.velocity.x = 100;
-		gooLines3.alpha = 0.9;
 
 		add(gooberAlert4 = new FlxBackdrop(Paths.image('freeplay/backingCards/gooey/gooAlert4'), 0x01, 20));
 		gooberAlert4.setPosition(0, 625);
-		gooberAlert4.velocity.x = -250;
+		gooberAlert4.velocity.x = 250;
 		gooberAlert4.blend = 0;
 		gooberAlert4.alpha = 0.45;
 
@@ -122,7 +127,7 @@ class GooeyCard extends BackingCard {
 
 		add(gooberAlert1 = new FlxBackdrop(Paths.image('freeplay/backingCards/gooey/gooAlert1'), 0x01, 20));
 		gooberAlert1.setPosition(0, 165);
-		gooberAlert1.velocity.x = 200;
+		gooberAlert1.velocity.x = -200;
 		gooberAlert1.blend = 0;
 		gooberAlert1.alpha = 0.3;
 

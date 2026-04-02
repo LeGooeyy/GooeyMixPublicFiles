@@ -5,7 +5,6 @@ import funkin.graphics.FunkinSprite;
 import flixel.tweens.FlxTween;
 import openfl.filters.ShaderFilter;
 import flixel.addons.display.FlxRuntimeShader;
-import flixel.FlxG;
 import flixel.util.FlxSave;
 
 class DrippyPopErectGooeyStage extends Stage {
@@ -28,11 +27,11 @@ class DrippyPopErectGooeyStage extends Stage {
 
 		var starShines1 = getNamedProp('starShines1');
 		starShines1.blend = 0;
-		starShines1.alpha = 0;
+		starShines1.alpha = 0.0001;
 
 		var starShines2 = getNamedProp('starShines2');
 		starShines2.blend = 0;
-		starShines2.alpha = 0;
+		starShines2.alpha = 0.0001;
 
 		var floorGlow = getNamedProp('floorGlow');
 		floorGlow.blend = 0;

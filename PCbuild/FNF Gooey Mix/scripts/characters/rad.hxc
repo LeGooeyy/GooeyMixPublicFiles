@@ -5,7 +5,6 @@ import funkin.play.GameOverSubState;
 import funkin.audio.FunkinSound;
 import flixel.util.FlxTimer;
 import funkin.play.PlayState;
-import flixel.FlxG;
 import funkin.play.character.CharacterDataParser;
 
 class RadCharacter extends MultiSparrowCharacter {

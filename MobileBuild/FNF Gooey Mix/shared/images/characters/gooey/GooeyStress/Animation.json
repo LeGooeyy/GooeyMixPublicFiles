@@ -1756,9 +1756,9 @@
 "SN":"Parts/Tail",
 "FF":0,
 "ST":"G",
-"TRP":{"x":149.05,"y":126.3},
+"TRP":{"x":169.05,"y":126.3},
 "LP":"LP",
-"MX":[0.797,-0.603,0.603,0.797,172.1,67.05]
+"MX":[0.797,-0.603,0.603,0.797,192.1,67.05]
 }}]},{
 "I":2,
 "DU":2,
@@ -1767,9 +1767,9 @@
 "SN":"Parts/Tail",
 "FF":0,
 "ST":"G",
-"TRP":{"x":151.45,"y":118.4},
+"TRP":{"x":171.45,"y":118.4},
 "LP":"LP",
-"MX":[0.839,-0.544,0.544,0.839,179.75,65.45]
+"MX":[0.839,-0.544,0.544,0.839,199.75,65.45]
 }}]},{
 "I":4,
 "DU":11,
@@ -1778,9 +1778,9 @@
 "SN":"Parts/Tail",
 "FF":0,
 "ST":"G",
-"TRP":{"x":159.9,"y":71.25},
+"TRP":{"x":179.9,"y":71.25},
 "LP":"LP",
-"MX":[0.822,-0.569,0.569,0.822,178.15,64.6]
+"MX":[0.822,-0.569,0.569,0.822,198.15,64.6]
 }}]}
 ]}
 ]}},{
@@ -2084,9 +2084,9 @@
 "SN":"Parts/missLines/LeftMissLineSnap",
 "FF":0,
 "ST":"G",
-"TRP":{"x":126,"y":-28.75},
+"TRP":{"x":127.25,"y":-28.75},
 "LP":"LP",
-"MX":[1,0,0,1,37.1,-39]
+"MX":[1,0,0,1,38.35,-39]
 }}]},{
 "I":2,
 "DU":13,
@@ -2141,9 +2141,9 @@
 "SN":"Parts/missLines/DownMissLineSnap",
 "FF":0,
 "ST":"G",
-"TRP":{"x":97.05,"y":29.05},
+"TRP":{"x":113.7,"y":52.7},
 "LP":"LP",
-"MX":[1,0,0,1,-213.95,-24]
+"MX":[1,0,0,1,-197.3,-0.8]
 }}]},{
 "I":2,
 "DU":13,
@@ -2152,9 +2152,9 @@
 "SN":"Parts/missLines/DownMissLine",
 "FF":0,
 "ST":"G",
-"TRP":{"x":95.5,"y":20},
+"TRP":{"x":112.65,"y":46.1},
 "LP":"LP",
-"MX":[1,0,0,1,-371.5,-72]
+"MX":[1,0,0,1,-354.35,-45.9]
 }}]}
 ]},{
 "LN":"Layer_2",
@@ -2167,9 +2167,9 @@
 "SN":"Parts/bodies/DownMiss",
 "FF":0,
 "ST":"G",
-"TRP":{"x":83.8,"y":93.65},
+"TRP":{"x":77.3,"y":98.05},
 "LP":"LP",
-"MX":[1.019,0,0.004,0.974,-181.1,36.95]
+"MX":[1.026,0,0.012,0.984,-183.9,36.1]
 }}]},{
 "I":2,
 "DU":13,
@@ -2178,9 +2178,9 @@
 "SN":"Parts/bodies/DownMiss",
 "FF":0,
 "ST":"G",
-"TRP":{"x":84.3,"y":90.4},
+"TRP":{"x":78.95,"y":96},
 "LP":"LP",
-"MX":[1,0,0,1,-175.7,32.35]
+"MX":[1,0,0,1,-175.05,33]
 }}]}
 ]}
 ]}},{
@@ -2308,36 +2308,6 @@
 "TL":{
 "L":[
 {
-"LN":"Layer_3",
-"FR":[
-{
-"I":0,
-"DU":1,
-"E":[
-{"SI":{
-"SN":"Parts/Gooball2",
-"FF":0,
-"ST":"G",
-"TRP":{"x":-163.65,"y":-32.95},
-"LP":"LP",
-"MX":[0.851,-0.526,0.526,0.851,-303.95,-58.4]
-}}]},{
-"I":1,
-"DU":1,
-"E":[
-{"SI":{
-"SN":"Parts/Gooball",
-"FF":0,
-"ST":"G",
-"TRP":{"x":-524.1,"y":-52.85},
-"LP":"LP",
-"MX":[-0.836,0.548,0.548,0.836,-524.55,-52.9]
-}}]},{
-"I":2,
-"DU":6,
-"E":[]
-}
-]},{
 "LN":"Face",
 "FR":[
 {
@@ -5715,17 +5685,17 @@
 "TL":{
 "L":[
 {
-"LN":"Layer_1",
+"LN":"Layer_2",
 "FR":[
 {
 "I":0,
 "DU":1,
 "E":[
 {"SI":{
-"SN":"Bitmaps/downBody.png",
+"SN":"Bitmaps/newDown.png",
 "ST":"MC",
-"TRP":{"x":1501,"y":385.5},
-"MX":[1,0,0,1,1391,323]
+"TRP":{"x":1503,"y":390.5},
+"MX":[1,0,0,1,1388,323]
 }}]}
 ]}
 ]}},{
@@ -6021,17 +5991,17 @@
 "TL":{
 "L":[
 {
-"LN":"Layer_1",
+"LN":"Layer_2",
 "FR":[
 {
 "I":0,
 "DU":1,
 "E":[
 {"SI":{
-"SN":"Bitmaps/downAltBody.png",
+"SN":"Bitmaps/newAltdown.png",
 "ST":"MC",
-"TRP":{"x":360,"y":167.5},
-"MX":[1,0,0,1,270,113]
+"TRP":{"x":360.5,"y":169},
+"MX":[1,0,0,1,261,111]
 }}]}
 ]}
 ]}},{
@@ -6093,17 +6063,17 @@
 "TL":{
 "L":[
 {
-"LN":"Layer_1",
+"LN":"Layer_2",
 "FR":[
 {
 "I":0,
 "DU":1,
 "E":[
 {"SI":{
-"SN":"Bitmaps/UpMiss.png",
+"SN":"Bitmaps/newUpMiss.png",
 "ST":"MC",
-"TRP":{"x":132,"y":49},
-"MX":[1,0,0,1,-11,-95]
+"TRP":{"x":136,"y":48.5},
+"MX":[1,0,0,1,-16,-96]
 }}]}
 ]}
 ]}},{
@@ -6147,17 +6117,17 @@
 "TL":{
 "L":[
 {
-"LN":"Layer_1",
+"LN":"Layer_2",
 "FR":[
 {
 "I":0,
 "DU":1,
 "E":[
 {"SI":{
-"SN":"Bitmaps/RightMiss.png",
+"SN":"Bitmaps/newRightMiss.png",
 "ST":"MC",
-"TRP":{"x":120.5,"y":74.5},
-"MX":[1,0,0,1,-22,-73]
+"TRP":{"x":118.5,"y":74},
+"MX":[1,0,0,1,-29,-72]
 }}]}
 ]}
 ]}},{
@@ -6201,17 +6171,17 @@
 "TL":{
 "L":[
 {
-"LN":"Layer_1",
+"LN":"Layer_2",
 "FR":[
 {
 "I":0,
 "DU":1,
 "E":[
 {"SI":{
-"SN":"Bitmaps/LeftMiss.png",
+"SN":"Bitmaps/newLeftMiss.png",
 "ST":"MC",
-"TRP":{"x":263.5,"y":122.5},
-"MX":[1,0,0,1,110,-25]
+"TRP":{"x":262.5,"y":123},
+"MX":[1,0,0,1,99,-24]
 }}]}
 ]}
 ]}},{
@@ -6255,17 +6225,17 @@
 "TL":{
 "L":[
 {
-"LN":"Layer_1",
+"LN":"Layer_2",
 "FR":[
 {
 "I":0,
 "DU":1,
 "E":[
 {"SI":{
-"SN":"Bitmaps/downMiss.png",
+"SN":"Bitmaps/newDownMiss.png",
 "ST":"MC",
-"TRP":{"x":260,"y":58.5},
-"MX":[1,0,0,1,89,-63]
+"TRP":{"x":254,"y":63},
+"MX":[1,0,0,1,76,-62]
 }}]}
 ]}
 ]}},{
@@ -6284,42 +6254,6 @@
 "ST":"MC",
 "TRP":{"x":0,"y":0.5},
 "MX":[1,0,0,1,-56,-25]
-}}]}
-]}
-]}},{
-"SN":"Parts/Gooball2",
-"TL":{
-"L":[
-{
-"LN":"Layer_1",
-"FR":[
-{
-"I":0,
-"DU":1,
-"E":[
-{"SI":{
-"SN":"Bitmaps/gooball2.png",
-"ST":"MC",
-"TRP":{"x":106,"y":95.5},
-"MX":[-1,0,0,1,212,0]
-}}]}
-]}
-]}},{
-"SN":"Parts/Gooball",
-"TL":{
-"L":[
-{
-"LN":"Layer_1",
-"FR":[
-{
-"I":0,
-"DU":1,
-"E":[
-{"SI":{
-"SN":"Bitmaps/gooball.png",
-"ST":"MC",
-"TRP":{"x":-0.5,"y":0.5},
-"MX":[1,0,0,1,-106,-91]
 }}]}
 ]}
 ]}},{
@@ -6725,7 +6659,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"13"
 }}]}]}]}},{
-"SN":"Bitmaps/downBody.png",
+"SN":"Bitmaps/newDown.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -6929,7 +6863,7 @@
 "MX":[0.978,0,0,1,0,0],
 "N":"30"
 }}]}]}]}},{
-"SN":"Bitmaps/downAltBody.png",
+"SN":"Bitmaps/newAltdown.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -6977,7 +6911,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"34"
 }}]}]}]}},{
-"SN":"Bitmaps/UpMiss.png",
+"SN":"Bitmaps/newUpMiss.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -7013,7 +6947,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"37"
 }}]}]}]}},{
-"SN":"Bitmaps/RightMiss.png",
+"SN":"Bitmaps/newRightMiss.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -7049,7 +6983,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"40"
 }}]}]}]}},{
-"SN":"Bitmaps/LeftMiss.png",
+"SN":"Bitmaps/newLeftMiss.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -7085,7 +7019,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"43"
 }}]}]}]}},{
-"SN":"Bitmaps/downMiss.png",
+"SN":"Bitmaps/newDownMiss.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -7094,7 +7028,7 @@
 "DU":1,
 "E":[
 {"ASI":{
-"MX":[0.981,0,0,1,0,0],
+"MX":[0.975,0,0,1,0,0],
 "N":"44"
 }}]}]}]}},{
 "SN":"Bitmaps/Faces/preAttackFace.png",
@@ -7109,7 +7043,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"45"
 }}]}]}]}},{
-"SN":"Bitmaps/gooball2.png",
+"SN":"Bitmaps/Faces/attackFace.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -7121,7 +7055,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"46"
 }}]}]}]}},{
-"SN":"Bitmaps/gooball.png",
+"SN":"Bitmaps/attackTail.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -7133,7 +7067,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"47"
 }}]}]}]}},{
-"SN":"Bitmaps/Faces/attackFace.png",
+"SN":"Bitmaps/CutsceneIdleFace.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -7145,7 +7079,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"48"
 }}]}]}]}},{
-"SN":"Bitmaps/attackTail.png",
+"SN":"normalHead.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -7157,7 +7091,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"49"
 }}]}]}]}},{
-"SN":"Bitmaps/CutsceneIdleFace.png",
+"SN":"Bitmaps/cutface2.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -7169,7 +7103,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"50"
 }}]}]}]}},{
-"SN":"normalHead.png",
+"SN":"scaredHead.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -7181,7 +7115,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"51"
 }}]}]}]}},{
-"SN":"Bitmaps/cutface2.png",
+"SN":"scaredCrystalHead.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -7193,7 +7127,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"52"
 }}]}]}]}},{
-"SN":"scaredHead.png",
+"SN":"Bitmaps/crystalTail.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -7205,7 +7139,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"53"
 }}]}]}]}},{
-"SN":"scaredCrystalHead.png",
+"SN":"Bitmaps/cutFace1Snap.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -7217,7 +7151,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"54"
 }}]}]}]}},{
-"SN":"Bitmaps/crystalTail.png",
+"SN":"Bitmaps/cutFace1.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -7229,7 +7163,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"55"
 }}]}]}]}},{
-"SN":"Bitmaps/cutFace1Snap.png",
+"SN":"sideHead.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -7241,30 +7175,6 @@
 "MX":[1,0,0,1,0,0],
 "N":"56"
 }}]}]}]}},{
-"SN":"Bitmaps/cutFace1.png",
-"TL":{
-"L":[
-{"LN":"Layer 1",
-"FR":[
-{"I":0,
-"DU":1,
-"E":[
-{"ASI":{
-"MX":[1,0,0,1,0,0],
-"N":"57"
-}}]}]}]}},{
-"SN":"sideHead.png",
-"TL":{
-"L":[
-{"LN":"Layer 1",
-"FR":[
-{"I":0,
-"DU":1,
-"E":[
-{"ASI":{
-"MX":[1,0,0,1,0,0],
-"N":"58"
-}}]}]}]}},{
 "SN":"Bitmaps/cutFace.png",
 "TL":{
 "L":[
@@ -7275,7 +7185,7 @@
 "E":[
 {"ASI":{
 "MX":[1,0,0,0.921,0,0],
-"N":"59"
+"N":"57"
 }}]}]}]}},{
 "SN":"Bitmaps/cutFaceSnap.png",
 "TL":{
@@ -7287,7 +7197,7 @@
 "E":[
 {"ASI":{
 "MX":[1,0,0,1,0,0],
-"N":"60"
+"N":"58"
 }}]}]}]}}
 ]},
 "MD":{

@@ -1,44 +1,104 @@
-import funkin.play.character.MultiAnimateAtlasCharacter;
+package gooeymix.characters;
+
 import funkin.play.PlayState;
-import flixel.FlxG;
-import funkin.graphics.FunkinSprite;
-import flixel.util.FlxSpriteUtil;
-import funkin.vis.dsp.SpectralAnalyzer;
-import funkin.Highscore;
-import funkin.play.character.CharacterDataParser;
-import funkin.play.notes.Strumline;
+
 import funkin.play.character.CharacterType;
+import funkin.play.character.BaseCharacter;
+
+import funkin.play.character.MultiAnimateAtlasCharacter;
+import funkin.graphics.FunkinSprite;
+
+import flixel.tweens.FlxTween;
+import flixel.math.FlxMath;
+
 import flixel.util.FlxTimer;
-import funkin.graphics.shaders.AdjustColorShader;
-import funkin.graphics.shaders.DropShadowShader;
+import flixel.util.FlxSpriteUtil;
+import flixel.util.FlxColor;
 import flixel.util.FlxSave;
 
-class FloraCharacter extends MultiAnimateAtlasCharacter {
-	function new() {
-		super('flora');
+import funkin.graphics.shaders.AdjustColorShader;
+import funkin.graphics.shaders.DropShadowShader;
 
+import funkin.vis.dsp.SpectralAnalyzer;
+import funkin.play.notes.Strumline;
+import funkin.play.Countdown;
+import funkin.Highscore;
+
+import openfl.geom.Rectangle;
+
+using StringTools;
+
+class FloraBaseCharacter extends MultiAnimateAtlasCharacter {
+    public static var baseCharId:String = 'flora';
+
+    /**
+     * Please, Gooey, I need this!
+     * 
+     * My Flora's kinda speakerless...
+     */
+    public var isMyFloraKindaSpeakerless:Bool = false;
+
+    // Flora's animation suffix (Alt animations...)
+    public var suffix:String = '';
+    
+	var comboFloraCheck:Bool = true;
+
+    // Flora's speaker: the place where music comes from.
+    public var floraSpeaker:FunkinSprite;
+
+    // Flora's speaker's screen: the thing you can play Bad Apple on.
+    public var floraSpeakerScreen:FunkinSprite;
+
+    // Visualiser stuff.
+    public var analyzer:SpectralAnalyzer;
+    public var visualizerTimer:FlxTimer;
+    private var visualizerRect:Rectangle;
+
+    private var queueVisualizerUpdate:Bool =-false;
+    private var visualizerEnabled:Bool = false;
+    private var points:Array<Float> = [];
+	private var lineStyle:LineStyle;
+
+    private static var ZERO_AND_ONE:Array<Int> = [0, 1];
+
+    private static var FLORA_VIS_FLAT_LEVEL:Float = 0.5;
+    private static var FLORA_VIS_LINE_THICKNESS:Int = 4;
+    private static var FLORA_VIS_LINE_COLOR:Int = 0xFF6CFFFA;
+    private static var FLORA_VIS_WIDTH:Int = 115;
+    private static var FLORA_VIS_HEIGHT:Int = 74;
+	private static var FLORA_VIS_OFFSETS:Map<String, Array<Float>> = [
+        "lightBop0000" => [132, 18],
+        "lightBop0001" => [132, 18],
+        "lightBop0002" => [129, 13],
+        "lightBop0003" => [129, 13],
+        "lightBop0004" => [127, 11],
+        "lightBop0005" => [127, 11],
+        "lightLoop0000" => [127, 11],
+        "lightLoop0001" => [127, 11],
+        "lightLoop0002" => [127, 11]
+    ];
+    
+
+    // A flag for detecting if Flora's props were set up yet.
+    private var setupFloraProps:Bool = false;
+
+    // Lesbian flags.
+    private var isLesbian:Bool = false;
+    private var isBecomingLesbian:Bool = false;
+    private var lesbianTimer:FlxTimer;
+
+    // Shader stuff.
+    private var currentShader = null;
+    private var adjustColor:AdjustColorShader;
+
+    public function new(id:String) {
+        super(id == 'UNKNOWN' ? baseCharId : id);
 		save = new FlxSave();
 		save.bind("GooeyMixOptions", "FunkinCrew");
-	}
+        visualizerRect = new Rectangle();
+    }
 
-	var floraEyes:BaseCharacter;
-	var floraSpeaker;
-	var speakerLights;
-	var visualizerFlora;
-	// viz stuff
-	var defaultPoints = [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5];
-	var points = defaultPoints;
-	var lineStyle:LineStyle;
-	var curve = 0;
-	var analyzer:SpectralAnalyzer;
-
-	var comboFloraCheck:Bool = true;
-	var refershedLol:Bool = false;
-
-	var isLesbian:Bool = false;
-	var isBecomingLesbian:Bool = false;
-
-	override function onAdd() {
+    override function onAdd() {
 		if (PlayState.instance?.currentStage != null) {
 			if (PlayState.instance.currentSong.id.toLowerCase() == "tutorial") {
 				if (!debug && this.characterType == CharacterType.DAD) {
@@ -51,89 +111,62 @@ class FloraCharacter extends MultiAnimateAtlasCharacter {
 		}
 	}
 
-	function onCreate(event:ScriptEvent) {
-		super.onCreate(event);
+    override public function onCreate(e) {
+        super.onCreate(e);
 
-		if (PlayState.instance?.currentStage != null) {
-			floraEyes = CharacterDataParser.fetchCharacter('flora-eyes');
-			PlayState.instance.currentStage.add(floraEyes);
+        if (!isMyFloraKindaSpeakerless)
+            points = [for (i in 0...7) FLORA_VIS_FLAT_LEVEL];
 
-			floraSpeaker = FunkinSprite.createTextureAtlas(0, 0, "characters/flora/FloraSpeaker", "shared");
-			floraSpeaker.anim.addByFrameLabel('FloraSpeakerBop', 'FloraSpeakerBop', 24, false);
-			floraSpeaker.animation.play('FloraSpeakerBop');
-			PlayState.instance.currentStage.add(floraSpeaker);
+        // My Flora is not kinda speakerless, so we shall make the speaker.
+        if (!isMyFloraKindaSpeakerless) {
+            floraSpeaker = FunkinSprite.createTextureAtlas(0, 0, 'characters/flora/FloraSpeaker', 'shared');
+            floraSpeaker.anim.addByFrameLabel('idle', 'FloraSpeakerBop', 24, false);
 
-			speakerLights = new FunkinSprite(0, 0).loadSparrow('characters/flora/FloraLights');
-			speakerLights.animation.addByPrefix('idle', 'lightBop', 12, false);
-			speakerLights.animation.addByPrefix('frozenLight', 'frozenLight', 12, false);
-			speakerLights.animation.addByPrefix('50combo', '50combo', 24, false);
-			speakerLights.animation.addByPrefix('200combo', '200combo', 24, false);
-			speakerLights.animation.addByPrefix('lossCombo', 'lossCombo', 24, false);
-			speakerLights.animation.play('idle');
-			PlayState.instance.currentStage.add(speakerLights);
+            floraSpeakerScreen = new FunkinSprite(0, 0).loadSparrow('characters/flora/FloraLights', 'shared');
+			floraSpeakerScreen.animation.addByPrefix('lightBop', 'lightBop', 24, false);
+			floraSpeakerScreen.animation.addByPrefix('lightLoop', 'lightLoop', 24, true);
+			floraSpeakerScreen.animation.addByPrefix('50combo', '50combo', 24, false);
+			floraSpeakerScreen.animation.addByPrefix('200combo', '200combo', 24, false);
+			floraSpeakerScreen.animation.addByPrefix('lossCombo', 'lossCombo', 24, false);
+			floraSpeakerScreen.animation.play('lightBop');
 
-			visualizerFlora = new FunkinSprite().makeGraphic(115, 70);
-			PlayState.instance.currentStage.add(visualizerFlora);
-
-			speakerLights.animation.onFinish.add(function(animName:String) {
+			floraSpeakerScreen.animation.onFinish.add(function(animName:String) {
 				if (animName == "50combo" || animName == "200combo" || animName == "lossCombo") {
 					comboFloraCheck == true;
-					visualizerFlora.visible = true;
-					speakerLights.animation.play('frozenLight', true);
+					floraSpeakerScreen.animation.play('lightLoop', true);
 				}
 			});
-		}
-	}
-
-	var comboAnims = ["50combo", "200combo", "lossCombo"];
-
-	override function dance(force) {
-		super.dance(force);
-		if (PlayState.instance?.currentStage != null) {
-			if (floraSpeaker != null)
-				floraSpeaker.animation.play('FloraSpeakerBop', true);
-			if (speakerLights != null) {
-				if (!comboAnims.contains(speakerLights.animation?.curAnim?.name)
-					|| (comboAnims.contains(speakerLights.animation?.curAnim?.name) && speakerLights.animation?.finished)) {
-					speakerLights.animation.play('idle', true);
+			floraSpeakerScreen.animation.onFinish.add(function(animName:String) {
+				if (animName == "lightBop") {
+					floraSpeakerScreen.animation.play('lightLoop', true);
 				}
-			}
-		}
-	}
+			});
+            floraSpeakerScreen.animation.onFrameChange.add(function(_, __, ___) {
+                drawVisualizer(true);
+            });
 
-	function onUpdate(event:UpdateScriptEvent) {
-		super.onUpdate(event);
 
-		synchronizeShader();
-		if (!refershedLol && PlayState.instance?.currentStage != null) {
-			floraSpeaker.x = this.x - 183;
-			floraSpeaker.y = this.y + 81;
-			floraSpeaker.zIndex = this.zIndex - 2;
+            lineStyle = FlxSpriteUtil.getDefaultLineStyle({
+                thickness: FLORA_VIS_LINE_THICKNESS,
+                color: FLORA_VIS_LINE_COLOR
+            });
 
-			speakerLights.x = floraSpeaker.x - 5;
-			speakerLights.y = floraSpeaker.y - 10;
-			speakerLights.zIndex = floraSpeaker.zIndex + 1;
-			speakerLights.blend = 0;
+        }
+    }
 
-			visualizerFlora.x = floraSpeaker.x + 327;
-			visualizerFlora.y = floraSpeaker.y + 152;
-			visualizerFlora.zIndex = speakerLights.zIndex + 1;
+    override public function onUpdate(e) {
+        super.onUpdate(e);
 
-			floraEyes.setPosition(this.x, this.y);
-			floraEyes.zIndex = this.zIndex + 1;
-			floraEyes.blend = 0;
+        if (currentStage == null) return;
 
-			PlayState.instance.currentStage.refresh();
-			refershedLol = true;
-		}
-		lineStyle = FlxSpriteUtil.getDefaultLineStyle({
-			thickness: 4,
-			color: 0xFF6cfffa
-		});
-	}
+		if (isMyFloraKindaSpeakerless) return;
 
-	var currentShader = null;
-	var adjustColor:AdjustColorShader;
+        if (setupFloraProps)
+            synchronizeShader();
+        else {
+            addFloraProps();
+        }
+    }
 
 	function synchronizeShader():Void {
 		if (save.data.gooeyShaders != false) {
@@ -149,172 +182,227 @@ class FloraCharacter extends MultiAnimateAtlasCharacter {
 				adjustColor.contrast = this.shader.baseContrast;
 				adjustColor.saturation = this.shader.baseSaturation;
 				floraSpeaker.shader = adjustColor;
+                floraSpeakerScreen.shader = adjustColor;
 			} else {
 				floraSpeaker.shader = this.shader;
+				floraSpeakerScreen.shader = this.shader;
 			}
 
 			trace("Synchronized shader between children!");
 		}
 	}
 
-	
-	override function playAnimation(name:String, restart:Bool = false, ignoreOther:Bool = false, reversed:Bool = false) {
-		super.playAnimation(name, restart, ignoreOther, reversed);
-		if (PlayState.instance?.currentStage != null) {
-			
-			if (isLesbian && (name == 'danceLeft' || name == 'danceRight'))
-				super.playAnimation(name + '-alt', restart, ignoreOther, reversed);
-			else if (isBecomingLesbian && isLesbian == false && (name == 'danceLeft' || name == 'danceRight' || name == 'hairFall')) {
-				super.playAnimation(name + '-trans', restart, ignoreOther, reversed);
-				new FlxTimer().start(0.05, _ -> {
-					isLesbian = true;
-					isBecomingLesbian = false;
-				});
-			} else
-				super.playAnimation(name, restart, ignoreOther, reversed, reversed);
+    override public function onSongRetry(e) {
+        super.onSongRetry(e);
 
-			if (name == 'combo200')
-				isBecomingLesbian = true;
+        lesbianTimer?.cancel();
+        isLesbian = false;
+		isBecomingLesbian = false;
+        analyzer = null;
+    }
 
-			if (isLesbian && name == 'hairBlow')
-			{
-				new FlxTimer().start(0.05, _ -> {
-					isLesbian = false;
-					isBecomingLesbian = true;
-				});
-			}
+    override public function onSongStart(e) {
+        super.onSongStart(e);
 
-			if (name == 'drop70') {
-				isLesbian = false;
-				isBecomingLesbian = false;
-			}
+        if (!isMyFloraKindaSpeakerless) {
+            visualizerEnabled = true;
 
-			if (floraEyes != null) {
-				if (isLesbian && (name == 'danceLeft' || name == 'danceRight'))
-					floraEyes.playAnimation(name + '-alt', restart, false);
-				else if (isBecomingLesbian && isLesbian == false && (name == 'danceLeft' || name == 'danceRight'))
-					floraEyes.playAnimation(name + '-trans', restart, false);
-				else
-					floraEyes.playAnimation(name, restart, false);
+            analyzer = new SpectralAnalyzer(FlxG.sound.music._channel.__audioSource, 7, 0.1, 40);
+		    analyzer.fftN = 256;
 
-				floraEyes.setPosition(this.x, this.y);
-			}
-		}
-	}
+            // A-Bot tuning...
+            analyzer.minDb = -65;
+            analyzer.maxDb = -25;
+            analyzer.maxFreq = 22000;
+            // we use a very low minFreq since some songs use low low subbass like a boss
+            analyzer.minFreq = 10;
+        }
 
-	function onSongStart(scriptEvent) {
-		super.onSongStart(scriptEvent);
-		if (PlayState.instance?.currentStage != null) {
-			analyzer = new SpectralAnalyzer(FlxG.sound.music._channel.__audioSource, 7, 0.1, 40);
-			analyzer.fftN = 256;
-		}
-	}
+        speakerBump();
+    }
 
-	function onCountdownStart(scriptEvent) {
-		super.onCountdownStart(scriptEvent);
-		analyzer = null;
-	}
+    public function drawVisualizer(analyze:Bool) {
+        // Don't draw the speaker if there is no speaker to draw.
+        // Also don't waste resources drawing the speaker if it's invisible.
+        if (isMyFloraKindaSpeakerless || currentStage == null)
+            return;
 
-	override public function draw() {
-		// viz shit
-		if (PlayState.instance?.currentStage != null) {
-			if (analyzer != null) {
-				points = [];
-				var levels = analyzer.getLevels();
-				for (i in 0...levels.length) {
-					points.push(levels[i].value / 2);
-					points[points.length - 1] += 0.5;
-				}
-				points.push(0.5);
-			} else
-				points = defaultPoints;
+        // Don't draw the visualizer if is the frame doesn't need it.
+        var anim = floraSpeakerScreen.getCurrentAnimation();
+        if (anim != "lightBop" && anim != "lightLoop")
+            return;
 
-			// actually drawing shit that i want to forget about, i was cooking back then now its gibbirsh to me
+        if (analyzer != null && analyze) {
+            points.resize(0);
 
-			lineStyle.color = 0x00000000;
-			FlxSpriteUtil.fill(visualizerFlora, 0);
-			FlxSpriteUtil.beginDraw(0xFF6cfffa, lineStyle);
+            for (level in analyzer.getLevels())
+                points.push(level.value / 2 + 0.5);
 
-			for (b in [0, 1]) {
-				var oldPointX = 0;
-				var oldPointY = visualizerFlora.height * 0.6;
-				var oldI = 0.5;
-				for (i in 0...points.length) {
-					var x = (visualizerFlora.width / points.length) * (i + 1);
-					var y = visualizerFlora.height * (1 - points[i] + 0.1);
-					FlxSpriteUtil.flashGfx.moveTo(oldPointX, oldPointY);
+            points.push(0.5);
+        } else if (analyze) {
+            for (i in 0...points.length)
+                points[i] = FlxMath.lerp(points[i], FLORA_VIS_FLAT_LEVEL, FlxG.elapsed * 60);
+        }
 
-					var stupidCurveAxes = curve;
+        var visOffset = FLORA_VIS_OFFSETS[floraSpeakerScreen._frame.name];
+        var frameRect = floraSpeakerScreen._frame.frame;
+        lineStyle.color = FlxColor.TRANSPARENT;
+        visualizerRect.setTo(frameRect.x + visOffset[0], frameRect.y + visOffset[1], FLORA_VIS_WIDTH, FLORA_VIS_HEIGHT);
+        floraSpeakerScreen.pixels.fillRect(visualizerRect, FlxColor.TRANSPARENT);
 
-					if (oldI >= points[i])
-						stupidCurveAxes = 0;
+        FlxSpriteUtil.beginDraw(FLORA_VIS_LINE_COLOR, lineStyle);
 
-					FlxSpriteUtil.flashGfx.curveTo(((oldPointX + x) / 2) + stupidCurveAxes, ((oldPointY + y) / 2), x, y);
+        for (b in ZERO_AND_ONE) {
+            var oldPointX:Float = visualizerRect.x;
+            var oldPointY:Float = visualizerRect.y + FLORA_VIS_HEIGHT * 0.6;
 
-					if (b == 0) {
-						FlxSpriteUtil.flashGfx.lineTo(x, visualizerFlora.height);
-						FlxSpriteUtil.flashGfx.lineTo(oldPointX, visualizerFlora.height);
-					}
-					oldPointX = x;
-					oldPointY = y;
-					oldI = points[i];
-				}
+            for (i in 0... points.length) {
+                var x = visualizerRect.x + (FLORA_VIS_WIDTH / points.length) * (i + 1);
+                var y = visualizerRect.y + FLORA_VIS_HEIGHT * (1 - points[i] + 0.1);
+                
+                FlxSpriteUtil.flashGfx.moveTo(oldPointX, oldPointY);
+                FlxSpriteUtil.flashGfx.curveTo((oldPointX + x) / 2, (oldPointY + y) / 2, x, y);
 
-				FlxSpriteUtil.flashGfx.moveTo(0, 0);
+                if (b == 0) {
+                    FlxSpriteUtil.flashGfx.lineTo(x, visualizerRect.bottom);
+                    FlxSpriteUtil.flashGfx.lineTo(oldPointX, visualizerRect.bottom);
+                }
 
-				lineStyle.color = 0xFF6cfffa;
-				FlxSpriteUtil.setLineStyle(lineStyle);
-				FlxSpriteUtil.flashGfx.beginFill(0x00000000, 0);
-			}
+                oldPointX = x;
+                oldPointY = y;
+            }
 
-			FlxSpriteUtil.endDraw(visualizerFlora, null);
-		}
-		super.draw();
-	}
+            oldPointX = null;
+            oldPointY = null;
+
+            FlxSpriteUtil.flashGfx.moveTo(visualizerRect.x, visualizerRect.y);
+
+            lineStyle.color = FLORA_VIS_LINE_COLOR;
+            FlxSpriteUtil.setLineStyle(lineStyle);
+            FlxSpriteUtil.flashGfx.beginFill(FlxColor.TRANSPARENT, 0);
+        }
+
+        FlxSpriteUtil.endDraw(floraSpeakerScreen, {smoothing: true});
+        queueVisualizerUpdate = false;
+    }
+    
+    override public function dance(?force:Bool) {
+        super.dance(force);
+            speakerBump(force);
+    }
+
+    override public function playAnimation(name:String, restart:Bool = false, ?ignoreOther:Bool = false, ?reversed:Bool = false) {
+      
+            if (name.startsWith("dance")) {
+                if (isLesbian)
+                    floraAnimationSuffix = '-alt';
+                else if (isBecomingLesbian) {
+                    floraAnimationSuffix = '-trans';
+
+                    lesbianTimer?.cancel();
+
+                    // This is the time it will take for Flora to become lesbian.
+                    lesbianTimer = new FlxTimer().start(0.05, _ -> {
+                        isLesbian = true;
+                        isBecomingLesbian = false;
+                    });
+                } else
+                    floraAnimationSuffix = '';
+            }
+            else if (name == "combo200")
+                isBecomingLesbian = true;
+            else if (name == "drop70") {
+                lesbianTimer?.cancel();
+                
+                isLesbian = false;
+                isBecomingLesbian = false;
+            }
+
+            super.playAnimation(name + floraAnimationSuffix, restart, ignoreOther, reversed);
+    }
+
+    /**
+     * This syncs the `colorTransform` of the screen objects with ``,
+     * for the startup effect when you start a song.
+     * @param twn 
+     */
+
+    private function addFloraProps() {
+        if (setupFloraProps) return;
+
+        // My Flora is not kinda speakerless, so we shall add the speaker.
+        if (!isMyFloraKindaSpeakerless) {
+            floraSpeaker.zIndex = this.zIndex - 2;
+            currentStage.add(floraSpeaker);
+
+            floraSpeakerScreen.zIndex = this.zIndex - 1;
+            currentStage.add(floraSpeakerScreen);
+
+			floraSpeaker?.setPosition(this.x - 56 - (-this.globalOffsets[0] * this.scale.x), this.y + 51 - (-this.globalOffsets[1] * this.scale.y));
+            floraSpeakerScreen?.setPosition(floraSpeaker.x - 5, floraSpeaker.y - 10);
+			floraSpeakerScreen.blend = 0;
+        }
+
+        currentStage.refresh();
+        setupFloraProps = true;
+    }
 
 	function onNoteHit(event:HitNoteScriptEvent) {
 		super.onNoteHit(event);
 		if (PlayState.instance?.currentStage != null) {
+            if (!isMyFloraKindaSpeakerless){
 			if (!event.note.noteData.getMustHitNote(Strumline.KEY_COUNT))
 				return;
 			if (Highscore.tallies.combo == 49 && comboFloraCheck == true && !event.isComboBreak) {
 				comboFloraCheck == false;
-				visualizerFlora.visible = false;
-				speakerLights.animation.play('50combo', true);
+				floraSpeakerScreen.animation.play('50combo', true);
 			}
 			if (Highscore.tallies.combo == 199 && comboFloraCheck == true && !event.isComboBreak) {
 				comboFloraCheck == false;
-				visualizerFlora.visible = false;
-				speakerLights.animation.play('200combo', true);
+				floraSpeakerScreen.animation.play('200combo', true);
 			}
 			if (Highscore.tallies.combo >= 70 && event.isComboBreak) {
 				if (comboFloraCheck == true) {
 					comboFloraCheck == false;
-					visualizerFlora.visible = false;
-					speakerLights.animation.play('lossCombo', true);
+					floraSpeakerScreen.animation.play('lossCombo', true);
 				}
 			}
+            }
 		}
 	}
 
 	function onNoteMiss(event:NoteScriptEvent) {
 		if (PlayState.instance?.currentStage != null) {
+                    if (!isMyFloraKindaSpeakerless){
 			if (Highscore.tallies.combo >= 70) {
 				if (comboFloraCheck == true) {
 					comboFloraCheck == false;
-					visualizerFlora.visible = false;
-					speakerLights.animation.play('lossCombo', true);
+					floraSpeakerScreen.animation.play('lossCombo', true);
 				}
 			}
+            }
 			super.onNoteMiss(event);
 		}
 	}
 
-	function onSongRetry(event:ScriptEvent) {
-		super.onSongRetry(event);
-		if (PlayState.instance?.currentStage != null) {
-			isLesbian = false;
-			isBecomingLesbian = false;
-		}
-	}
+
+    /**
+     * This is still triggered upon `dance()` whilst `isMyFloraKindaSpeakerless == false`,
+     * just in case you ever want to override this function.
+     * @param force Bool
+     */
+
+	 var comboAnims = ["50combo", "200combo", "lossCombo"];
+
+    private function speakerBump(force:Bool = true) {
+        // My Flora is not kinda speakerless, so the speaker goes BOOM DA BOOM BOOM.
+        // Flora's speaker ain't on if Flora ain't on.
+        if (!isMyFloraKindaSpeakerless && setupFloraProps) {
+            floraSpeaker?.anim?.play('idle', true);
+
+			if (!comboAnims.contains(floraSpeakerScreen.animation?.curAnim?.name)
+					|| (comboAnims.contains(floraSpeakerScreen.animation?.curAnim?.name) && floraSpeakerScreen.animation?.finished))
+            floraSpeakerScreen?.animation?.play('lightBop', true);
+        }
+    }
 }

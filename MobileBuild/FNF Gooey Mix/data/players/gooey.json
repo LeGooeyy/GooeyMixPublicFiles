@@ -13,7 +13,8 @@
     "bf-gooey",
     "kam-player",
     "not-matt-player",
-    "morpho-player"
+    "morpho-player",
+    "edd-saloonatic"
   ],
   "showUnownedChars": false,
   "unlocked": true,
@@ -24,6 +25,7 @@
     "text1": "GOOBER ALERT!",
     "text2": "GOOBER ALERT!",
     "text3": "GOOBER ALERT!",
+    "scriptClass": "GooeyFreeplayDJ",
     "fistPump": {
       "introStartFrame": 0,
       "introEndFrame": 4,

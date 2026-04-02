@@ -4,5 +4,6 @@
   "artists": ["LeGooey"],
   "albumArtAsset": "freeplay/albumRoll/gooeymix1",
   "albumTitleAsset": "freeplay/albumRoll/gooeymix1-text",
-  "albumTitleOffsets": [-10, 0]
+  "albumTitleOffsets": [-10, 0],
+  "albumOSTName": "GOOEY MIX OST"
 }

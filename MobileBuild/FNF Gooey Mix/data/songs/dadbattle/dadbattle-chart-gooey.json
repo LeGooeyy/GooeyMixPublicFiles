@@ -698,7 +698,7 @@
       "t": 81916.6666666667,
       "e": "PlayAnimation",
       "v": {
-	"anim": "dadAttack",
+	"anim": "attack",
 	"force": false,
 	"target": "boyfriend"
 }

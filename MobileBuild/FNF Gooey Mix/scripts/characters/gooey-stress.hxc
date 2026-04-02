@@ -1,73 +1,7 @@
-import funkin.play.character.MultiAnimateAtlasCharacter;
-import flixel.FlxG;
-import funkin.play.PauseSubState;
-import funkin.play.character.CharacterType;
-import funkin.play.GameOverSubState;
-import funkin.audio.FunkinSound;
-import funkin.play.PlayState;
+import gooeymix.characters.GooeyBaseCharacter;
 
-class GooeyStressPlayableCharacter extends MultiAnimateAtlasCharacter {
-	function new() {
+class GooeyStressCharacter extends GooeyBaseCharacter {
+	public function new() {
 		super('gooey-stress');
-	}
-
-	function onCreate(event:ScriptEvent) {
-		super.onCreate(event);
-
-		if (PlayState.instance?.currentStage != null) {
-			GameOverSubState.musicSuffix = '-gooey';
-			GameOverSubState.blueBallSuffix = '-gooey';
-			PauseSubState.musicSuffix = '-gooey';
-			var tankDeathLine = null;
-		}
-	}
-
-	function onNoteHit(event:HitNoteScriptEvent) {
-		if (event.eventCanceled) {
-			// onNoteHit event was cancelled by the gameplay module.
-			return;
-		}
-		// Override the hit note animation.
-		switch (event.note.kind) {
-			case "hey":
-				holdTimer = 0;
-				this.playAnimation('hey', true, true);
-				return;
-			case "alt":
-				holdTimer = 0;
-				this.playSingAnimation(event.note.noteData.getDirection(), false, 'alt');
-				return;
-			default:
-				super.onNoteHit(event);
-		}
-	}
-
-	override function getDeathQuote():Null<String> {
-		if (PlayState.instance?.currentStage != null) {
-			if (PlayState.instance.currentSong.id.toLowerCase() == "stress")
-				return Paths.sound('jeffGameover-gooey/jeffGameover-' + FlxG.random.int(1, 8));
-		}
-	}
-
-	override function playAnimation(name:String, restart:Bool = false, ignoreOther:Bool = false, reversed:Bool = false) {
-		super.playAnimation(name, restart, ignoreOther, reversed);
-		if (PlayState.instance?.currentStage != null) {
-			if (name == "deathConfirm") {
-				gooeyRetry = FunkinSound.load(Paths.music('gameplay/gameover/gameOverEnd-gooeyReal'), true);
-				gooeyRetry.volume = 1;
-				gooeyRetry.play(false);
-			}
-		}
-	}
-
-	override function onSongRetry(event:ScriptEvent):Void {
-		super.onSongRetry(event);
-
-		if (PlayState.instance?.currentStage != null) {
-			GameOverSubState.musicSuffix = '-gooey';
-			GameOverSubState.blueBallSuffix = '-gooey';
-			PauseSubState.musicSuffix = '-gooey';
-			this.visible = true;
-		}
 	}
 }

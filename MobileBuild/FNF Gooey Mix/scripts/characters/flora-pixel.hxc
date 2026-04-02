@@ -1,6 +1,5 @@
 import funkin.play.character.SparrowCharacter;
 import funkin.play.PlayState;
-import flixel.FlxG;
 import funkin.graphics.FunkinSprite;
 import flixel.util.FlxSpriteUtil;
 import funkin.modding.base.ScriptedFlxRuntimeShader;
@@ -9,7 +8,7 @@ import funkin.Highscore;
 
 class FloraPixelCharacter extends SparrowCharacter {
 	function new() {
-		super('flora-pixel');
+		super('flora-pixel'); //gonna do the flora pixel recode once flora's pixel sprites are 100% finished
 	}
 
 	var flora;

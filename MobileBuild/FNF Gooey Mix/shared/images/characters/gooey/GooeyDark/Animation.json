@@ -1154,9 +1154,9 @@
 "SN":"Parts/missLines/LeftMissLineSnap",
 "FF":0,
 "ST":"G",
-"TRP":{"x":126,"y":-28.75},
+"TRP":{"x":127.25,"y":-28.75},
 "LP":"LP",
-"MX":[1,0,0,1,37.1,-39]
+"MX":[1,0,0,1,38.35,-39]
 }}]},{
 "I":2,
 "DU":13,
@@ -1268,9 +1268,9 @@
 "SN":"Parts/missLines/DownMissLineSnap",
 "FF":0,
 "ST":"G",
-"TRP":{"x":97.05,"y":29.05},
+"TRP":{"x":113.7,"y":52.7},
 "LP":"LP",
-"MX":[1,0,0,1,-213.95,-24]
+"MX":[1,0,0,1,-197.3,-0.8]
 }}]},{
 "I":2,
 "DU":13,
@@ -1279,9 +1279,9 @@
 "SN":"Parts/missLines/DownMissLine",
 "FF":0,
 "ST":"G",
-"TRP":{"x":95.5,"y":20},
+"TRP":{"x":112.65,"y":46.1},
 "LP":"LP",
-"MX":[1,0,0,1,-371.5,-72]
+"MX":[1,0,0,1,-354.35,-45.9]
 }}]}
 ]},{
 "LN":"Layer_2",
@@ -1294,9 +1294,9 @@
 "SN":"Parts/bodies/DownMiss",
 "FF":0,
 "ST":"G",
-"TRP":{"x":83.8,"y":93.65},
+"TRP":{"x":77.3,"y":98.05},
 "LP":"LP",
-"MX":[1.019,0,0.004,0.974,-181.1,36.95]
+"MX":[1.026,0,0.012,0.984,-183.9,36.1]
 }}]},{
 "I":2,
 "DU":13,
@@ -1305,9 +1305,9 @@
 "SN":"Parts/bodies/DownMiss",
 "FF":0,
 "ST":"G",
-"TRP":{"x":84.3,"y":90.4},
+"TRP":{"x":78.95,"y":96},
 "LP":"LP",
-"MX":[1,0,0,1,-175.7,32.35]
+"MX":[1,0,0,1,-175.05,33]
 }}]}
 ]}
 ]}},{
@@ -2002,7 +2002,7 @@
 "DU":1,
 "E":[
 {"SI":{
-"SN":"DarknewLeftFaceSnap.png",
+"SN":"Bitmaps/DarknewLeftFaceSnap.png",
 "ST":"MC",
 "TRP":{"x":194.5,"y":78.5},
 "MX":[1,0,0,1,160,54]
@@ -2020,7 +2020,7 @@
 "DU":1,
 "E":[
 {"SI":{
-"SN":"DarknewLeftFace.png",
+"SN":"Bitmaps/DarknewLeftFace.png",
 "ST":"MC",
 "TRP":{"x":246.5,"y":-19},
 "MX":[1,0,0,1,211,-43]
@@ -2092,7 +2092,7 @@
 "DU":1,
 "E":[
 {"SI":{
-"SN":"DarknewDownFaceSnap.png",
+"SN":"Bitmaps/DarknewDownFaceSnap.png",
 "ST":"MC",
 "TRP":{"x":1437,"y":265},
 "MX":[1,0,0,1,1386,231]
@@ -2110,7 +2110,7 @@
 "DU":1,
 "E":[
 {"SI":{
-"SN":"DarknewDownFace.png",
+"SN":"Bitmaps/DarknewDownFace.png",
 "ST":"MC",
 "TRP":{"x":1296.5,"y":253},
 "MX":[1,0,0,1,1246,223]
@@ -2121,17 +2121,17 @@
 "TL":{
 "L":[
 {
-"LN":"Layer_1",
+"LN":"Layer_2",
 "FR":[
 {
 "I":0,
 "DU":1,
 "E":[
 {"SI":{
-"SN":"Bitmaps/downBody.png",
+"SN":"Bitmaps/newDown.png",
 "ST":"MC",
-"TRP":{"x":1501,"y":385.5},
-"MX":[1,0,0,1,1391,323]
+"TRP":{"x":1503,"y":390.5},
+"MX":[1,0,0,1,1388,323]
 }}]}
 ]}
 ]}},{
@@ -2265,17 +2265,17 @@
 "TL":{
 "L":[
 {
-"LN":"Layer_1",
+"LN":"Layer_2",
 "FR":[
 {
 "I":0,
 "DU":1,
 "E":[
 {"SI":{
-"SN":"Bitmaps/LeftMiss.png",
+"SN":"Bitmaps/newLeftMiss.png",
 "ST":"MC",
-"TRP":{"x":263.5,"y":122.5},
-"MX":[1,0,0,1,110,-25]
+"TRP":{"x":262.5,"y":123},
+"MX":[1,0,0,1,99,-24]
 }}]}
 ]}
 ]}},{
@@ -2319,17 +2319,17 @@
 "TL":{
 "L":[
 {
-"LN":"Layer_1",
+"LN":"Layer_2",
 "FR":[
 {
 "I":0,
 "DU":1,
 "E":[
 {"SI":{
-"SN":"Bitmaps/RightMiss.png",
+"SN":"Bitmaps/newRightMiss.png",
 "ST":"MC",
-"TRP":{"x":120.5,"y":74.5},
-"MX":[1,0,0,1,-22,-73]
+"TRP":{"x":118.5,"y":74},
+"MX":[1,0,0,1,-29,-72]
 }}]}
 ]}
 ]}},{
@@ -2373,17 +2373,17 @@
 "TL":{
 "L":[
 {
-"LN":"Layer_1",
+"LN":"Layer_2",
 "FR":[
 {
 "I":0,
 "DU":1,
 "E":[
 {"SI":{
-"SN":"Bitmaps/downMiss.png",
+"SN":"Bitmaps/newDownMiss.png",
 "ST":"MC",
-"TRP":{"x":260,"y":58.5},
-"MX":[1,0,0,1,89,-63]
+"TRP":{"x":254,"y":63},
+"MX":[1,0,0,1,76,-62]
 }}]}
 ]}
 ]}},{
@@ -2427,17 +2427,17 @@
 "TL":{
 "L":[
 {
-"LN":"Layer_1",
+"LN":"Layer_2",
 "FR":[
 {
 "I":0,
 "DU":1,
 "E":[
 {"SI":{
-"SN":"Bitmaps/UpMiss.png",
+"SN":"Bitmaps/newUpMiss.png",
 "ST":"MC",
-"TRP":{"x":132,"y":49},
-"MX":[1,0,0,1,-11,-95]
+"TRP":{"x":136,"y":48.5},
+"MX":[1,0,0,1,-16,-96]
 }}]}
 ]}
 ]}},{
@@ -2702,7 +2702,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"11"
 }}]}]}]}},{
-"SN":"DarknewLeftFaceSnap.png",
+"SN":"Bitmaps/DarknewLeftFaceSnap.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -2714,7 +2714,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"12"
 }}]}]}]}},{
-"SN":"DarknewLeftFace.png",
+"SN":"Bitmaps/DarknewLeftFace.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -2762,7 +2762,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"16"
 }}]}]}]}},{
-"SN":"DarknewDownFaceSnap.png",
+"SN":"Bitmaps/DarknewDownFaceSnap.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -2774,7 +2774,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"17"
 }}]}]}]}},{
-"SN":"DarknewDownFace.png",
+"SN":"Bitmaps/DarknewDownFace.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -2786,7 +2786,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"18"
 }}]}]}]}},{
-"SN":"Bitmaps/downBody.png",
+"SN":"Bitmaps/newDown.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -2882,7 +2882,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"26"
 }}]}]}]}},{
-"SN":"Bitmaps/LeftMiss.png",
+"SN":"Bitmaps/newLeftMiss.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -2918,7 +2918,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"29"
 }}]}]}]}},{
-"SN":"Bitmaps/RightMiss.png",
+"SN":"Bitmaps/newRightMiss.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -2954,7 +2954,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"32"
 }}]}]}]}},{
-"SN":"Bitmaps/downMiss.png",
+"SN":"Bitmaps/newDownMiss.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",
@@ -2963,7 +2963,7 @@
 "DU":1,
 "E":[
 {"ASI":{
-"MX":[0.981,0,0,1,0,0],
+"MX":[0.975,0,0,1,0,0],
 "N":"33"
 }}]}]}]}},{
 "SN":"Bitmaps/misslines/upMissLinesSnap.png",
@@ -2990,7 +2990,7 @@
 "MX":[1,0,0,1,0,0],
 "N":"35"
 }}]}]}]}},{
-"SN":"Bitmaps/UpMiss.png",
+"SN":"Bitmaps/newUpMiss.png",
 "TL":{
 "L":[
 {"LN":"Layer 1",

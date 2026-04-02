@@ -1,5 +1,4 @@
 import funkin.modding.module.Module;
-import funkin.Paths;
 import openfl.display.BitmapData;
 import lime.app.Application;
 import lime.graphics.Image;

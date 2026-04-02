@@ -1,11 +1,13 @@
+package gooeymix.characters;
+
 import funkin.play.character.MultiAnimateAtlasCharacter;
 import funkin.play.PauseSubState;
 import funkin.play.character.CharacterType;
 import funkin.play.GameOverSubState;
 import funkin.audio.FunkinSound;
 import funkin.play.PlayState;
-import flixel.FlxG;
 import funkin.graphics.shaders.DropShadowShader;
+import funkin.graphics.shaders.AdjustColorShader;
 import flixel.FlxSprite;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxTimer;
@@ -15,14 +17,19 @@ import flixel.effects.FlxFlicker;
 import flixel.util.FlxSave;
 import funkin.FunkinMemory;
 
-class GooeyCharacter extends MultiAnimateAtlasCharacter {
-	function new() {
-		super('gooey');
+class GooeyBaseCharacter extends MultiAnimateAtlasCharacter {
+	public static var baseCharId:String = 'gooey';
 
+	function new(id:String) {
+		super(id == 'UNKNOWN' ? baseCharId : id);
 		save = new FlxSave();
 		save.bind("GooeyMixOptions", "FunkinCrew");
 		ignoreExclusionPref.push("attack");
 	}
+
+	var gooballs:FunkinSprite;
+	private var currentShader = null;
+	private var adjustColor:AdjustColorShader;
 
 	function onCreate(event:ScriptEvent) {
 		super.onCreate(event);
@@ -36,6 +43,28 @@ class GooeyCharacter extends MultiAnimateAtlasCharacter {
 			for (snd in CACHE_SOUND_PATHS) {
 				FunkinMemory.cacheSound(Paths.sound(snd, "weekend1"));
 			}
+		}
+	}
+
+	function onAdd(event:ScriptEvent) {
+		if (PlayState.instance.currentSong.id.toLowerCase() == "2hot"
+			|| PlayState.instance.currentSong.id.toLowerCase() == "dadbattle"
+			|| PlayState.instance.currentSong.id.toLowerCase() == "stress") {
+			gooballs = FunkinSprite.createTextureAtlas(this.x - 857 - (-this.globalOffsets[0] * this.scale.x),
+				this.y - 310 - (-this.globalOffsets[1] * this.scale.y), 'characters/gooey/Gooballs', 'shared');
+			gooballs.anim.addByFrameLabel('BlankAttack', 'BlankAttack', 24, false);
+
+			if (PlayState.instance.currentSong.id.toLowerCase() == "dadbattle")
+				gooballs.anim.addByFrameLabel('CanAttack', 'DadAttack', 24, false);
+			else if (PlayState.instance.currentSong.id.toLowerCase() == "stress")
+				gooballs.anim.addByFrameLabel('CanAttack', 'StressAttack', 24, false);
+			else
+				gooballs.anim.addByFrameLabel('CanAttack', 'CanAttack', 24, false);
+
+			gooballs?.anim?.play('BlankAttack', true);
+			gooballs.zIndex = this.zIndex + 1;
+			addToStage(gooballs);
+			currentStage.refresh();
 		}
 	}
 
@@ -64,6 +93,11 @@ class GooeyCharacter extends MultiAnimateAtlasCharacter {
 					if (getCurrentAnimation() != "attackMISS") {
 						this.playSingAnimation(event.note.noteData.getDirection(), false);
 					}
+				case "weekend-1-alt-hitcheck":
+					trace(getCurrentAnimation());
+					if (getCurrentAnimation() != "attackMISS") {
+						this.playSingAnimation(event.note.noteData.getDirection(), false, 'alt');
+					}
 
 				case "hey":
 					holdTimer = 0;
@@ -90,7 +124,7 @@ class GooeyCharacter extends MultiAnimateAtlasCharacter {
 				// playCockMissAnim();
 			case "weekend-1-firegun":
 				playCanExplodeAnim();
-			case "weekend-1-hitcheck":
+			case "weekend-1-hitcheck", "weekend-1-alt-hitcheck":
 				trace(getCurrentAnimation());
 				if (getCurrentAnimation() != "attackMISS") {
 					super.onNoteMiss(event);
@@ -113,7 +147,7 @@ class GooeyCharacter extends MultiAnimateAtlasCharacter {
 
 		var currentFrameGraphic:FlxGraphic = FlxGraphic.fromBitmapData(this.updateFramePixels(), true, null, false);
 
-		gooeyFade = new FunkinSprite(this.x - 470, this.y - 310);
+		gooeyFade = new FunkinSprite(this.x + 20, this.y - 85);
 		gooeyFade.frame = currentFrameGraphic.imageFrame.frame;
 		gooeyFade.alpha = 0.3;
 		gooeyFade.zIndex = this.zIndex - 3;
@@ -126,9 +160,6 @@ class GooeyCharacter extends MultiAnimateAtlasCharacter {
 		FunkinSound.playOnce(Paths.sound('Gun_Prep'), 1.0);
 	}
 
-	/**
-	 * Play the animation where Pico shoots the can successfully.
-	 */
 	function playFireGunAnim():Void {
 		this.playAnimation('attack', true, true);
 		FunkinSound.playOnce(Paths.soundRandom('shot', 1, 4));
@@ -139,9 +170,7 @@ class GooeyCharacter extends MultiAnimateAtlasCharacter {
 	override function onAnimationFinished(name:String) {
 		super.onAnimationFinished(name);
 
-		if (name == 'attackMISS' && PlayState.instance.health > 0.0 && !PlayState.instance.isPlayerDying) {
-			// ERIC: You have to use super instead of this or it breaks.
-			// This is because typeof(this) is PolymodAbstractClass.
+		if (name == 'attackMISS' && PlayState.instance?.health > 0.0 && !PlayState.instance?.isPlayerDying) {
 			gooeyFlicker = FlxFlicker.flicker(super, 1, 1 / 30, true, true, function(_) {
 				gooeyFlicker = FlxFlicker.flicker(super, 0.5, 1 / 60, true, true, function(_) {
 					gooeyFlicker = null;
@@ -152,7 +181,6 @@ class GooeyCharacter extends MultiAnimateAtlasCharacter {
 
 	public override function onPause(event:PauseScriptEvent) {
 		super.onPause(event);
-
 		if (gooeyFlicker != null) {
 			gooeyFlicker.pause();
 			this.visible = true;
@@ -161,7 +189,6 @@ class GooeyCharacter extends MultiAnimateAtlasCharacter {
 
 	public override function onResume(event:ScriptEvent) {
 		super.onResume(event);
-
 		if (gooeyFlicker != null) {
 			gooeyFlicker.resume();
 		}
@@ -201,9 +228,36 @@ class GooeyCharacter extends MultiAnimateAtlasCharacter {
 		trace();
 	}
 
+	var gooballd:Bool = false;
+
+	function gooball():Void {
+		if ((PlayState.instance.currentSong.id.toLowerCase() == "2hot"
+			|| PlayState.instance.currentSong.id.toLowerCase() == "dadbattle"
+			|| PlayState.instance.currentSong.id.toLowerCase() == "stress")
+			&& gooballs != null) {
+			if (!gooballd) {
+				currentShader = this.shader;
+				if (Std.isOfType(this.shader, DropShadowShader)) {
+					adjustColor = new AdjustColorShader();
+					adjustColor.brightness = this.shader.baseBrightness;
+					adjustColor.hue = this.shader.baseHue;
+					adjustColor.contrast = this.shader.baseContrast;
+					adjustColor.saturation = this.shader.baseSaturation;
+					gooballs.shader = adjustColor;
+				} else {
+					gooballs.shader = this.shader;
+				}
+				gooballd = true;
+			}
+			gooballs?.anim?.play('CanAttack', true);
+		}
+	}
+
 	override function getDeathQuote():Null<String> {
-		if (PlayState.instance.currentSong.id.toLowerCase() == "ugh" || PlayState.instance.currentSong.id.toLowerCase() == "guns")
+		if (Paths.currentLevel == "week7")
 			return Paths.sound('jeffGameover-gooey/jeffGameover-' + FlxG.random.int(1, 8));
+		if (Paths.currentLevel == "QTWeek")
+			Paths.sound('qtgameover/' + FlxG.save.data.qtRewiredLang + '/bf/qtGameover-' + FlxG.random.int(1, 8));
 	}
 
 	override function onSongRetry(event:ScriptEvent):Void {
@@ -219,6 +273,9 @@ class GooeyCharacter extends MultiAnimateAtlasCharacter {
 			gooeyRetry = FunkinSound.load(Paths.music('gameplay/gameover/gameOverEnd-gooeyReal'), true);
 			gooeyRetry.volume = 1;
 			gooeyRetry.play(false);
+		}
+		if (name == "attack") {
+			gooball();
 		}
 	}
 }

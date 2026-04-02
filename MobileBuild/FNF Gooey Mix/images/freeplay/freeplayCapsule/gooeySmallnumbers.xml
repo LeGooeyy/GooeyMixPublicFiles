@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<TextureAtlas imagePath="gooeySmallnumbers.png">
-	<!-- Created with Adobe Animate version 23.0.0.407 -->
-	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="GOOEY0000" x="10" y="10" width="109" height="28"/>
-	<SubTexture name="NH0001" x="129" y="10" width="109" height="28"/>
-</TextureAtlas>

@@ -4,7 +4,6 @@ import funkin.save.Save;
 import funkin.play.cutscene.VideoCutscene;
 import funkin.play.cutscene.CutsceneType;
 import funkin.play.PlayStatePlaylist;
-import flixel.FlxG;
 import funkin.graphics.FunkinSprite;
 import Date;
 
