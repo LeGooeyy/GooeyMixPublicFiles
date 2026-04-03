@@ -3,6 +3,16 @@ All notable changes will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [4.3.1] - 2026-4-3
+Detour 1 Lore Hotfix
+
+### Fixed
+
+- Fixed the Starcraft cutscene not loading on IOS devices
+- Fixed a rendering error with the perfect results screen
+- Fixed the dev test song being visible in early release builds
+
+
 ## [4.3.0] - 2026-4-1
 Detour 1 Mini Update 3 (The Lore Update)
 

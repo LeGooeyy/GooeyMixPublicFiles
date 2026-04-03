@@ -63,7 +63,7 @@ class StarcraftSong extends Song {
 	}
 
 	function startVideo() {
-		VideoCutscene.play(Paths.videos('starcraftCutscene'), CutsceneType.ENDING);
+		VideoCutscene.play(Paths.videos('Starcraftcutscene'), CutsceneType.ENDING);
 		// This will call onSongEnd() again so make sure the flag is set!
 		hasPlayedCutscene = true;
 	}
