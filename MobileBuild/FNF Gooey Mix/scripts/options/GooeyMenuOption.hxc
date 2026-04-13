@@ -130,6 +130,7 @@ class GooeyMenuOption extends Module {
 			}
 		}
 
+		if (!FlxG.onMobile) {
 		if (!FlxG.state.subState is DebugMenuSubState){
 			if (FlxG.state.subState.members[3] != null) {
 				if (save.data.GooeyMixMenu == 'Always On' || (save.data.GooeyMixMenu == 'Gooey Selected' && save.data.rememberedStartupCharacter == "gooey")) {
@@ -155,6 +156,7 @@ class GooeyMenuOption extends Module {
 					FlxG.state.menuBG.loadGraphic(Paths.image('menuDesat'));
 				}
 			}
+		}
 		}
 
 		if (FlxG.state is OptionsState) {

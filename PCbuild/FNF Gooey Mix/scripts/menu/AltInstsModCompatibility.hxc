@@ -77,7 +77,7 @@ class AltInstsModCompatibility extends Module {
 			targetDifficulty?.variation ?? Constants.DEFAULT_VARIATION) ?? '';
 
 		var variation = (FlxG.state.subState.currentVariation == Constants.DEFAULT_VARIATION) ? '' : FlxG.state.subState.currentVariation;
-		if (FlxG.state.subState.currentVariation != "spookymod" && !Save.instance.hasBeatenSong(targetSongId, null, variation)) {
+		if (!Save.instance.hasBeatenSong(targetSongId, null, variation)) {
 			filteredList = [];
 			filteredList.push(baseInstrumentalId);
 		}

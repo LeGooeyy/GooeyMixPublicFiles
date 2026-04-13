@@ -166,6 +166,9 @@ class GooeyCredits extends Module {
 					line: "ChessBrabo",
 				},
 				{
+					line: "DoubleM",
+				},
+				{
 					line: "FuryGRTX",
 				},
 				{
@@ -226,13 +229,13 @@ class GooeyCredits extends Module {
 					line: "Coffee Kat",
 				},
 				{
-					line: "JustANoodle",
+					line: "Noodle",
 				},
 				{
 					line: "Kam'ron",
 				},
 				{
-					line: "Morpho76",
+					line: "Morpho",
 				},
 				{
 					line: "Mythical Sam",

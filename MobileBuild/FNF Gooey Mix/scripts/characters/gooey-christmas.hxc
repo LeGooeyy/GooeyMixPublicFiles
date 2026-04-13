@@ -1,7 +1,7 @@
 import gooeymix.characters.GooeyBaseCharacter;
 import funkin.play.PlayState;
 
-class GooeChristmasCharacter extends GooeyBaseCharacter {
+class GooeyChristmasCharacter extends GooeyBaseCharacter {
 	public function new() {
 		super('gooey-christmas');
 	}

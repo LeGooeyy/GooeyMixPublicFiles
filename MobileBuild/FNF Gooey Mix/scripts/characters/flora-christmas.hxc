@@ -24,21 +24,12 @@ class FloraChristmasCharacter extends FloraBaseCharacter {
 	}
 
 	private function addFloraProps() {
-		if (setupFloraProps)
-			return;
+		super.addFloraProps();
 
 		// My Flora is not kinda speakerless, so we shall add the speaker.
 		if (!isMyFloraKindaSpeakerless) {
-			floraSpeaker.zIndex = this.zIndex - 2;
-			currentStage.add(floraSpeaker);
-
-			floraSpeakerScreen.zIndex = this.zIndex - 1;
-			currentStage.add(floraSpeakerScreen);
-
 			floraSpeaker?.setPosition(this.x - 113 - (-this.globalOffsets[0] * this.scale.x), this.y + 52 - (-this.globalOffsets[1] * this.scale.y));
 			floraSpeakerScreen?.setPosition(floraSpeaker.x - 5, floraSpeaker.y - 10);
-			floraSpeakerScreen.blend = 0;
-
 			christmas.x = floraSpeaker.x - 5;
 			christmas.y = floraSpeaker.y - 12;
 			christmas.zIndex = floraSpeaker.zIndex + 1;
@@ -46,44 +37,27 @@ class FloraChristmasCharacter extends FloraBaseCharacter {
 		}
 
 		currentStage.refresh();
-		setupFloraProps = true;
 	}
 
 	private function speakerBump(force:Bool = true) {
+		super.speakerBump(force);
+
 		// My Flora is not kinda speakerless, so the speaker goes BOOM DA BOOM BOOM.
 		// Flora's speaker ain't on if Flora ain't on.
 		if (!isMyFloraKindaSpeakerless && setupFloraProps) {
-			floraSpeaker?.anim?.play('idle', true);
 			christmas?.anim?.play('idle', true);
-
-			if (!comboAnims.contains(floraSpeakerScreen.animation?.curAnim?.name)
-				|| (comboAnims.contains(floraSpeakerScreen.animation?.curAnim?.name) && floraSpeakerScreen.animation?.finished))
-				floraSpeakerScreen?.animation?.play('lightBop', true);
 		}
 	}
 
 	function synchronizeShader():Void {
+		super.synchronizeShader();
 		if (save.data.gooeyShaders != false) {
-			if (currentShader == this.shader)
+			if (christmas.shader == floraSpeaker.shader)
 				return;
-
-			currentShader = this.shader;
-
-			if (Std.isOfType(this.shader, DropShadowShader)) {
-				adjustColor = new AdjustColorShader();
-				adjustColor.brightness = this.shader.baseBrightness;
-				adjustColor.hue = this.shader.baseHue;
-				adjustColor.contrast = this.shader.baseContrast;
-				adjustColor.saturation = this.shader.baseSaturation;
-				floraSpeaker.shader = adjustColor;
-				floraSpeakerScreen.shader = adjustColor;
-				christmas.shader = adjustColor;
-			} else {
-				floraSpeaker.shader = this.shader;
-				floraSpeakerScreen.shader = this.shader;
-				christmas.shader = this.shader;
+			if (floraSpeaker.shader != null)
+			{
+			christmas.shader = floraSpeaker.shader;
 			}
-
 			trace("Synchronized shader between children!");
 		}
 	}

@@ -51,10 +51,9 @@ class FloraBaseCharacter extends MultiAnimateAtlasCharacter {
 
     // Visualiser stuff.
     public var analyzer:SpectralAnalyzer;
-    public var visualizerTimer:FlxTimer;
     private var visualizerRect:Rectangle;
 
-    private var queueVisualizerUpdate:Bool =-false;
+    private var queueVisualizerUpdate:Bool = false;
     private var visualizerEnabled:Bool = false;
     private var points:Array<Float> = [];
 	private var lineStyle:LineStyle;
@@ -77,7 +76,7 @@ class FloraBaseCharacter extends MultiAnimateAtlasCharacter {
         "lightLoop0001" => [127, 11],
         "lightLoop0002" => [127, 11]
     ];
-    
+    private static var FLORA_VIS_FRAMERATE:Float = 1 / 12;
 
     // A flag for detecting if Flora's props were set up yet.
     private var setupFloraProps:Bool = false;
@@ -86,6 +85,7 @@ class FloraBaseCharacter extends MultiAnimateAtlasCharacter {
     private var isLesbian:Bool = false;
     private var isBecomingLesbian:Bool = false;
     private var lesbianTimer:FlxTimer;
+    private var floraAnimationSuffix = '';
 
     // Shader stuff.
     private var currentShader = null;
@@ -136,30 +136,28 @@ class FloraBaseCharacter extends MultiAnimateAtlasCharacter {
 					floraSpeakerScreen.animation.play('lightLoop', true);
 				}
 			});
+
+            floraSpeakerScreen.animation.onFrameChange.add(name -> {
+                drawVisualizer(true);//!PlayState.instance?.startingSong leaving this here just in case
+            });
+            
 			floraSpeakerScreen.animation.onFinish.add(function(animName:String) {
 				if (animName == "lightBop") {
 					floraSpeakerScreen.animation.play('lightLoop', true);
 				}
 			});
-            floraSpeakerScreen.animation.onFrameChange.add(function(_, __, ___) {
-                drawVisualizer(true);
-            });
-
 
             lineStyle = FlxSpriteUtil.getDefaultLineStyle({
                 thickness: FLORA_VIS_LINE_THICKNESS,
                 color: FLORA_VIS_LINE_COLOR
             });
-
         }
     }
 
     override public function onUpdate(e) {
         super.onUpdate(e);
 
-        if (currentStage == null) return;
-
-		if (isMyFloraKindaSpeakerless) return;
+        if (currentStage == null || isMyFloraKindaSpeakerless) return;
 
         if (setupFloraProps)
             synchronizeShader();
@@ -232,16 +230,20 @@ class FloraBaseCharacter extends MultiAnimateAtlasCharacter {
         if (anim != "lightBop" && anim != "lightLoop")
             return;
 
-        if (analyzer != null && analyze) {
-            points.resize(0);
+        if (analyze) {
+            if (analyzer != null) {
+                points.resize(0);
 
-            for (level in analyzer.getLevels())
-                points.push(level.value / 2 + 0.5);
+                var levels = analyzer.getLevels();
+                for (level in levels) {
+                    points.push((level.value * 0.5) + 0.5);
+                }
 
-            points.push(0.5);
-        } else if (analyze) {
-            for (i in 0...points.length)
-                points[i] = FlxMath.lerp(points[i], FLORA_VIS_FLAT_LEVEL, FlxG.elapsed * 60);
+                points.push(0.5);
+            } else {
+                for (i in 0...points.length)
+                    points[i] = FlxMath.lerp(points[i], FLORA_VIS_FLAT_LEVEL, FlxG.elapsed * 60);
+            }
         }
 
         var visOffset = FLORA_VIS_OFFSETS[floraSpeakerScreen._frame.name];
@@ -261,7 +263,7 @@ class FloraBaseCharacter extends MultiAnimateAtlasCharacter {
                 var y = visualizerRect.y + FLORA_VIS_HEIGHT * (1 - points[i] + 0.1);
                 
                 FlxSpriteUtil.flashGfx.moveTo(oldPointX, oldPointY);
-                FlxSpriteUtil.flashGfx.curveTo((oldPointX + x) / 2, (oldPointY + y) / 2, x, y);
+                FlxSpriteUtil.flashGfx.curveTo((oldPointX + x) * 0.5, (oldPointY + y) * 0.5, x, y);
 
                 if (b == 0) {
                     FlxSpriteUtil.flashGfx.lineTo(x, visualizerRect.bottom);
@@ -281,14 +283,13 @@ class FloraBaseCharacter extends MultiAnimateAtlasCharacter {
             FlxSpriteUtil.setLineStyle(lineStyle);
             FlxSpriteUtil.flashGfx.beginFill(FlxColor.TRANSPARENT, 0);
         }
-
         FlxSpriteUtil.endDraw(floraSpeakerScreen, {smoothing: true});
         queueVisualizerUpdate = false;
     }
     
     override public function dance(?force:Bool) {
         super.dance(force);
-            speakerBump(force);
+        speakerBump(force);
     }
 
     override public function playAnimation(name:String, restart:Bool = false, ?ignoreOther:Bool = false, ?reversed:Bool = false) {

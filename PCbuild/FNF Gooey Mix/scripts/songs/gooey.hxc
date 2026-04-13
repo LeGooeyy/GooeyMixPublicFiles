@@ -251,7 +251,7 @@ class GooeySong extends Song {
 			{
 				time: 16.5,
 				callback: () -> {
-					fakeGooey.setPosition(-1060, 716);
+					fakeGooey.setPosition(-1058, 708);
 					fakeGooey.scrollFactor.set(1, 1);
 					FlxTween.tween(theBois, {x: FlxG.width - theBois.width - 500}, 1, {ease: FlxEase.quadInOut});
 					FlxTween.tween(theBois, {y: FlxG.height - theBois.height - 500}, 1, {ease: FlxEase.quadInOut});

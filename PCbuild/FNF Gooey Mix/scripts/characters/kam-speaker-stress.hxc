@@ -235,7 +235,7 @@ class KamSpeakerStressCharacter extends MultiSparrowCharacter {
         speakerBump();
     }
 
-    public function drawVisualizer(analyze:Bool) {
+        public function drawVisualizer(analyze:Bool) {
         // Don't draw the speaker if there is no speaker to draw.
         // Also don't waste resources drawing the speaker if it's invisible.
         if (isMyFloraKindaSpeakerless || currentStage == null)
@@ -246,16 +246,20 @@ class KamSpeakerStressCharacter extends MultiSparrowCharacter {
         if (anim != "lightBop" && anim != "lightLoop")
             return;
 
-        if (analyzer != null && analyze) {
-            points.resize(0);
+        if (analyze) {
+            if (analyzer != null) {
+                points.resize(0);
 
-            for (level in analyzer.getLevels())
-                points.push(level.value / 2 + 0.5);
+                var levels = analyzer.getLevels();
+                for (level in levels) {
+                    points.push((level.value * 0.5) + 0.5);
+                }
 
-            points.push(0.5);
-        } else if (analyze) {
-            for (i in 0...points.length)
-                points[i] = FlxMath.lerp(points[i], FLORA_VIS_FLAT_LEVEL, FlxG.elapsed * 60);
+                points.push(0.5);
+            } else {
+                for (i in 0...points.length)
+                    points[i] = FlxMath.lerp(points[i], FLORA_VIS_FLAT_LEVEL, FlxG.elapsed * 60);
+            }
         }
 
         var visOffset = FLORA_VIS_OFFSETS[floraSpeakerScreen._frame.name];
@@ -275,7 +279,7 @@ class KamSpeakerStressCharacter extends MultiSparrowCharacter {
                 var y = visualizerRect.y + FLORA_VIS_HEIGHT * (1 - points[i] + 0.1);
                 
                 FlxSpriteUtil.flashGfx.moveTo(oldPointX, oldPointY);
-                FlxSpriteUtil.flashGfx.curveTo((oldPointX + x) / 2, (oldPointY + y) / 2, x, y);
+                FlxSpriteUtil.flashGfx.curveTo((oldPointX + x) * 0.5, (oldPointY + y) * 0.5, x, y);
 
                 if (b == 0) {
                     FlxSpriteUtil.flashGfx.lineTo(x, visualizerRect.bottom);
@@ -420,7 +424,12 @@ class KamSpeakerStressCharacter extends MultiSparrowCharacter {
 		var animNotes:Array<SongNoteData> = animChart.notes;
 
 		// turns out sorting functions are completely useless in polymod right now and do nothing
-		// i had to sort the whole pico chart by hand im gonna go insane
+        // i had to sort the whole pico chart by hand im gonna go insane
+        //animNotes.sort(function(a:SongNoteData, b:SongNoteData):Int
+        //{
+        //return FlxSort.byValues(FlxSort.ASCENDING, a.time, b.time);
+        //});
+        //hope this isnt THAT important cuz it kills the visualizer so i dissabled it
 
 
 		for (note in animNotes) {

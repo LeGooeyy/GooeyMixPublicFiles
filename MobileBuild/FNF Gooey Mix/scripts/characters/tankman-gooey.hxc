@@ -65,7 +65,6 @@ class TankmanGooeyCharacter extends MultiAnimateAtlasCharacter {
 
 	override function onSongRetry(event:ScriptEvent):Void {
 		super.onSongRetry(event);
-
 		isGooey = false;
 	}
 

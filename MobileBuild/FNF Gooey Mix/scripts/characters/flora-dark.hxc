@@ -25,6 +25,7 @@ class FloraDarkCharacter extends FloraBaseCharacter {
 
 			fakeSpeaker = FunkinSprite.createTextureAtlas(0, 0, "characters/flora/FloraSpeakerDark", "shared");
 			fakeSpeaker.anim.addByFrameLabel('idle', 'FloraSpeakerBop', 24, false);
+			normalChar.zIndex = this.zIndex - 1;
 			PlayState.instance.currentStage.add(fakeSpeaker);
 		}
 	}
@@ -41,63 +42,24 @@ class FloraDarkCharacter extends FloraBaseCharacter {
 	}
 
 	private function addFloraProps() {
-		if (setupFloraProps)
-			return;
+		super.addFloraProps();
 
 		// My Flora is not kinda speakerless, so we shall add the speaker.
 		if (!isMyFloraKindaSpeakerless) {
-			floraSpeaker.zIndex = this.zIndex - 3;
-			currentStage.add(floraSpeaker);
-
-			floraSpeakerScreen.zIndex = this.zIndex - 2;
-			currentStage.add(floraSpeakerScreen);
-
-			floraSpeaker?.setPosition(this.x - 56 - (-this.globalOffsets[0] * this.scale.x), this.y + 51 - (-this.globalOffsets[1] * this.scale.y));
-			floraSpeakerScreen?.setPosition(floraSpeaker.x - 5, floraSpeaker.y - 10);
-			floraSpeakerScreen.blend = 0;
-
 			normalChar.zIndex = this.zIndex - 1;
 			normalChar.flipX = false;
 			normalChar.setPosition(this.x, this.y);
 
 			fakeSpeaker?.setPosition(this.x - 56 - (-this.globalOffsets[0] * this.scale.x), this.y + 51 - (-this.globalOffsets[1] * this.scale.y));
 			fakeSpeaker.zIndex = this.zIndex - 2;
+			floraSpeaker.zIndex = this.zIndex - 3;
+			floraSpeakerScreen.zIndex = this.zIndex - 2;
 		}
 
-		currentStage.refresh();
-		setupFloraProps = true;
+		PlayState.instance.currentStage.refresh();
 	}
 
-	var isQtDance:Bool = false;
-
-	override public function playAnimation(name:String, restart:Bool = false, ?ignoreOther:Bool = false, ?reversed:Bool = false) {
-		if (name.startsWith("dance")) {
-			if (isQtDance)
-				floraAnimationSuffix = '-qt';
-			else if (isLesbian)
-				floraAnimationSuffix = '-alt';
-			else if (isBecomingLesbian) {
-				floraAnimationSuffix = '-trans';
-
-				lesbianTimer?.cancel();
-
-				// This is the time it will take for Flora to become lesbian.
-				lesbianTimer = new FlxTimer().start(0.05, _ -> {
-					isLesbian = true;
-					isBecomingLesbian = false;
-				});
-			} else
-				floraAnimationSuffix = '';
-		} else if (name == "combo200")
-			isBecomingLesbian = true;
-		else if (name == 'FloraQtIntro')
-			isQtDance = true;
-		else if (name == "drop70") {
-			lesbianTimer?.cancel();
-
-			isLesbian = false;
-			isBecomingLesbian = false;
-		}
+	override public function playAnimation(name:String, restart:Bool = false, ?ignoreOther:Bool = false, ?reversed:Bool = false) {	
 		super.playAnimation(name + floraAnimationSuffix, restart, ignoreOther, reversed);
 		if (normalChar != null) {
 			normalChar.playAnimation(name + floraAnimationSuffix, restart, ignoreOther, reversed);
@@ -106,12 +68,11 @@ class FloraDarkCharacter extends FloraBaseCharacter {
 	}
 
 	private function speakerBump(force:Bool = true) {
-		// My Flora is not kinda speakerless, so the speaker goes BOOM DA BOOM BOOM.
-		// Flora's speaker ain't on if Flora ain't on.
+		// My Flora is not kinda speakerless, so the dark speaker goes BOOM DA BOOM BOOM.
+		// Flora's dark speaker ain't on if Flora ain't on.
 		if (!isMyFloraKindaSpeakerless && setupFloraProps) {
-			floraSpeaker?.anim?.play('idle', true);
 			fakeSpeaker?.anim?.play('idle', true);
-
+			floraSpeaker?.anim?.play('idle', true);
 			if (!comboAnims.contains(floraSpeakerScreen.animation?.curAnim?.name)
 				|| (comboAnims.contains(floraSpeakerScreen.animation?.curAnim?.name) && floraSpeakerScreen.animation?.finished))
 				floraSpeakerScreen?.animation?.play('lightBop', true);

@@ -12,33 +12,10 @@ class FloraQtCharacter extends FloraBaseCharacter {
 	var isQtDance:Bool = false;
 
 	override public function playAnimation(name:String, restart:Bool = false, ?ignoreOther:Bool = false, ?reversed:Bool = false) {
-		if (name.startsWith("dance")) {
-			if (isQtDance)
-				floraAnimationSuffix = '-qt';
-			else if (isLesbian)
-				floraAnimationSuffix = '-alt';
-			else if (isBecomingLesbian) {
-				floraAnimationSuffix = '-trans';
-
-				lesbianTimer?.cancel();
-
-				// This is the time it will take for Flora to become lesbian.
-				lesbianTimer = new FlxTimer().start(0.05, _ -> {
-					isLesbian = true;
-					isBecomingLesbian = false;
-				});
-			} else
-				floraAnimationSuffix = '';
-		} else if (name == "combo200")
-			isBecomingLesbian = true;
-		else if (name == 'FloraQtIntro')
+		if (name.startsWith("dance") && isQtDance) {
+			floraAnimationSuffix = '-qt';
+		} else if (name == 'FloraQtIntro')
 			isQtDance = true;
-		else if (name == "drop70") {
-			lesbianTimer?.cancel();
-
-			isLesbian = false;
-			isBecomingLesbian = false;
-		}
 
 		super.playAnimation(name + floraAnimationSuffix, restart, ignoreOther, reversed);
 	}
@@ -57,10 +34,6 @@ class FloraQtCharacter extends FloraBaseCharacter {
 	override public function onSongRetry(e) {
 		super.onSongRetry(e);
 
-		lesbianTimer?.cancel();
-		isLesbian = false;
-		isBecomingLesbian = false;
-		analyzer = null;
 		isQtDance = false;
 	}
 }

@@ -3,6 +3,24 @@ All notable changes will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [4.3.2] - 2026-4-13
+Detour 1 Lore Hotfix 2
+
+### Added
+
+- Added a mod ID in the polymod meta file
+
+### Changed
+
+- Moved Gooey Mix settings into its own category in the options menu
+- Changed scripts that are shared with Spooky Mix to be up to date
+
+### Fixed
+
+- Fixed major FPS drops when playing any song with Flora in it
+- Fixed Gooey's possition being off in the Week 60037 intro cutscene
+- Fixed DoubleM not being properly listed in the credits
+
 ## [4.3.1] - 2026-4-3
 Detour 1 Lore Hotfix
 
