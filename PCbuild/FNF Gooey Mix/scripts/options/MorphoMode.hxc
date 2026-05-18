@@ -302,7 +302,7 @@ class MorphoModeOption extends Module
         case 'mixRoom', 'mixRoomTutorial':
           morphoOffset(-300, -50, 2, 0.8, 1, 1);
         case 'ashtonAlleyway', 'ashtonAlleywayRelease':
-          morphoOffset(500, 0, 61, 0.8, 1, 1);
+          morphoOffset(500, 0, 6, 0.8, 1, 1);
         case 'ashtonParkingLot':
           morphoOffset(1400, -30, 61, 0.8, 1, 1);
       } // offsets

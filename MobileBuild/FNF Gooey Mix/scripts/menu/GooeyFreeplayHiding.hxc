@@ -168,6 +168,16 @@ class GooeyFreeplayHiding extends Module
     }
   }
 
+  public function onSubStateCloseBegin(event)
+  {
+    super.onSubStateCloseBegin(event);
+
+    if (!Std.isOfType(FlxG.state.subState, FreeplayState)) return;
+
+    staticSound.stop();
+    staticSound.destroy();
+  }
+
   public function onCapsuleSelected(event):Void
   {
     super.onCapsuleSelected(event);

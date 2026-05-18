@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TextureAtlas imagePath="FloraDanceTitle.png">
+<TextureAtlas imagePath="floraTitleScreen.png">
 	<!-- Created with Adobe Animate version 23.0.0.407 -->
 	<!-- http://www.adobe.com/products/animate.html -->
 	<SubTexture name="leftFloraDance0000" x="1598" y="3864" width="784" height="628" frameX="0" frameY="-14" frameWidth="784" frameHeight="642"/>

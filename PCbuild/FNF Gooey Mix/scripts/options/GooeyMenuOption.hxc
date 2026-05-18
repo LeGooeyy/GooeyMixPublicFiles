@@ -227,7 +227,7 @@ class GooeyMenuOption extends Module
 
   function addTitleScreenObjects():Void
   {
-    FlxG.state.gfDance.frames = Paths.getSparrowAtlas('FloraDanceTitle');
+    FlxG.state.gfDance.frames = Paths.getSparrowAtlas('floraTitleScreen');
     FlxG.state.gfDance.animation.addByPrefix('danceLeft', 'leftFloraDance', 24, true);
     FlxG.state.gfDance.animation.addByPrefix('danceRight', 'rightFloraDance', 24, true);
     FlxG.state.gfDance.animation.play('dance');
