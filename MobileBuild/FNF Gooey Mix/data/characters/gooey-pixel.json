@@ -3,7 +3,7 @@
   "name": "Gooey (Pixel)",
   "assetPath": "characters/gooey/GooeyPixel",
   "flipX": true,
-  "offsets": [-6,12],
+  "offsets": [-6, 12],
   "isPixel": true,
   "healthIcon": {
     "id": "gooey-pixel",
@@ -59,21 +59,21 @@
       "prefix": "missRight",
       "offsets": [0, 0]
     },
-       {
+    {
       "name": "firstDeath",
       "prefix": "gooeyDies",
-      "offsets": [0,0]
+      "offsets": [0, 0]
     },
     {
       "name": "deathLoop",
       "prefix": "gameOverLoop",
       "looped": true,
-      "offsets": [0,0]
+      "offsets": [0, 0]
     },
     {
       "name": "deathConfirm",
       "prefix": "jesusChrist",
-      "offsets": [0,0]
+      "offsets": [0, 0]
     }
   ]
 }

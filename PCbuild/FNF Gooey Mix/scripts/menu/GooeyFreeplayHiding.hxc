@@ -2,183 +2,250 @@ import funkin.modding.module.Module;
 import funkin.ui.freeplay.FreeplayState;
 import funkin.save.Save;
 import flixel.util.FlxTimer;
+import funkin.audio.FunkinSound;
 
-class GooeyFreeplayHiding extends Module {
-	var songs:Array<String> = ['drippypop-gooey-mix', 'mixd-up', 'comedian-rad-mix','saloonatic'];
+class GooeyFreeplayHiding extends Module
+{
+  var songs:Array<String> = [
+    'drippypop-gooey-mix',
+    'mixd-up',
+    'comedian-rad-mix',
+    'saloonatic',
+    'gooey'
+  ];
+  var variations:Array<String> = [
+    'default',
+    'default',
+    'default',
+    'default',
+    'eevee'
+  ];
+  var saveVariations:Array<String> = [
+    '',
+    '',
+    '',
+    '',
+    'eevee'
+  ];
+  var saveDiffs:Array<Array<String>> = [
+    ['extra'],
+    ['extra'],
+    ['extra'],
+    ['extra'],
+    ['extra']
+  ];
+  var fakeAlbums:Array<String> = [null, null, null, null];
+  var fakeTexts:Array<String> = [
+    '???',
+    '???',
+    '???',
+    '???',
+    '???'
+  ];
+  var fakeIcons:Array<String> = [
+    '',
+    '',
+    '',
+    '',
+    ''
+  ];
+  var playMusic:Array<Bool> = [
+    false,
+    false,
+    false,
+    false,
+    false
+  ];
 
-	var variations:Array<String> = ['default', 'default', 'default', 'default'];
+  public function new()
+  {
+    super('FreeplayGooeyHiding');
+  }
 
-	var saveVariations:Array<String> = ['', '', '', ''];
+  var curCap(get, null):SongMenuItem;
 
-	var saveDiffs:Array<Array<String>> = [['extra'], ['extra'], ['extra'], ['extra']];
+  function get_curCap()
+  {
+    return FlxG.state.subState.currentCapsule;
+  }
 
-	var fakeAlbums:Array<String> = [null, null, null, null];
+  var theCaps(get, null):Array<SongMenuItem>;
 
-	var fakeTexts:Array<String> = ['???', '???', '???', '???' ];
+  function get_theCaps()
+  {
+    var caps = [];
 
-	var fakeIcons:Array<String> = ['', '', '', ''];
+    for (cap in FlxG.state.subState.grpCapsules.members)
+    {
+      if (cap?.freeplayData != null && songs.contains(cap?.freeplayData?.data.id) && cap?.freeplayData?.curVariation == variations[
+        songs.indexOf(cap?.freeplayData?.data.id)
+      ])
+      {
+        caps.push(cap);
+      }
+    }
 
-	var playMusic:Array<Bool> = [false, false, false, false];
+    return caps;
+  }
 
-	public function new() {
-		super('FreeplayGooeyHiding');
-	}
+  var staticSound:FunkinSound;
 
-	var curCap(get, null):SongMenuItem;
+  function songId(cap:SongMenuItem):String
+  {
+    return cap?.freeplayData?.data.id;
+  }
 
-	function get_curCap() {
-		return FlxG.state.subState.currentCapsule;
-	}
+  function indOf(cap:SongMenuItem):Int
+  {
+    return songs.indexOf(songId(cap));
+  }
 
-	var theCaps(get, null):Array<SongMenuItem>;
+  public function onSongSelected(event)
+  {
+    super.onSubStateOpenEnd(event);
 
-	function get_theCaps() {
-		var caps = [];
+    if (!theCaps.contains(event.capsule)) return;
 
-		for (cap in FlxG.state.subState.grpCapsules.members) {
-			if (cap?.freeplayData != null
-				&& songs.contains(cap?.freeplayData?.data.id)
-				&& cap?.freeplayData?.curVariation == variations[songs.indexOf(cap?.freeplayData?.data.id)]) {
-				caps.push(cap);
-			}
-		}
+    var cap = event.capsule;
 
-		return caps;
-	}
+    if (Save.instance.hasBeatenSong(songId(cap), saveDiffs[indOf(cap)], saveVariations[indOf(cap)])) return;
 
-	function songId(cap:SongMenuItem):String {
-		return cap?.freeplayData?.data.id;
-	}
+    if (FlxG.state.subState.albumRoll.albumId != fakeAlbums[indOf(cap)]) FlxG.state.subState.albumRoll.albumId = fakeAlbums[indOf(cap)];
 
-	function indOf(cap:SongMenuItem):Int {
-		return songs.indexOf(songId(cap));
-	}
+    if (FlxG.sound.music != null && !playMusic[indOf(cap)]) FlxG.sound.music.stop();
 
-	public function onSongSelected(event) {
-		super.onSubStateOpenEnd(event);
+    if (!staticSound?.playing && !playMusic[indOf(cap)]) staticSound?.play();
+    else if (playMusic[indOf(cap)]) staticSound?.stop();
 
-		if (!theCaps.contains(event.capsule))
-			return;
+    if (cap != null)
+    {
+      if (cap.pixelIcon?.char != fakeIcons[indOf(cap)])
+      {
+        if (fakeIcons[indOf(cap)] == '' || fakeIcons[indOf(cap)] == null) cap.pixelIcon?.alpha = 0;
+        else
+          cap.pixelIcon?.setCharacter(fakeIcons[indOf(cap)]);
+      }
 
-		var cap = event.capsule;
+      if (cap.songText?.text != fakeTexts[indOf(cap)]) cap.songText?.text = fakeTexts[indOf(cap)];
+    }
+  }
 
-		if (Save.instance.hasBeatenSong(songId(cap), saveDiffs[indOf(cap)], saveVariations[indOf(cap)]))
-			return;
+  public function onSubStateOpenEnd(event)
+  {
+    super.onSubStateOpenEnd(event);
 
-		if (FlxG.state.subState.albumRoll.albumId != fakeAlbums[indOf(cap)])
-			FlxG.state.subState.albumRoll.albumId = fakeAlbums[indOf(cap)];
+    if (!Std.isOfType(FlxG.state.subState, FreeplayState)) return;
 
-		if (FlxG.sound.music != null && !playMusic[indOf(cap)])
-			FlxG.sound.music.stop();
+    staticSound = new FunkinSound();
 
-		if (cap != null) {
-			if (cap.pixelIcon?.char != fakeIcons[indOf(cap)]) {
-				if (fakeIcons[indOf(cap)] == '' || fakeIcons[indOf(cap)] == null)
-					cap.pixelIcon?.alpha = 0;
-				else
-					cap.pixelIcon?.setCharacter(fakeIcons[indOf(cap)]);
-			}
+    staticSound.loadEmbedded(Paths.sound('static loop'));
+    staticSound.looped = true;
+    staticSound.volume = 0.6;
 
-			if (cap.songText?.text != fakeTexts[indOf(cap)])
-				cap.songText?.text = fakeTexts[indOf(cap)];
-		}
-	}
+    FlxG.sound.defaultSoundGroup.add(staticSound);
+    FlxG.sound.list.add(staticSound);
 
-	public function onSubStateOpenEnd(event) {
-		super.onSubStateOpenEnd(event);
+    for (cap in theCaps)
+    {
+      if (Save.instance.hasBeatenSong(songId(cap), saveDiffs[indOf(cap)], saveVariations[indOf(cap)])) continue;
 
-		if (!Std.isOfType(FlxG.state.subState, FreeplayState))
-			return;
+      if (cap != null)
+      {
+        if (cap.pixelIcon?.char != fakeIcons[indOf(cap)]) cap.pixelIcon?.setCharacter(fakeIcons[indOf(cap)]);
 
-		for (cap in theCaps) {
-			if (Save.instance.hasBeatenSong(songId(cap), saveDiffs[indOf(cap)], saveVariations[indOf(cap)]))
-				continue;
+        if (cap.songText?.text != fakeTexts[indOf(cap)]) cap.songText?.text = fakeTexts[indOf(cap)];
 
-			if (cap != null) {
-				if (cap.pixelIcon?.char != fakeIcons[indOf(cap)])
-					cap.pixelIcon?.setCharacter(fakeIcons[indOf(cap)]);
+        if (curCap == cap)
+        {
+          if (FlxG.state.subState.albumRoll.albumId != fakeAlbums[indOf(cap)]) FlxG.state.subState.albumRoll.albumId = fakeAlbums[indOf(cap)];
 
-				if (cap.songText?.text != fakeTexts[indOf(cap)])
-					cap.songText?.text = fakeTexts[indOf(cap)];
+          if (FlxG.sound.music != null && !playMusic[indOf(cap)]) FlxG.sound.music.stop();
 
-				if (curCap == cap) {
-					if (FlxG.state.subState.albumRoll.albumId != fakeAlbums[indOf(cap)])
-						FlxG.state.subState.albumRoll.albumId = fakeAlbums[indOf(cap)];
+          if (!staticSound?.playing && !playMusic[indOf(cap)]) staticSound?.play();
+          else if (playMusic[indOf(cap)]) staticSound?.stop();
+        }
+      }
+    }
+  }
 
-					if (FlxG.sound.music != null && !playMusic[indOf(cap)])
-						FlxG.sound.music.stop();
-				}
-			}
-		}
-	}
+  public function onCapsuleSelected(event):Void
+  {
+    super.onCapsuleSelected(event);
 
-	public function onCapsuleSelected(event):Void {
-		super.onCapsuleSelected(event);
+    if (!theCaps.contains(event.capsule)) return;
 
-		if (!theCaps.contains(event.capsule))
-			return;
+    var cap = event.capsule;
 
-		var cap = event.capsule;
+    if (Save.instance.hasBeatenSong(songId(cap), saveDiffs[indOf(cap)], saveVariations[indOf(cap)])) return;
 
-		if (Save.instance.hasBeatenSong(songId(cap), saveDiffs[indOf(cap)], saveVariations[indOf(cap)]))
-			return;
+    if (FlxG.state.subState.albumRoll.albumId != fakeAlbums[indOf(cap)]) FlxG.state.subState.albumRoll.albumId = fakeAlbums[indOf(cap)];
 
-		if (FlxG.state.subState.albumRoll.albumId != fakeAlbums[indOf(cap)])
-			FlxG.state.subState.albumRoll.albumId = fakeAlbums[indOf(cap)];
+    if (FlxG.sound.music != null && !playMusic[indOf(cap)]) FlxG.sound.music.stop();
 
-		if (FlxG.sound.music != null && !playMusic[indOf(cap)])
-			FlxG.sound.music.stop();
+    if (!staticSound?.playing && !playMusic[indOf(cap)]) staticSound?.play();
+    else if (playMusic[indOf(cap)]) staticSound?.stop();
 
-		if (cap != null) {
-			if (cap.pixelIcon?.char != fakeIcons[indOf(cap)])
-				cap.pixelIcon?.setCharacter(fakeIcons[indOf(cap)]);
+    if (cap != null)
+    {
+      if (cap.pixelIcon?.char != fakeIcons[indOf(cap)]) cap.pixelIcon?.setCharacter(fakeIcons[indOf(cap)]);
 
-			if (cap.songText?.text != fakeTexts[indOf(cap)])
-				cap.songText?.text = fakeTexts[indOf(cap)];
-		}
-	}
+      if (cap.songText?.text != fakeTexts[indOf(cap)]) cap.songText?.text = fakeTexts[indOf(cap)];
+    }
+  }
 
-	public function onDifficultySwitch(event):Void {
-		super.onDifficultySwitch(event);
+  public function onDifficultySwitch(event):Void
+  {
+    super.onDifficultySwitch(event);
 
-		for (cap in theCaps) {
-			if (Save.instance.hasBeatenSong(songId(cap), saveDiffs[indOf(cap)], saveVariations[indOf(cap)]))
-				continue;
+    for (cap in theCaps)
+    {
+      if (Save.instance.hasBeatenSong(songId(cap), saveDiffs[indOf(cap)], saveVariations[indOf(cap)])) continue;
 
-			if (cap != null) {
-				if (cap.pixelIcon?.char != fakeIcons[indOf(cap)])
-					cap.pixelIcon?.setCharacter(fakeIcons[indOf(cap)]);
+      if (cap != null)
+      {
+        if (cap.pixelIcon?.char != fakeIcons[indOf(cap)]) cap.pixelIcon?.setCharacter(fakeIcons[indOf(cap)]);
 
-				if (cap.songText?.text != fakeTexts[indOf(cap)])
-					cap.songText?.text = fakeTexts[indOf(cap)];
+        if (cap.songText?.text != fakeTexts[indOf(cap)]) cap.songText?.text = fakeTexts[indOf(cap)];
 
-				if (curCap == cap) {
-					if (FlxG.state.subState.albumRoll.albumId != fakeAlbums[indOf(cap)])
-						FlxG.state.subState.albumRoll.albumId = fakeAlbums[indOf(cap)];
+        if (curCap == cap)
+        {
+          if (FlxG.state.subState.albumRoll.albumId != fakeAlbums[indOf(cap)]) FlxG.state.subState.albumRoll.albumId = fakeAlbums[indOf(cap)];
 
-					if (FlxG.sound.music != null && !playMusic[indOf(cap)])
-						FlxG.sound.music.stop();
-				}
-			}
-		}
-	}
+          if (FlxG.sound.music != null && !playMusic[indOf(cap)]) FlxG.sound.music.stop();
 
-	public function onUpdate(event):Void {
-		super.onUpdate(event);
+          if (!staticSound?.playing && !playMusic[indOf(cap)]) staticSound?.play();
+          else if (playMusic[indOf(cap)]) staticSound?.stop();
+        }
+      }
+    }
+  }
 
-		if (Std.isOfType(FlxG.state.subState, FreeplayState)) {
-			for (cap in theCaps) {
-				if (Save.instance.hasBeatenSong(songId(cap), saveDiffs[indOf(cap)], saveVariations[indOf(cap)]))
-					continue;
+  public function onUpdate(event):Void
+  {
+    super.onUpdate(event);
 
-				if (curCap == cap) {
-					if (FlxG.state.subState.albumRoll.albumId != fakeAlbums[indOf(cap)])
-						FlxG.state.subState.albumRoll.albumId = fakeAlbums[indOf(cap)];
+    if (Std.isOfType(FlxG.state.subState, FreeplayState))
+    {
+      for (cap in theCaps)
+      {
+        if (Save.instance.hasBeatenSong(songId(cap), saveDiffs[indOf(cap)], saveVariations[indOf(cap)])) continue;
 
-					if (FlxG.sound.music != null && !playMusic[indOf(cap)])
-						FlxG.sound.music.stop();
-				}
-			}
-		}
-	}
+        if (curCap == cap)
+        {
+          if (FlxG.state.subState.albumRoll.albumId != fakeAlbums[indOf(cap)]) FlxG.state.subState.albumRoll.albumId = fakeAlbums[indOf(cap)];
+
+          if (FlxG.sound.music != null && !playMusic[indOf(cap)]) FlxG.sound.music.stop();
+
+          if (!staticSound?.playing && !playMusic[indOf(cap)]) staticSound?.play();
+          else if (playMusic[indOf(cap)]) staticSound?.stop();
+        }
+      }
+
+      if (!theCaps.contains(curCap)
+        || Save.instance.hasBeatenSong(songId(curCap), saveDiffs[indOf(curCap)], saveVariations[indOf(curCap)]))
+      {
+        staticSound?.stop();
+      }
+    }
+  }
 }

@@ -67,7 +67,7 @@
       "prefix": "GooeyAltRight",
       "offsets": [-7, 1]
     },
-        {
+    {
       "name": "singLEFTmiss",
       "prefix": "GooeyMissLeft",
       "assetPath": "shared:characters/gooey/GooeyPlayerAnims",

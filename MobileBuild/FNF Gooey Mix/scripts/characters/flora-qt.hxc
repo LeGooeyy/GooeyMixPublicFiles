@@ -4,36 +4,45 @@ import flixel.util.FlxTimer;
 
 using StringTools;
 
-class FloraQtCharacter extends FloraBaseCharacter {
-	public function new() {
-		super('flora-qt');
-	}
+class FloraQtCharacter extends FloraBaseCharacter
+{
+  public function new()
+  {
+    super('flora-qt');
+  }
 
-	var isQtDance:Bool = false;
+  var isQtDance:Bool = false;
 
-	override public function playAnimation(name:String, restart:Bool = false, ?ignoreOther:Bool = false, ?reversed:Bool = false) {
-		if (name.startsWith("dance") && isQtDance) {
-			floraAnimationSuffix = '-qt';
-		} else if (name == 'FloraQtIntro')
-			isQtDance = true;
+  override public function playAnimation(name:String, restart:Bool = false, ?ignoreOther:Bool = false, ?reversed:Bool = false)
+  {
+    if (name.startsWith("dance") && isQtDance)
+    {
+      floraAnimationSuffix = '-qt';
+    }
+    else if (name == 'FloraQtIntro') isQtDance = true;
 
-		super.playAnimation(name + floraAnimationSuffix, restart, ignoreOther, reversed);
-	}
+    super.playAnimation(name + floraAnimationSuffix, restart, ignoreOther, reversed);
+  }
 
-	function onStepHit(event:SongTimeScriptEvent):Void {
-		super.onStepHit(event);
-		if (PlayState.instance?.currentStage != null) {
-			if (PlayState.instance.currentSong.id.toLowerCase() == "blissful") {
-				if (event.step == 1408) {
-					isQtDance = false;
-				}
-			}
-		}
-	}
+  function onStepHit(event:SongTimeScriptEvent):Void
+  {
+    super.onStepHit(event);
+    if (PlayState.instance?.currentStage != null)
+    {
+      if (PlayState.instance.currentSong.id.toLowerCase() == "blissful")
+      {
+        if (event.step == 1408)
+        {
+          isQtDance = false;
+        }
+      }
+    }
+  }
 
-	override public function onSongRetry(e) {
-		super.onSongRetry(e);
+  override public function onSongRetry(e)
+  {
+    super.onSongRetry(e);
 
-		isQtDance = false;
-	}
+    isQtDance = false;
+  }
 }

@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "cameraZoom": 0.9,
-"props": [
+  "props": [
     {
       "zIndex": 10,
       "danceEvery": 0,

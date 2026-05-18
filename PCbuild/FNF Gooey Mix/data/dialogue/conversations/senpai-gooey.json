@@ -65,7 +65,9 @@
       "box": "roses",
       "boxAnimation": "speaking",
 
-      "text": ["Um... Shouldn't there be some sort of, you know, lovely maiden that also arrived here with you?"]
+      "text": [
+        "Um... Shouldn't there be some sort of, you know, lovely maiden that also arrived here with you?"
+      ]
     },
     {
       "speaker": "gooey-pixel",
@@ -81,7 +83,9 @@
       "box": "roses",
       "boxAnimation": "speaking",
 
-      "text": ["Ok so like im here too but this guy seems like a weirdo so i'm just going to not speak or do anything."]
+      "text": [
+        "Ok so like im here too but this guy seems like a weirdo so i'm just going to not speak or do anything."
+      ]
     },
     {
       "speaker": "senpai-confused",
@@ -99,7 +103,7 @@
 
       "text": ["Uh..."]
     },
-        {
+    {
       "speaker": "flora-nervous",
       "speakerAnimation": "talk",
       "box": "roses",
@@ -120,7 +124,10 @@
       "speakerAnimation": "talk",
       "box": "roses",
       "boxAnimation": "speaking",
-      "text": ["Never the less,"," would you care to join me in a short ballad for a palatable warm up after school?"]
+      "text": [
+        "Never the less,",
+        " would you care to join me in a short ballad for a palatable warm up after school?"
+      ]
     },
     {
       "speaker": "gooey-pixel",

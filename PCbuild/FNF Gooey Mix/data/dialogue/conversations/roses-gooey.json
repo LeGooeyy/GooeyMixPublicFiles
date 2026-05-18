@@ -25,7 +25,9 @@
       "box": "roses",
       "boxAnimation": "idle",
 
-      "text": ["You stupid mongrel! How dare you sing over me with such a distasteful melody!"]
+      "text": [
+        "You stupid mongrel! How dare you sing over me with such a distasteful melody!"
+      ]
     },
     {
       "speaker": "senpai-angry",
@@ -33,7 +35,9 @@
       "box": "roses",
       "boxAnimation": "idle",
 
-      "text": ["I should have you put down for even disrespecting me like that! I should...should..."]
+      "text": [
+        "I should have you put down for even disrespecting me like that! I should...should..."
+      ]
     },
     {
       "speaker": "senpai-bwuh-gooey",
@@ -65,7 +69,9 @@
       "box": "roses",
       "boxAnimation": "enter",
 
-      "text": ["*yawn* mmm... sorry, you were complaining so much it put me to sleep. Are we going again?"]
+      "text": [
+        "*yawn* mmm... sorry, you were complaining so much it put me to sleep. Are we going again?"
+      ]
     },
     {
       "speaker": "senpai-angry",
@@ -83,21 +89,17 @@
       "box": "roses",
       "boxAnimation": "idle",
 
-      "text": [
-        "You're going to regret-"
-      ]
+      "text": ["You're going to regret-"]
     },
-        {
+    {
       "speaker": "senpai-appalled",
       "speakerAnimation": "talk",
       "box": "roses",
       "boxAnimation": "idle",
 
-      "text": [
-        "re...gret..."
-      ]
+      "text": ["re...gret..."]
     },
-        {
+    {
       "speaker": "gooey-sleeping-pixel",
       "speakerAnimation": "talk",
       "box": "roses",
@@ -105,26 +107,22 @@
 
       "text": ["zzz..."]
     },
-            {
+    {
       "speaker": "senpai-appalled",
       "speakerAnimation": "talk",
       "box": "roses",
       "boxAnimation": "idle",
 
-      "text": [
-        "WAKE"
-      ]
+      "text": ["WAKE"]
     },
-                {
+    {
       "speaker": "senpai-angry",
       "speakerAnimation": "talk",
       "box": "roses",
       "boxAnimation": "idle",
 
-      "text": [
-        "UP!"
-      ]
-    },    
+      "text": ["UP!"]
+    },
     {
       "speaker": "gooey-tired-pixel",
       "speakerAnimation": "talk",
@@ -139,10 +137,8 @@
       "box": "roses",
       "boxAnimation": "idle",
 
-      "text": [
-        "I SAID DON'T CALL ME-"
-      ]
-    },    
+      "text": ["I SAID DON'T CALL ME-"]
+    },
     {
       "speaker": "gooey-pixel",
       "speakerAnimation": "talk",
@@ -151,7 +147,7 @@
 
       "text": ["Anyways, are we gonna sing or what, gay boy?"]
     },
-      {
+    {
       "speaker": "flora",
       "speakerAnimation": "talkEnter",
       "box": "roses",
@@ -159,15 +155,13 @@
 
       "text": ["I'm a speaker :D"]
     },
-           {
+    {
       "speaker": "senpai-appalled",
       "speakerAnimation": "talk",
       "box": "roses",
       "boxAnimation": "idle",
 
-      "text": [
-        "I swear to god i'm actually about to end myself."
-      ]
+      "text": ["I swear to god i'm actually about to end myself."]
     }
   ]
 }

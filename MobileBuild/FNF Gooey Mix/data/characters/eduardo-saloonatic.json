@@ -58,11 +58,11 @@
       "prefix": "eduardoMYSECONDFAVORITEKNEE",
       "frameRate": 15
     },
-     {
+    {
       "name": "freezeFrame",
       "prefix": "eduardoIdle",
       "frameRate": 1,
-      "frameIndices": [1,1,1,1]
+      "frameIndices": [1, 1, 1, 1]
     }
   ]
 }

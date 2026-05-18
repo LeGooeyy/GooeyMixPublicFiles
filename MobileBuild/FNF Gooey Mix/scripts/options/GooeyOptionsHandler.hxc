@@ -9,89 +9,120 @@ import funkin.ui.freeplay.FreeplayState;
 // A main module that handles adding every option instead of having them all in separate scripts
 class GooeyPreferences extends Module
 {
-	var save:FlxSave;
+  var save:FlxSave;
 
-    function new(){
-        super("GooeyPreferences");
+  function new()
+  {
+    super("GooeyPreferences");
 
-		save = new FlxSave();
-		save.bind("GooeyMixOptions", "FunkinCrew");
-		save.data.GooeyMixMenu ??= 'Always On';
-		save.data.morphoMode ??= 'Off';
-		save.data.gooeyShaders ??= true;
-		if (save.data.defaultStartupCharacter != null) {
-			if (save.data.defaultStartupCharacter != 'remember' && PlayerRegistry.instance.fetchEntry(save.data.defaultStartupCharacter) == null) {
-				// Character doesn't exist, reset time
-				save.data.defaultStartupCharacter = save.data.rememberedStartupCharacter = 'bf';
-				save.data.saveStartupCharacterName = 'Boyfriend';		
-			}
-		}
-		save.data.defaultStartupCharacter ??= 'bf';
-		save.data.rememberedStartupCharacter ??= 'bf';
-		save.data.saveStartupCharacterName ??= 'Boyfriend';
-		save.flush();
+    save = new FlxSave();
+    save.bind("GooeyMixOptions", "FunkinCrew");
+    save.data.GooeyMixMenu ??= 'Always On';
+    save.data.morphoMode ??= 'Off';
+    save.data.gooeyShaders ??= true;
+    save.data.floraVisualizer ??= true;
+    save.data.nightcoreMode ??= false;
+    if (save.data.defaultStartupCharacter != null)
+    {
+      if (save.data.defaultStartupCharacter != 'remember' && PlayerRegistry.instance.fetchEntry(save.data.defaultStartupCharacter) == null)
+      {
+        // Character doesn't exist, reset time
+        save.data.defaultStartupCharacter = save.data.rememberedStartupCharacter = 'bf';
+        save.data.saveStartupCharacterName = 'Boyfriend';
+      }
     }
-		
-	function onStateChangeEnd(callback) {
-		super.onStateChangeEnd(callback);
+    save.data.defaultStartupCharacter ??= 'bf';
+    save.data.rememberedStartupCharacter ??= 'bf';
+    save.data.saveStartupCharacterName ??= 'Boyfriend';
+    save.flush();
+  }
 
+  function onStateChangeEnd(callback)
+  {
+    super.onStateChangeEnd(callback);
 
-		if (!(callback.targetState is OptionsState))
-			return;
-		var preferencePage:PreferencesMenu = callback.targetState.optionsCodex.addPage('gooey', new PreferencesMenu());
-		preferencePage.onExit.add(function() {
-			FlxG.state.optionsCodex.switchPage('options');
-		});
+    if (!(callback.targetState is OptionsState)) return;
+    var preferencePage:PreferencesMenu = callback.targetState.optionsCodex.addPage('gooey', new PreferencesMenu());
+    preferencePage.onExit.add(function()
+    {
+      FlxG.state.optionsCodex.switchPage('options');
+    });
 
-		preferencePage.preferenceDesc = [];
-		preferencePage.items.clear();	
-		preferencePage.preferenceItems.clear();
-		var optionspage = callback.targetState.optionsCodex.pages.get('options');
-		var exit = optionspage.items.getItem("LAG ADJUSTMENT") ?? null;
-		var option = optionspage.createItem("Gooey Mix Options", function() FlxG.state.optionsCodex.switchPage('gooey'));
-		if (exit != null) {
-			optionspage.items.members.remove(option);
-			optionspage.items.members.insert(optionspage.items.members.indexOf(exit), option);
-		}
-		for (i in 0...optionspage.items.members.length){
-			var item = optionspage.items.members[i];
-			item.y = 100 + i * 100;
-		}
+    preferencePage.preferenceDesc = [];
+    preferencePage.items.clear();
+    preferencePage.preferenceItems.clear();
+    var optionspage = callback.targetState.optionsCodex.pages.get('options');
+    var exit = optionspage.items.getItem("LAG ADJUSTMENT") ?? null;
+    var option = optionspage.createItem("Gooey Mix Options", function() FlxG.state.optionsCodex.switchPage('gooey'));
+    if (exit != null)
+    {
+      optionspage.items.members.remove(option);
+      optionspage.items.members.insert(optionspage.items.members.indexOf(exit), option);
+    }
+    for (i in 0...optionspage.items.members.length)
+    {
+      var item = optionspage.items.members[i];
+      item.y = 100 + i * 100;
+    }
 
-		var prefs = callback.targetState.optionsCodex.pages.get("gooey");
-		if (prefs != null) {
-			prefs.createPrefItemEnum('Gooey Menu', "Switch between using Gooey Mix's or FNF's menu themes.",
-			['Always On' => 'Always On', 'Off' => 'Off', 'Gooey Selected' => 'Gooey Selected'], function(value:String, oValue:String):Void {
-				save.data.GooeyMixMenu = value;
-				save.flush();
-			}, save.data.GooeyMixMenu);
-			prefs.createPrefItemCheckbox('Gooey Shaders', "Enables shaders for some stages and characters\n(DISABLING WILL LOOK LIKE SHIT)",
-			function(value:Bool):Void {
-				save.data.gooeyShaders = value;
-				save.flush();
-			}, save.data.gooeyShaders);
-			prefs.createPrefItemEnum('Morpho Mode', "HEY GORDAN!", ['Off' => 'Off', 'On' => 'On', 'No Stickers' => 'No Stickers'],
-			function(value:String, oValue:String):Void {
-				save.data.morphoMode = value;
-				save.flush();
-			}, save.data.morphoMode);
-			prefs.createPrefItemEnum('Default Player', "Choose the Playable Character that will be selected by default when first opening Freeplay.",
-			makeOptionsList(), function(value:String, oValue:String):Void {
-				save.data.defaultStartupCharacter = oValue;
-				save.data.saveStartupCharacterName = value;
-				save.flush();
-				// FreeplayState.rememberedCharacterId = oValue; // <- Un-comment if you want the cur character to switch when changing option
-			}, save.data.saveStartupCharacterName);
-		}
-	}
+    var prefs = callback.targetState.optionsCodex.pages.get("gooey");
+    if (prefs != null)
+    {
+      prefs.createPrefItemEnum('Gooey Menu', "Switch between using Gooey Mix's or FNF's menu themes.", [
+        'Always On' => 'Always On',
+        'Off' => 'Off',
+        'Gooey Selected' => 'Gooey Selected'
+      ], function(value:String, oValue:String):Void
+      {
+        save.data.GooeyMixMenu = value;
+        save.flush();
+      }, save.data.GooeyMixMenu);
+      prefs.createPrefItemCheckbox('Gooey Shaders', "Enables shaders for some stages and characters\n(DISABLING WILL LOOK LIKE SHIT)",
+        function(value:Bool):Void
+        {
+          save.data.gooeyShaders = value;
+          save.flush();
+        }, save.data.gooeyShaders);
+      prefs.createPrefItemCheckbox('Flora Visualizer',
+        "Toggles the visualizer on Flora's speaker. Having it off may improve FPS (But its cool as fuck so why would you turn it off)",
+        function(value:Bool):Void
+        {
+          save.data.floraVisualizer = value;
+          save.flush();
+        }, save.data.floraVisualizer);
+      prefs.createPrefItemEnum('Default Player', "Choose the Playable Character that will be selected by default when first opening Freeplay.",
+        makeOptionsList(), function(value:String, oValue:String):Void
+      {
+        save.data.defaultStartupCharacter = oValue;
+        save.data.saveStartupCharacterName = value;
+        save.flush();
+        // FreeplayState.rememberedCharacterId = oValue; // <- Un-comment if you want the cur character to switch when changing option
+      }, save.data.saveStartupCharacterName);
+      prefs.createPrefItemEnum('Morpho Mode', "HEY GORDAN!", ['Off' => 'Off', 'On' => 'On', 'No Stickers' => 'No Stickers'],
+        function(value:String, oValue:String):Void
+        {
+          save.data.morphoMode = value;
+          save.flush();
+        }, save.data.morphoMode);
+      prefs.createPrefItemCheckbox('Nightcore Mode', "It's like that one twitter post!", function(value:Bool):Void
+      {
+        save.data.nightcoreMode = value;
+        save.flush();
+      }, save.data.nightcoreMode);
+    }
+  }
 
-	function makeOptionsList() {
-		var playableCharacters = ["Remember Previous" => "remember"];
+  function makeOptionsList()
+  {
+    var playableCharacters = [
+      "Remember Previous" => "remember"
+    ];
 
-		for (character in PlayerRegistry.instance.listEntryIds()) {
-			playableCharacters.set(PlayerRegistry.instance.fetchEntry(character).getName(), character);
-		}
+    for (character in PlayerRegistry.instance.listEntryIds())
+    {
+      playableCharacters.set(PlayerRegistry.instance.fetchEntry(character).getName(), character);
+    }
 
-		return playableCharacters;
-	}
+    return playableCharacters;
+  }
 }

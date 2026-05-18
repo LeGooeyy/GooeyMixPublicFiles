@@ -15,32 +15,32 @@
     {
       "name": "idle",
       "prefix": "KamUpdogIdle",
-      "offsets": [-20,-85]
+      "offsets": [-20, -85]
     },
     {
       "name": "singLEFT",
       "prefix": "KamUpdogLeft",
-      "offsets": [-20,-85]
+      "offsets": [-20, -85]
     },
     {
       "name": "singDOWN",
       "prefix": "KamUpdogDown",
-      "offsets": [-20,-85]
+      "offsets": [-20, -85]
     },
     {
       "name": "singUP",
       "prefix": "KamUpdogUp",
-      "offsets": [-20,-85]
+      "offsets": [-20, -85]
     },
     {
       "name": "singRIGHT",
       "prefix": "KamUpdogRight",
-      "offsets": [-20,-85]
+      "offsets": [-20, -85]
     },
     {
       "name": "intro",
       "prefix": "KamUpdogIntro",
-      "offsets": [-20,815]
+      "offsets": [-20, 815]
     }
   ]
 }

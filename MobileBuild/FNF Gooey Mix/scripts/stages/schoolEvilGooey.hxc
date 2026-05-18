@@ -15,7 +15,7 @@ class SchoolEvilGooeyStage extends Stage
     super('schoolEvilGooey');
 
     save = new FlxSave();
-		save.bind("GooeyMixOptions", "FunkinCrew");
+    save.bind("GooeyMixOptions", "FunkinCrew");
   }
 
   var wiggleBack:FlxRuntimeShader = null;
@@ -23,12 +23,14 @@ class SchoolEvilGooeyStage extends Stage
   var wiggleGround:FlxRuntimeShader = null;
   var wiggleSpike:FlxRuntimeShader = null;
 
-  public function onGameOver(event:ScriptEvent) {
-		super.onGameOver(event);
-		if (save.data.gooeyShaders != false) {
-			getBoyfriend().shader = null;
-		}
-	}
+  public function onGameOver(event:ScriptEvent)
+  {
+    super.onGameOver(event);
+    if (save.data.gooeyShaders != false)
+    {
+      getBoyfriend().shader = null;
+    }
+  }
 
   override function buildStage()
   {
@@ -40,14 +42,13 @@ class SchoolEvilGooeyStage extends Stage
     wiggleGround = new WiggleEffectRuntime(2, 4, 0.007, WiggleEffectType.DREAMY);
 
     if (save.data.gooeyShaders != false)
-	{
-    getNamedProp('school').shader = wiggleSchool;
-    getNamedProp('evilstreet').shader = wiggleGround;
-    getNamedProp('backspikes').shader = wiggleBack;
-    getNamedProp('backspike').shader = wiggleSpike;
+    {
+      getNamedProp('school').shader = wiggleSchool;
+      getNamedProp('evilstreet').shader = wiggleGround;
+      getNamedProp('backspikes').shader = wiggleBack;
+      getNamedProp('backspike').shader = wiggleSpike;
+    }
   }
-  }
-
 
   override function onUpdate(event:UpdateScriptEvent)
   {
@@ -71,62 +72,64 @@ class SchoolEvilGooeyStage extends Stage
     wiggleSpike = null;
   }
 
-
-  override function addCharacter(character:BaseCharacter, charType:CharacterType):Void {
-		// Apply the shader automatically to each character as it gets added.
-		super.addCharacter(character, charType);
+  override function addCharacter(character:BaseCharacter, charType:CharacterType):Void
+  {
+    // Apply the shader automatically to each character as it gets added.
+    super.addCharacter(character, charType);
     if (save.data.gooeyShaders != false)
-	{
-		trace('Applied stage shader to ' + character.characterName);
+    {
+      trace('Applied stage shader to ' + character.characterName);
 
-		var rim = new DropShadowShader();
-		rim.setAdjustColor(-90, 0, 24, 5);
-    	rim.color = 0xFF690832;
-		rim.antialiasAmt = 0;
-		rim.attachedSprite = character;
-		rim.distance = 5;
+      var rim = new DropShadowShader();
+      rim.setAdjustColor(-90, 0, 24, 5);
+      rim.color = 0xFF690832;
+      try
+      {
+        rim.antialiasAmt = 0;
+      }
+      catch (e:Exception)
+      {
+      }
+      rim.attachedSprite = character;
+      rim.distance = 5;
 
-		switch(charType){
-			case CharacterType.BF:
+      switch (charType)
+      {
+        case CharacterType.BF:
+          // rim.color = 0xFF4a0523;
+          rim.angle = 180;
+          character.shader = rim;
+          rim.distance = 3;
 
-         //rim.color = 0xFF4a0523;
-				rim.angle = 180;
-				character.shader = rim;
-		    rim.distance = 3;
+          character.animation.callback = function()
+          {
+            if (getBoyfriend() != null)
+            {
+              rim.updateFrameInfo(getBoyfriend().frame);
+            }
+          };
 
+        case CharacterType.GF:
+          rim.angle = 180;
+          character.shader = rim;
+          rim.distance = 3;
+          character.animation.callback = function()
+          {
+            rim.updateFrameInfo(getGirlfriend().frame);
+          };
 
-				character.animation.callback = function() {
-					if (getBoyfriend() != null)
-					{
-      			rim.updateFrameInfo(getBoyfriend().frame);
-					}
-    		};
+        case CharacterType.DAD:
+          rim.angle = 90;
+          character.shader = rim;
+          rim.setAdjustColor(-40, -10, 24, 0);
 
-			case CharacterType.GF:
-				rim.angle = 180;
-				character.shader = rim;
-				 rim.distance = 3;
-				character.animation.callback = function() {
-      		rim.updateFrameInfo(getGirlfriend().frame);
-    		};
+          character.animation.callback = function()
+          {
+            rim.updateFrameInfo(getDad().frame);
+          };
 
-			case CharacterType.DAD:
-
-				rim.angle = 90;
-				character.shader = rim;
-		    rim.setAdjustColor(-40, -10, 24, 0);
-			
-
-				character.animation.callback = function() {
-      		rim.updateFrameInfo(getDad().frame);
-    		};
-
-			default:
-
-		}
-
+        default:
+      }
+    }
   }
-	}
-
-
 }

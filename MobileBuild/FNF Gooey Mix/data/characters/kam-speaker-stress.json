@@ -4,7 +4,7 @@
   "assetPath": "characters/kam/KamStress",
   "renderType": "multisparrow",
   "singTime": 10,
-  "offsets": [-6,32],
+  "offsets": [-6, 32],
   "cameraOffsets": [6, -7],
   "healthIcon": {
     "id": "kam"
@@ -30,17 +30,17 @@
       "name": "idle",
       "prefix": "idle"
     },
-       {
+    {
       "name": "fakeIdle",
       "prefix": "idle",
-       "looped": true
+      "looped": true
     },
     {
       "name": "kamMurder",
       "prefix": "kamMurder",
       "assetPath": "characters/kam/KamStressCutscene"
     },
-       {
+    {
       "name": "grab",
       "prefix": "grab",
       "assetPath": "characters/kam/KamStressCutscene"

@@ -9,69 +9,80 @@ import flixel.util.FlxSave;
 import funkin.data.freeplay.player.PlayerRegistry;
 import funkin.modding.ModStore;
 
-class DefaultCharacterOption extends Module {
-	var playableCharacters:Array<String> = ["Boyfriend" => "bf"];
-	var madeCharacterList:Bool = false;
+class DefaultCharacterOption extends Module
+{
+  var playableCharacters:Map<String, String> = ["Boyfriend" => "bf"];
+  var madeCharacterList:Bool = false;
+  var openedFreeplay(get, set):Bool;
 
-	var openedFreeplay(get, set):Bool;
+  function get_openedFreeplay()
+  {
+    return ModStore.get('GooeyOpenedFreeplay') ?? false;
+  }
 
-	function get_openedFreeplay() {
-		return ModStore.get('GooeyOpenedFreeplay') ?? false;
-	}
+  function set_openedFreeplay(value)
+  {
+    trace("Don't set anymore");
+    ModStore.register('GooeyOpenedFreeplay', value);
+    return value;
+  }
 
-	function set_openedFreeplay(value) {
-		trace("Don't set anymore");
-		ModStore.register('GooeyOpenedFreeplay', value);
-		return value;
-	}
+  var setRememberedCharacter:Bool = false; // has set the remembered character to the default character on startup
+  var save:FlxSave;
 
-	var setRememberedCharacter:Bool = false; // has set the remembered character to the default character on startup
+  public function new()
+  {
+    super('DefaultCharacterOption');
+    save = new FlxSave();
+    save.bind("GooeyMixOptions", "FunkinCrew");
 
-	var save:FlxSave;
+    if (save.data.defaultStartupCharacter != "remember" && !openedFreeplay)
+    {
+      FreeplayState.rememberedCharacterId = save.data.defaultStartupCharacter;
+      save.data.rememberedStartupCharacter = save.data.defaultStartupCharacter;
+      save.flush();
+    }
+  }
 
-	public function new() {
-		super('DefaultCharacterOption');
-		save = new FlxSave();
-		save.bind("GooeyMixOptions", "FunkinCrew");
+  override function onStateChangeEnd(event)
+  {
+    if ((event.targetState is MainMenuState) || (event.targetState is OptionsState))
+    {
+      if (!openedFreeplay)
+      {
+        FreeplayState.rememberedCharacterId = save.data.rememberedStartupCharacter;
 
-		if (save.data.defaultStartupCharacter != "remember" && !openedFreeplay) {
-			FreeplayState.rememberedCharacterId = save.data.defaultStartupCharacter;
-			save.data.rememberedStartupCharacter = save.data.defaultStartupCharacter;
-			save.flush();
-		}
-	}
+        if (save.data.defaultStartupCharacter != "remember")
+        {
+          FreeplayState.rememberedCharacterId = save.data.defaultStartupCharacter;
+          save.data.rememberedStartupCharacter = save.data.defaultStartupCharacter;
+          save.flush();
+        }
+      }
+      if (!madeCharacterList) makeOptionsList();
+    }
+  }
 
-	override function onStateChangeEnd(event) {
-		if ((event.targetState is MainMenuState) || (event.targetState is OptionsState)) {
-			if (!openedFreeplay) {
-				FreeplayState.rememberedCharacterId = save.data.rememberedStartupCharacter;
+  override function onSubStateOpenEnd(event)
+  {
+    if (event.targetState is FreeplayState)
+    {
+      openedFreeplay = true;
+      save.data.rememberedStartupCharacter = FreeplayState.rememberedCharacterId;
+      save.flush();
+      madeCharacterList = false;
+    }
+  }
 
-				if (save.data.defaultStartupCharacter != "remember") {
-					FreeplayState.rememberedCharacterId = save.data.defaultStartupCharacter;
-					save.data.rememberedStartupCharacter = save.data.defaultStartupCharacter;
-					save.flush();
-				}
-			}
-			if (!madeCharacterList) makeOptionsList();
-		}
-	}
+  function makeOptionsList()
+  {
+    playableCharacters.set("Remember Previous", "remember");
 
-	override function onSubStateOpenEnd(event) {
-		if (event.targetState is FreeplayState) {
-			openedFreeplay = true;
-			save.data.rememberedStartupCharacter = FreeplayState.rememberedCharacterId;
-			save.flush();
-			madeCharacterList = false;
-		}
-	}
+    for (character in PlayerRegistry.instance.listEntryIds())
+    {
+      playableCharacters.set(PlayerRegistry.instance.fetchEntry(character).getName(), character);
+    }
 
-	function makeOptionsList() {
-		playableCharacters.set("Remember Previous", "remember");
-
-		for (character in PlayerRegistry.instance.listEntryIds()) {
-			playableCharacters.set(PlayerRegistry.instance.fetchEntry(character).getName(), character);
-		}
-
-		madeCharacterList = true;
-	}
+    madeCharacterList = true;
+  }
 }

@@ -6,8 +6,7 @@
     "name": "EXTRA"
   },
   "visible": false,
-  "props": [
-  ],
+  "props": [],
   "background": "#F9CF51",
-  "songs": ["drippypop-gooey-mix","mixd-up","comedian-rad-mix","saloonatic"]
+  "songs": ["drippypop-gooey-mix", "mixd-up", "comedian-rad-mix", "saloonatic"]
 }

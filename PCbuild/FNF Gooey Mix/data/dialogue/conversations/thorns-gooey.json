@@ -57,7 +57,9 @@
       "box": "thorns",
       "boxAnimation": "idle",
 
-      "text": ["Ok... yeah this is getting too weird. Flora, let's just go already."]
+      "text": [
+        "Ok... yeah this is getting too weird. Flora, let's just go already."
+      ]
     },
     {
       "speaker": "gooey-sad-pixel",
@@ -75,7 +77,7 @@
 
       "text": ["...Flora?"]
     },
-        {
+    {
       "speaker": "flora-spirit",
       "speakerAnimation": "talkEnter",
       "box": "thorns",
@@ -110,7 +112,7 @@
 
       "text": ["I-I don't know what the hell is happening..."]
     },
-     {
+    {
       "speaker": "gooey-crystal-pixel",
       "speakerAnimation": "talk",
       "box": "thorns",
@@ -125,8 +127,8 @@
       "boxAnimation": "idle",
 
       "text": [
-          "Dont worry little one... This won't take much longer...",
-          " Just hold still..."
+        "Dont worry little one... This won't take much longer...",
+        " Just hold still..."
       ]
     }
   ]

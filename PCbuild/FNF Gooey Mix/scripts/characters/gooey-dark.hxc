@@ -3,7 +3,6 @@ import gooeymix.characters.GooeyBaseCharacter;
 
 class GooeyDarkDarkCharacter extends GooeyBaseCharacter
 {
- 
   public function new()
   {
     super('gooey-dark');

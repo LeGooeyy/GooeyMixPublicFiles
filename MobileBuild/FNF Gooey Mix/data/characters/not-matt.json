@@ -8,52 +8,52 @@
     {
       "name": "idle",
       "prefix": "mattIdle",
-      "offsets": [-15,-75]
+      "offsets": [-15, -75]
     },
     {
       "name": "singLEFT",
       "prefix": "mattLeft",
-      "offsets": [-15,-75]
+      "offsets": [-15, -75]
     },
     {
       "name": "singDOWN",
       "prefix": "mattDown",
-      "offsets": [-15,-75]
+      "offsets": [-15, -75]
     },
     {
       "name": "singUP",
       "prefix": "mattUp",
-      "offsets":[-15,-75]
+      "offsets": [-15, -75]
     },
     {
       "name": "singRIGHT",
       "prefix": "mattRight",
-      "offsets": [-15,-75]
+      "offsets": [-15, -75]
     },
     {
       "name": "singLEFTmiss",
       "prefix": "mattMissLeft",
-      "offsets": [-15,-75]
+      "offsets": [-15, -75]
     },
     {
       "name": "singDOWNmiss",
       "prefix": "mattMissDown",
-      "offsets": [-15,-75]
+      "offsets": [-15, -75]
     },
     {
       "name": "singUPmiss",
       "prefix": "mattMissUp",
-      "offsets": [-15,-75]
+      "offsets": [-15, -75]
     },
     {
       "name": "singRIGHTmiss",
       "prefix": "mattMissRight",
-      "offsets": [-15,-75]
+      "offsets": [-15, -75]
     },
     {
       "name": "hey",
       "prefix": "mattYeah",
-      "offsets": [-15,-75]
+      "offsets": [-15, -75]
     }
   ]
 }

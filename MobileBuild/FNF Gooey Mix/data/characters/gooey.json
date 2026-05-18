@@ -2,7 +2,7 @@
   "version": "1.0.0",
   "name": "Gooey",
   "renderType": "multianimateatlas",
-    "atlasSettings": {"useRenderTexture": true},
+  "atlasSettings": { "useRenderTexture": true },
   "assetPath": "shared:characters/gooey/Gooey",
   "flipX": true,
   "cameraOffsets": [-1, -32],
@@ -68,7 +68,7 @@
       "prefix": "GooeyAltRight",
       "offsets": [-7, 1]
     },
-        {
+    {
       "name": "singLEFTmiss",
       "prefix": "GooeyMissLeft",
       "assetPath": "shared:characters/gooey/GooeyPlayerAnims",
@@ -146,6 +146,25 @@
       "prefix": "GooeyConfirm",
       "assetPath": "shared:characters/gooey/GooeyGameOver",
       "offsets": [18, -19]
+    },
+    {
+      "name": "firstDeath-explosion",
+      "prefix": "GooeyExplodes",
+      "assetPath": "shared:characters/gooey/GooeyExplodes",
+      "offsets": [400, 1402]
+    },
+    {
+      "name": "deathLoop-explosion",
+      "prefix": "GooeyExplosionLoop",
+      "assetPath": "shared:characters/gooey/GooeyExplodes",
+      "offsets": [400, 1402],
+      "looped": true
+    },
+    {
+      "name": "deathConfirm-explosion",
+      "prefix": "GooeyExplodeConfirm",
+      "assetPath": "shared:characters/gooey/GooeyExplodes",
+      "offsets": [400, 1402]
     }
   ]
 }

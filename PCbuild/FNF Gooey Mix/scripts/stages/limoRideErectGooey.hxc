@@ -11,21 +11,20 @@ import flixel.util.FlxSave;
 
 class LimoRideErectGooeyStage extends Stage
 {
-	function new()
-	{
-		super('limoRideErectGooey');
+  function new()
+  {
+    super('limoRideErectGooey');
 
     save = new FlxSave();
-		save.bind("GooeyMixOptions", "FunkinCrew");
-	}
+    save.bind("GooeyMixOptions", "FunkinCrew");
+  }
 
-var colorShader:AdjustColorShader;
+  var colorShader:AdjustColorShader;
   var mist1:FlxBackdrop;
   var mist2:FlxBackdrop;
   var mist3:FlxBackdrop;
   var mist4:FlxBackdrop;
   var mist5:FlxBackdrop;
-
   var shootingStarBeat:Int = 0;
   var shootingStarOffset:Int = 2;
 
@@ -34,23 +33,23 @@ var colorShader:AdjustColorShader;
     super.buildStage();
 
     // Apply sky shader.
-	if (save.data.gooeyShaders != false)
-	{
-    var skyOverlay:OverlayBlend = new OverlayBlend();
-    var sunOverlay:FlxSprite = new FlxSprite().loadGraphic(Paths.image('limo/limoOverlay'));
-    sunOverlay.setGraphicSize(Std.int(sunOverlay.width * 2));
-    sunOverlay.updateHitbox();
-    skyOverlay.funnyShit.input = sunOverlay.pixels;
-    var limoSunset:FlxSprite = getNamedProp('limoSunset');
-    if (limoSunset == null)
+    if (save.data.gooeyShaders != false)
     {
-      trace('[WARN] Could not retrieve limoSunset');
+      var skyOverlay:OverlayBlend = new OverlayBlend();
+      var sunOverlay:FlxSprite = new FlxSprite().loadGraphic(Paths.image('limo/limoOverlay'));
+      sunOverlay.setGraphicSize(Std.int(sunOverlay.width * 2));
+      sunOverlay.updateHitbox();
+      skyOverlay.funnyShit.input = sunOverlay.pixels;
+      var limoSunset:FlxSprite = getNamedProp('limoSunset');
+      if (limoSunset == null)
+      {
+        trace('[WARN] Could not retrieve limoSunset');
+      }
+      else
+      {
+        limoSunset.shader = skyOverlay;
+      }
     }
-    else
-    {
-      limoSunset.shader = skyOverlay;
-    }
-	}
     // There's some commented-out shader BS in the original code.
     // I don't know what it's for, but it's not used in the game.
     // If you want to re-add it, go find it in version control.
@@ -133,7 +132,6 @@ var colorShader:AdjustColorShader;
   }
 
   var _timer:Float = 0;
-
   var carSequence:Sequence;
   var carSequenceData:Array<SequenceData>;
   var doCarHaptics:Bool = false;
@@ -248,20 +246,20 @@ var colorShader:AdjustColorShader;
   override function onCreate(event:ScriptEvent)
   {
     super.onCreate(event);
-if (save.data.gooeyShaders != false)
-	{
-    getNamedProp('limoDancer1').shader = colorShader;
-    getNamedProp('limoDancer2').shader = colorShader;
-    getNamedProp('limoDancer3').shader = colorShader;
-    getNamedProp('limoDancer4').shader = colorShader;
-    getNamedProp('limoDancer5').shader = colorShader;
-    getNamedProp('fastCar').shader = colorShader;
+    if (save.data.gooeyShaders != false)
+    {
+      getNamedProp('limoDancer1').shader = colorShader;
+      getNamedProp('limoDancer2').shader = colorShader;
+      getNamedProp('limoDancer3').shader = colorShader;
+      getNamedProp('limoDancer4').shader = colorShader;
+      getNamedProp('limoDancer5').shader = colorShader;
+      getNamedProp('fastCar').shader = colorShader;
 
-    colorShader.hue = -30;
-    colorShader.saturation = -20;
-    colorShader.contrast = 0;
-    colorShader.brightness = -30;
-	}
+      colorShader.hue = -30;
+      colorShader.saturation = -20;
+      colorShader.contrast = 0;
+      colorShader.brightness = -30;
+    }
   }
 
   /**
@@ -271,11 +269,11 @@ if (save.data.gooeyShaders != false)
   {
     // Apply the shader automatically to each character as it gets added.
     super.addCharacter(character, charType);
-	if (save.data.gooeyShaders != false)
-	{
-    trace('Applied stage shader to ' + character.characterName);
-    character.shader = colorShader;
-	}
+    if (save.data.gooeyShaders != false)
+    {
+      trace('Applied stage shader to ' + character.characterName);
+      character.shader = colorShader;
+    }
   }
 
   override function onPause(event:PauseScriptEvent)

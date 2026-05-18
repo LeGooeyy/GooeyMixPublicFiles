@@ -19,12 +19,12 @@
       "scroll": [0.7, 0.7],
       "zIndex": 11
     },
-     {
+    {
       "name": "topCrystal",
       "assetPath": "gooeyMix/week60037/natCrystal/topCrystal",
       "position": [200, -800],
       "scale": [1, 1],
-      "scroll": [1,1],
+      "scroll": [1, 1],
       "zIndex": 12
     },
     {
@@ -32,15 +32,15 @@
       "assetPath": "gooeyMix/week60037/natCrystal/bottomCrystal",
       "position": [0, 0],
       "scale": [1, 1],
-      "scroll": [1,1],
+      "scroll": [1, 1],
       "zIndex": 13
     },
-     {
+    {
       "name": "bottomCrystalLight",
       "assetPath": "gooeyMix/week60037/natCrystal/bottomCrystalLight",
       "position": [820, -160],
       "scale": [1, 1],
-      "scroll": [1,1],
+      "scroll": [1, 1],
       "zIndex": 14
     },
     {
@@ -48,7 +48,7 @@
       "assetPath": "gooeyMix/week60037/natCrystal/natCrystal",
       "position": [1350, -1100],
       "scale": [1, 1],
-      "scroll": [1,1],
+      "scroll": [1, 1],
       "zIndex": 15
     },
     {
@@ -56,7 +56,7 @@
       "assetPath": "gooeyMix/week60037/natCrystal/bottomCrystalLight",
       "position": [820, -160],
       "scale": [1, 1],
-      "scroll": [1,1],
+      "scroll": [1, 1],
       "zIndex": 16
     },
     {
@@ -64,7 +64,7 @@
       "assetPath": "gooeyMix/week60037/natCrystal/natCrystalLight",
       "position": [650, -2100],
       "scale": [1, 1],
-      "scroll": [1,1],
+      "scroll": [1, 1],
       "zIndex": 71
     },
     {
@@ -75,7 +75,7 @@
       "scroll": [1, 1],
       "zIndex": 76
     },
-      {
+    {
       "name": "overlay1",
       "assetPath": "gooeyMix/week60037/natCrystal/Overlay1",
       "position": [-400, -1300],
@@ -91,10 +91,10 @@
       "scroll": [1, 1],
       "zIndex": 73
     },
-      {
+    {
       "name": "backWallLights",
       "assetPath": "gooeyMix/week60037/natCrystal/backWallLights",
-       "position": [-600, -900],
+      "position": [-600, -900],
       "scale": [1, 1],
       "scroll": [0.7, 0.7],
       "zIndex": 74
@@ -112,7 +112,7 @@
       "assetPath": "gooeyMix/week60037/natCrystal/natCrystalLight",
       "position": [650, -2100],
       "scale": [1, 1],
-      "scroll": [1,1],
+      "scroll": [1, 1],
       "zIndex": 76
     },
     {
@@ -128,7 +128,7 @@
       "assetPath": "gooeyMix/week60037/natCrystal/crystalReflections",
       "position": [-150, -2300],
       "scale": [1, 1],
-      "scroll": [1,1],
+      "scroll": [1, 1],
       "zIndex": 81
     },
     {
@@ -136,17 +136,23 @@
       "assetPath": "gooeyMix/week60037/natCrystal/crystalReflections",
       "position": [250, -1900],
       "scale": [0.8, 0.8],
-      "scroll": [1,1],
+      "scroll": [1, 1],
       "zIndex": 82,
       "flipX": true,
       "flipY": true
     }
   ],
   "characters": {
-    "bf": {"zIndex": 60,"position": [2340, 560],"cameraOffsets": [-200, -150]
-  },
+    "bf": {
+      "zIndex": 60,
+      "position": [2340, 560],
+      "cameraOffsets": [-200, -150]
+    },
     "gf": { "zIndex": 40, "position": [1795, 490], "cameraOffsets": [0, -100] },
-    "dad": { "zIndex": 50,"position": [1390, 560],"cameraOffsets": [200, -150]
+    "dad": {
+      "zIndex": 50,
+      "position": [1390, 560],
+      "cameraOffsets": [200, -150]
     }
   },
   "directory": ""

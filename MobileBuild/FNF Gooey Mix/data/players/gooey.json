@@ -14,12 +14,13 @@
     "kam-player",
     "not-matt-player",
     "morpho-player",
-    "edd-saloonatic"
+    "edd-saloonatic",
+    "eevee-gooey"
   ],
   "showUnownedChars": false,
   "unlocked": true,
- "freeplayStyle": "gooey",
- "stickerPack": "standard-gooey",
+  "freeplayStyle": "gooey",
+  "stickerPack": "standard-gooey",
   "freeplayDJ": {
     "assetPath": "freeplay/freeplay-gooey",
     "text1": "GOOBER ALERT!",
@@ -53,7 +54,7 @@
         "prefix": "gooeyIdle",
         "offsets": [-317, -32.5]
       },
-          {
+      {
         "name": "idleEasterEgg",
         "prefix": "gooeyMorpho",
         "offsets": [-317, -32.5]
@@ -66,12 +67,12 @@
       {
         "name": "fistPump",
         "prefix": "gooeyCheer",
-       "offsets": [-317, -32.5]
+        "offsets": [-317, -32.5]
       },
       {
         "name": "loss",
         "prefix": "gooeyFail",
-      "offsets": [-317, -32.5]
+        "offsets": [-317, -32.5]
       },
       {
         "name": "charSelect",
@@ -81,9 +82,8 @@
     ]
   },
   "charSelect": {
-
     "position": 1,
-   "gf": {
+    "gf": {
       "assetPath": "charSelect/floraChill",
       "animInfoPath": "charSelect/floraAnimInfo",
       "visualizer": false
@@ -123,8 +123,7 @@
         "renderType": "animateatlas",
         "assetPath": "shared:resultScreen/results-gooey/resultsGOOD",
         "zIndex": 500,
-        "offsets": [550,-436],
-
+        "offsets": [550, -436],
 
         "loopFrame": 36
       }
@@ -134,17 +133,17 @@
         "renderType": "animateatlas",
         "assetPath": "shared:resultScreen/results-gooey/resultsGOOD",
         "zIndex": 500,
-        "offsets": [550,-436],
+        "offsets": [550, -436],
 
         "loopFrame": 36
       }
     ],
     "good": [
-       {
+      {
         "renderType": "animateatlas",
         "assetPath": "shared:resultScreen/results-gooey/resultsGOOD",
         "zIndex": 500,
-        "offsets": [550,-436],
+        "offsets": [550, -436],
 
         "loopFrame": 36
       }

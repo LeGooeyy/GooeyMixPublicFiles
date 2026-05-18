@@ -11,25 +11,25 @@
       "scroll": [1.1, 1.1],
       "zIndex": 10
     },
-      {
+    {
       "name": "stageWall",
       "assetPath": "gooeyMix/week60037/hotelCastle/projWall",
       "position": [360, -400],
       "scale": [1, 1],
       "scroll": [0.9, 0.9],
-            "danceEvery": 0,
+      "danceEvery": 0,
       "zIndex": 11,
-           "startingAnimation": "morpho",
-        "animations": [
+      "startingAnimation": "morpho",
+      "animations": [
         {
           "name": "morpho",
           "prefix": "morpho",
           "frameRate": 12,
-           "looped": true
+          "looped": true
         }
-        ]
+      ]
     },
-          {
+    {
       "name": "backFrame",
       "assetPath": "gooeyMix/week60037/hotelCastle/backFrame",
       "position": [870, -150],
@@ -45,7 +45,7 @@
       "scroll": [0.975, 0.975],
       "zIndex": 13
     },
-        {
+    {
       "name": "topLantern1",
       "assetPath": "gooeyMix/week60037/hotelCastle/hangingLantern",
       "position": [800, -100],
@@ -53,7 +53,7 @@
       "scroll": [0.975, 0.975],
       "zIndex": 14
     },
-            {
+    {
       "name": "topLantern2",
       "assetPath": "gooeyMix/week60037/hotelCastle/hangingLantern",
       "position": [2240, -100],
@@ -61,7 +61,7 @@
       "scroll": [0.975, 0.975],
       "zIndex": 15
     },
-          {
+    {
       "name": "morphoStage",
       "assetPath": "gooeyMix/week60037/hotelCastle/morphoStage",
       "position": [549, 727],
@@ -78,7 +78,7 @@
       "flipX": true,
       "zIndex": 17
     },
-       {
+    {
       "name": "candleBackLight",
       "assetPath": "gooeyMix/week60037/hotelCastle/candleFlame",
       "position": [2120, 720],
@@ -92,8 +92,8 @@
           "name": "flame",
           "prefix": "flame",
           "frameRate": 12,
-           "looped": true,
-                     "flipX": true
+          "looped": true,
+          "flipX": true
         }
       ]
     },
@@ -105,7 +105,7 @@
       "scroll": [1, 1],
       "zIndex": 19
     },
-        {
+    {
       "name": "bottomLantern2",
       "assetPath": "gooeyMix/week60037/hotelCastle/lantern",
       "position": [2450, 750],
@@ -197,7 +197,7 @@
       "scroll": [1, 1],
       "zIndex": 25
     },
-              {
+    {
       "name": "spotlight1",
       "assetPath": "gooeyMix/week60037/hotelCastle/spotlight1",
       "position": [-1000, -1000],
@@ -205,7 +205,7 @@
       "scroll": [1, 1],
       "zIndex": 100
     },
-                  {
+    {
       "name": "spotlight2",
       "assetPath": "gooeyMix/week60037/hotelCastle/spotlight2",
       "position": [-1000, -1000],
@@ -213,23 +213,23 @@
       "scroll": [1, 1],
       "zIndex": 101
     },
-                  {
+    {
       "name": "bottomLantern1Light",
       "assetPath": "gooeyMix/week60037/hotelCastle/lanternLight",
-        "position": [390, 620],
+      "position": [390, 620],
       "scale": [1, 1],
       "scroll": [0.975, 0.975],
       "zIndex": 104
     },
-                   {
+    {
       "name": "bottomLantern2Light",
       "assetPath": "gooeyMix/week60037/hotelCastle/lanternLight",
-       "position": [2280, 600],
+      "position": [2280, 600],
       "scale": [1, 1],
       "scroll": [0.975, 0.975],
       "zIndex": 104
     },
-                {
+    {
       "name": "topLantern1Light",
       "assetPath": "gooeyMix/week60037/hotelCastle/lanternLight",
       "position": [625, 120],
@@ -237,7 +237,7 @@
       "scroll": [0.975, 0.975],
       "zIndex": 104
     },
-                    {
+    {
       "name": "topLantern2Light",
       "assetPath": "gooeyMix/week60037/hotelCastle/lanternLight",
       "position": [2070, 120],
@@ -259,11 +259,11 @@
           "name": "flame",
           "prefix": "flame",
           "frameRate": 12,
-           "looped": true
+          "looped": true
         }
       ]
     },
-   {
+    {
       "name": "extraSpotlight2",
       "assetPath": "gooeyMix/week60037/hotelCastle/spotlight2",
       "position": [-1000, -1000],
@@ -271,7 +271,7 @@
       "scroll": [1, 1],
       "zIndex": 107
     },
-                      {
+    {
       "name": "spotlight3",
       "assetPath": "gooeyMix/week60037/hotelCastle/spotlight3",
       "position": [-1000, -1000],
@@ -279,7 +279,7 @@
       "scroll": [1, 1],
       "zIndex": 108
     },
-                          {
+    {
       "name": "stageLighting",
       "assetPath": "gooeyMix/week60037/hotelCastle/lighting3",
       "position": [-900, -900],
@@ -287,7 +287,7 @@
       "scroll": [1.1, 1.1],
       "zIndex": 109
     },
-                      {
+    {
       "name": "stageBorder",
       "assetPath": "gooeyMix/week60037/hotelCastle/stageBorder",
       "position": [-900, -900],
@@ -298,7 +298,7 @@
     {
       "name": "radBop",
       "assetPath": "gooeyMix/week60037/hotelCastle/ASMPboppers",
-      "position": [2495,705],
+      "position": [2495, 705],
       "scale": [1, 1],
       "scroll": [1.1, 1.1],
       "danceEvery": 2,
@@ -317,7 +317,7 @@
     {
       "name": "radEyeBop",
       "assetPath": "gooeyMix/week60037/hotelCastle/ASMPboppers",
-      "position": [2495,705],
+      "position": [2495, 705],
       "scale": [1, 1],
       "scroll": [1.1, 1.1],
       "danceEvery": 2,
@@ -333,7 +333,7 @@
         }
       ]
     },
-       {
+    {
       "name": "lighting",
       "assetPath": "gooeyMix/week60037/hotelCastle/lighting",
       "position": [-1000, -1000],
@@ -341,7 +341,7 @@
       "scroll": [1, 1],
       "zIndex": 130
     },
-           {
+    {
       "name": "lighting2",
       "assetPath": "gooeyMix/week60037/hotelCastle/lighting2",
       "position": [-1000, -1000],
@@ -349,7 +349,7 @@
       "scroll": [1, 1],
       "zIndex": 130
     },
-                  {
+    {
       "name": "extraSpotlight",
       "assetPath": "gooeyMix/week60037/hotelCastle/extraSpotlight",
       "position": [-1000, -1000],
@@ -359,9 +359,17 @@
     }
   ],
   "characters": {
-    "bf": {"zIndex": 60,"position": [2000, 1050],"cameraOffsets": [-100, -125]},
+    "bf": {
+      "zIndex": 60,
+      "position": [2000, 1050],
+      "cameraOffsets": [-100, -125]
+    },
     "gf": { "zIndex": 40, "position": [1570, 950], "cameraOffsets": [-10, 0] },
-    "dad": { "zIndex": 50,"position": [1180, 1050],"cameraOffsets": [100, -125]}
+    "dad": {
+      "zIndex": 50,
+      "position": [1180, 1050],
+      "cameraOffsets": [100, -125]
+    }
   },
   "directory": ""
 }

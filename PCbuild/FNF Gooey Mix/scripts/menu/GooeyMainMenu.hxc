@@ -2,19 +2,23 @@ import funkin.ui.mainmenu.MainMenuState;
 import funkin.modding.module.Module;
 import funkin.util.ReflectUtil;
 
-class GooeyMainMenu extends Module {
-	public function new() {
-		super('GooeyMainMenu', 1, {
-			state: MainMenuState
-		});
-	}
+class GooeyMainMenu extends Module
+{
+  public function new()
+  {
+    super('GooeyMainMenu', 1, {
+      state: MainMenuState
+    });
+  }
 
-	override function onUpdate(event:UpdateScriptEvent) {
-		super.onUpdate(event);
-		if (ReflectUtil.getClassNameOf(FlxG.state) == "funkin.ui.mainmenu.MainMenuState") {
-			FlxG.mouse.visible = false;
+  override function onUpdate(event:UpdateScriptEvent)
+  {
+    super.onUpdate(event);
+    if (ReflectUtil.getClassNameOf(FlxG.state) == "funkin.ui.mainmenu.MainMenuState")
+    {
+      FlxG.mouse.visible = false;
 
-			FlxG.state.rightWatermarkText.text = "GOOEY MIX v4.3.2";
-		}
-	}
+      FlxG.state.rightWatermarkText.text = "GOOEY MIX v4.4.0";
+    }
+  }
 }

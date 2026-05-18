@@ -3,6 +3,45 @@ All notable changes will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [4.3.0] - 2026-5-17
+Gooey Mix X Eevee Mix Collab
+
+### Added
+
+- Added Gooey (Eevee Mix)
+- Added Nightcore Mode
+- Added Morpho Mode support for the following mods:
+  - Hazier River
+  - Whitty Bonus WeekEND
+  - CG5
+  - Sky Redux (Pico Stage)
+  - Pointless Pins
+- Added custom freeplay previews to every song
+- Added the 2hot death animation to Gooey (Currently unused)
+- Added new camera events to Stress (Gooey Mix) and Blammed (Gooey Mix)
+- Added alt animations to Blammed (Gooey Mix)
+- Added the opponent missing notes in Dadbattle (Gooey Mix) and Comedian (Rad Mix)
+
+### Changed
+
+- Overhauled Gooey's sprites yet again (big ah head)
+- Recoded Morpho Mode so it runs smoother
+- Completley recoded Flora's visualizer to run much smoother and work on mobile
+- Redrew the mod icon
+- Simplified the Dev Test Stage
+- Made hidden songs in freeplay play a static sound instead of nothing
+- Adjusted the volume of Gooey's vocals in Stress (Gooey Mix) and Dadbattle (Gooey Mix)
+- Billy
+
+### Fixed
+
+- Fixed charting issues in Dadbattle (Gooey Mix)
+- Fixed an error with medals not working with other mods installed
+- Fixed an error with the Default Character Option setting
+- Fixed the rim light shader breaking for Morpho Mode/Pixel Week songs when playing on Dev Builds
+- Probably fixed some other bugs I can't remember :P
+
+
 ## [4.3.2] - 2026-4-13
 Detour 1 Lore Hotfix 2
 
@@ -18,7 +57,7 @@ Detour 1 Lore Hotfix 2
 ### Fixed
 
 - Fixed major FPS drops when playing any song with Flora in it
-- Fixed Gooey's possition being off in the Week 60037 intro cutscene
+- Fixed Gooey's position being off in the Week 60037 intro cutscene
 - Fixed DoubleM not being properly listed in the credits
 
 ## [4.3.1] - 2026-4-3
