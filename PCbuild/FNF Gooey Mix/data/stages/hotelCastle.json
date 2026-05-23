@@ -198,6 +198,24 @@
       "zIndex": 25
     },
     {
+      "name": "candleFrontLight",
+      "assetPath": "gooeyMix/week60037/hotelCastle/candleFlame",
+      "position": [860, 940],
+      "scale": [1, 1],
+      "scroll": [1, 1],
+      "danceEvery": 0,
+      "zIndex": 26,
+      "startingAnimation": "flame",
+      "animations": [
+        {
+          "name": "flame",
+          "prefix": "flame",
+          "frameRate": 12,
+          "looped": true
+        }
+      ]
+    },
+    {
       "name": "spotlight1",
       "assetPath": "gooeyMix/week60037/hotelCastle/spotlight1",
       "position": [-1000, -1000],
@@ -244,24 +262,6 @@
       "scale": [1, 1],
       "scroll": [0.975, 0.975],
       "zIndex": 105
-    },
-    {
-      "name": "candleFrontLight",
-      "assetPath": "gooeyMix/week60037/hotelCastle/candleFlame",
-      "position": [860, 940],
-      "scale": [1, 1],
-      "scroll": [1, 1],
-      "danceEvery": 0,
-      "zIndex": 106,
-      "startingAnimation": "flame",
-      "animations": [
-        {
-          "name": "flame",
-          "prefix": "flame",
-          "frameRate": 12,
-          "looped": true
-        }
-      ]
     },
     {
       "name": "extraSpotlight2",

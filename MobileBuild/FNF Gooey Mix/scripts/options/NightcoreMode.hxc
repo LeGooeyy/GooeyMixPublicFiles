@@ -12,14 +12,9 @@ import funkin.ui.transition.stickers.StickerSubState;
 
 class NightcoreModeOption extends Module
 {
-  var save:FlxSave;
-
   public function new()
   {
     super('NightcoreModeOption');
-
-    save = new FlxSave();
-    save.bind("GooeyMixOptions", "FunkinCrew");
   }
 
   var nightcoreOverlay:FunkinSprite;
@@ -28,7 +23,7 @@ class NightcoreModeOption extends Module
   function onSubStateOpenBegin(event)
   {
     super.onSubStateOpenBegin();
-    if (event.targetState is ResultState || event.targetState is StickerSubState) if (save.data.gooeyShaders != false && save.data.nightcoreMode == true)
+    if (event.targetState is ResultState || event.targetState is StickerSubState) if (GooeyMixOptions.gooeyShaders && GooeyMixOptions.nightcoreMode)
     {
       FlxG.game.setFilters([]);
     }
@@ -37,7 +32,7 @@ class NightcoreModeOption extends Module
   function onDestroy()
   {
     super.onDestroy();
-    if (save.data.gooeyShaders != false && save.data.nightcoreMode == true)
+    if (GooeyMixOptions.gooeyShaders && GooeyMixOptions.nightcoreMode)
     {
       FlxG.game.setFilters([]);
     }
@@ -46,7 +41,7 @@ class NightcoreModeOption extends Module
   function onSongLoaded()
   {
     super.onSongLoaded();
-    if (save.data.nightcoreMode == true)
+    if (GooeyMixOptions.nightcoreMode)
     {
       if (nightcoreOverlay != null)
       {
@@ -70,7 +65,7 @@ class NightcoreModeOption extends Module
       PlayState.instance.opponentStrumline.scrollSpeed = PlayState.instance.currentChart.scrollSpeed / (PlayState.instance.playbackRate
         - (PlayState.instance.playbackRate / 16));
 
-      if (save.data.gooeyShaders != false)
+      if (GooeyMixOptions.gooeyShaders)
       {
         bloomShader = new FlxRuntimeShader(Assets.getText(Paths.frag("BloomShader")));
         FlxG.game.setFilters([new ShaderFilter(bloomShader)]);

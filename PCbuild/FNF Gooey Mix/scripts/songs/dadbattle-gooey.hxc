@@ -1,7 +1,6 @@
 import funkin.play.song.Song;
 import funkin.save.Save;
 import funkin.play.PlayState;
-import Date;
 import funkin.graphics.FunkinSprite;
 
 class DadbattleGooeyMixSong extends Song
@@ -35,13 +34,6 @@ class DadbattleGooeyMixSong extends Song
   function onCreate(event:ScriptEvent):Void
   {
     super.onCreate(event);
-
-    if (!FlxG.onMobile)
-    {
-      PlayState.instance.discordRPCAlbum = "https://raw.githubusercontent.com/LeGooeyy/GooeyMixDiscordIcons/refs/heads/main/assets/album-covers/"
-        + PlayState.instance.currentChart.album
-        + ".png?raw=true";
-    }
 
     leGasp = new FunkinSprite(682, 290).loadSparrow('erect/week1CrowdGasp', 'week1');
     leGasp.animation.addByPrefix('gasp', 'gasp', 24, false);

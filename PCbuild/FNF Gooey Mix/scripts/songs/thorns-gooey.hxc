@@ -10,7 +10,6 @@ import flixel.FlxSprite;
 import flixel.util.FlxTimer;
 import funkin.effects.RetroCameraFade;
 import funkin.audio.FunkinSound;
-import Date;
 
 class ThornsGooeyMixSong extends Song
 {
@@ -152,13 +151,6 @@ class ThornsGooeyMixSong extends Song
   function onCreate(event:ScriptEvent):Void
   {
     super.onCreate(event);
-
-    if (!FlxG.onMobile)
-    {
-      PlayState.instance.discordRPCAlbum = "https://raw.githubusercontent.com/LeGooeyy/GooeyMixDiscordIcons/refs/heads/main/assets/album-covers/"
-        + PlayState.instance.currentChart.album
-        + ".png?raw=true";
-    }
 
     hasPlayedCutscene = false;
   }

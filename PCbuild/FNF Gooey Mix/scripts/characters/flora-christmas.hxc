@@ -10,8 +10,6 @@ class FloraChristmasCharacter extends FloraBaseCharacter
   public function new()
   {
     super('flora-christmas');
-    save = new FlxSave();
-    save.bind("GooeyMixOptions", "FunkinCrew");
   }
 
   var christmas;
@@ -60,7 +58,7 @@ class FloraChristmasCharacter extends FloraBaseCharacter
   function synchronizeShader():Void
   {
     super.synchronizeShader();
-    if (save.data.gooeyShaders != false)
+    if (GooeyMixOptions.gooeyShaders)
     {
       if (christmas.shader == floraSpeaker.shader) return;
       if (floraSpeaker.shader != null)

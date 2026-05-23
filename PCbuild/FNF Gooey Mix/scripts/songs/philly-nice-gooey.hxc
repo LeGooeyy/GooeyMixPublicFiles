@@ -1,7 +1,6 @@
 import funkin.play.song.Song;
 import funkin.save.Save;
 import funkin.play.PlayState;
-import Date;
 
 class PhillyNiceGooeyMixSong extends Song
 {
@@ -33,17 +32,5 @@ class PhillyNiceGooeyMixSong extends Song
   {
     var results:Array<String> = super.listAltInstrumentals(difficultyId, variationId);
     results.remove('gooey');
-  }
-
-  function onCreate(event:ScriptEvent):Void
-  {
-    super.onCreate(event);
-
-    if (!FlxG.onMobile)
-    {
-      PlayState.instance.discordRPCAlbum = "https://raw.githubusercontent.com/LeGooeyy/GooeyMixDiscordIcons/refs/heads/main/assets/album-covers/"
-        + PlayState.instance.currentChart.album
-        + ".png?raw=true";
-    }
   }
 }

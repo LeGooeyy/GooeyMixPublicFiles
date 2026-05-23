@@ -9,32 +9,9 @@ import funkin.ui.freeplay.FreeplayState;
 // A main module that handles adding every option instead of having them all in separate scripts
 class GooeyPreferences extends Module
 {
-  var save:FlxSave;
-
   function new()
   {
     super("GooeyPreferences");
-
-    save = new FlxSave();
-    save.bind("GooeyMixOptions", "FunkinCrew");
-    save.data.GooeyMixMenu ??= 'Always On';
-    save.data.morphoMode ??= 'Off';
-    save.data.gooeyShaders ??= true;
-    save.data.floraVisualizer ??= true;
-    save.data.nightcoreMode ??= false;
-    if (save.data.defaultStartupCharacter != null)
-    {
-      if (save.data.defaultStartupCharacter != 'remember' && PlayerRegistry.instance.fetchEntry(save.data.defaultStartupCharacter) == null)
-      {
-        // Character doesn't exist, reset time
-        save.data.defaultStartupCharacter = save.data.rememberedStartupCharacter = 'bf';
-        save.data.saveStartupCharacterName = 'Boyfriend';
-      }
-    }
-    save.data.defaultStartupCharacter ??= 'bf';
-    save.data.rememberedStartupCharacter ??= 'bf';
-    save.data.saveStartupCharacterName ??= 'Boyfriend';
-    save.flush();
   }
 
   function onStateChangeEnd(callback)
@@ -74,49 +51,39 @@ class GooeyPreferences extends Module
         'Gooey Selected' => 'Gooey Selected'
       ], function(value:String, oValue:String):Void
       {
-        save.data.GooeyMixMenu = value;
-        save.flush();
-      }, save.data.GooeyMixMenu);
+        GooeyMixOptions.gooeyMixMenu = value;
+      }, GooeyMixOptions.gooeyMixMenu);
       prefs.createPrefItemCheckbox('Gooey Shaders', "Enables shaders for some stages and characters\n(DISABLING WILL LOOK LIKE SHIT)",
         function(value:Bool):Void
         {
-          save.data.gooeyShaders = value;
-          save.flush();
-        }, save.data.gooeyShaders);
+          GooeyMixOptions.gooeyShaders = value;
+        }, GooeyMixOptions.gooeyShaders);
       prefs.createPrefItemCheckbox('Flora Visualizer',
         "Toggles the visualizer on Flora's speaker. Having it off may improve FPS (But its cool as fuck so why would you turn it off)",
         function(value:Bool):Void
         {
-          save.data.floraVisualizer = value;
-          save.flush();
-        }, save.data.floraVisualizer);
+          GooeyMixOptions.floraVisualizer = value;
+        }, GooeyMixOptions.floraVisualizer);
       prefs.createPrefItemEnum('Default Player', "Choose the Playable Character that will be selected by default when first opening Freeplay.",
-        makeOptionsList(), function(value:String, oValue:String):Void
+        makeOptionsList(), function(key:String, value:String):Void
       {
-        save.data.defaultStartupCharacter = oValue;
-        save.data.saveStartupCharacterName = value;
-        save.flush();
-        // FreeplayState.rememberedCharacterId = oValue; // <- Un-comment if you want the cur character to switch when changing option
-      }, save.data.saveStartupCharacterName);
+        GooeyMixOptions.defaultStartupCharacter = value;
+      }, getDefaultPlayerKey());
       prefs.createPrefItemEnum('Morpho Mode', "HEY GORDAN!", ['Off' => 'Off', 'On' => 'On', 'No Stickers' => 'No Stickers'],
         function(value:String, oValue:String):Void
         {
-          save.data.morphoMode = value;
-          save.flush();
-        }, save.data.morphoMode);
+          GooeyMixOptions.morphoMode = value;
+        }, GooeyMixOptions.morphoMode);
       prefs.createPrefItemCheckbox('Nightcore Mode', "It's like that one twitter post!", function(value:Bool):Void
       {
-        save.data.nightcoreMode = value;
-        save.flush();
-      }, save.data.nightcoreMode);
+        GooeyMixOptions.nightcoreMode = value;
+      }, GooeyMixOptions.nightcoreMode);
     }
   }
 
   function makeOptionsList()
   {
-    var playableCharacters = [
-      "Remember Previous" => "remember"
-    ];
+    var playableCharacters:Map<String, String> = ["Remember Previous" => null];
 
     for (character in PlayerRegistry.instance.listEntryIds())
     {
@@ -124,5 +91,12 @@ class GooeyPreferences extends Module
     }
 
     return playableCharacters;
+  }
+
+  function getDefaultPlayerKey():String
+  {
+    if (GooeyMixOptions.defaultStartupCharacter == null) return "Remember Previous";
+
+    return PlayerRegistry.instance.fetchEntry(GooeyMixOptions.defaultStartupCharacter)?.getName();
   }
 }

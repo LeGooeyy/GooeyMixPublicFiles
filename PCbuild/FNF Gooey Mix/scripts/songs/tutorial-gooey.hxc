@@ -1,7 +1,6 @@
 import funkin.play.song.Song;
 import funkin.save.Save;
 import funkin.play.PlayState;
-import Date;
 import flixel.util.FlxSave;
 
 class TutorialGooeyMixSong extends Song
@@ -11,25 +10,6 @@ class TutorialGooeyMixSong extends Song
     super('tutorial', {
       variation: 'gooey'
     });
-
-    save = new FlxSave();
-    save.bind("GooeyMixOptions", "FunkinCrew");
-  }
-
-  function onCreate(event:ScriptEvent):Void
-  {
-    super.onCreate(event);
-
-    if (!FlxG.onMobile)
-    {
-      PlayState.instance.discordRPCAlbum = "https://raw.githubusercontent.com/LeGooeyy/GooeyMixDiscordIcons/refs/heads/main/assets/album-covers/"
-        + PlayState.instance.currentChart.album
-        + ".png?raw=true";
-      PlayState.instance.discordRPCIcon = "https://raw.githubusercontent.com/LeGooeyy/GooeyMixDiscordIcons/refs/heads/main/assets/icons/"
-        + PlayState.instance.currentChart.characters.opponent
-        + ".png?raw=true?t="
-        + Date.now().getTime();
-    }
   }
 
   public override function onCountdownStart(event:CountdownScriptEvent):Void
@@ -43,7 +23,7 @@ class TutorialGooeyMixSong extends Song
   {
     if (PlayState.instance.currentStage.getDad().shader.brightness == null) return;
     if (PlayState.instance.currentStage.getDad().shader.brightness == -30) return;
-    if (save.data.gooeyShaders != true) return;
+    if (!GooeyMixOptions.gooeyShaders) return;
 
     PlayState.instance.currentStage.getDad().shader.brightness = -30;
     PlayState.instance.currentStage.getDad().shader.hue = -9;

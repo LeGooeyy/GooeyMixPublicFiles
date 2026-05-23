@@ -13,15 +13,12 @@ class NatCrystalStage extends Stage
   function new()
   {
     super('natCrystal');
-
-    save = new FlxSave();
-    save.bind("GooeyMixOptions", "FunkinCrew");
   }
 
   public function onGameOver(event:ScriptEvent)
   {
     super.onGameOver(event);
-    if (save.data.gooeyShaders != false)
+    if (GooeyMixOptions.gooeyShaders)
     {
       getBoyfriend().shader = null;
     }
@@ -119,7 +116,7 @@ class NatCrystalStage extends Stage
     }
 
     trace('Applied stage shader to ' + character.characterName);
-    if (save.data.gooeyShaders != false)
+    if (GooeyMixOptions.gooeyShaders)
     {
       var rim = new DropShadowShader();
       rim.setAdjustColor(-80, -24, -5, -10);

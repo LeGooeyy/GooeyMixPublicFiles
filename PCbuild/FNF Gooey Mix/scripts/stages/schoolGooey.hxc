@@ -9,9 +9,6 @@ class SchoolGooeyStage extends Stage
   function new()
   {
     super('schoolGooey');
-
-    save = new FlxSave();
-    save.bind("GooeyMixOptions", "FunkinCrew");
   }
 
   function buildStage()
@@ -30,7 +27,7 @@ class SchoolGooeyStage extends Stage
 
   override function addCharacter(character:BaseCharacter, charType:CharacterType):Void
   {
-    if (save.data.gooeyShaders != false)
+    if (GooeyMixOptions.gooeyShaders)
     {
       // Apply the shader automatically to each character as it gets added.
       super.addCharacter(character, charType);

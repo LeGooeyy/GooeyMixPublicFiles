@@ -11,9 +11,6 @@ class HotelCastleStage extends Stage
   function new()
   {
     super('hotelCastle');
-
-    save = new FlxSave();
-    save.bind("GooeyMixOptions", "FunkinCrew");
   }
 
   function buildStage()
@@ -65,7 +62,7 @@ class HotelCastleStage extends Stage
     var radEyeBop = getNamedProp('radEyeBop');
     radEyeBop.blend = 0;
 
-    if (save.data.morphoMode == 'On' || save.data.morphoMode == 'No Stickers')
+    if (GooeyMixOptions.morphoMode == 'On' || GooeyMixOptions.morphoMode == 'No Stickers')
     {
       PlayState.instance.currentStage.getNamedProp('morphoBop').alpha = 0;
     }
@@ -74,7 +71,7 @@ class HotelCastleStage extends Stage
   public function onGameOver(event:ScriptEvent)
   {
     super.onGameOver(event);
-    if (save.data.gooeyShaders != false)
+    if (GooeyMixOptions.gooeyShaders)
     {
       getBoyfriend().shader = null;
     }
@@ -142,7 +139,7 @@ class HotelCastleStage extends Stage
     // Apply the shader automatically to each character as it gets added.
     super.addCharacter(character, charType);
     trace('Applied stage shader to ' + character.characterName);
-    if (save.data.gooeyShaders != false)
+    if (GooeyMixOptions.gooeyShaders)
     {
       var rim = new DropShadowShader();
       rim.setAdjustColor(0, 0, 0, 0);

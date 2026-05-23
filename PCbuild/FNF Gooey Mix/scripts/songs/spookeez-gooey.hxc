@@ -1,7 +1,6 @@
 import funkin.play.song.Song;
 import funkin.save.Save;
 import funkin.play.PlayState;
-import Date;
 
 class SpookeezGooeyMixSong extends Song
 {
@@ -17,17 +16,5 @@ class SpookeezGooeyMixSong extends Song
     if (currentVariation == 'gooey') return !Save.instance.hasBeatenSong(this.id, null, this.variation);
 
     return false;
-  }
-
-  function onCreate(event:ScriptEvent):Void
-  {
-    super.onCreate(event);
-
-    if (!FlxG.onMobile)
-    {
-      PlayState.instance.discordRPCAlbum = "https://raw.githubusercontent.com/LeGooeyy/GooeyMixDiscordIcons/refs/heads/main/assets/album-covers/"
-        + PlayState.instance.currentChart.album
-        + ".png?raw=true";
-    }
   }
 }

@@ -20,7 +20,6 @@ import flixel.text.FlxTextBorderStyle;
 import funkin.graphics.shaders.DropShadowShader;
 import funkin.graphics.shaders.AdjustColorShader;
 import funkin.util.TouchUtil;
-import Date;
 import flixel.util.FlxSave;
 
 class StressGooeyMixSong extends Song
@@ -37,9 +36,6 @@ class StressGooeyMixSong extends Song
     super('stress', {
       variation: 'gooey'
     });
-
-    save = new FlxSave();
-    save.bind("GooeyMixOptions", "FunkinCrew");
   }
 
   public override function onCountdownStart(event:CountdownScriptEvent):Void
@@ -151,7 +147,7 @@ class StressGooeyMixSong extends Song
     PlayState.instance.currentStage.add(tankBopRight);
     tankBopRight.zIndex = PlayState.instance.currentStage.getGirlfriend().zIndex - 3;
 
-    if (save.data.gooeyShaders != false)
+    if (GooeyMixOptions.gooeyShaders)
     {
       var rim = new DropShadowShader();
       rim.setAdjustColor(-46, -38, -25, -20);
@@ -192,7 +188,7 @@ class StressGooeyMixSong extends Song
           cutsceneMusic = FunkinSound.load(Paths.music("cutscene/cutscene", "week7"), true);
           cutsceneMusic.play(false);
 
-          if (save.data.gooeyShaders != false)
+          if (GooeyMixOptions.gooeyShaders)
           {
             PlayState.instance.currentStage.getBoyfriend().shader.threshold = 0.2;
           }
@@ -310,7 +306,7 @@ class StressGooeyMixSong extends Song
           PlayState.instance.tweenCameraToPosition(kamPos[0] + 375, kamPos[1] + 275, 1, FlxEase.expoOut);
           PlayState.instance.tweenCameraZoom(0.9, 0.5, true, FlxEase.expoOut);
           PlayState.instance.currentStage.getBoyfriend().playAnimation('GooeyCutHelmetOn', true, false);
-          if (save.data.gooeyShaders != false)
+          if (GooeyMixOptions.gooeyShaders)
           {
             PlayState.instance.currentStage.getBoyfriend().shader.threshold = 0.1;
           }
@@ -411,7 +407,7 @@ class StressGooeyMixSong extends Song
       PlayState.instance.currentStage.getBoyfriend().playAnimation('idle', true);
       subtitlesSound.stop();
       PlayState.instance.subtitles.offsets = [0, 139];
-      if (save.data.gooeyShaders != false)
+      if (GooeyMixOptions.gooeyShaders)
       {
         PlayState.instance.currentStage.getBoyfriend().shader.threshold = 0.1;
       }
@@ -449,17 +445,6 @@ class StressGooeyMixSong extends Song
     hasPlayedCutscene = false;
     cutsceneSkipped = false;
     canSkipCutscene = false;
-
-    if (!FlxG.onMobile)
-    {
-      PlayState.instance.discordRPCAlbum = "https://raw.githubusercontent.com/LeGooeyy/GooeyMixDiscordIcons/refs/heads/main/assets/album-covers/"
-        + PlayState.instance.currentChart.album
-        + ".png?raw=true";
-      PlayState.instance.discordRPCIcon = "https://raw.githubusercontent.com/LeGooeyy/GooeyMixDiscordIcons/refs/heads/main/assets/icons/"
-        + PlayState.instance.currentChart.characters.opponent
-        + ".png?raw=true?t="
-        + Date.now().getTime();
-    }
   }
 
   function onUpdate(event:UpdateScriptEvent):Void

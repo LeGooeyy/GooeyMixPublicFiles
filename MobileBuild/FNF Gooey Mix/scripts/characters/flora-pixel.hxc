@@ -18,8 +18,6 @@ class FloraPixelCharacter extends SparrowCharacter
   function new()
   {
     super('flora-pixel'); // gonna do the flora pixel recode once flora's pixel sprites are 100% finished
-    save = new FlxSave();
-    save.bind("GooeyMixOptions", "FunkinCrew");
   }
 
   var flora;
@@ -40,7 +38,7 @@ class FloraPixelCharacter extends SparrowCharacter
     flora.animation.curAnim.finish();
     PlayState.instance.currentStage.add(flora);
 
-    if (save.data.floraVisualizer != false)
+    if (GooeyMixOptions.floraVisualizer)
     {
       visualizerFlora = new FlxStrip();
       visualizerFlora.makeGraphic(1, 1, FLORA_VIS_COLOR);
@@ -58,7 +56,7 @@ class FloraPixelCharacter extends SparrowCharacter
   function onSongStart(scriptEvent)
   {
     super.onSongStart(scriptEvent);
-    if (save.data.floraVisualizer != false)
+    if (GooeyMixOptions.floraVisualizer)
     {
       analyzer = new SpectralAnalyzer(FlxG.sound.music._channel.__audioSource, FLORA_VIS_BAR_COUNT, 0.1, 40);
       analyzer.fftN = 256;
@@ -75,7 +73,7 @@ class FloraPixelCharacter extends SparrowCharacter
   function onSongRetry(scriptEvent)
   {
     super.onSongRetry(scriptEvent);
-    if (save.data.floraVisualizer != false) analyzer = null;
+    if (GooeyMixOptions.floraVisualizer) analyzer = null;
   }
 
   var vizTimeoutTime:Float = 0;
@@ -91,7 +89,7 @@ class FloraPixelCharacter extends SparrowCharacter
       flora.x = this.x + 325;
       flora.y = this.y + 260;
 
-      if (save.data.floraVisualizer != false)
+      if (GooeyMixOptions.floraVisualizer)
       {
         visualizerFlora.x = this.x + 342;
         visualizerFlora.y = this.y + 276;

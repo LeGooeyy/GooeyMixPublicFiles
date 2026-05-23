@@ -15,14 +15,9 @@ import flixel.util.FlxSave;
 
 class MorphoModeOption extends Module
 {
-  var save:FlxSave;
-
   public function new()
   {
     super('MorphoModeOption');
-
-    save = new FlxSave();
-    save.bind("GooeyMixOptions", "FunkinCrew");
   }
 
   var morphoDanceNumber:Int = 1;
@@ -40,7 +35,7 @@ class MorphoModeOption extends Module
 
   function morphoShader(isRimLight, brightness, hue, contrast, saturation, rimColor, rimAngle, rimThreshold, rimDistance)
   {
-    if (save.data.gooeyShaders != false)
+    if (GooeyMixOptions.gooeyShaders)
     {
       if (isRimLight == true)
       {
@@ -76,12 +71,12 @@ class MorphoModeOption extends Module
   {
     super.onSongLoaded();
 
-    if (save.data.morphoMode == 'On')
+    if (GooeyMixOptions.morphoMode == 'On')
     {
       PlayState.instance.currentChart.stickerPack = "bonus-morpho";
     }
 
-    if (save.data.morphoMode == 'On' || save.data.morphoMode == 'No Stickers')
+    if (GooeyMixOptions.morphoMode == 'On' || GooeyMixOptions.morphoMode == 'No Stickers')
     {
       if (PlayState.instance.isMinimalMode) return;
 
@@ -306,7 +301,7 @@ class MorphoModeOption extends Module
         case 'ashtonParkingLot':
           morphoOffset(1400, -30, 61, 0.8, 1, 1);
       } // offsets
-      if (save.data.gooeyShaders != false)
+      if (GooeyMixOptions.gooeyShaders)
       {
         if (PlayState.instance.currentStageId == "qtStage")
         {
@@ -329,7 +324,7 @@ class MorphoModeOption extends Module
     super.onStateChangeEnd(e);
 
     if (e.targetState == 'PolymodScriptClass<pointlesspins.Shop>'
-      && (save.data.morphoMode == 'On' || save.data.morphoMode == 'No Stickers'))
+      && (GooeyMixOptions.morphoMode == 'On' || GooeyMixOptions.morphoMode == 'No Stickers'))
     {
       if (morphoModeDancer != null)
       {
@@ -354,7 +349,7 @@ class MorphoModeOption extends Module
   function onBeatHit(event:SongTimeScriptEvent)
   {
     super.onBeatHit(event);
-    if (save.data.morphoMode == 'On' || save.data.morphoMode == 'No Stickers')
+    if (GooeyMixOptions.morphoMode == 'On' || GooeyMixOptions.morphoMode == 'No Stickers')
     {
       if (PlayState.instance != null && morphoModeDancer != null && !PlayState.instance.isChartingMode)
       {

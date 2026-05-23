@@ -33,9 +33,6 @@ class KamSpeakerStressCharacter extends MultiSparrowCharacter
     ignoreExclusionPref.push("shoot2");
     ignoreExclusionPref.push("shoot3");
     ignoreExclusionPref.push("shoot4");
-
-    save = new FlxSave();
-    save.bind("GooeyMixOptions", "FunkinCrew");
   }
 
   /**
@@ -68,7 +65,7 @@ class KamSpeakerStressCharacter extends MultiSparrowCharacter
       floraSpeaker = FunkinSprite.createTextureAtlas(0, 0, 'characters/flora/FloraSpeaker', 'shared');
       floraSpeaker.anim.addByFrameLabel('idle', 'FloraSpeakerBop', 24, false);
 
-      floraSpeakerScreen = new FloraSpeakerScreen(save.data.floraVisualizer != false);
+      floraSpeakerScreen = new FloraSpeakerScreen(GooeyMixOptions.floraVisualizer);
 
       floraSpeakerScreen.animation.onFinish.add(function(animName:String)
       {
@@ -131,7 +128,7 @@ class KamSpeakerStressCharacter extends MultiSparrowCharacter
 
   function synchronizeShader():Void
   {
-    if (save.data.gooeyShaders != false)
+    if (GooeyMixOptions.gooeyShaders)
     {
       if (currentShader == this.shader) return;
 

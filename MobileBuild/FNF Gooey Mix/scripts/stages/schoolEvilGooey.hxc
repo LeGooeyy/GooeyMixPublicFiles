@@ -13,9 +13,6 @@ class SchoolEvilGooeyStage extends Stage
   function new()
   {
     super('schoolEvilGooey');
-
-    save = new FlxSave();
-    save.bind("GooeyMixOptions", "FunkinCrew");
   }
 
   var wiggleBack:FlxRuntimeShader = null;
@@ -26,7 +23,7 @@ class SchoolEvilGooeyStage extends Stage
   public function onGameOver(event:ScriptEvent)
   {
     super.onGameOver(event);
-    if (save.data.gooeyShaders != false)
+    if (GooeyMixOptions.gooeyShaders)
     {
       getBoyfriend().shader = null;
     }
@@ -41,7 +38,7 @@ class SchoolEvilGooeyStage extends Stage
     wiggleSpike = new WiggleEffectRuntime(2, 4, 0.01, WiggleEffectType.DREAMY);
     wiggleGround = new WiggleEffectRuntime(2, 4, 0.007, WiggleEffectType.DREAMY);
 
-    if (save.data.gooeyShaders != false)
+    if (GooeyMixOptions.gooeyShaders)
     {
       getNamedProp('school').shader = wiggleSchool;
       getNamedProp('evilstreet').shader = wiggleGround;
@@ -76,7 +73,7 @@ class SchoolEvilGooeyStage extends Stage
   {
     // Apply the shader automatically to each character as it gets added.
     super.addCharacter(character, charType);
-    if (save.data.gooeyShaders != false)
+    if (GooeyMixOptions.gooeyShaders)
     {
       trace('Applied stage shader to ' + character.characterName);
 

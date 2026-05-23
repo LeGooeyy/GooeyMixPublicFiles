@@ -5,7 +5,6 @@ import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxTimer;
 import funkin.audio.FunkinSound;
-import Date;
 import StringTools;
 import funkin.util.ReflectUtil;
 import funkin.Conductor;
@@ -42,22 +41,6 @@ class BlissfulGooeyMixSong extends Song
         onCutsceneBeatHitFake();
       }
     });
-  }
-
-  function onCreate(event:ScriptEvent):Void
-  {
-    super.onCreate(event);
-
-    if (!FlxG.onMobile)
-    {
-      PlayState.instance.discordRPCAlbum = "https://raw.githubusercontent.com/LeGooeyy/GooeyMixDiscordIcons/refs/heads/main/assets/album-covers/"
-        + PlayState.instance.currentChart.album
-        + ".png?raw=true";
-      PlayState.instance.discordRPCIcon = "https://raw.githubusercontent.com/LeGooeyy/GooeyMixDiscordIcons/refs/heads/main/assets/icons/"
-        + PlayState.instance.currentChart.characters.opponent
-        + ".png?raw=true?t="
-        + Date.now().getTime();
-    }
   }
 
   var gooeyCutSequenceData:Array<SequenceData>;

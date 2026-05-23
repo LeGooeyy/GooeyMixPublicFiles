@@ -14,9 +14,6 @@ class LimoRideErectGooeyStage extends Stage
   function new()
   {
     super('limoRideErectGooey');
-
-    save = new FlxSave();
-    save.bind("GooeyMixOptions", "FunkinCrew");
   }
 
   var colorShader:AdjustColorShader;
@@ -33,7 +30,7 @@ class LimoRideErectGooeyStage extends Stage
     super.buildStage();
 
     // Apply sky shader.
-    if (save.data.gooeyShaders != false)
+    if (GooeyMixOptions.gooeyShaders)
     {
       var skyOverlay:OverlayBlend = new OverlayBlend();
       var sunOverlay:FlxSprite = new FlxSprite().loadGraphic(Paths.image('limo/limoOverlay'));
@@ -246,7 +243,7 @@ class LimoRideErectGooeyStage extends Stage
   override function onCreate(event:ScriptEvent)
   {
     super.onCreate(event);
-    if (save.data.gooeyShaders != false)
+    if (GooeyMixOptions.gooeyShaders)
     {
       getNamedProp('limoDancer1').shader = colorShader;
       getNamedProp('limoDancer2').shader = colorShader;
@@ -269,7 +266,7 @@ class LimoRideErectGooeyStage extends Stage
   {
     // Apply the shader automatically to each character as it gets added.
     super.addCharacter(character, charType);
-    if (save.data.gooeyShaders != false)
+    if (GooeyMixOptions.gooeyShaders)
     {
       trace('Applied stage shader to ' + character.characterName);
       character.shader = colorShader;

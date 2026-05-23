@@ -12,16 +12,13 @@ class DrippyPopErectGooeyStage extends Stage
   function new()
   {
     super('drippypopErectGooey');
-
-    save = new FlxSave();
-    save.bind("GooeyMixOptions", "FunkinCrew");
   }
 
   function buildStage()
   {
     super.buildStage();
 
-    if (save.data.gooeyShaders != false)
+    if (GooeyMixOptions.gooeyShaders)
     {
       tvShader = new FlxRuntimeShader(Assets.getText(Paths.frag("ferzyShader")));
       PlayState.instance.camGame.filters = [new ShaderFilter(tvShader)];

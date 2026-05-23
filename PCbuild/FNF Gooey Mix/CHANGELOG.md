@@ -3,7 +3,22 @@ All notable changes will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [4.3.0] - 2026-5-17
+
+## [4.4.1] - 2026-5-23
+Eevee Mix Collab Hotfix
+
+### Changed
+
+- Changed how discord album is coded to not be in every song script
+- Changed save data checks are coded in
+
+### Fixed
+
+- Fixed errors with save data option checks
+- Fixed a layering mistake for the candle light on the Hotel Castle Stage
+
+
+## [4.4.0] - 2026-5-17
 Gooey Mix X Eevee Mix Collab
 
 ### Added

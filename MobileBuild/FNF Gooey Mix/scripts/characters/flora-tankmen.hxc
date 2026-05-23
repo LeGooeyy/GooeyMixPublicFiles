@@ -10,8 +10,6 @@ class FloraTankmenCharacter extends FloraBaseCharacter
   public function new()
   {
     super('flora-tankmen');
-    save = new FlxSave();
-    save.bind("GooeyMixOptions", "FunkinCrew");
   }
 
   var tankBopLeft;
@@ -71,7 +69,7 @@ class FloraTankmenCharacter extends FloraBaseCharacter
   function synchronizeShader():Void
   {
     super.synchronizeShader();
-    if (save.data.gooeyShaders != false)
+    if (GooeyMixOptions.gooeyShaders)
     {
       if (tankBopRight.shader == floraSpeaker.shader) return;
       if (floraSpeaker.shader != null)

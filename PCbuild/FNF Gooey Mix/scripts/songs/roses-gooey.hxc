@@ -10,7 +10,6 @@ import flixel.tweens.FlxEase;
 import funkin.ui.options.PreferencesMenu;
 import flixel.util.FlxTimer;
 import flixel.util.FlxTimerManager;
-import Date;
 
 class RosesGooeySong extends Song
 {
@@ -86,14 +85,6 @@ class RosesGooeySong extends Song
   function onCreate(event:ScriptEvent):Void
   {
     super.onCreate(event);
-
-    if (!FlxG.onMobile)
-    {
-      PlayState.instance.discordRPCAlbum = "https://raw.githubusercontent.com/LeGooeyy/GooeyMixDiscordIcons/refs/heads/main/assets/album-covers/"
-        + PlayState.instance.currentChart.album
-        + ".png?raw=true";
-    }
-
     hasPlayedCutscene = false;
   }
 

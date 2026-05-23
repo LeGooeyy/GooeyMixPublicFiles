@@ -21,14 +21,11 @@ import funkin.ui.title.TitleState;
 class GooeyMenuOption extends Module
 {
   var addedTitle:Bool = false;
-  var save:FlxSave;
   var optionNumber:Int = 0;
 
   public function new()
   {
     super('GooeyMenuOption');
-    save = new FlxSave();
-    save.bind("GooeyMixOptions", "FunkinCrew");
   }
 
   var gooeySongs:Array<String> = ['gooey', 'slimeball', 'starcraft'];
@@ -95,8 +92,8 @@ class GooeyMenuOption extends Module
     {
       FlxG.mouse.visible = false;
 
-      if (save.data.GooeyMixMenu == 'Always On'
-        || (save.data.GooeyMixMenu == 'Gooey Selected' && save.data.rememberedStartupCharacter == "gooey"))
+      if (GooeyMixOptions.gooeyMixMenu == 'Always On'
+        || (GooeyMixOptions.gooeyMixMenu == 'Gooey Selected' && GooeyMixOptions.rememberedStartupCharacter == "gooey"))
       {
         if (!changedIntroText)
         {
@@ -127,8 +124,8 @@ class GooeyMenuOption extends Module
     {
       if (FlxG.state.magenta != null)
       {
-        if (save.data.GooeyMixMenu == 'Always On'
-          || (save.data.GooeyMixMenu == 'Gooey Selected' && save.data.rememberedStartupCharacter == "gooey"))
+        if (GooeyMixOptions.gooeyMixMenu == 'Always On'
+          || (GooeyMixOptions.gooeyMixMenu == 'Gooey Selected' && GooeyMixOptions.rememberedStartupCharacter == "gooey"))
         {
           if (FlxG.state.magenta.graphic.key == 'assets/images/menuBGMagenta.png')
           {
@@ -153,8 +150,8 @@ class GooeyMenuOption extends Module
     {
       if (FlxG.state.members[0] != null)
       {
-        if (save.data.GooeyMixMenu == 'Always On'
-          || (save.data.GooeyMixMenu == 'Gooey Selected' && save.data.rememberedStartupCharacter == "gooey"))
+        if (GooeyMixOptions.gooeyMixMenu == 'Always On'
+          || (GooeyMixOptions.gooeyMixMenu == 'Gooey Selected' && GooeyMixOptions.rememberedStartupCharacter == "gooey"))
         {
           if (FlxG.state?.members[0]?.graphic.key == 'assets/images/menuBG.png') FlxG.state.members[0].loadGraphic(Paths.image('menuBGgooey'));
         }
@@ -171,8 +168,8 @@ class GooeyMenuOption extends Module
       {
         if (FlxG.state.subState.members[3] != null)
         {
-          if (save.data.GooeyMixMenu == 'Always On'
-            || (save.data.GooeyMixMenu == 'Gooey Selected' && save.data.rememberedStartupCharacter == "gooey"))
+          if (GooeyMixOptions.gooeyMixMenu == 'Always On'
+            || (GooeyMixOptions.gooeyMixMenu == 'Gooey Selected' && GooeyMixOptions.rememberedStartupCharacter == "gooey"))
           {
             if (FlxG.state.subState.members[3].graphic.assetPath == 'assets/images/menuDesat.png')
             {

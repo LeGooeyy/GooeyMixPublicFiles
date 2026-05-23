@@ -58,8 +58,6 @@ class FloraBaseCharacter extends MultiAnimateAtlasCharacter
   public function new(id:String)
   {
     super(id == 'UNKNOWN' ? baseCharId : id);
-    save = new FlxSave();
-    save.bind("GooeyMixOptions", "FunkinCrew");
   }
 
   override function onAdd()
@@ -89,7 +87,7 @@ class FloraBaseCharacter extends MultiAnimateAtlasCharacter
       floraSpeaker = FunkinSprite.createTextureAtlas(0, 0, 'characters/flora/FloraSpeaker', 'shared');
       floraSpeaker.anim.addByFrameLabel('idle', 'FloraSpeakerBop', 24, false);
 
-      floraSpeakerScreen = new FloraSpeakerScreen(save.data.floraVisualizer != false);
+      floraSpeakerScreen = new FloraSpeakerScreen(GooeyMixOptions.floraVisualizer);
 
       floraSpeakerScreen.animation.onFinish.add(function(animName:String)
       {
@@ -125,7 +123,7 @@ class FloraBaseCharacter extends MultiAnimateAtlasCharacter
 
   function synchronizeShader():Void
   {
-    if (save.data.gooeyShaders != false)
+    if (GooeyMixOptions.gooeyShaders)
     {
       if (currentShader == this.shader) return;
 

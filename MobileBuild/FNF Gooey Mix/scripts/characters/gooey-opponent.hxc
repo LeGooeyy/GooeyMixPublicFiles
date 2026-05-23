@@ -8,9 +8,6 @@ class GooeyOpponentCharacter extends MultiAnimateAtlasCharacter
   function new()
   {
     super('gooey-opponent');
-
-    save = new FlxSave();
-    save.bind("GooeyMixOptions", "FunkinCrew");
   }
 
   function onNoteHit(event:HitNoteScriptEvent)
@@ -56,7 +53,7 @@ class GooeyOpponentCharacter extends MultiAnimateAtlasCharacter
   {
     if (rimChecked == true) return;
     rimChecked = true;
-    if (save.data.gooeyShaders != true) return;
+    if (!GooeyMixOptions.gooeyShaders) return;
     if (!(this.shader is DropShadowShader)) return;
 
     if (this.shader.threshold <= 0) return;

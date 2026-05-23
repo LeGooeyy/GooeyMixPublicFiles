@@ -11,8 +11,6 @@ import funkin.modding.ModStore;
 
 class DefaultCharacterOption extends Module
 {
-  var playableCharacters:Map<String, String> = ["Boyfriend" => "bf"];
-  var madeCharacterList:Bool = false;
   var openedFreeplay(get, set):Bool;
 
   function get_openedFreeplay()
@@ -27,20 +25,14 @@ class DefaultCharacterOption extends Module
     return value;
   }
 
-  var setRememberedCharacter:Bool = false; // has set the remembered character to the default character on startup
-  var save:FlxSave;
-
   public function new()
   {
     super('DefaultCharacterOption');
-    save = new FlxSave();
-    save.bind("GooeyMixOptions", "FunkinCrew");
 
-    if (save.data.defaultStartupCharacter != "remember" && !openedFreeplay)
+    if (GooeyMixOptions.defaultStartupCharacter != null && !openedFreeplay)
     {
-      FreeplayState.rememberedCharacterId = save.data.defaultStartupCharacter;
-      save.data.rememberedStartupCharacter = save.data.defaultStartupCharacter;
-      save.flush();
+      FreeplayState.rememberedCharacterId = GooeyMixOptions.defaultStartupCharacter;
+      GooeyMixOptions.rememberedStartupCharacter = GooeyMixOptions.defaultStartupCharacter;
     }
   }
 
@@ -50,16 +42,14 @@ class DefaultCharacterOption extends Module
     {
       if (!openedFreeplay)
       {
-        FreeplayState.rememberedCharacterId = save.data.rememberedStartupCharacter;
+        FreeplayState.rememberedCharacterId = GooeyMixOptions.rememberedStartupCharacter;
 
-        if (save.data.defaultStartupCharacter != "remember")
+        if (GooeyMixOptions.defaultStartupCharacter != null)
         {
-          FreeplayState.rememberedCharacterId = save.data.defaultStartupCharacter;
-          save.data.rememberedStartupCharacter = save.data.defaultStartupCharacter;
-          save.flush();
+          FreeplayState.rememberedCharacterId = GooeyMixOptions.defaultStartupCharacter;
+          GooeyMixOptions.rememberedStartupCharacter = GooeyMixOptions.defaultStartupCharacter;
         }
       }
-      if (!madeCharacterList) makeOptionsList();
     }
   }
 
@@ -68,21 +58,7 @@ class DefaultCharacterOption extends Module
     if (event.targetState is FreeplayState)
     {
       openedFreeplay = true;
-      save.data.rememberedStartupCharacter = FreeplayState.rememberedCharacterId;
-      save.flush();
-      madeCharacterList = false;
+      GooeyMixOptions.rememberedStartupCharacter = FreeplayState.rememberedCharacterId;
     }
-  }
-
-  function makeOptionsList()
-  {
-    playableCharacters.set("Remember Previous", "remember");
-
-    for (character in PlayerRegistry.instance.listEntryIds())
-    {
-      playableCharacters.set(PlayerRegistry.instance.fetchEntry(character).getName(), character);
-    }
-
-    madeCharacterList = true;
   }
 }
