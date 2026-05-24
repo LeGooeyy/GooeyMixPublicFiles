@@ -5,14 +5,14 @@
   "visible": true,
   "props": [
     {
-      "assetPath": "storymenu/props/gooey-vs",
-      "scale": 0.6,
-      "offsets": [20, 10],
+      "assetPath": "storymenu/props/gooey",
+      "scale": 1,
+      "offsets": [112, 150],
       "animations": [
         {
           "name": "idle",
           "prefix": "idle",
-          "frameRate": 12
+          "frameRate": 24
         }
       ]
     },

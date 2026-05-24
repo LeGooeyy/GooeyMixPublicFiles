@@ -4,13 +4,33 @@ All notable changes will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 
+## [4.4.2] - 2026-5-24
+Eevee Mix Collab Hotfix 2
+
+### Added
+
+- Added player Gooey and Flora story mode props to the files
+
+### Changed
+
+- Adjusted the texture of Gooey's name tag and icon
+
+### Fixed
+
+- Fixed Gooey's story menu prop to be his current design
+
+### Removed
+
+- Removed some unused files
+
+
 ## [4.4.1] - 2026-5-23
 Eevee Mix Collab Hotfix
 
 ### Changed
 
 - Changed how discord album is coded to not be in every song script
-- Changed save data checks are coded in
+- Changed how save data checks are coded in
 
 ### Fixed
 

@@ -18,7 +18,7 @@ class GooeyMainMenu extends Module
     {
       FlxG.mouse.visible = false;
 
-      FlxG.state.rightWatermarkText.text = "GOOEY MIX v4.4.1";
+      FlxG.state.rightWatermarkText.text = "GOOEY MIX v4.4.2";
     }
   }
 }
