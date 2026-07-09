@@ -113,11 +113,13 @@ class FloraPixelCharacter extends SparrowCharacter
       synchronizeShader();
     }
 
-    vizTimeoutTime -= event.elapsed;
-    while (vizTimeoutTime < 0)
-    {
-      updateViz();
-      vizTimeoutTime += 1 / 24;
+    if (GooeyMixOptions.floraVisualizer){
+      vizTimeoutTime -= event.elapsed;
+      while (vizTimeoutTime < 0)
+      {
+       updateViz();
+        vizTimeoutTime += 1 / 24;
+      }
     }
   }
 

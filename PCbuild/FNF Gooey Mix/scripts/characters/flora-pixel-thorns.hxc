@@ -102,11 +102,14 @@ class FloraPixelThornsCharacter extends SparrowCharacter
       synchronizeShader();
     }
 
-    vizTimeoutTime -= event.elapsed;
-    while (vizTimeoutTime < 0)
-    {
-      updateViz();
-      vizTimeoutTime += 1 / 24;
+
+    if (GooeyMixOptions.floraVisualizer){
+      vizTimeoutTime -= event.elapsed;
+      while (vizTimeoutTime < 0)
+      {
+       updateViz();
+        vizTimeoutTime += 1 / 24;
+      }
     }
   }
 
@@ -206,13 +209,13 @@ class FloraPixelThornsCharacter extends SparrowCharacter
     if (name == "danceLeft")
     {
       FLORA_VIS_COLOR = 0xFF82FFFF;
-      visualizerFlora.color = FLORA_VIS_COLOR;
+      if (GooeyMixOptions.floraVisualizer) visualizerFlora.color = FLORA_VIS_COLOR;
       floraSpeaker?.animation.play('blue', true);
     }
     else if (name == "danceRight")
     {
       FLORA_VIS_COLOR = 0xFFFF4973;
-      visualizerFlora.color = FLORA_VIS_COLOR;
+      if (GooeyMixOptions.floraVisualizer) visualizerFlora.color = FLORA_VIS_COLOR;
       floraSpeaker?.animation.play('red', true);
     }
   }
