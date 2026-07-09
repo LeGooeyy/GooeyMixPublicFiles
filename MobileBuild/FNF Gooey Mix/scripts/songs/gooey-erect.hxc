@@ -1,0 +1,18 @@
+import funkin.play.song.Song;
+import funkin.save.Save;
+import funkin.play.PlayState;
+
+class GooeyErectSong extends Song
+{
+  function new()
+  {
+    super('gooey', {
+      variation: 'erect'
+    });
+  }
+
+  public override function isSongNew(currentDifficulty:String, currentVariation:String):Bool
+  {
+    return !Save.instance.hasBeatenSong(this.id, ['erect', 'nightmare']);
+  }
+}

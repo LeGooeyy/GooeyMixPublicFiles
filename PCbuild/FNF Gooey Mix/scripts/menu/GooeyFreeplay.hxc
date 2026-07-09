@@ -1,0 +1,67 @@
+import funkin.modding.module.Module;
+import funkin.ui.freeplay.FreeplayState;
+import funkin.data.story.level.LevelRegistry;
+import StringTools;
+
+class GooeyFreeplay extends Module
+{
+  public function new()
+  {
+    super('GooeyFreeplay');
+  }
+
+  override function onUpdate(event:UpdateScriptEvent)
+  {
+    super.onUpdate(event);
+
+    if (FlxG.state.subState == null || !(FlxG.state.subState is FreeplayState)) return;
+
+    if (FlxG.state.subState.instSelectMenu != null)
+    {
+      if (StringTools.startsWith(FlxG.state.subState.instSelectMenu.currentInstrumental.text,
+        "Truegooey")) FlxG.state.subState.instSelectMenu.currentInstrumental.text = "Gooey";
+    }
+  }
+
+  override function onSubStateOpenEnd(event)
+  {
+    super.onSubStateOpenEnd(event);
+    var state = event.targetState;
+    if (!Std.isOfType(event.targetState, FreeplayState)) return;
+    insertAfterWeek('weekend1', ['week60037']);
+    insertAfterWeek('weekend1', ['extraGooeySongs']);
+    for (dot in event.targetState.difficultyDots.members)
+    {
+      // switch normalColors to nightColors if difficulty is an erect variation
+      // deselected, selected, deselected pulse, selected pulse
+      if (dot.difficultyId == 'extra') dot.normalColors = [0xFF1A525E, 0xFF6EFCC1, 0xFF375252, 0xFF143E47];
+    }
+  }
+
+  function insertAfterWeek(weekName:String, songs:Array<String>)
+  {
+    var levels = [];
+    var hasSeenWeek = false;
+    for (song in FlxG.state.subState.songs.copy())
+    {
+      if (songs.contains(song?.levelId ?? null))
+      {
+        FlxG.state.subState.songs.remove(song);
+        levels.push(song);
+      }
+    }
+    for (song in FlxG.state.subState.songs)
+    {
+      if ((song?.levelId ?? null) == weekName && !hasSeenWeek) hasSeenWeek = true;
+      if (hasSeenWeek && (song?.levelId ?? null) != weekName)
+      {
+        for (item in levels)
+        {
+          FlxG.state.subState.songs.insert(FlxG.state.subState.songs.indexOf(song), item);
+        }
+        break;
+      }
+    }
+    FlxG.state.subState.generateSongList(null, true, false);
+  }
+}

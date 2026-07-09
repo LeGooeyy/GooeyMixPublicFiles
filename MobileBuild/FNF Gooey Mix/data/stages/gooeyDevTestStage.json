@@ -1,0 +1,27 @@
+{
+  "version": "1.0.0",
+  "name": "Gooey Dev Test Stage",
+  "cameraZoom": 0.9,
+  "props": [
+    {
+      "name": "void",
+      "zIndex": 1,
+      "assetPath": "#D3D3D3",
+      "position": [-1500, -1000],
+      "scale": [6000, 4000]
+    },
+    {
+      "name": "floor",
+      "zIndex": 2,
+      "assetPath": "#A7A7A7",
+      "position": [-1500, 900],
+      "scale": [6000, 4000]
+    }
+  ],
+  "characters": {
+    "bf": { "zIndex": 60, "position": [1570, 1000], "cameraOffsets": [0, 0] },
+    "gf": { "zIndex": 80, "position": [1570, 1000], "cameraOffsets": [0, 0] },
+    "dad": { "zIndex": 70, "position": [1570, 1000], "cameraOffsets": [0, 0] }
+  },
+  "directory": ""
+}
