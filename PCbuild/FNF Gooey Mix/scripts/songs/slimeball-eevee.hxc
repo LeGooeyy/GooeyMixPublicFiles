@@ -2,11 +2,11 @@ import funkin.play.song.Song;
 import funkin.save.Save;
 import funkin.play.PlayState;
 
-class GooeyEeveeMixSong extends Song
+class SlimeballEeveeMixSong extends Song
 {
   function new()
   {
-    super('gooey', {
+    super('slimeball', {
       variation: 'eevee'
     });
   }

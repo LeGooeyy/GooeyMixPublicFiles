@@ -20,7 +20,7 @@
       "opponentVocals": ["qt"],
       "altInstrumentals": ["pico", ""]
     },
-    "stage": "qtStagePico",
+    "stage": "qtStageCityErect",
     "noteStyle": "funkin",
     "ratings": { "easy": 4, "normal": 6, "hard": 7 },
     "album": "gooeyBlissful",

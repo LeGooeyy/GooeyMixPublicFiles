@@ -13,12 +13,6 @@ class BlazinGooeyMixSong extends Song
     this.hasHidden = false;
   }
 
-  public override function isSongNew(currentDifficulty:String, currentVariation:String):Bool
-  {
-    if (currentVariation == 'gooey') return !Save.instance.hasBeatenSong(this.id, null, this.variation);
-    return false;
-  }
-
   function onCreate(event:ScriptEvent):Void
   {
     super.onCreate(event);

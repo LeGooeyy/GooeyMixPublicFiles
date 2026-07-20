@@ -35,7 +35,7 @@
     },
     {
       "name": "swagsalt",
-      "role": "Artist, Composer",
+      "role": "Artist, Composer, Charter",
       "url": "https://www.youtube.com/@swagsalt"
     },
     {
@@ -129,6 +129,11 @@
       "url": "https://x.com/TechnikTil"
     },
     {
+      "name": "Rbz_Fzo",
+      "role": "Charter",
+      "url": "https://www.youtube.com/@FZO_RBZ"
+    },
+    {
       "name": "Chipallino",
       "role": "Guest Album Artist",
       "url": "https://www.youtube.com/@chipallinooo"
@@ -145,6 +150,6 @@
     }
   ],
   "api_version": "0.8.0",
-  "mod_version": "5.0.0",
+  "mod_version": "5.1.0",
   "license": "Apache-2.0"
 }

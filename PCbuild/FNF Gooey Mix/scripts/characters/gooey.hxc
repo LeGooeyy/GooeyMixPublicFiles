@@ -17,6 +17,7 @@ import flixel.effects.FlxFlicker;
 import flixel.util.FlxSave;
 import funkin.FunkinMemory;
 import funkin.util.HapticUtil;
+import funkin.save.Save;
 
 class GooeyBaseCharacter extends MultiAnimateAtlasCharacter
 {
@@ -261,7 +262,6 @@ class GooeyBaseCharacter extends MultiAnimateAtlasCharacter
     rimChecked = true;
     if (!GooeyMixOptions.gooeyShaders) return;
     if (!(this.shader is DropShadowShader)) return;
-
     if (this.shader.threshold <= 0) return;
     this.shader.threshold = 0.2;
     trace();
@@ -298,15 +298,22 @@ class GooeyBaseCharacter extends MultiAnimateAtlasCharacter
     }
   }
 
+  public var randomInt:Int;
+
   override function getDeathQuote():Null<String>
   {
     if (Paths.currentLevel == "week7") return Paths.sound('jeffGameover-gooey/jeffGameover-' + FlxG.random.int(1, 8));
-    if (Paths.currentLevel == "QTWeek") Paths.sound('qtgameover/' + FlxG.save.data.qtRewiredLang + '/bf/qtGameover-' + FlxG.random.int(1, 8));
+    else if (PlayState.instance?.currentStage?.getDad()?.characterId == "qt") {
+      randomInt = FlxG.random.int(1, 7);
+      gameoverSound = Paths.sound('qtgameover/' + Save.instance.modOptions.get(QtOptionsCategory.SAVE_KEY_LANG_QT) + '/bf/qtGameover-' + randomInt);
+      return gameoverSound;
+    }  
   }
 
   override function onSongRetry(event:ScriptEvent):Void
   {
     super.onSongRetry(event);
+    rimChecked = false;
     GameOverSubState.musicSuffix = '-gooey';
     GameOverSubState.blueBallSuffix = '-gooey';
     PauseSubState.musicSuffix = '-gooey';

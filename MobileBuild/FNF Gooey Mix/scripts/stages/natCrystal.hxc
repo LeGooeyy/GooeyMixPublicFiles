@@ -155,6 +155,7 @@ class NatCrystalStage extends Stage
   var songIntro:FunkinSound;
   var fakeOpponent:FunkinSprite;
   var fakePlayer:FunkinSprite;
+  var gorse:FunkinSprite;
 
   /**
    * Replay the cutscene after leaving the song.
@@ -658,6 +659,7 @@ class NatCrystalStage extends Stage
       PlayState.instance.currentStage.getBoyfriend().visible = true;
       fakeOpponent.destroy();
       if (fakePlayer != null) fakePlayer.destroy();
+      if (gorse != null) gorse.destroy();
 
       var floraPos:Array<Float> = [
         PlayState.instance.currentStage.getGirlfriend().cameraFocusPoint.x,

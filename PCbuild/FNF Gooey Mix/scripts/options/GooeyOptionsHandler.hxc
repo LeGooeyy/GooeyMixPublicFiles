@@ -78,6 +78,7 @@ class GooeyPreferences extends Module
       {
         GooeyMixOptions.nightcoreMode = value;
       }, GooeyMixOptions.nightcoreMode);
+      prefs.itemDesc.text = prefs.preferenceDesc[prefs.items.selectedIndex];
     }
   }
 

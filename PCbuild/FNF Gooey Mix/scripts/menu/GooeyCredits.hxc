@@ -129,7 +129,9 @@ class GooeyCredits extends Module
       header: "Eevee Mix",
       body: [
         {
-          line: "aUseriGuess (Gooey (Eevee Mix))",
+          line: "aUseriGuess (Gooey/Slimeball (Eevee Mix))",
+        },{
+          line: "SkyManta (Slimeball (Eevee Mix))",
         },
         {
           line: "All Eevee Mix assets belong to aUseriGuess",
@@ -149,6 +151,12 @@ class GooeyCredits extends Module
       body: [
         {
           line: "LeGooey",
+        },
+        {
+          line: "Rbz_Fzo",
+        },
+        {
+          line: "swagsalt",
         }
       ]
     });

@@ -9,7 +9,7 @@
   "timeChanges": [{ "t": 0, "bpm": 160, "n": 4, "d": 4, "bt": [4, 4, 4, 4] }],
   "looped": false,
   "playData": {
-    "songVariations": ["erect", "gooey"],
+    "songVariations": ["erect", "gooey", "eevee"],
     "difficulties": ["easy", "normal", "hard"],
     "characters": {
       "player": "bf",
@@ -18,7 +18,7 @@
       "instrumental": "",
       "playerVocals": ["bf"],
       "opponentVocals": ["gooey"],
-      "altInstrumentals": ["gooey"]
+      "altInstrumentals": ["gooey", "eevee"]
     },
     "stage": "hotelCastle",
     "noteStyle": "funkin",

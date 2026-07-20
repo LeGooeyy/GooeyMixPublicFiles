@@ -3,6 +3,31 @@ All notable changes will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+
+## [5.1.0] - 2026-7-19
+
+Gooey Mix X Eevee Mix Collab (Part 2)
+
+### Added
+
+- Added Slimeball (Eevee Mix)
+- Added new music to the Blissful (Gooey Mix) intro cutscene
+
+### Changed
+
+- Changed Blissful (Gooey Mix) to be on the QT Erect stage
+- Redrew some stickers and Week 5 cameos
+- Changed Gooey's waving hand during the Blissful (Gooey Mix) intro cutscene
+
+### Fixed
+
+- Fixed Blazin' Gooey's lower front punch playing the wrong animation
+- Fixed errors when playing with the latest version of QT: Rewired
+- Fixed a bug with the rim light shader after a game over when playing as Gooey
+- Fixed some missing credits
+- Fixed a charting error in Blissful (Gooey Mix)
+
+
 ## [5.0.0] - 2026-7-09
 Pitstop 2 [Song pack 2]
 

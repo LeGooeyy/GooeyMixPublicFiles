@@ -17,7 +17,7 @@
       "instrumental": "gooey",
       "playerVocals": ["gooey"],
       "opponentVocals": ["gooey-opponent"],
-      "altInstrumentals": [""]
+      "altInstrumentals": ["", "eevee"]
     },
     "stage": "natCrystal",
     "noteStyle": "funkin",

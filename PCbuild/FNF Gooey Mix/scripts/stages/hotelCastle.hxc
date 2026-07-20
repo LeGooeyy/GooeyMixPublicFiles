@@ -159,6 +159,11 @@ class HotelCastleStage extends Stage
       PlayState.instance.currentStage.getNamedProp('radBop').danceEvery = 4;
       PlayState.instance.currentStage.getNamedProp('radEyeBop').danceEvery = 4;
     }
+    else if (PlayState.instance.currentSong.id.toLowerCase() == "comedian-rad-mix")
+    {
+      PlayState.instance.currentStage.getNamedProp('noodleBop').x = 600;
+      PlayState.instance.currentStage.getNamedProp('noodleBop').y = 380;
+    }
   }
 
   function onStepHit(event:SongTimeScriptEvent):Void

@@ -43,7 +43,6 @@ class GooeyOpponentCharacter extends MultiAnimateAtlasCharacter
   function onUpdate(event:UpdateScriptEvent)
   {
     super.onUpdate(event);
-
     synchronizeShader();
   }
 
@@ -55,9 +54,14 @@ class GooeyOpponentCharacter extends MultiAnimateAtlasCharacter
     rimChecked = true;
     if (!GooeyMixOptions.gooeyShaders) return;
     if (!(this.shader is DropShadowShader)) return;
-
     if (this.shader.threshold <= 0) return;
     this.shader.threshold = 0.2;
     trace();
+  }
+
+  override function onSongRetry(event:ScriptEvent):Void
+  {
+    super.onSongRetry(event);
+    rimChecked = false;
   }
 }
