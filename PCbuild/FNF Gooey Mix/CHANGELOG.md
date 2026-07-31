@@ -3,6 +3,20 @@ All notable changes will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [5.1.1] - 2026-7-30
+
+Pitstop 2 Hotfix 1
+
+### Changed
+
+- Redrew Vee's icon
+- Adjusted the Thorns (Gooey Mix) dialogue
+
+### Fixed
+
+- Fixed small charting errors in Starcraft and Stress (Gooey Mix)
+- [MOBILE] Fixed a bug with the intro cutscene on mobile on Blissful (Gooey Mix)
+
 
 ## [5.1.0] - 2026-7-19
 

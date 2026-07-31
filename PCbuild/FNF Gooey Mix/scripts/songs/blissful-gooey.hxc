@@ -55,7 +55,7 @@ class BlissfulGooeyMixSong extends Song
     }
 
     #if mobile
-    var mobilePausePressed = TouchUtil.overlapsComplex(PlayState.instance.pauseButton) && TouchUtil.justPressed;
+    var isMobilePauseButtonPressed = TouchUtil.overlapsComplex(PlayState.instance.pauseButton) && TouchUtil.justPressed;
     #end
 
     if ((PlayState.instance.controls.CUTSCENE_ADVANCE #if mobile || isMobilePauseButtonPressed #end) && !cutsceneSkipped)
