@@ -5,5 +5,6 @@
   "albumArtAsset": "freeplay/albumRoll/gooeydetour1",
   "albumTitleAsset": "freeplay/albumRoll/gooeydetour1-text",
   "albumTitleOffsets": [-11, 0],
-  "albumOSTName": "GOOEY/QT:R OST"
+  "albumOSTName": "GOOEY/QT:R OST",
+  "discordRPCImage": "https://raw.githubusercontent.com/FNF-Gooey-Mix/GooeyMixDiscordIcons/refs/heads/main/assets/album-covers/gooeydetour1.png"
 }

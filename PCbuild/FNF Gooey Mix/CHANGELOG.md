@@ -3,6 +3,33 @@ All notable changes will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [5.1.2] - 2026-8-16
+
+Pitstop 2 Hotfix 2
+
+### Added
+
+- Added Morpho Mode support for the QT Erect Stages, Title Menu, and Main Menu
+
+### Changed
+
+- Renamed Vee and Chi in the files to their actual names
+- Fixed a bug with the default character option on 0.8.6
+- Improved cross mod alt instrumental support
+- Re exported every chart in the mod to the new formatting
+- Changed the Discord RPC system to the new base game system
+- Made the rain shader intensity accurate on Blazin' (Gooey Mix)
+
+### Fixed
+
+- Added a temporary fix to the adjust color shader until week 8 releases
+- Fixed an error with pausing on Blissful (Gooey Mix)
+- ACTUALLY fixed small charting errors in Starcraft
+- Fixed cross mod compatibility with Huggy Mix's Opponent Miss Note
+- Fixed a duplicate sequence during the Gooey cutscene
+- Fixed the cheer animation not always playing on Spookeez (Gooey Mix)
+
+
 ## [5.1.1] - 2026-7-30
 
 Pitstop 2 Hotfix 1

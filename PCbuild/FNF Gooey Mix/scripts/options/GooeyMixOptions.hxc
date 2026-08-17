@@ -1,5 +1,6 @@
 import funkin.modding.ModStore;
 import flixel.util.FlxSave;
+import Array;
 
 class GooeyMixOptions
 {

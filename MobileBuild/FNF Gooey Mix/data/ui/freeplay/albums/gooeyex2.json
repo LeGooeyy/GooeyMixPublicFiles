@@ -16,5 +16,6 @@
   "albumArtAsset": "freeplay/albumRoll/gooeyex2",
   "albumTitleAsset": "freeplay/albumRoll/gooeyex2-text",
   "albumTitleOffsets": [-10, 0],
-  "albumOSTName": "GOOEY MIX OST"
+  "albumOSTName": "GOOEY MIX OST",
+  "discordRPCImage": "https://raw.githubusercontent.com/FNF-Gooey-Mix/GooeyMixDiscordIcons/refs/heads/main/assets/album-covers/gooeyex2.png"
 }

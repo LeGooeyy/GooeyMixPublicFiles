@@ -188,9 +188,11 @@ class BlissfulGooeyMixSong extends Song
             PlayState.instance.tweenCameraZoom(PlayState.instance.stageZoom, 3, true, FlxEase.quartInOut);
             PlayState.instance.startCountdown();
             showHUD();
-            skipText.kill();
-            skipText.destroy();
-            skipText = null;
+            if (skipText != null) {
+              skipText.kill();
+              skipText.destroy();
+              skipText = null;
+            }
           }
         }
       ];
@@ -227,10 +229,11 @@ class BlissfulGooeyMixSong extends Song
       showHUD();
       PlayState.instance.startCountdown();
     });
-
-    skipText.kill();
-    skipText.destroy();
-    skipText = null;
+    if (skipText != null) {
+      skipText.kill();
+      skipText.destroy();
+      skipText = null;
+    }
   }
 
   public function showHUD(duration:Float = 1):Void

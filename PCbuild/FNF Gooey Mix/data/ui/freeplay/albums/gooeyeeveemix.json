@@ -5,5 +5,6 @@
   "albumArtAsset": "freeplay/albumRoll/gooeyeeveemix",
   "albumTitleAsset": "freeplay/albumRoll/gooeymixExtra-text",
   "albumTitleOffsets": [-10, 0],
-  "albumOSTName": "GOOEY/VEE OST"
+  "albumOSTName": "GOOEY/VEE OST",
+  "discordRPCImage": "https://raw.githubusercontent.com/FNF-Gooey-Mix/GooeyMixDiscordIcons/refs/heads/main/assets/album-covers/gooeyeeveemix.png"
 }

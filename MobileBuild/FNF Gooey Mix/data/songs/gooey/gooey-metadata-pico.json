@@ -26,7 +26,8 @@
     "album": "gooeyex2",
     "stickerPack": "bonus-gooeyWeekPico",
     "previewStart": 0.280351648351648,
-    "previewEnd": 0.560371184371184
+    "previewEnd": 0.560371184371184,
+    "discordRPCImage": "https://raw.githubusercontent.com/FNF-Gooey-Mix/GooeyMixDiscordIcons/refs/heads/main/assets/icons/gooey.png"
   },
   "generatedBy": "LeGooey (by hand)"
 }

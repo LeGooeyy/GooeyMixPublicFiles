@@ -2,11 +2,11 @@ import funkin.play.character.MultiSparrowCharacter;
 import funkin.play.GameOverSubState;
 import funkin.play.character.CharacterType;
 
-class EeveeGooeyCharacter extends MultiSparrowCharacter
+class VeeGooeyCharacter extends MultiSparrowCharacter
 {
   function new()
   {
-    super('eevee-gooey');
+    super('vee-gooey');
   }
 
   function onCreate(event:ScriptEvent)

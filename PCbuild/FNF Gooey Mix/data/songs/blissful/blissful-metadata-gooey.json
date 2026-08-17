@@ -26,7 +26,8 @@
     "album": "gooeyBlissful",
     "stickerPack": "bonus-qtStickersGooey",
     "previewStart": 0.431272936176521,
-    "previewEnd": 0.602629043018458
+    "previewEnd": 0.602629043018458,
+    "discordRPCImage": "https://raw.githubusercontent.com/FNF-Gooey-Mix/GooeyMixDiscordIcons/refs/heads/main/assets/icons/QT.png"
   },
   "generatedBy": "LeGooey (by hand)"
 }

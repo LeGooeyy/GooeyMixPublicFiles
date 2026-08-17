@@ -16,6 +16,11 @@
       "op": "add",
       "path": "/playData/characters/altInstrumentals/-",
       "value": "gooey"
+    },
+    {
+      "op": "add",
+      "path": "/playData/characters/altInstrumentals/-",
+      "value": ""
     }
   ]
 ]

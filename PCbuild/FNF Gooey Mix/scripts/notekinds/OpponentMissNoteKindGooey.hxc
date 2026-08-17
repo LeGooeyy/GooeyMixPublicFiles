@@ -1,7 +1,7 @@
 import funkin.play.notes.notekind.NoteKind;
 import funkin.play.PlayState;
 
-class OpponentMissNoteKind extends NoteKind
+class OpponentMissNoteKindGooey extends NoteKind
 {
   public function new()
   {
