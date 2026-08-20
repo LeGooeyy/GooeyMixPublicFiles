@@ -225,7 +225,7 @@ class GooeyMenuOption extends Module
   function addTitleScreenObjects():Void
   {
     if (GooeyMixOptions.morphoMode == 'On' || GooeyMixOptions.morphoMode == 'No Stickers'){
-      FlxG.state.gfDance.frames = Paths.getSparrowAtlas('characters/morpho/morphoMode');
+      FlxG.state.gfDance.frames = Paths.getSparrowAtlas('morphoModeTitle');
       FlxG.state.gfDance.animation.addByPrefix('morphoHittingIt', 'morphoHittingIt', 12, true, true);
       FlxG.state.gfDance.animation.play('morphoHittingIt');
       FlxG.state.gfDance.shader = FlxG.state.swagShader.shader;

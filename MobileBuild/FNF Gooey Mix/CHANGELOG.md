@@ -3,6 +3,21 @@ All notable changes will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+
+## [5.1.3] - 2026-8-20
+
+Pitstop 2 Hotfix 3
+
+### Changed
+
+- Added the title menu neon outlines to the title screen Morpho
+
+### Fixed
+
+- Fixed the file paths for Vee and Chi
+- Fixed the Morpho sprite on the title screen dissapearing when entering the main menu
+- [MOBILE] Fixed an error with SemVer format with the mod version number
+
 ## [5.1.2.1] - 2026-8-19
 
 Pitstop 2 Mobile Hotfix
