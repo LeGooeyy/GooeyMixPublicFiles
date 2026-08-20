@@ -3,6 +3,14 @@ All notable changes will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [5.1.2.1] - 2026-8-19
+
+Pitstop 2 Mobile Hotfix
+
+### Fixed
+
+- Fixed the weekend1 folder being missing in the mobile build
+
 ## [5.1.2] - 2026-8-16
 
 Pitstop 2 Hotfix 2
